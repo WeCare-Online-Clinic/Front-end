@@ -1,0 +1,82 @@
+.MuiCard-root{
+    width:400px;
+    height: 600px;
+    
+  }
+  
+  .MuiTypography-root{
+    text-align: center;
+    height: 40px;
+    padding-top: 5px;
+    
+  }
+  
+  .MuiCardHeader-root{
+    background: linear-gradient(98deg,rgb(118,94,254) 0%,rgba(73,63,252,1));
+    height: 60px;
+    
+    
+  }
+  
+  .MuiCardHeader-avatar{
+   
+   text-align: left;
+  }
+   
+  .MuiCardHeader-title{
+    color:white;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 20px;
+    
+  }
+  
+  .MuiListItem-root{
+  
+   height: 40px;
+  
+   
+  }
+  
+  
+  .MuiListItemText-primary{
+    text-align: center;
+  
+    
+  }
+  
+  .MuiListItemText-secondary{
+    text-align: left;
+    
+    
+  }
+  
+  .MuiGrid-container{
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+  
+  }
+  
+  .MuiCardActions-root{
+    justify-content: center;
+  }
+  
+  .MuiButton-label{
+    background-color: orange;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    
+    
+  }
+  
+  
+  
+  
+  
+  
+    
+   
+    
