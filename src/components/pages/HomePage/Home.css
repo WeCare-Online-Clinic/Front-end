@@ -1,11 +1,30 @@
 
-  .bg {
-    background-image: url("./home.jpg");
-    position: fixed;
-    min-width: 100%;
-    min-height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.5;
+  .each-slide{
+    height: 100px;
+  }
+  .slide-show{
+    display: inline-flex;
     
   }
+  .clinics{
+    opacity: 0.7;
+  }
+  .contact{
+    background-color: rgb(67, 69, 67);
+  }
+
+  .contact p,h5{
+    color: white;
+  }
+  .contact hr{
+    color: rgb(255, 249, 249);
+  }
+  ul{
+    list-style-type: none;
+    color: white;    
+  }
+  ul li{
+    margin: 10px 0;
+  }
+
+ 
