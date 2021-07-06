@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../assets/img/logo.png'
 import './upperbar.css'
-import {FaPhoneAlt,FaEnvelope} from "react-icons/fa";
+import {FaPhoneAlt} from "react-icons/fa";
 import {MdPlace} from "react-icons/md";
 // import {
 //     CBadge,

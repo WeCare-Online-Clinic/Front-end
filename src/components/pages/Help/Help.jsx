@@ -1,4 +1,4 @@
-import React, { useEffect,Component } from 'react'
+import React, { useEffect } from 'react'
 import back from './../../assets/img/help.jpg'
 
 function Help(){

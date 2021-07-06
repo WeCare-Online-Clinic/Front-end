@@ -10,7 +10,7 @@ import {
   } from '@coreui/react'
 function Clinics() {
     return (
-        <div clasName='clinics' style={{opacity:'0.9'}}>
+        <div className='clinics' style={{opacity:'0.9'}}>
           <CRow>
           <CCol xs="3" xl="3">    
             < CCard className="mt-3 h-100 text-white  " color="primary" >

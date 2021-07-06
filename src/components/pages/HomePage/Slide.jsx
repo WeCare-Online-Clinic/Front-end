@@ -45,10 +45,8 @@ const Carousels = () => {
               <CCarouselControl direction="prev"/>
               <CCarouselControl direction="next"/>
             </CCarousel>
-       
         </CCard>
       </CCol>
-     
     </CRow>
     </div>
   )
