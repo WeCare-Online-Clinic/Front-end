@@ -14,7 +14,8 @@ import './Footer.css';
         return (
             <div>
                 <footer className="footer">
-                    <span className="text-muted"><h4><b>All Rights Recevered 2021 @WeCare</b></h4>e </span>
+
+                    <span className=""><p className="text-muted" style={{color:"white"}}>All Rights Recevered 2021 @WeCare</p></span>
                 </footer>
             </div>
         )

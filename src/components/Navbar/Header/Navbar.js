@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {MenuItems} from './MenuItems'; 
 import './Navbar.css';
-import WeCare from "./WeCare.ico";
 import {Link} from 'react-router-dom';
 
 class Navbar extends Component{
@@ -19,17 +18,16 @@ class Navbar extends Component{
     render(){
         return(
             
-            <nav className="NavbarItems">
-                <div><img className="logo" src={WeCare} alt="logo"/></div>
+            <nav className="NavbarItems">               
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.clicked? 'fas fa-times':'fas fa-bars'}></i>
 
                 </div>
-                <ul className={this.state.clicked? 'nav-menu-active':'nav-menu'}>
+                <ul className='nav-menu'>
                        {MenuItems.map((item,index)=>{ 
                         return(
                             <li key={index} > 
-                                <Link  className={item.cName} to={item.link}>
+                                <Link  className="nav-links" to={item.link}>
                                     {item.title}
                                 </Link>
                             </li>

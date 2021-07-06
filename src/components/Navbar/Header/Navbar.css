@@ -1,14 +1,14 @@
+
 .NavbarItems{
-    background: linear-gradient(98deg,rgb(118,94,254) 0%,rgba(73,63,252,1));
-    height: 65px;
-    display:flex;
+    background-color: rgb(25, 0, 255);
+    font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    display:flex;  
     justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-family:Courier;
+    align-items: center;    
     position: static;
     overflow: hidden;
-
+     opacity: .6;
+    
 
 }
 .navbar-logo{
@@ -17,40 +17,38 @@
     margin-left: 20px;
     cursor: pointer;
 }
-.fa-react{
-    margin-left: 0.5rem ;
-    font-size: 1.6rem;
-}
+
 .nav-menu{
+    margin-top: 15px;
     display: grid;
     grid-template-columns: repeat(5,auto);
-    grid-gap:25px;
+    grid-gap:50px;
     list-style: none;
     text-align: center;
     width: 90vw;
     justify-content: end;
-    margin-right: 2rem;
+    /* margin-right: 2rem; */
+   
 }
 .nav-links{
-    color:white;
+    color:rgb(251, 250, 250);
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
-.nav-links:hover{
-    background-color: #6d76f7;
+.nav-links:hover,.active{
+    background-color: #123070;
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
-.nav-menu-active{
-    background-color: #3459e2;
-    color: white;
+.active{
+    background-color: #bec3d6;
+    color: rgb(141, 19, 19);
 }
+
 .fa-bars{
     color:white;
 }
-.nav-links-mobile{
-    /* display: none; */
-}
+
 .menu-icon{
     display: none;
 }
@@ -58,3 +56,52 @@
     height: 100px;
     width: 100px;
 }
+
+/* .checkbtn{
+  
+    font-size: 30px;
+    color: white;
+    float: right; 
+    margin-right: 90px; 
+    margin-left:00px;
+    margin-bottom: 300px;
+    margin-top: 200px;
+    cursor: pointer;
+    display: none;
+  }
+  #check{
+    display: none;
+  } */
+  /* @media (max-width: 952px){
+    label.logo{
+      font-size: 30px;
+      padding-left: 50px;
+    }
+    nav ul li a{
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 858px){
+    .checkbtn{
+      display: block;
+     
+    }
+    .NavbarItems{
+        position: relative;
+        height: 300px;        
+        backdrop-filter: blur(0px);
+        border-bottom-right-radius: 30%;
+    }  
+    .nav-item{
+     
+      display: block;
+      margin: 20px 20px 50px 20px;
+      height: 100%;
+      line-height: 10px;
+    }
+
+    #check:checked ~ ul{
+      left: 0em;
+      
+    }
+  } */
