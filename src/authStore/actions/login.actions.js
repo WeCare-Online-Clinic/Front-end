@@ -10,7 +10,7 @@ export const LOGIN_SET_USER = 'LOGIN_SET_USER';
 
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 
-const USER_LOGIN_URL = "http://localhost:8080/wecare/user";
+const USER_LOGIN_URL = "http://localhost:8080/wecare/userlogin";
 
 
 export function submitLogin(data) {
@@ -26,7 +26,7 @@ export function submitLogin(data) {
                     payload: res.data
                 });
                 history.push({
-                    pathname: Constants.PAGES.adminDashboard
+                    pathname: '/help'
                 });
                 Constants.LOGGED_IN_USER = res.data;
                 setStorageItem('user', res.data);

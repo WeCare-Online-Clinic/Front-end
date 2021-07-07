@@ -16,7 +16,6 @@ const slides=[
 
 
 const Carousels = () => {
-  const [activeIndex] = useState(1)
 
   return (
     <div className="container mt-3">
