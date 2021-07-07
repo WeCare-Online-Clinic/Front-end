@@ -67,7 +67,7 @@ const Sidebar = (props) => {
         <Divider />
         {props.menuItems.map((item) => {
           return item.children ? (
-            <>
+            <React.Fragment>
               <ListItem className={classes.listItem} key={item.name}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>
@@ -82,15 +82,15 @@ const Sidebar = (props) => {
                 </ListItem>
               ))}
               <Divider />
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment>
               <ListItem button key={item.name} className={classes.listItem}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>
               </ListItem>
               <Divider />
-            </>
+            </React.Fragment>
           )
         })}
       </List>

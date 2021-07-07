@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
   card:{
     width: '400px',
     height: '550px',
-    marginLeft: '400px',
-    marginTop: '130px',
   },
   
   typography :{
@@ -88,7 +86,7 @@ export default function ProfileCard() {
           }
           title={
             <Typography className={classes.title} color="textSecondary" >
-              Dr. Asanaka Perera
+              Mr. Kamal Silva
             </Typography>
           }
         />
@@ -121,25 +119,25 @@ export default function ProfileCard() {
 
           <List>
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.secondary} secondary=":123456789" />
+              <ListItemText className={classes.secondary} secondary=":123456789v" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Female" />
+              <ListItemText className={classes.secondary} secondary=":Male" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":22" />
+              <ListItemText className={classes.secondary} secondary=":43" />
             </ListItem>
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.secondary} secondary=":MBBS" />
+              <ListItemText className={classes.secondary} secondary=":BS-MLT" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":0712325367" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":doctor@gmail.com" />
+              <ListItemText className={classes.secondary} secondary=":labtec@gmail.com" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Eye Clinic" />
+              <ListItemText className={classes.secondary} secondary=":cardiology Clinic" />
             </ListItem>
           </List>
         </Grid>
