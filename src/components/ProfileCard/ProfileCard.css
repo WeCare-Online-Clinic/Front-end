@@ -1,82 +1,77 @@
 .MuiCard-root{
-    width:400px;
-    height: 600px;
-    
-  }
+  width:400px;
+  height: 600px;
+  margin-left: 400px;
   
-  .MuiTypography-root{
-    text-align: center;
-    height: 40px;
-    padding-top: 5px;
-    
-  }
+}
+
+.MuiTypography-root{
+  text-align: center;
+  height: 40px;
+  padding-top: 5px;
   
-  .MuiCardHeader-root{
-    background:  rgb(25, 0, 255);
-    height: 60px;
-    
-    
-  }
-  
-  .MuiCardHeader-avatar{
-   
-   text-align: left;
-  }
-   
-  .MuiCardHeader-title{
-    color:white;
-    text-align: right;
-    padding-top: 10px;
-    padding-right: 20px;
-    
-  }
-  
-  .MuiListItem-root{
-  
-   height: 40px;
-  
-   
-  }
+}
+
+.MuiCardHeader-root{
+  background: rgb(25, 0, 255);
+  height: 60px;
   
   
-  .MuiListItemText-primary{
-    text-align: center;
+}
+
+.MuiCardHeader-avatar{
+  text-align: left;
+
+}
+ 
+.MuiCardHeader-title{
+  color:white;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 20px;
   
-    
-  }
+}
+
+.MuiListItem-root{
+  height: 40px;
+
+}
+
+.MuiListItemText-primary{
+  text-align: center;
+  width: 100px;
+
+}
+
+.MuiListItemText-secondary{
+  text-align: left;
   
-  .MuiListItemText-secondary{
-    text-align: left;
-    
-    
-  }
+}
+
+.MuiGrid-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
   
-  .MuiGrid-container{
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
-    
+}
+
+.MuiCardActions-root{
+  justify-content: center;
+
+}
+
+.MuiButton-label{
+  background-color: orange;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: white;
   
-  }
+}
+
+
+
+
+
+
   
-  .MuiCardActions-root{
-    justify-content: center;
-  }
+ 
   
-  .MuiButton-label{
-    background-color: orange;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: white;
-    
-    
-  }
-  
-  
-  
-  
-  
-  
-    
-   
-    
