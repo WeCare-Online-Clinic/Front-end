@@ -82,7 +82,7 @@ const PatientDataTable = (props) => {
   }
 
   return (
-    <>
+    <div>
       <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
@@ -190,7 +190,7 @@ const PatientDataTable = (props) => {
           />
         </CardActions>
       </Card>
-    </>
+    </div>
   )
 }
 

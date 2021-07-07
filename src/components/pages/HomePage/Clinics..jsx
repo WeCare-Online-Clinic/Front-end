@@ -6,7 +6,6 @@ import {
     CCardHeader,
     CCol,
     CRow
- 
   } from '@coreui/react'
 function Clinics() {
     return (
