@@ -17,7 +17,7 @@ export default function ProfileCard() {
   
   return (
     <Card >
-      <Typography  color="textSecondary" component="p">
+      <Typography  color="textSecondary" >
         Profile
       </Typography>
 
@@ -30,7 +30,7 @@ export default function ProfileCard() {
       
       <CardContent>
         <Grid container alignItems="center" >
-          <List component="nav"  aria-label="mailbox folders"  >
+          <List  >
             <ListItem >
               <ListItemText primary="ID" />
             </ListItem>
@@ -54,7 +54,7 @@ export default function ProfileCard() {
             </ListItem>
           </List>
 
-          <List component="nav"  aria-label="mailbox folders" >
+          <List>
             <ListItem >
               <ListItemText secondary=":123456789" />
             </ListItem>
