@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store/index'
 import Auth from './authStore/Auth'
