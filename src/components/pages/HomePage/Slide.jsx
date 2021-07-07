@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
-import img1 from '../../assets/img/img3.jpg'
-import img2 from '../../assets/img/new1.jpg'
 import img3 from '../../assets/img/new2.jpg'
 import {
   CCard,
-  CCardBody,
-  CCardHeader,
   CCarousel,
-  CCarouselCaption,
   CCarouselControl,
-  CCarouselIndicators,
   CCarouselInner,
   CCarouselItem,
   CCol,
@@ -29,7 +23,6 @@ const Carousels = () => {
     <CRow>
       <CCol xs="12" xl="6">
         <CCard>
-         
             <CCarousel>
               <CCarouselInner>
                 <CCarouselItem>

@@ -68,7 +68,7 @@ export default function DoctorSidebar() {
         <Divider />
         {doctorMenuItems.map((item) => {
           return item.children ? (
-            <>
+            <React.Fragment>
               <ListItem className={classes.listItem} key={item.name}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>
@@ -83,15 +83,15 @@ export default function DoctorSidebar() {
                 </ListItem>
               ))}
               <Divider />
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment>
               <ListItem button key={item.name} className={classes.listItem}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>
               </ListItem>
               <Divider />
-            </>
+            </React.Fragment>
           )
         })}
       </List>

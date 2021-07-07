@@ -1884,49 +1884,12 @@
                 "babel-types": "^6.24.1"
             }
         },
-<<<<<<< HEAD
-        "node_modules/@material-ui/core": {
-            "version": "4.12.1",
-            "resolved": "https://registry.npmjs.org/@material-ui/core/-/core-4.12.1.tgz",
-            "integrity": "sha512-C6hYsjkWCTfBx9FaqxhCZCITBagh7fyCKFtHyvO3tTOcBw6NJaktdhNZ2n82jQdQdgfFvg6OOxi7OOzsAdAcBQ==",
-            "dependencies": {
-                "@babel/runtime": "^7.4.4",
-                "@material-ui/styles": "^4.11.4",
-                "@material-ui/system": "^4.12.1",
-                "@material-ui/types": "5.1.0",
-                "@material-ui/utils": "^4.11.2",
-                "@types/react-transition-group": "^4.2.0",
-                "clsx": "^1.0.4",
-                "hoist-non-react-statics": "^3.3.2",
-                "popper.js": "1.16.1-lts",
-                "prop-types": "^15.7.2",
-                "react-is": "^16.8.0 || ^17.0.0",
-                "react-transition-group": "^4.4.0"
-            },
-            "engines": {
-                "node": ">=8.0.0"
-            },
-            "funding": {
-                "type": "opencollective",
-                "url": "https://opencollective.com/material-ui"
-            },
-            "peerDependencies": {
-                "@types/react": "^16.8.6 || ^17.0.0",
-                "react": "^16.8.0 || ^17.0.0",
-                "react-dom": "^16.8.0 || ^17.0.0"
-            },
-            "peerDependenciesMeta": {
-                "@types/react": {
-                    "optional": true
-                }
-=======
         "node_modules/babel-plugin-transform-es2015-for-of": {
             "version": "6.23.0",
             "resolved": "https://registry.npmjs.org/babel-plugin-transform-es2015-for-of/-/babel-plugin-transform-es2015-for-of-6.23.0.tgz",
             "integrity": "sha1-9HyVsrYT3x0+zC/bdXNiPHUkhpE=",
             "dependencies": {
                 "babel-runtime": "^6.22.0"
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             }
         },
         "node_modules/babel-plugin-transform-es2015-function-name": {
@@ -1939,75 +1902,14 @@
                 "babel-types": "^6.24.1"
             }
         },
-<<<<<<< HEAD
-        "node_modules/@material-ui/lab": {
-            "version": "4.0.0-alpha.60",
-            "resolved": "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.60.tgz",
-            "integrity": "sha512-fadlYsPJF+0fx2lRuyqAuJj7hAS1tLDdIEEdov5jlrpb5pp4b+mRDUqQTUxi4inRZHS1bEXpU8QWUhO6xX88aA==",
-            "dependencies": {
-                "@babel/runtime": "^7.4.4",
-                "@material-ui/utils": "^4.11.2",
-                "clsx": "^1.0.4",
-                "prop-types": "^15.7.2",
-                "react-is": "^16.8.0 || ^17.0.0"
-            },
-            "engines": {
-                "node": ">=8.0.0"
-            },
-            "peerDependencies": {
-                "@material-ui/core": "^4.12.1",
-                "@types/react": "^16.8.6 || ^17.0.0",
-                "react": "^16.8.0 || ^17.0.0",
-                "react-dom": "^16.8.0 || ^17.0.0"
-            },
-            "peerDependenciesMeta": {
-                "@types/react": {
-                    "optional": true
-                }
-            }
-        },
-        "node_modules/@material-ui/styles": {
-            "version": "4.11.4",
-            "resolved": "https://registry.npmjs.org/@material-ui/styles/-/styles-4.11.4.tgz",
-            "integrity": "sha512-KNTIZcnj/zprG5LW0Sao7zw+yG3O35pviHzejMdcSGCdWbiO8qzRgOYL8JAxAsWBKOKYwVZxXtHWaB5T2Kvxew==",
-=======
         "node_modules/babel-plugin-transform-es2015-literals": {
             "version": "6.22.0",
             "resolved": "https://registry.npmjs.org/babel-plugin-transform-es2015-literals/-/babel-plugin-transform-es2015-literals-6.22.0.tgz",
             "integrity": "sha1-T1SgLWzWbPkVKAAZox0xklN3yi4=",
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             "dependencies": {
                 "babel-runtime": "^6.22.0"
             }
         },
-<<<<<<< HEAD
-        "node_modules/@material-ui/system": {
-            "version": "4.12.1",
-            "resolved": "https://registry.npmjs.org/@material-ui/system/-/system-4.12.1.tgz",
-            "integrity": "sha512-lUdzs4q9kEXZGhbN7BptyiS1rLNHe6kG9o8Y307HCvF4sQxbCgpL2qi+gUk+yI8a2DNk48gISEQxoxpgph0xIw==",
-            "dependencies": {
-                "@babel/runtime": "^7.4.4",
-                "@material-ui/utils": "^4.11.2",
-                "csstype": "^2.5.2",
-                "prop-types": "^15.7.2"
-            },
-            "engines": {
-                "node": ">=8.0.0"
-            },
-            "funding": {
-                "type": "opencollective",
-                "url": "https://opencollective.com/material-ui"
-            },
-            "peerDependencies": {
-                "@types/react": "^16.8.6 || ^17.0.0",
-                "react": "^16.8.0 || ^17.0.0",
-                "react-dom": "^16.8.0 || ^17.0.0"
-            },
-            "peerDependenciesMeta": {
-                "@types/react": {
-                    "optional": true
-                }
-=======
         "node_modules/babel-plugin-transform-es2015-modules-amd": {
             "version": "6.24.1",
             "resolved": "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-amd/-/babel-plugin-transform-es2015-modules-amd-6.24.1.tgz",
@@ -2016,7 +1918,6 @@
                 "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
                 "babel-runtime": "^6.22.0",
                 "babel-template": "^6.24.1"
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             }
         },
         "node_modules/babel-plugin-transform-es2015-modules-commonjs": {
@@ -21602,25 +21503,6 @@
                 "array-find-index": "^1.0.1"
             }
         },
-<<<<<<< HEAD
-        "@material-ui/core": {
-            "version": "4.12.1",
-            "resolved": "https://registry.npmjs.org/@material-ui/core/-/core-4.12.1.tgz",
-            "integrity": "sha512-C6hYsjkWCTfBx9FaqxhCZCITBagh7fyCKFtHyvO3tTOcBw6NJaktdhNZ2n82jQdQdgfFvg6OOxi7OOzsAdAcBQ==",
-            "requires": {
-                "@babel/runtime": "^7.4.4",
-                "@material-ui/styles": "^4.11.4",
-                "@material-ui/system": "^4.12.1",
-                "@material-ui/types": "5.1.0",
-                "@material-ui/utils": "^4.11.2",
-                "@types/react-transition-group": "^4.2.0",
-                "clsx": "^1.0.4",
-                "hoist-non-react-statics": "^3.3.2",
-                "popper.js": "1.16.1-lts",
-                "prop-types": "^15.7.2",
-                "react-is": "^16.8.0 || ^17.0.0",
-                "react-transition-group": "^4.4.0"
-=======
         "d": {
             "version": "1.0.1",
             "resolved": "https://registry.npmjs.org/d/-/d-1.0.1.tgz",
@@ -21628,7 +21510,6 @@
             "requires": {
                 "es5-ext": "^0.10.50",
                 "type": "^1.0.1"
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             }
         },
         "damerau-levenshtein": {
@@ -21636,44 +21517,18 @@
             "resolved": "https://registry.npmjs.org/damerau-levenshtein/-/damerau-levenshtein-1.0.7.tgz",
             "integrity": "sha512-VvdQIPGdWP0SqFXghj79Wf/5LArmreyMsGLa6FG6iC4t3j7j5s71TrwWmT/4akbDQIqjfACkLZmjXhA7g2oUZw=="
         },
-<<<<<<< HEAD
-        "@material-ui/lab": {
-            "version": "4.0.0-alpha.60",
-            "resolved": "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.60.tgz",
-            "integrity": "sha512-fadlYsPJF+0fx2lRuyqAuJj7hAS1tLDdIEEdov5jlrpb5pp4b+mRDUqQTUxi4inRZHS1bEXpU8QWUhO6xX88aA==",
-            "requires": {
-                "@babel/runtime": "^7.4.4",
-                "@material-ui/utils": "^4.11.2",
-                "clsx": "^1.0.4",
-                "prop-types": "^15.7.2",
-                "react-is": "^16.8.0 || ^17.0.0"
-            }
-        },
-        "@material-ui/styles": {
-            "version": "4.11.4",
-            "resolved": "https://registry.npmjs.org/@material-ui/styles/-/styles-4.11.4.tgz",
-            "integrity": "sha512-KNTIZcnj/zprG5LW0Sao7zw+yG3O35pviHzejMdcSGCdWbiO8qzRgOYL8JAxAsWBKOKYwVZxXtHWaB5T2Kvxew==",
-=======
         "dashdash": {
             "version": "1.14.1",
             "resolved": "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz",
             "integrity": "sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=",
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             "requires": {
                 "assert-plus": "^1.0.0"
             }
         },
-<<<<<<< HEAD
-        "@material-ui/system": {
-            "version": "4.12.1",
-            "resolved": "https://registry.npmjs.org/@material-ui/system/-/system-4.12.1.tgz",
-            "integrity": "sha512-lUdzs4q9kEXZGhbN7BptyiS1rLNHe6kG9o8Y307HCvF4sQxbCgpL2qi+gUk+yI8a2DNk48gISEQxoxpgph0xIw==",
-=======
         "debug": {
             "version": "2.6.9",
             "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
             "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
->>>>>>> cea89cd87efcdab28fd420f0676c06fbb6253e9a
             "requires": {
                 "ms": "2.0.0"
             }
