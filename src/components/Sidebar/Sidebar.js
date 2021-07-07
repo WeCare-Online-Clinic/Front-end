@@ -7,7 +7,6 @@ import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import { doctorMenuItems } from './menuItem'
 import logo from '../assets/img/logo.png'
 
 const sidebarWidth = '240px'
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function DoctorSidebar() {
+const Sidebar = (props) => {
   const classes = useStyles()
 
   return (
@@ -66,7 +65,7 @@ export default function DoctorSidebar() {
           </div>
         </ListItem>
         <Divider />
-        {doctorMenuItems.map((item) => {
+        {props.menuItems.map((item) => {
           return item.children ? (
             <>
               <ListItem className={classes.listItem} key={item.name}>
@@ -98,3 +97,5 @@ export default function DoctorSidebar() {
     </Drawer>
   )
 }
+
+export default Sidebar

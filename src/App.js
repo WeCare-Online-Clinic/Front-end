@@ -23,21 +23,20 @@ const loading = (
 
 function App() {
   return (
-    /*  <Provider store={store}>
-        <Auth>
-          <Router history={history}>
-            <React.Suspense fallback={loading}>
-              <Switch>
-                <Route path='/' exact component={Home}></Route>
-                <Route path='/login' component={Login}></Route>
-                <Route path='/help' component={Help}></Route>
-                <Route path='/signup' component={SignUp}></Route>
-              </Switch>
-            </React.Suspense>
-          </Router>
-        </Auth>
-      </Provider> */
-    <View_Patient />
+    <Provider store={store}>
+      <Auth>
+        <Router history={history}>
+          <React.Suspense fallback={loading}>
+            <Switch>
+              <Route path='/' exact component={Home}></Route>
+              <Route path='/login' component={Login}></Route>
+              <Route path='/help' component={Help}></Route>
+              <Route path='/signup' component={SignUp}></Route>
+            </Switch>
+          </React.Suspense>
+        </Router>
+      </Auth>
+    </Provider>
   )
 }
 

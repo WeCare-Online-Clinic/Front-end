@@ -3,6 +3,9 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
 import BarChartIcon from '@material-ui/icons/BarChart'
+import PersonIcon from '@material-ui/icons/Person'
+import ScheduleIcon from '@material-ui/icons/Schedule'
+import SendIcon from '@material-ui/icons/Send'
 
 export const doctorMenuItems = [
   {
@@ -39,5 +42,53 @@ export const doctorMenuItems = [
         url: '',
       },
     ],
+  },
+]
+
+export const adminMenuItems = [
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Manage Doctors',
+    url: '',
+    children: [
+      {
+        name: 'View Doctors',
+        url: '',
+      },
+      {
+        name: 'Register Doctors',
+        url: '',
+      },
+    ],
+  },
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Manage Nurses',
+    url: '',
+    children: [
+      {
+        name: 'View Nurses',
+        url: '',
+      },
+      {
+        name: 'Register Nurse',
+        url: '',
+      },
+    ],
+  },
+  {
+    icon: <ScheduleIcon style={{ color: '#fff' }} />,
+    name: 'Doctor Schedule',
+    url: '',
+  },
+  {
+    icon: <ScheduleIcon style={{ color: '#fff' }} />,
+    name: 'Nurse Schedule',
+    url: '',
+  },
+  {
+    icon: <SendIcon style={{ color: '#fff' }} />,
+    name: 'Send Notifications',
+    url: '',
   },
 ]

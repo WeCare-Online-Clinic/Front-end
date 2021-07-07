@@ -20,8 +20,9 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { patientData } from './patientData'
+import { onlineUserData } from './OnlineUserData'
 import PageviewIcon from '@material-ui/icons/Pageview'
+import PersonIcon from '@material-ui/icons/Person'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     color: '#4e4f50',
     fontSize: '16px',
+    maxWidth: '50px',
   },
   search_items: {
     maxHeight: '50px',
@@ -57,19 +59,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const PatientDataTable = (props) => {
+const OnlineUserTable = (props) => {
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Patient Name' },
-    { text: 'Age' },
-    { text: 'Gender' },
-    { text: 'Diagnosis' },
-    { text: 'First Clinic Date' },
-    { text: 'Next Clinic Date' },
+    { text: 'User' },
+    { text: 'Role' },
   ]
 
   const classes = useStyles()
@@ -84,42 +82,23 @@ const PatientDataTable = (props) => {
   return (
     <>
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid item alignContent='center'>
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Patient Name'
-                variant='outlined'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Diagnosis'
-                variant='outlined'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                className={classes.search_items}
-                style={{ minHeight: '50px' }}
-              >
-                Search
-              </Button>
-            </form>
-          </Grid>
-        </Grid>
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <div className={classes.inner}>
-              <Table>
+              <Table style={{ maxWidth: '50%' }}>
                 <TableHead
-                  style={{ backgroundColor: '#ebf5f7' }}
+                  style={{
+                    backgroundColor: '#ebf5f7',
+                  }}
                   className={classes.head}
                 >
                   <TableRow>
+                    <TableCell
+                      style={{
+                        maxWidth: '20px',
+                        borderBottom: '1px solid #000',
+                      }}
+                    ></TableCell>
                     {tableHeaders.map((col) => (
                       <TableCell
                         style={{
@@ -133,45 +112,27 @@ const PatientDataTable = (props) => {
                         <span>{col.text}</span>
                       </TableCell>
                     ))}
-                    <TableCell
-                      style={{ borderBottom: '1px solid #000' }}
-                    ></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {patientData
+                  {onlineUserData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        patient // add table row of patientData
+                        userRow // add table row of patientData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
-                          <TableCell className={classes.cell}>
-                            {patient.name}
+                          <TableCell
+                            style={{ maxWidth: '20px' }}
+                            className={classes.cell}
+                          >
+                            <PersonIcon />
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.age}
+                            {userRow.user}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.Gender}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.Diagnosis}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.First_clinic_date}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.Next_clinic_date}
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                            >
-                              View
-                            </Button>
+                            {userRow.role}
                           </TableCell>
                         </TableRow>
                       )
@@ -184,7 +145,7 @@ const PatientDataTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={patientData.length} // size of patientData array
+            count={onlineUserData.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
@@ -197,4 +158,4 @@ const PatientDataTable = (props) => {
   )
 }
 
-export default PatientDataTable
+export default OnlineUserTable
