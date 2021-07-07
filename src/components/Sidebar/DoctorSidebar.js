@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import { doctorMenuItems } from './menuItem'
+import logo from '../assets/img/logo.png'
 
 const sidebarWidth = '240px'
 
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#4c5355',
     },
   },
+  sbListitem: {
+    paddingLeft: '70px',
+    backgroundColor: '#e3e8e9',
+    '&:hover': {
+      backgroundColor: '#fff',
+    },
+  },
 }))
 
 export default function DoctorSidebar() {
@@ -48,9 +56,14 @@ export default function DoctorSidebar() {
       <Divider />
       <List style={{ minWidth: 'inherit' }}>
         <ListItem style={{ height: '100px' }}>
-          <ListItemIcon>
-            <img />
-          </ListItemIcon>
+          <div
+            style={{
+              display: 'flex',
+              paddingLeft: '60px',
+            }}
+          >
+            <img src={logo} style={{ width: '80px' }} />
+          </div>
         </ListItem>
         <Divider />
         {doctorMenuItems.map((item) => {
@@ -64,7 +77,7 @@ export default function DoctorSidebar() {
                 <ListItem
                   button
                   key={child.name}
-                  style={{ paddingLeft: '70px' }}
+                  className={classes.sbListitem}
                 >
                   <ListItemText>{child.name}</ListItemText>
                 </ListItem>

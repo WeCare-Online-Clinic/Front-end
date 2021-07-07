@@ -23,8 +23,7 @@ const loading = (
 
 function App() {
   return (
-    <>
-      {/*  <Provider store={store}>
+    /*  <Provider store={store}>
         <Auth>
           <Router history={history}>
             <React.Suspense fallback={loading}>
@@ -37,9 +36,8 @@ function App() {
             </React.Suspense>
           </Router>
         </Auth>
-      </Provider> */}
-      <View_Patient />
-    </>
+      </Provider> */
+    <View_Patient />
   )
 }
 

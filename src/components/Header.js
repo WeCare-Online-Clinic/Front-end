@@ -22,21 +22,21 @@ export default function Header() {
       <Toolbar>
         <Grid container>
           <Grid item>
-            <IconButton color={'primary'} style={{ marginRight: '10px' }}>
+            <IconButton color='primary' style={{ marginRight: '10px' }}>
               <HomeIcon />
             </IconButton>
-            <IconButton color={'primary'} style={{ marginRight: '20px' }}>
+            <IconButton color='primary' style={{ marginRight: '20px' }}>
               <DashboardIcon />
             </IconButton>
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton color={'primary'} style={{ marginRight: '10px' }}>
-              <Badge badgeContent={1} color={'secondary'}>
+            <IconButton color='primary' style={{ marginRight: '10px' }}>
+              <Badge badgeContent={1} color='secondary'>
                 <NotificationsNoneIcon />
               </Badge>
             </IconButton>
-            <IconButton color={'primary'} style={{ marginRight: '20px' }}>
+            <IconButton color='primary' style={{ marginRight: '20px' }}>
               <AccountCircleOutlinedIcon />
             </IconButton>
             <Button

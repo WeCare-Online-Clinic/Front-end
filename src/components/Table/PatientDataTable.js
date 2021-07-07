@@ -163,8 +163,8 @@ const PatientDataTable = (props) => {
                           </TableCell>
                           <TableCell>
                             <Button
-                              fullWidth='true'
                               variant='contained'
+                              fullWidth='true'
                               color='primary'
                             >
                               View

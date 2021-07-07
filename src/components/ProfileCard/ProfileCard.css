@@ -1,77 +1,56 @@
-.MuiCard-root{
-  width:400px;
+.MuiCard-root {
+  width: 400px;
   height: 600px;
   margin-left: 400px;
-  
 }
 
-.MuiTypography-root{
+.MuiTypography-root {
   text-align: center;
   height: 40px;
   padding-top: 5px;
-  
 }
 
-.MuiCardHeader-root{
+.MuiCardHeader-root {
   background: rgb(25, 0, 255);
   height: 60px;
-  
-  
 }
 
-.MuiCardHeader-avatar{
+.MuiCardHeader-avatar {
   text-align: left;
-
 }
- 
-.MuiCardHeader-title{
-  color:white;
+
+.MuiCardHeader-title {
+  color: white;
   text-align: right;
   padding-top: 10px;
   padding-right: 20px;
-  
 }
 
-.MuiListItem-root{
+.MuiListItem-root {
   height: 40px;
-
 }
 
-.MuiListItemText-primary{
+.MuiListItemText-primary {
   text-align: center;
   width: 100px;
-
 }
 
-.MuiListItemText-secondary{
+.MuiListItemText-secondary {
   text-align: left;
-  
 }
 
-.MuiGrid-container{
+.MuiGrid-container {
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
 
-.MuiCardActions-root{
+.MuiCardActions-root {
   justify-content: center;
-
 }
 
-.MuiButton-label{
+.MuiButton-label {
   background-color: orange;
   padding-left: 5px;
   padding-right: 5px;
   color: white;
-  
 }
-
-
-
-
-
-
-  
- 
-  
