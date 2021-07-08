@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 import Box from '@material-ui/core/Box';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -15,8 +15,8 @@ import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 600,
-        marginLeft:640,
+        maxWidth: 1000,
+        marginLeft:340,
         marginTop:50,
         '& > * + *': {
           marginTop: theme.spacing(2),
@@ -191,11 +191,21 @@ export default function Register() {
             </Grid>
             </Grid>
             <div>
-                <Box fontSize="h6.fontSize" m={1}>Special notes</Box>
-                <TextareaAutosize aria-label="minimum height" minColumns={12} minRows={4} placeholder="Special notes" />
+            <Box fontSize="h6.fontSize" m={1}>Special Notes</Box>
+                <TextField
+                    id="standard-full-width"
+                    style={{ margin:10 }}
+                    placeholder="Special Notes"
+                    // helperText="If have!"
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
             </div>
-            <div>
-                <Button variant="contained" color="primary" align="center">
+            <div align="center">
+                <Button variant="contained" color="primary" >
                     Register
                 </Button>
       
