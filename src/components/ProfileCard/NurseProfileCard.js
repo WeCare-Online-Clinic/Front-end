@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   grid : {
     marginTop: '15px',
     marginBottom: '15px',
-    alignItems:'center',
   },
   
   cardaction : {
@@ -71,13 +70,13 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
-export default function ProfileCard() {
+export default function NurseProfileCard() {
 
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <Typography className={classes.typography} color="textSecondary" >
-        Profile
+        Nurse Profile
       </Typography>
       <div className={classes.header}>
         <CardHeader 
@@ -92,10 +91,10 @@ export default function ProfileCard() {
         />
       </div>
       <CardContent>
-        <Grid container   className={classes.grid}>
+        <Grid container alignItems="center"  className={classes.grid}>
           <List  >
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.primary} primary="ID" />
+              <ListItemText className={classes.primary} primary="Clinic ID" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Gender" />
@@ -119,7 +118,7 @@ export default function ProfileCard() {
 
           <List>
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.secondary} secondary=":298562789v" />
+              <ListItemText className={classes.secondary} secondary=":298N" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":Female" />
