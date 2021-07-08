@@ -84,6 +84,45 @@ export const adminMenuItems = [
   },
 ]
 
+
+export const headnurseMenuItems = [
+  
+  {
+    icon: <DashboardIcon style={{ color: '#fff' }} />,
+    name: 'Dashboard',
+    children: [
+      {
+        name: 'Manage Queue',
+        url: '/headnurse/managequeue',
+      },
+      {
+        name: 'View Doctors',
+        url: '/headnurse/viewdoctors',
+      },
+      {
+        name: 'View Patients',
+        url: '/headnurse/viewpatients',
+      },
+    ],
+  },
+  
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Profile',
+    url: '/headnurse/profile',
+  },
+  {
+    icon: <AssignmentIndIcon style={{ color: '#fff' }} />,
+    name: 'Register',
+    url: '/headnurse/register',
+  },
+  {
+    icon: <SendIcon style={{ color: '#fff' }} />,
+    name: 'Message',
+    url: '/headnurse/message',
+},
+]
+
 export const patientMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
@@ -99,5 +138,6 @@ export const patientMenuItems = [
     icon: <HistoryIcon style={{ color: '#fff' }} />,
     name: 'Clinic History',
     url: '/patient/history',
+
   },
 ]
