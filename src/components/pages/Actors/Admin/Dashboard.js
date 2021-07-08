@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-function View_Patient() {
+function Dashboard() {
   return (
     <Layout
       header={<Header />}
@@ -47,7 +47,8 @@ function Content() {
             <OnlineUserTable />
           </Grid>
           <Grid className={classes.dataCard} item sm={7}>
-            <LineStatCard />
+            <LineStatCard title='Online Users' />
+            <LineStatCard title='Registered Users' />
           </Grid>
         </Grid>
       </Grid>
@@ -55,4 +56,4 @@ function Content() {
   )
 }
 
-export default View_Patient
+export default Dashboard

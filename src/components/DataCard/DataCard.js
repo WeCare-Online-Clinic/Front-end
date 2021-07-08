@@ -5,12 +5,14 @@ import { CardContent } from '@material-ui/core'
 
 const useStyles = makeStyles({
   card: {
-    width: '300px',
+    width: '340px',
+    height: '80px',
     border: '1px solid #bdc3cb',
+    display: 'flex',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#df362d',
+    color: '#3f51b5',
     borderBottom: '1px solid #000',
   },
   cardContent: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles({
     backgroundColor: '#ff4500',
     fontSize: '24px',
     fontWeight: 'bold',
+    flexGrow: 1,
   },
 })
 

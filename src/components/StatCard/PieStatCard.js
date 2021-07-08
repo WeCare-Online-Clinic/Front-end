@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 })
 
-function LineStatCard(props) {
+function PieStatCard(props) {
   const classes = useStyles()
   return (
     <Card>
@@ -20,33 +20,21 @@ function LineStatCard(props) {
       <CardContent>
         <div>
           <Chart
-            style={{ minWidth: 'inherit', height: '250px' }}
-            chartType='LineChart'
+            width={'inherit'}
+            height={'250px'}
+            chartType='PieChart'
             loader={<div>Loading Chart</div>}
             data={[
-              ['x', 'Online Users'],
-              [8, 76],
-              [9, 167],
-              [10, 236],
-              [11, 175],
-              [12, 189],
-              [13, 91],
-              [14, 31],
-              [15, 27],
-              [16, 33],
-              [17, 40],
-              [18, 32],
-              [19, 35],
+              ['Diagnosis', 'Patients'],
+              ['Diag A', 111],
+              ['Daig B', 22],
+              ['Daig B', 42],
+              ['Other', 27],
             ]}
             options={{
-              hAxis: {
-                title: 'Time',
-              },
-              vAxis: {
-                title: 'Online Users',
-              },
+              is3D: true,
             }}
-            rootProps={{ 'data-testid': '1' }}
+            rootProps={{ 'data-testid': '2' }}
           />
         </div>
       </CardContent>
@@ -54,4 +42,4 @@ function LineStatCard(props) {
   )
 }
 
-export default LineStatCard
+export default PieStatCard

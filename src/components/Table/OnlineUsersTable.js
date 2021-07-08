@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OnlineUserTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
@@ -80,81 +80,79 @@ const OnlineUserTable = (props) => {
   }
 
   return (
-    <>
-      <Card padding={'0'} className={clsx(classes.root, className)}>
-        <CardContent className={classes.content}>
-          <PerfectScrollbar>
-            <div className={classes.inner}>
-              <Table style={{ maxWidth: '50%' }}>
-                <TableHead
-                  style={{
-                    backgroundColor: '#ebf5f7',
-                  }}
-                  className={classes.head}
-                >
-                  <TableRow>
+    <Card padding={'0'} className={clsx(classes.root, className)}>
+      <CardContent className={classes.content}>
+        <PerfectScrollbar>
+          <div className={classes.inner}>
+            <Table style={{ maxWidth: '50%' }}>
+              <TableHead
+                style={{
+                  backgroundColor: '#ebf5f7',
+                }}
+                className={classes.head}
+              >
+                <TableRow>
+                  <TableCell
+                    style={{
+                      maxWidth: '20px',
+                      borderBottom: '1px solid #000',
+                    }}
+                  ></TableCell>
+                  {tableHeaders.map((col) => (
                     <TableCell
                       style={{
-                        maxWidth: '20px',
+                        color: '#3f51b5',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
                         borderBottom: '1px solid #000',
                       }}
-                    ></TableCell>
-                    {tableHeaders.map((col) => (
-                      <TableCell
-                        style={{
-                          color: '#3f51b5',
-                          fontWeight: 'bold',
-                          fontSize: '16px',
-                          borderBottom: '1px solid #000',
-                        }}
-                        className={classes.hoverable}
-                      >
-                        <span>{col.text}</span>
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {onlineUserData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
-                    .map(
-                      (
-                        userRow // add table row of patientData
-                      ) => (
-                        <TableRow className={classes.tableRow} hover>
-                          <TableCell
-                            style={{ maxWidth: '20px' }}
-                            className={classes.cell}
-                          >
-                            <PersonIcon />
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {userRow.user}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {userRow.role}
-                          </TableCell>
-                        </TableRow>
-                      )
-                    )}
-                </TableBody>
-              </Table>
-            </div>
-          </PerfectScrollbar>
-        </CardContent>
-        <CardActions className={classes.actions}>
-          <TablePagination
-            component='div'
-            count={onlineUserData.length} // size of patientData array
-            onChangePage={handlePageChange}
-            onChangeRowsPerPage={handleRowsPerPageChange}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 10, 15]}
-          />
-        </CardActions>
-      </Card>
-    </>
+                      className={classes.hoverable}
+                    >
+                      <span>{col.text}</span>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {onlineUserData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
+                  .map(
+                    (
+                      userRow // add table row of patientData
+                    ) => (
+                      <TableRow className={classes.tableRow} hover>
+                        <TableCell
+                          style={{ maxWidth: '20px' }}
+                          className={classes.cell}
+                        >
+                          <PersonIcon />
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                          {userRow.user}
+                        </TableCell>
+                        <TableCell className={classes.cell}>
+                          {userRow.role}
+                        </TableCell>
+                      </TableRow>
+                    )
+                  )}
+              </TableBody>
+            </Table>
+          </div>
+        </PerfectScrollbar>
+      </CardContent>
+      <CardActions className={classes.actions}>
+        <TablePagination
+          component='div'
+          count={onlineUserData.length} // size of patientData array
+          onChangePage={handlePageChange}
+          onChangeRowsPerPage={handleRowsPerPageChange}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[5, 8, 10, 15]}
+        />
+      </CardActions>
+    </Card>
   )
 }
 
