@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PatientDataTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [

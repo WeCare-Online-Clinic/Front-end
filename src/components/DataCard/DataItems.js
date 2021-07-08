@@ -16,3 +16,22 @@ export const adminDataItems = [
     value: 15,
   },
 ]
+
+export const doctorDataItems = [
+  {
+    name: 'Patients',
+    value: 2123,
+  },
+  {
+    name: 'New Patients',
+    value: 145,
+  },
+  {
+    name: 'Next clinic Date',
+    value: '2021/07/12',
+  },
+  {
+    name: 'Patient in Next Clinic',
+    value: 55,
+  },
+]

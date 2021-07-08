@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import logo from '../assets/img/logo.png'
+import { useHistory } from 'react-router-dom'
 
 const sidebarWidth = '240px'
 
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = (props) => {
   const classes = useStyles()
+  const history = useHistory()
 
   return (
     <Drawer
@@ -77,6 +79,7 @@ const Sidebar = (props) => {
                   button
                   key={child.name}
                   className={classes.sbListitem}
+                  onClick={() => history.push(child.url)}
                 >
                   <ListItemText>{child.name}</ListItemText>
                 </ListItem>
@@ -85,7 +88,12 @@ const Sidebar = (props) => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <ListItem button key={item.name} className={classes.listItem}>
+              <ListItem
+                button
+                key={item.name}
+                className={classes.listItem}
+                onClick={() => history.push(item.url)}
+              >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>
               </ListItem>

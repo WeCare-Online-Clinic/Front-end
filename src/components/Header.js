@@ -13,20 +13,46 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
+import { useHistory } from 'react-router'
 
 export default function Header() {
+  const history = useHistory()
   return (
     <AppBar position='static' style={{ backgroundColor: '#fff' }}>
       <Toolbar>
         <Grid container>
           <Grid item>
-            <IconButton color='primary' style={{ marginRight: '10px' }}>
+            <IconButton
+              color='primary'
+              style={{ marginRight: '10px' }}
+              onClick={() => history.push('/')}
+            >
               <HomeIcon />
             </IconButton>
-            <IconButton color='primary' style={{ marginRight: '20px' }}>
+            <IconButton
+              color='primary'
+              style={{ marginRight: '20px' }}
+              onClick={() => history.push('dashboard')}
+            >
               <DashboardIcon />
+            </IconButton>
+            <IconButton
+              color='primary'
+              style={{ marginRight: '20px' }}
+              onClick={() => history.goBack()}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+            <IconButton
+              color='primary'
+              style={{ marginRight: '20px' }}
+              onClick={() => history.goForward()}
+            >
+              <ArrowForwardIcon />
             </IconButton>
           </Grid>
           <Grid item sm></Grid>

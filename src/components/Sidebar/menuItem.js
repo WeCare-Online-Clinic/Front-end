@@ -11,53 +11,42 @@ export const doctorMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
-    url: '',
+    url: '/doctor/dashboard',
   },
   {
     icon: <PeopleIcon style={{ color: '#fff' }} />,
     name: 'Patients',
-    url: '',
-    children: [
-      {
-        name: 'View Patients',
-      },
-    ],
+    url: '/doctor/viewpatient',
   },
   {
     icon: <AssignmentIndIcon style={{ color: '#fff' }} />,
     name: 'Consultation',
-    url: '',
+    url: '/doctor/consultation',
   },
   {
     icon: <BarChartIcon style={{ color: '#fff' }} />,
     name: 'Statistics',
-    url: '',
-    children: [
-      {
-        name: 'Yearly',
-        url: '',
-      },
-      {
-        name: 'Monthly',
-        url: '',
-      },
-    ],
+    url: '/doctor/statistics',
   },
 ]
 
 export const adminMenuItems = [
   {
+    icon: <DashboardIcon style={{ color: '#fff' }} />,
+    name: 'Dashboard',
+    url: '/admin/dashboard',
+  },
+  {
     icon: <PersonIcon style={{ color: '#fff' }} />,
     name: 'Manage Doctors',
-    url: '',
     children: [
       {
         name: 'View Doctors',
-        url: '',
+        url: '/admin/viewdoctors',
       },
       {
         name: 'Register Doctors',
-        url: '',
+        url: '/admin/registerdoctors',
       },
     ],
   },
@@ -68,27 +57,27 @@ export const adminMenuItems = [
     children: [
       {
         name: 'View Nurses',
-        url: '',
+        url: '/admin/viewnurse',
       },
       {
         name: 'Register Nurse',
-        url: '',
+        url: '/admin/registernurse',
       },
     ],
   },
   {
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Doctor Schedule',
-    url: '',
+    url: '/admin/doctorschedule',
   },
   {
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
-    url: '',
+    url: '/admin/doctorschedule',
   },
   {
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Send Notifications',
-    url: '',
+    url: '/admin/doctorschedule',
   },
 ]
