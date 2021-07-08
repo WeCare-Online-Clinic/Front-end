@@ -20,7 +20,7 @@ function LineStatCard(props) {
       <CardContent>
         <div>
           <Chart
-            style={{ minWidth: 'inherit', height: '250px' }}
+            style={{ minWidth: 'inherit', height: '300px' }}
             chartType='LineChart'
             loader={<div>Loading Chart</div>}
             data={[

@@ -21,7 +21,7 @@ function BarStatCard(props) {
         <div>
           <Chart
             width={'inherit'}
-            height={'250px'}
+            height={'300px'}
             chartType='Bar'
             loader={<div>Loading Chart</div>}
             data={[
