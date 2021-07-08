@@ -2,10 +2,12 @@ import React from 'react'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
+import AssignmentIcon from '@material-ui/icons/Assignment'
 import BarChartIcon from '@material-ui/icons/BarChart'
 import PersonIcon from '@material-ui/icons/Person'
 import ScheduleIcon from '@material-ui/icons/Schedule'
 import SendIcon from '@material-ui/icons/Send'
+import HistoryIcon from '@material-ui/icons/History'
 
 export const doctorMenuItems = [
   {
@@ -82,6 +84,7 @@ export const adminMenuItems = [
   },
 ]
 
+
 export const headnurseMenuItems = [
   
   {
@@ -117,5 +120,24 @@ export const headnurseMenuItems = [
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Message',
     url: '/headnurse/message',
+},
+]
+
+export const patientMenuItems = [
+  {
+    icon: <DashboardIcon style={{ color: '#fff' }} />,
+    name: 'Dashboard',
+    url: '/patient/dashboard',
+  },
+  {
+    icon: <AssignmentIcon style={{ color: '#fff' }} />,
+    name: 'Reports',
+    url: '/patient/reports',
+  },
+  {
+    icon: <HistoryIcon style={{ color: '#fff' }} />,
+    name: 'Clinic History',
+    url: '/patient/history',
+
   },
 ]

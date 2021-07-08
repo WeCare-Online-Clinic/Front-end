@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user='Dr. Asela' />}
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={
@@ -40,19 +40,6 @@ function Content() {
   const classes = useStyles()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <Grid container>
-          <Grid item>
-            <Button variant='contained' color='primary' size='large'>
-              Consultation Room
-            </Button>
-          </Grid>
-          <Grid item sm></Grid>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Doctor</h3>
-          </Grid>
-        </Grid>
-      </Grid>
       <Grid className={classes.dataCard} item sm={12}>
         <DataCard cardItems={doctorDataItems} />
       </Grid>

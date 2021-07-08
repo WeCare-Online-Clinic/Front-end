@@ -19,7 +19,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useHistory } from 'react-router'
 
-export default function Header() {
+export default function Header(props) {
   const history = useHistory()
   return (
     <AppBar position='static' style={{ backgroundColor: '#fff' }}>
@@ -56,6 +56,16 @@ export default function Header() {
             </IconButton>
           </Grid>
           <Grid item sm></Grid>
+          <Grid
+            item
+            style={{
+              color: '#3f51b5',
+              fontSize: '18px',
+              padding: '10px',
+            }}
+          >
+            Welcome {props.user}
+          </Grid>
           <Grid item>
             <IconButton color='primary' style={{ marginRight: '10px' }}>
               <Badge badgeContent={1} color='secondary'>

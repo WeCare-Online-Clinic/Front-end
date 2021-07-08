@@ -21,7 +21,7 @@ function PieStatCard(props) {
         <div>
           <Chart
             width={'inherit'}
-            height={'250px'}
+            height={'300px'}
             chartType='PieChart'
             loader={<div>Loading Chart</div>}
             data={[
@@ -32,7 +32,7 @@ function PieStatCard(props) {
               ['Other', 27],
             ]}
             options={{
-              is3D: true,
+              is3D: false,
             }}
             rootProps={{ 'data-testid': '2' }}
           />
