@@ -8,6 +8,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import ScheduleIcon from '@material-ui/icons/Schedule'
 import SendIcon from '@material-ui/icons/Send'
 import HistoryIcon from '@material-ui/icons/History'
+import ListAltIcon from '@material-ui/icons/ListAlt'
 
 export const doctorMenuItems = [
   {
@@ -99,5 +100,41 @@ export const patientMenuItems = [
     icon: <HistoryIcon style={{ color: '#fff' }} />,
     name: 'Clinic History',
     url: '/patient/history',
+  },
+]
+
+export const labMenuItems = [
+  {
+    icon: <DashboardIcon style={{ color: '#fff' }} />,
+    name: 'Dashboard',
+    url: '/labtech/dashboard',
+  },
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Lab Tests',
+    children: [
+      {
+        name: 'View Lab Tests',
+        url: '/labtech/viewlabtest',
+      },
+      {
+        name: 'Add Lab Tests',
+        url: '/labtech/addlabtest',
+      },
+    ],
+  },
+  {
+    icon: <AssignmentIcon style={{ color: '#fff' }} />,
+    name: 'Lab Reports',
+    children: [
+      {
+        name: 'View Lab Reports',
+        url: '/labtech/viewlabreport',
+      },
+      {
+        name: 'Add Lab Reports',
+        url: '/labtech/addlabreport',
+      },
+    ],
   },
 ]

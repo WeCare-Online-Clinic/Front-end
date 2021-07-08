@@ -28,6 +28,12 @@ const DoctorDashboard = React.lazy(() =>
 const PatientDashboard = React.lazy(() =>
   import('./components/pages/Actors/Patient/Dashboard')
 )
+const LabDashboard = React.lazy(() =>
+  import('./components/pages/Actors/Lab_Tech/Dashboard')
+)
+const DoctorProfile = React.lazy(() =>
+  import('./components/pages/Actors/Doctor/Profile')
+)
 const View_Patient = React.lazy(() =>
   import('./components/pages/Actors/Doctor/View_Patient')
 )
@@ -74,6 +80,16 @@ const App = () => {
                 path='/patient/dashboard'
                 exact
                 component={PatientDashboard}
+              ></Route>
+              <Route
+                path='/labtech/dashboard'
+                exact
+                component={LabDashboard}
+              ></Route>
+              <Route
+                path='/doctor/profile'
+                exact
+                component={DoctorProfile}
               ></Route>
               <Route path='/addDoctor' exact component={AddDoctor}></Route>
             </Switch>

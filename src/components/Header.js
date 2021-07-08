@@ -64,7 +64,7 @@ export default function Header(props) {
               padding: '10px',
             }}
           >
-            Welcome {props.user}
+            {props.user}
           </Grid>
           <Grid item>
             <IconButton color='primary' style={{ marginRight: '10px' }}>
@@ -72,7 +72,11 @@ export default function Header(props) {
                 <NotificationsNoneIcon />
               </Badge>
             </IconButton>
-            <IconButton color='primary' style={{ marginRight: '20px' }}>
+            <IconButton
+              color='primary'
+              style={{ marginRight: '20px' }}
+              onClick={() => history.push('profile')}
+            >
               <AccountCircleOutlinedIcon />
             </IconButton>
             <Button

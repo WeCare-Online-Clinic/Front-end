@@ -35,3 +35,22 @@ export const doctorDataItems = [
     value: 55,
   },
 ]
+
+export const labDataItems = [
+  {
+    name: 'Lab Tests',
+    value: 23,
+  },
+  {
+    name: 'Lab Reports Added (Today)',
+    value: 14,
+  },
+  {
+    name: 'Lab Reports Issued (Month)',
+    value: 145,
+  },
+  {
+    name: 'Lab Reports To Be Issued',
+    value: 45,
+  },
+]

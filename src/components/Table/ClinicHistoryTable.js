@@ -20,7 +20,7 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { patientData } from './patientData'
+import { clinicHistory } from './ClinicHistoryData'
 import PageviewIcon from '@material-ui/icons/Pageview'
 
 const useStyles = makeStyles((theme) => ({
@@ -58,19 +58,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const PatientDataTable = (props) => {
+const ClinicHistoryTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(9) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Patient Name' },
-    { text: 'Age' },
-    { text: 'Gender' },
-    { text: 'Diagnosis' },
-    { text: 'First Clinic Date' },
-    { text: 'Next Clinic Date' },
+    { text: 'Date' },
+    { text: 'Start Time' },
+    { text: 'End Time' },
+    { text: 'No.of Patients' },
+    { text: 'Nurse Assigned' },
   ]
 
   const classes = useStyles()
@@ -85,38 +84,6 @@ const PatientDataTable = (props) => {
   return (
     <div>
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid
-            item
-            alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Patient Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Diagnosis'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
-          </Grid>
-        </Grid>
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <div className={classes.inner}>
@@ -145,30 +112,27 @@ const PatientDataTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {patientData
+                  {clinicHistory
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        patient // add table row of patientData
+                        row // add table row of patientData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {patient.name}
+                            {row.date}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.age}
+                            {row.start}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.Gender}
+                            {row.end}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.Diagnosis}
+                            {row.patients}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.First_clinic_date}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.Next_clinic_date}
+                            {row.nurse}
                           </TableCell>
                           <TableCell>
                             <Button
@@ -190,12 +154,12 @@ const PatientDataTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={patientData.length} // size of patientData array
+            count={clinicHistory.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 10, 15]}
+            rowsPerPageOptions={[5, 9, 15]}
           />
         </CardActions>
       </Card>
@@ -203,4 +167,4 @@ const PatientDataTable = (props) => {
   )
 }
 
-export default PatientDataTable
+export default ClinicHistoryTable

@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   cardActions: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '0px 40px 10px 40px',
+    padding: '0px 40px 20px 40px',
     width: '100%',
   },
   textTitle: {
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     fontSize: '16px',
   },
   textBox: {
-    height: '130px',
+    height: '140px',
     margin: '5px 40px 5px 40px',
     padding: '10px',
     color: '#4c5355',
