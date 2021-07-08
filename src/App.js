@@ -1,11 +1,17 @@
 import React from 'react'
 import {Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import store from './store/index'
 import Auth from './authStore/Auth'
 import history from './@history'
-import View_Patient from './components/pages/Actors/Doctor/View_Patient'
-// import Notification from './components/Notification/Notification';
+import withReducer from './store/withReducer'
+import reducer from './authStore/reducers/index'
+
+
+
+
+
 
 
 
@@ -15,6 +21,8 @@ const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
 const Help = React.lazy(() => import('./components/pages/Help/Help'))
 const Login = React.lazy(() => import('./components/pages/Login/Login'))
 const Notification = React.lazy(() => import('./components/Notification/Notification'))
+const AddDoctor = React.lazy(()=>import('./components/pages/Actors/Admin/AddDoctorBase'))
+const ViewPatient = React.lazy(()=>import('./components/pages/Actors/Doctor/View_Patient'))
 
 const loading = (
   <div className='pt-3 text-center'>
@@ -22,7 +30,11 @@ const loading = (
   </div>
 )
 
-function App() {
+
+
+
+const App=()=> {
+
   return (
     <Provider store={store}>
       <Auth>
@@ -34,8 +46,9 @@ function App() {
               <Route path='/login' component={Login}></Route>
               <Route path='/help' component={Help}></Route>
               <Route path='/signup' component={SignUp}></Route>
-              <Route path='/viewpatient' exact  component={View_Patient}></Route>
+              <Route path='/viewpatient' exact  component={ViewPatient}></Route>
               <Route path='/notification' exact  component={Notification}></Route>
+              <Route path='/addDoctor' exact component={AddDoctor} ></Route>
             </Switch>
           </React.Suspense>
         </Router>
@@ -45,4 +58,4 @@ function App() {
   )
 }
 
-export default App
+export default withReducer('user', reducer)(App);

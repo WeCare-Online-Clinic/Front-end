@@ -2,6 +2,8 @@ import { clearAppLocalStorage, setStorageItem } from "../../utils/StorageUtils";
 import axios from 'axios';
 import Constants from "../../utils/Constants";
 import history from '../../@history';
+import reducer from '../reducers/index';
+import withReducer from "../../store/withReducer";
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -20,16 +22,60 @@ export function submitLogin(data) {
     return (dispatch, getState) => {
         request.then(res => {
             console.log("responce", res);
+            Constants.LOGGED_IN_USER = res.data;
+            setStorageItem('user', res.data);
             if (res.status === 200) {
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: res.data
                 });
-                history.push({
-                    pathname: '/help'
-                });
-                Constants.LOGGED_IN_USER = res.data;
-                setStorageItem('user', res.data);
+                let userType=res.data.userType;
+                console.log("userType",userType);
+                switch (userType) {
+                    case "admin": {
+                        history.push({
+                            pathname: '/admin/dashboard'
+                        });
+                    }
+                    break;
+                    case "doctor": {
+                        history.push({
+                            pathname: '/doctor/dashboard'
+                        });
+                    }
+                    break;
+                    case "nurse": {                     
+                        history.push({
+                            pathname: '/nurse/dashboard'
+                        });
+                    }
+                    break;
+                    case "headnurse": {
+                        history.push({
+                            pathname: '/headnurse/dashboard'
+                        });
+                    }
+                    break;
+                    case "lab": {
+                        history.push({
+                            pathname: '/lab/dashboard'
+                        });
+                    }
+                    break;
+                    case "patient": {
+                        history.push({
+                            pathname: '/patient/dashboard'
+                        });
+                    }
+                    break;
+                    default: {
+                        history.push({
+                            pathname: '/login'
+                        });
+                    }
+                  }
+        
+                
             }
         }).catch(e => {
             console.log(e);

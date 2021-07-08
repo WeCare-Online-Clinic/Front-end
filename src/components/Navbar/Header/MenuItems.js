@@ -35,6 +35,11 @@ export const MenuItems=[
         title:'Notification',
         link:'/notification',
         cName:'nav-links'
+    },
+    {
+        title:'AddDoctor',
+        link:'/addDoctor',
+        cName:'nav-links'
     }
     
 ]
