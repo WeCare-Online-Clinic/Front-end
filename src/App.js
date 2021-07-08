@@ -5,9 +5,6 @@ import {useSelector,useDispatch} from 'react-redux'
 import store from './store/index'
 import Auth from './authStore/Auth'
 import history from './@history'
-<<<<<<< HEAD
-// import Notification from './components/Notification/Notification';
-=======
 import withReducer from './store/withReducer'
 import reducer from './authStore/reducers/index'
 
@@ -15,14 +12,13 @@ import reducer from './authStore/reducers/index'
 
 
 
->>>>>>> working
 
 //pages
+const AddDoctor = React.lazy(() => import('./components/pages/Actors/Admin/AddDoctorBase'))
 const Home = React.lazy(() => import('./components/pages/HomePage/Home'))
 const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
 const Help = React.lazy(() => import('./components/pages/Help/Help'))
 const Login = React.lazy(() => import('./components/pages/Login/Login'))
-<<<<<<< HEAD
 const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
 )
@@ -36,11 +32,6 @@ const View_Patient = React.lazy(() =>
   import('./components/pages/Actors/Doctor/View_Patient')
 )
 //
-=======
-const Notification = React.lazy(() => import('./components/Notification/Notification'))
-const AddDoctor = React.lazy(()=>import('./components/pages/Actors/Admin/AddDoctorBase'))
-const ViewPatient = React.lazy(()=>import('./components/pages/Actors/Doctor/View_Patient'))
->>>>>>> working
 
 const loading = (
   <div className='pt-3 text-center'>
@@ -63,7 +54,6 @@ const App=()=> {
               <Route path='/login' component={Login}></Route>
               <Route path='/help' component={Help}></Route>
               <Route path='/signup' component={SignUp}></Route>
-<<<<<<< HEAD
               <Route
                 path='/doctor/viewpatient'
                 exact
@@ -84,11 +74,7 @@ const App=()=> {
                 exact
                 component={DoctorDashboard}
               ></Route>
-=======
-              <Route path='/viewpatient' exact  component={ViewPatient}></Route>
-              <Route path='/notification' exact  component={Notification}></Route>
               <Route path='/addDoctor' exact component={AddDoctor} ></Route>
->>>>>>> working
             </Switch>
           </React.Suspense>
         </Router>
