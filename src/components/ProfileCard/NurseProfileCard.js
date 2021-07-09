@@ -97,9 +97,6 @@ export default function NurseProfileCard() {
               <ListItemText className={classes.primary} primary="Clinic ID" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Gender" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Age" />
             </ListItem>
             <ListItem className={classes.listitem}>
@@ -119,9 +116,6 @@ export default function NurseProfileCard() {
           <List>
             <ListItem className={classes.listitem} >
               <ListItemText className={classes.secondary} secondary=":298N" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Female" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":35" />

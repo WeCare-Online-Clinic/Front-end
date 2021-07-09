@@ -97,9 +97,6 @@ export default function HeadNurseProfileCard() {
               <ListItemText className={classes.primary} primary="Clinic ID" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Gender" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Age" />
             </ListItem>
             <ListItem className={classes.listitem}>
@@ -119,9 +116,6 @@ export default function HeadNurseProfileCard() {
           <List>
             <ListItem className={classes.listitem} >
               <ListItemText className={classes.secondary} secondary=":5Hn" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Female" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":42" />

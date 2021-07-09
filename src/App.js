@@ -31,6 +31,9 @@ const PatientDashboard = React.lazy(() =>
 const LabDashboard = React.lazy(() =>
   import('./components/pages/Actors/Lab_Tech/Dashboard')
 )
+const NurseDashboard = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/Dashboard')
+)
 const DoctorProfile = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Profile')
 )
@@ -97,6 +100,11 @@ const App = () => {
                 path='/labtech/dashboard'
                 exact
                 component={LabDashboard}
+              ></Route>
+              <Route
+                path='/nurse/dashboard'
+                exact
+                component={NurseDashboard}
               ></Route>
               <Route
                 path='/doctor/profile'
