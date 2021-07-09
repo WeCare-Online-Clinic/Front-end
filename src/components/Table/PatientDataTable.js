@@ -22,6 +22,7 @@ import {
 } from '@material-ui/core'
 import { patientData } from './patientData'
 import PageviewIcon from '@material-ui/icons/Pageview'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   inner: {
-    minWidth: 1050,
+    minWidth: 'inherit',
   },
   nameContainer: {
     display: 'flex',
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const PatientDataTable = (props) => {
+  const history = useHistory()
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
@@ -175,6 +177,7 @@ const PatientDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
+                              onClick={() => history.push('patientdata')}
                             >
                               View
                             </Button>

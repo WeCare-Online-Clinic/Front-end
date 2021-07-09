@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   inner: {
-    minWidth: 1050,
+    minWidth: 'inherit',
   },
   nameContainer: {
     display: 'flex',
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     color: '#4e4f50',
     fontSize: '16px',
-    maxWidth: '50px',
   },
   search_items: {
     maxHeight: '50px',
@@ -84,7 +83,7 @@ const OnlineUserTable = (props) => {
       <CardContent className={classes.content}>
         <PerfectScrollbar>
           <div className={classes.inner}>
-            <Table style={{ maxWidth: '50%' }}>
+            <Table>
               <TableHead
                 style={{
                   backgroundColor: '#ebf5f7',

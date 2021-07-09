@@ -20,8 +20,7 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { clinicHistory } from './ClinicHistoryData'
-import PageviewIcon from '@material-ui/icons/Pageview'
+import { patientClinicHis } from './PatientClinicHisData'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,18 +57,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ClinicHistoryTable = (props) => {
+const PatientClinicHisTable = (props) => {
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(9) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Date' },
-    { text: 'Start Time' },
-    { text: 'End Time' },
-    { text: 'No.of Patients' },
-    { text: 'Nurse Assigned' },
+    { text: 'Clinic Date' },
+    { text: 'Time' },
+    { text: 'Doctor' },
+    { text: 'Diagnosis' },
   ]
 
   const classes = useStyles()
@@ -112,7 +110,7 @@ const ClinicHistoryTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {clinicHistory
+                  {patientClinicHis
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
@@ -123,22 +121,21 @@ const ClinicHistoryTable = (props) => {
                             {row.date}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.start}
+                            {row.time}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.end}
+                            {row.doctor}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.patients}
+                            {row.diagnosis}
                           </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.nurse}
-                          </TableCell>
+
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
+                              onClick={() => props.func()}
                             >
                               View
                             </Button>
@@ -154,7 +151,7 @@ const ClinicHistoryTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={clinicHistory.length} // size of patientData array
+            count={patientClinicHis.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
@@ -167,4 +164,4 @@ const ClinicHistoryTable = (props) => {
   )
 }
 
-export default ClinicHistoryTable
+export default PatientClinicHisTable

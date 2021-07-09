@@ -55,51 +55,47 @@ const useStyles = makeStyles({
   },
 })
 
-function ClinicDataCard(props) {
+function PatientHisCard(props) {
   const history = useHistory()
   const classes = useStyles()
   return (
     <Card className={classes.card}>
       <CardHeader
-        title='Previous Clinic Date Data'
+        title={props.title}
+        subheader={props.subheader}
         className={classes.cardHeader}
       />
       <Grid container style={{ backgroundColor: '#3f51b5', padding: '20px' }}>
         <Grid
           item
-          sm={6}
+          sm={12}
+          style={{ backgroundColor: '#fff', borderRight: '1px solid #4c5355' }}
+        >
+          <div className={classes.textTitle}>Test Data</div>
+          <div className={classes.textBox}>
+            <div className={classes.textField}>FBC : </div>
+            <div className={classes.textField}>Blood Sugar Level : </div>
+          </div>
+        </Grid>
+        <Grid
+          item
+          sm={12}
           style={{ backgroundColor: '#fff', borderRight: '1px solid #4c5355' }}
         >
           <div className={classes.textTitle}>Notes</div>
           <div className={classes.textBox}>Clinic Note ...</div>
-          <div className={classes.cardActions}>
-            <Button
-              style={{ width: 'inherit' }}
-              variant='contained'
-              color='secondary'
-              onClick={() => history.push('patienthistory')}
-            >
-              Clinic History
-            </Button>
-          </div>
         </Grid>
-        <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
+        <Grid
+          item
+          sm={12}
+          style={{ backgroundColor: '#fff', paddingBottom: '50px' }}
+        >
           <div className={classes.textTitle}> Prescriptions</div>
           <div className={classes.textBox}>Prescription List ...</div>
-          <div className={classes.cardActions}>
-            <Button
-              style={{ width: 'inherit' }}
-              variant='contained'
-              color='secondary'
-              onClick={() => history.push('patientreport')}
-            >
-              Lab Tests
-            </Button>
-          </div>
         </Grid>
       </Grid>
     </Card>
   )
 }
 
-export default ClinicDataCard
+export default PatientHisCard

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   inner: {
-    minWidth: 1050,
+    minWidth: 'inherit',
   },
   nameContainer: {
     display: 'flex',
