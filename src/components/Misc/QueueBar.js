@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Button } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles({
   queueBar: {
@@ -14,12 +15,20 @@ const useStyles = makeStyles({
 
 function QueueBar() {
   const classes = useStyles()
+  const history = useHistory()
   return (
     <Grid container style={{ padding: '10px' }}>
       <Grid item sm={12} className={classes.queueBar}>
         <Grid item sm={4} className={classes.queueBar}>
           <div>
-            <Button variant='contained' color='secondary' size='large'>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='large'
+              onClick={() => {
+                history.push('patientdata')
+              }}
+            >
               Patient Profile
             </Button>
           </div>

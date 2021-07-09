@@ -1,9 +1,16 @@
 import React from 'react'
-import { Grid, makeStyles } from '@material-ui/core'
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Grid,
+  makeStyles,
+} from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { TextField } from '@material-ui/core'
-import { Card, CardHeader, CardContent, CardActions } from '@material-ui/core'
+import { MenuItem } from '@material-ui/core'
 import { Divider } from '@material-ui/core'
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,72 +25,146 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#fff',
+    color: '#3f51b5',
     borderBottom: '1px solid #000',
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#fff',
   },
   cardContent: {
     textAlign: 'center',
     color: '#fff',
     fontSize: '16px',
-    padding: '20px',
+    margin: '20px',
+    backgroundColor: '#3f51b5',
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'center',
-    padding: '0px 40px 20px 40px',
+    justifyContent: 'space-between',
+    padding: '20px 10px 20px 10px',
     width: '100%',
+  },
+  formRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  presContent: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: '16px',
+    backgroundColor: '#fff',
+    color: '#3f51b5',
+    paddingTop: '20px',
+    margin: '10px',
   },
 }))
 
+function PresRow() {
+  const classes = useStyles()
+  return (
+    <div className={classes.formRow}>
+      <TextField
+        label='Medicine'
+        variant='outlined'
+        size='small'
+        style={{ width: '47%', backgroundColor: '#fff' }}
+      />
+
+      <TextField
+        type='number'
+        label='Morning'
+        variant='outlined'
+        size='small'
+        style={{ width: '15%', backgroundColor: '#fff' }}
+      />
+      <TextField
+        type='number'
+        label='Afternoon'
+        variant='outlined'
+        size='small'
+        style={{ width: '15%', backgroundColor: '#fff' }}
+      />
+      <TextField
+        type='number'
+        label='Evening'
+        variant='outlined'
+        size='small'
+        style={{ width: '15%', backgroundColor: '#fff' }}
+      />
+    </div>
+  )
+}
+
 function ClinicForm() {
   const classes = useStyles()
+
   return (
     <Card className={classes.card}>
       <CardHeader
+        title='Patient Clinic Data'
+        subheader='Form'
         className={classes.cardHeader}
-        title='Patient Clinic Data Form'
       ></CardHeader>
-      <form className={classes.root}>
-        <CardContent className={classes.cardContent}>
-          <div>
+      <CardContent className={classes.cardContent}>
+        <form className={classes.root}>
+          <div className={classes.formRow}>
             <TextField
+              size='small'
               label='Note'
-              fullWidth
-              margin='normal'
               multiline
-              maxRows={8}
+              rows={2}
               variant='outlined'
-            />
-          </div>
-          <div>
-            <TextField label='Diagnosis' fullWidth variant='outlined' />
-          </div>
-          <div>
-            <TextField
-              label='Tests to do '
-              select
               fullWidth
-              variant='outlined'
+              style={{ backgroundColor: '#fff' }}
             />
           </div>
-          <Divider></Divider>
-          <div>Prescriptions</div>
-          <div>
-            <TextField label='Medicine' variant='outlined' />
-            <TextField label='Quantity' variant='outlined' select />
+          <div className={classes.formRow}>
+            <TextField
+              label='Diagnosis'
+              variant='outlined'
+              multiline
+              rows={2}
+              style={{ width: '47%', backgroundColor: '#fff' }}
+            />
+            <TextField
+              label='Tests To Do'
+              variant='outlined'
+              multiline
+              rows={2}
+              style={{ width: '47%', backgroundColor: '#fff' }}
+            />
           </div>
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Button
-            style={{ width: '300px' }}
-            variant='contained'
-            color='secondary'
+
+          <div
+            id='prescriptions'
+            className={classes.presContent}
+            style={{
+              backgroundColor: '#fff',
+              color: '#3f51b5',
+              paddingTop: '20px',
+            }}
           >
-            Submit
-          </Button>
-        </CardActions>
-      </form>
+            <h4>Prescriptions</h4>
+            <PresRow />
+            <PresRow />
+            <PresRow />
+            <div className={classes.cardActions}>
+              <Button
+                variant='contained'
+                color='secondary'
+                style={{ width: '200px' }}
+                startIcon={<AddCircleOutlineIcon />}
+              ></Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                style={{ width: '200px' }}
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
+        </form>
+      </CardContent>
     </Card>
   )
 }
