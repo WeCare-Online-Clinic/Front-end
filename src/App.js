@@ -5,16 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import store from './store/index'
 import Auth from './authStore/Auth'
 import history from './@history'
-import withReducer from './store/withReducer'
-import reducer from './authStore/reducers/index'
 
-//pages
-const AddDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Admin/AddDoctorBase')
-)
+
+
 const Home = React.lazy(() => import('./components/pages/HomePage/Home'))
 const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
-const Help = React.lazy(() => import('./components/pages/Help/Help'))
+const Help = React.lazy(() => import('./components/Register'))
 const Login = React.lazy(() => import('./components/pages/Login/Login'))
 const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
@@ -51,6 +47,9 @@ const PatientReport = React.lazy(() =>
 )
 const Consultation = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Consultation')
+)
+const AddDoctor = React.lazy(() =>
+  import('./components/pages/Actors/Admin/ManageDoctors/AddDoctors/AddDoctorBase')
 )
 //
 
@@ -140,4 +139,4 @@ const App = () => {
   )
 }
 
-export default withReducer('user', reducer)(App)
+export default App;
