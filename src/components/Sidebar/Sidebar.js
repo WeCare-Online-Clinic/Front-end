@@ -67,9 +67,9 @@ const Sidebar = (props) => {
           </div>
         </ListItem>
         <Divider />
-        {props.menuItems.map((item) => {
+        {props.menuItems.map((item,index) => {
           return item.children ? (
-            <React.Fragment>
+            <React.Fragment key={index}>
               <ListItem className={classes.listItem} key={item.name}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.name}</ListItemText>

@@ -14,10 +14,10 @@ import reducer from './authStore/reducers/index'
 
 
 //pages
-const AddDoctor = React.lazy(() => import('./components/pages/Actors/Admin/AddDoctorBase'))
+
 const Home = React.lazy(() => import('./components/pages/HomePage/Home'))
 const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
-const Help = React.lazy(() => import('./components/pages/Help/Help'))
+const Help = React.lazy(() => import('./components/Register'))
 const Login = React.lazy(() => import('./components/pages/Login/Login'))
 const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
@@ -30,6 +30,9 @@ const DoctorDashboard = React.lazy(() =>
 )
 const View_Patient = React.lazy(() =>
   import('./components/pages/Actors/Doctor/View_Patient')
+)
+const AddDoctor = React.lazy(() =>
+  import('./components/pages/Actors/Admin/ManageDoctors/AddDoctors/AddDoctorBase')
 )
 //
 
@@ -74,7 +77,12 @@ const App=()=> {
                 exact
                 component={DoctorDashboard}
               ></Route>
-              <Route path='/addDoctor' exact component={AddDoctor} ></Route>
+              <Route
+                path='/admin/registerdoctors'
+                exact
+                component={AddDoctor}
+              ></Route>
+ 
             </Switch>
           </React.Suspense>
         </Router>

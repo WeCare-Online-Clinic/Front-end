@@ -64,14 +64,22 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
 
   },
   DAYS_OF_WEEK_LIST: [
-    {label: "Sunday", value: 'Su'},
-    {label: "Monday", value: 'Mo'},
-    {label: "Tuesday", value: 'Tu'},
-    {label: "Wednesday", value: 'We'},
-    {label: "Thursday", value: 'Th'},
-    {label: "Friday", value: 'Fr'},
-    {label: "Saturday", value: 'Sa'},
+    { label: "Sunday", value: 'Su' },
+    { label: "Monday", value: 'Mo' },
+    { label: "Tuesday", value: 'Tu' },
+    { label: "Wednesday", value: 'We' },
+    { label: "Thursday", value: 'Th' },
+    { label: "Friday", value: 'Fr' },
+    { label: "Saturday", value: 'Sa' },
   ],
+
+  CLINICS: [
+    { label: "Cardioloy", value: 'cardiology' },
+    { label: "Dentistry", value: 'dentistry' },
+    { label: "Dermatology", value: 'dermatology' },
+    { label: "Neurology", value: 'neurology' },
+  ],
+
   DAYS_OF_WEEK: {
     Su: "Sunday",
     Mo: "Monday",
@@ -119,18 +127,18 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
 
   PAGES: {
     dashboard: '/dashboard',
-    adminDashboard:'/adminDashboard',
-    doctorDashboard:'/doctorDashboard',
-    theme:'/theme',
-    themeColors:'/theme/colors',
-    themeTypography:'/theme/typography',
-    base:'/base',
+    adminDashboard: '/adminDashboard',
+    doctorDashboard: '/doctorDashboard',
+    theme: '/theme',
+    themeColors: '/theme/colors',
+    themeTypography: '/theme/typography',
+    base: '/base',
     employeeAddEdit: '/employee/add-edit',
     employee: '/employee',
-    notFound:'/404',
-    login:'/login',
-    doctor:'/doctor',
-    doctorAddEdit:'/doctor/add-edit',
+    notFound: '/404',
+    login: '/login',
+    doctor: '/doctor',
+    doctorAddEdit: '/doctor/add-edit',
 
   }
 
