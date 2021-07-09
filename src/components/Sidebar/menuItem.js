@@ -124,6 +124,35 @@ export const headnurseMenuItems = [
 },
 ]
 
+export const headnurseMenuItems = [
+  
+  {
+    icon: <DashboardIcon style={{ color: '#fff' }} />,
+    name: 'Dashboard',
+    children: [
+      {
+        name: 'View Queue',
+        url: '/headnurse/viewqueue',
+      },
+      {
+        name: 'View Doctors',
+        url: '/headnurse/viewdoctors',
+      },
+      {
+        name: 'View Patients',
+        url: '/headnurse/viewpatients',
+      },
+    ],
+  },
+  
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Profile',
+    url: '/headnurse/profile',
+  },
+  
+]
+
 export const patientMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
