@@ -124,7 +124,7 @@ export const headnurseMenuItems = [
 },
 ]
 
-export const headnurseMenuItems = [
+export const nurseMenuItems = [
   
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
@@ -132,15 +132,15 @@ export const headnurseMenuItems = [
     children: [
       {
         name: 'View Queue',
-        url: '/headnurse/viewqueue',
+        url: '/nurse/viewqueue',
       },
       {
         name: 'View Doctors',
-        url: '/headnurse/viewdoctors',
+        url: '/nurse/viewdoctors',
       },
       {
         name: 'View Patients',
-        url: '/headnurse/viewpatients',
+        url: '/nurse/viewpatients',
       },
     ],
   },
@@ -148,7 +148,7 @@ export const headnurseMenuItems = [
   {
     icon: <PersonIcon style={{ color: '#fff' }} />,
     name: 'Profile',
-    url: '/headnurse/profile',
+    url: '/nurse/profile',
   },
   
 ]
