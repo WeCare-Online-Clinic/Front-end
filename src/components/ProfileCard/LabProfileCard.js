@@ -97,9 +97,6 @@ export default function LabProfileCard() {
               <ListItemText className={classes.primary} primary="Clinic ID" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Gender" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Age" />
             </ListItem>
             <ListItem className={classes.listitem}>
@@ -119,9 +116,6 @@ export default function LabProfileCard() {
           <List>
             <ListItem className={classes.listitem} >
               <ListItemText className={classes.secondary} secondary=":1481L" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Male" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":43" />

@@ -97,9 +97,6 @@ export default function AdminProfileCard() {
               <ListItemText className={classes.primary} primary="Clinic ID" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Gender" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Age" />
             </ListItem>
             <ListItem className={classes.listitem}>
@@ -113,9 +110,6 @@ export default function AdminProfileCard() {
           <List>
             <ListItem className={classes.listitem} >
               <ListItemText className={classes.secondary} secondary=":A1" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Male" />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.secondary} secondary=":43" />
