@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   },
 })
 
-function DoctorProfileCard(props) {
+function NurseProfileCard(props) {
   const classes = useStyles()
   return (
     <Card className={classes.card}>
@@ -100,7 +100,7 @@ function DoctorProfileCard(props) {
   )
 }
 
-export default DoctorProfileCard
+export default NurseProfileCard
 
 
 

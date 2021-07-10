@@ -4,7 +4,7 @@ import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import FullBld from '../../../Lab Forms/FullBld'
-import { nurseMenuItems } from '../../../Sidebar/menuItem'
+import { labMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import PageviewIcon from '@material-ui/icons/Pageview'
 import { useHistory } from 'react-router-dom'
@@ -38,7 +38,7 @@ function AddLabTest() {
   return (
     <Layout
       header={<Header />}
-      sidebar={<Sidebar menuItems={nurseMenuItems} />}
+      sidebar={<Sidebar menuItems={labMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>

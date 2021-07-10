@@ -197,8 +197,8 @@ export const labMenuItems = [
     name: 'Lab Tests',
     children: [
       {
-        name: 'View Lab Tests',
-        url: '/labtech/viewlabtest',
+        name: 'View Patient List',
+        url: '/labtech/viewpatient',
       },
       {
         name: 'Add Lab Tests',
@@ -215,9 +215,15 @@ export const labMenuItems = [
         url: '/labtech/viewlabreport',
       },
       {
-        name: 'Add Lab Reports',
+        name: 'Create Lab Reports',
         url: '/labtech/addlabreport',
       },
     ],
+  },
+
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Profile',
+    url: '/labtech/profile',
   },
 ]

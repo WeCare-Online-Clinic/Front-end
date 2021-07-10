@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   },
 })
 
-function DoctorProfileCard(props) {
+function LabProfileCard(props) {
   const classes = useStyles()
   return (
     <Card className={classes.card}>
@@ -62,7 +62,7 @@ function DoctorProfileCard(props) {
         </Grid>
         <Grid item>
           <CardHeader
-            title='Dr. Asela Gunawardena'
+            title='Mr. Mahesh Withanage'
             className={classes.cardHeader}
           />
         </Grid>
@@ -100,7 +100,7 @@ function DoctorProfileCard(props) {
   )
 }
 
-export default DoctorProfileCard
+export default LabProfileCard
 
 
 

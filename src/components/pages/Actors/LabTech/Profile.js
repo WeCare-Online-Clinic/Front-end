@@ -5,7 +5,7 @@ import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { labMenuItems } from '../../../Sidebar/menuItem'
 import { Card, CardHeader, Grid, makeStyles } from '@material-ui/core'
-import NurseProfileCard from '../../../ProfileCard/NurseProfileCard'
+import LabProfileCard from '../../../ProfileCard/LabProfileCard'
 import ScheduleTable from '../../../Table/ScheduleTable'
 import ClinicHistoryTable from '../../../Table/ClinicHistoryTable'
 

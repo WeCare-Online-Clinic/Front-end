@@ -39,7 +39,7 @@ function Content() {
       <Grid className={classes.dataCard} item sm={12}>
         <Grid container>
           <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>04.30 P.M.</h3>
+            <h3 style={{ color: '#3f51b5' }}>04.30 P.M</h3>
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
