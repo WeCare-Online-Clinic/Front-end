@@ -3,10 +3,12 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import DataCard from '../../../DataCard/DataCard'
+import FullBld from '../../../Lab Forms/FullBld'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
+
 import LineStatCard from '../../../StatCard/LineStatCard'
+import Register from '../../../Register'
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
 
@@ -19,7 +21,7 @@ const useStyles = makeStyles({
   },
 })
 
-function Dashboard() {
+function RegisterPatient() {
   return (
     <Layout
       header={<Header />}
@@ -45,30 +47,20 @@ function Content() {
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Ms. Asanka Perera</h3>
+            <h3 style={{ color: '#3f51b5' }}>Welcome Ms. Asanaka Perera</h3>
           </Grid>
         </Grid>
       </Grid>
+      <Grid className={classes.dataCard} item sm={12}>
+      <h3 style={{ color: '#000000' }} align='center'>Add Lab Test</h3>
+      <FullBld />
+          </Grid>
      
-      <Grid item sm={12}>
-        <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='Patients in Clinic' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={5}>
-            <BarStatCard title='Diagnosis' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='New Patients' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={5}>
-            <PieStatCard title='Diagnosis' />
-          </Grid>  
-        </Grid>
-      </Grid>
+          
     </Grid>
-    
+   
   )
 }
 
-export default Dashboard
+
+export default RegisterPatient

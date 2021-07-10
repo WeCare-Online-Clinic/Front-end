@@ -30,6 +30,21 @@ const LabDashboard = React.lazy(() =>
 const NurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Nurse/Dashboard')
 )
+const NurseProfile = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/Profile')
+)
+const NurseViewPatient = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewPatient')
+)
+const NurseViewDoctor = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewDoctor')
+)
+const NurseViewQueue = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewQueue')
+)
+const NurseAddLabTest = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/AddLabTest')
+)
 const DoctorProfile = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Profile')
 )
@@ -104,6 +119,31 @@ const App = () => {
                 path='/nurse/dashboard'
                 exact
                 component={NurseDashboard}
+              ></Route>
+              <Route
+                path='/nurse/profile'
+                exact
+                component={NurseProfile}
+              ></Route>
+              <Route
+                path='/nurse/viewqueue'
+                exact
+                component={NurseViewQueue}
+              ></Route>
+              <Route
+                path='/nurse/viewpatient'
+                exact
+                component={NurseViewPatient}
+              ></Route>
+              <Route
+                path='/nurse/viewdoctor'
+                exact
+                component={NurseViewDoctor}
+              ></Route>
+              <Route
+                path='/nurse/addlabtest'
+                exact
+                component={NurseAddLabTest}
               ></Route>
               <Route
                 path='/doctor/profile'

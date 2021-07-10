@@ -129,18 +129,32 @@ export const nurseMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
+    url: '/nurse/dashboard',
+  },
+
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Queue',
+    url: '/nurse/viewqueue',   
+  },
+
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Doctor List',
+    url: '/nurse/viewdoctor',
+  },
+
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Lab Tests',
     children: [
       {
-        name: 'View Queue',
-        url: '/nurse/viewqueue',
+        name: 'View Patient List',
+        url: '/nurse/viewpatient',
       },
       {
-        name: 'View Doctors',
-        url: '/nurse/viewdoctors',
-      },
-      {
-        name: 'View Patients',
-        url: '/nurse/viewpatients',
+        name: 'Add Lab Tests',
+        url: '/nurse/addlabtest',
       },
     ],
   },

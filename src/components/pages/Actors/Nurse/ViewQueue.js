@@ -3,12 +3,10 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import DataCard from '../../../DataCard/DataCard'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import LineStatCard from '../../../StatCard/LineStatCard'
-import PieStatCard from '../../../StatCard/PieStatCard'
-import BarStatCard from '../../../StatCard/BarStatCard'
+import PatientQueueTable from '../../../Table/PatientQueueTable'
+
 
 const useStyles = makeStyles({
   dataCard: {
@@ -19,7 +17,7 @@ const useStyles = makeStyles({
   },
 })
 
-function Dashboard() {
+function ViewQueue() {
   return (
     <Layout
       header={<Header />}
@@ -49,26 +47,16 @@ function Content() {
           </Grid>
         </Grid>
       </Grid>
+      <Grid className={classes.dataCard} item sm={12}>
+      <h3 style={{ color: '#000000' }} align='center'>Queue</h3>
+      <PatientQueueTable />
+          </Grid>
      
-      <Grid item sm={12}>
-        <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='Patients in Clinic' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={5}>
-            <BarStatCard title='Diagnosis' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='New Patients' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={5}>
-            <PieStatCard title='Diagnosis' />
-          </Grid>  
-        </Grid>
-      </Grid>
+          
     </Grid>
-    
+   
   )
 }
 
-export default Dashboard
+
+export default ViewQueue
