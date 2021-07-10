@@ -16,7 +16,7 @@ const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
 )
 const AdminDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Admin/Dashboard')
+  import('./components/pages/Actors/Admin/AdminDashboard/Dashboard')
 )
 const DoctorDashboard = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Dashboard')
@@ -80,6 +80,15 @@ const Consultation = React.lazy(() =>
 )
 const AddDoctor = React.lazy(() =>
   import('./components/pages/Actors/Admin/ManageDoctors/AddDoctors/AddDoctorBase')
+)
+const ViewDoctors =React.lazy(()=>
+  import('./components/pages/Actors/Admin/ManageDoctors/ViewDoctors/ViewDoctorsBase')
+)
+const AddNurses =React.lazy(()=>
+  import ('./components/pages/Actors/Admin/ManageNurses/AddNurses/AddNurseBase')
+)
+const ViewNurses =React.lazy(()=>
+  import ('./components/pages/Actors/Admin/ManageNurses/ViewNurses/ViewNurseBase')
 )
 //
 
@@ -210,7 +219,23 @@ const App = () => {
                 exact
                 component={Consultation}
               ></Route>
-              <Route path='/addDoctor' exact component={AddDoctor}></Route>
+              <Route 
+                path='/admin/registerdoctors' exact 
+                component={AddDoctor}>
+              </Route>
+              <Route 
+                path='/admin/viewdoctors' exact 
+                component={ViewDoctors}>
+              </Route>
+              <Route 
+                path='/admin/registernurse' exact 
+                component={AddNurses}>
+              </Route>
+              <Route 
+                path='/admin/viewnurse' exact 
+                component={ViewNurses}>
+              </Route>
+
             </Switch>
           </React.Suspense>
         </Router>

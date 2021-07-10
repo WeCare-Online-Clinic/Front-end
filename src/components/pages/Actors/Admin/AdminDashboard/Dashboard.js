@@ -1,14 +1,14 @@
 import React from 'react'
-import Layout from '../../../Layout'
-import Header from '../../../Header'
-import Footer from '../../../Footer'
-import Sidebar from '../../../Sidebar/Sidebar'
-import DataCard from '../../../DataCard/DataCard'
-import { adminMenuItems } from '../../../Sidebar/menuItem'
+import Layout from '../../../../Layout'
+import Header from '../../../../Header'
+import Footer from '../../../../Footer'
+import Sidebar from '../../../../Sidebar/Sidebar'
+import DataCard from './DataCard'
+import { adminMenuItems } from '../../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import { adminDataItems } from '../../../DataCard/DataItems'
-import OnlineUserTable from '../../../Table/OnlineUsersTable'
-import LineStatCard from '../../../StatCard/LineStatCard'
+import { adminDataItems } from './adminDataItems'
+import OnlineUserTable from '../../../../Table/OnlineUsersTable'
+import LineStatCard from '../../../../StatCard/LineStatCard'
 
 const useStyles = makeStyles({
   dataCard: {

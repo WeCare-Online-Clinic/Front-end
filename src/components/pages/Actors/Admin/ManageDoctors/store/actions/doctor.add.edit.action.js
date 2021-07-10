@@ -2,6 +2,7 @@ import { showErrorMessage, showSuccessMessage } from "../../../../../../../utils
 import DoctorService from "./doctor.service";
 
 export const ON_ADD_EDIT_FORM_CHANGE = '[DOCTOR ADD EDIT] ON_ADD_EDIT_FORM_CHANGE';
+export const ON_GET_DOCTORS='[DOCTOR ADD EDIT] ON_GET_DOCTORS';
 export const ON_SAVE_UPDATE_DOCTOR = '[DOCTOR ADD EDIT] ON_SAVE_UPDATE_DOCTOR';
 export const ON_RESET_DOCTOR_FORM_DATA = '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_FORM_DATA';
 export const GET_DOCTOR = '[DOCTOR ADD EDIT] GET_DOCTOR';
@@ -26,6 +27,21 @@ export function saveDoctor(doctor) {
             showErrorMessage("Please Contact Administrator" + error);
         });
 
+    };
+}
+
+export function getDoctors() {
+    const request = DoctorService.getDoctors();
+    return (dispatch, getState) => {
+        request.then((response) => {
+            console.log("doctor list:",response.data)
+            dispatch({
+                type: ON_GET_DOCTORS,
+                payload: response.data
+            })
+        }).catch((error)=>{
+            console.log("error doctor list",)
+        })
     };
 }
 

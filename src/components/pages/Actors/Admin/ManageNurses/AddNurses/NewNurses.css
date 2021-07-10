@@ -1,11 +1,6 @@
 .input-group{
     height: 50px;
-    
-}
-
-.input-group span{
-    width: 120px;
-    font-weight:bold;
+    font-weight:bolder;
 }
 .title{
     border-radius: 5px 5px 0 0;

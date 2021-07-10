@@ -2,18 +2,28 @@ import {
     GET_DOCTOR,
     ON_ADD_EDIT_FORM_CHANGE,
     ON_GET_CLINIC_DATES,
+    ON_GET_DOCTORS,
     ON_RESET_DOCTOR_DATA, ON_RESET_DOCTOR_FORM_DATA, ON_SAVE_UPDATE_DOCTOR
 } from "../actions/doctor.add.edit.action";
 
 const initialState = {
     formData: {},
     doctor: {},
-    clinicDates: []
+    clinicDates: [],
+    doctorList:[]
 };
 
 const doctorAddEditReducer = function (state = initialState, action) {
 
     switch (action.type) {
+
+        case ON_GET_DOCTORS:{
+            return{
+                ...state,
+                doctorList:[...action.payload]
+            }
+        }
+
         case ON_ADD_EDIT_FORM_CHANGE: {
             return {
                 ...state,
