@@ -3,7 +3,7 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import FullBld from '../../../Lab Forms/FullBld'
+import AddReport from '../../../Forms/AddReport'
 import { labMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 
@@ -53,7 +53,7 @@ function Content() {
       </Grid>
       <Grid className={classes.dataCard} item sm={12}>
       <h3 style={{ color: '#000000' }} align='center'>Create Lab Report</h3>
-      <FullBld />
+      <AddReport />
           </Grid>
      
           

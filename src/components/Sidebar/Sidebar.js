@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sbListitem: {
-    paddingLeft: '70px',
+    paddingLeft: '50px',
     backgroundColor: '#e3e8e9',
     '&:hover': {
       backgroundColor: '#fff',
