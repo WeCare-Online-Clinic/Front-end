@@ -160,7 +160,7 @@ const App = () => {
                 component={LabViewLabReport}
               ></Route>
               <Route
-                path='/labtech/AddLabReport'
+                path='/labtech/addlabreport'
                 exact
                 component={LabAddLabReport}
               ></Route>

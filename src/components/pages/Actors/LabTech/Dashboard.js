@@ -10,6 +10,7 @@ import LineStatCard from '../../../StatCard/LineStatCard'
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
 import { Button } from '@material-ui/core'
+import { useHistory } from 'react-router'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user='Mr. Mahesh Withanage' />}
       sidebar={<Sidebar menuItems={labMenuItems} />}
       footer={<Footer />}
       content={
@@ -37,6 +38,7 @@ function Dashboard() {
 
 function Content() {
   const classes = useStyles()
+  const history = useStyles()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid className={classes.dataCard} item sm={12}>
@@ -55,7 +57,7 @@ function Content() {
        
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
@@ -67,13 +69,14 @@ function Content() {
         </Button>
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
             height: '80px',
             margin: '10px 0px 10px 40px',
           }}
+          onClick={() => history.push('dashboard')}
         >
           Create Lab Reports
         </Button>

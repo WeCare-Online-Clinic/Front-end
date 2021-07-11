@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 function Profile() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user='Mr. Mahesh Withanage' />}
       sidebar={<Sidebar menuItems={labMenuItems} />}
       footer={<Footer />}
       content={
@@ -39,27 +39,8 @@ function Content() {
           <Grid className={classes.dataCard} item sm={12}>
             <LabProfileCard />
           </Grid>
-          <Grid className={classes.dataCard} item sm={12}>
-            <Card>
-              <CardHeader
-                title='Schedule Info'
-                style={{ textAlign: 'center', color: '#3f51b5' }}
-              ></CardHeader>
-            </Card>
-            <ScheduleTable />
-          </Grid>
+          
         </Grid>
-      </Grid>
-      <Grid item sm={8}>
-        <CardHeader
-          title='Clinic History'
-          style={{
-            textAlign: 'center',
-            backgroundColor: '#3f51b5',
-            color: '#fff',
-          }}
-        ></CardHeader>
-        <ClinicHistoryTable />
       </Grid>
     </Grid>
   )

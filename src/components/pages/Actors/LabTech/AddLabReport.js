@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 function CreateLabReport() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user='Mr. Mahesh Withanage' />}
       sidebar={<Sidebar menuItems={labMenuItems} />}
       footer={<Footer />}
       content={
@@ -40,17 +40,6 @@ function Content() {
   const classes = useStyles()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <Grid container>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>05.30 P.M</h3>
-          </Grid>
-          <Grid item sm></Grid>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Mr. Mahesh Withanage</h3>
-          </Grid>
-        </Grid>
-      </Grid>
       <Grid className={classes.dataCard} item sm={12}>
       <h3 style={{ color: '#000000' }} align='center'>Create Lab Report</h3>
       <AddReport />

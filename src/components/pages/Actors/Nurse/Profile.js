@@ -7,7 +7,7 @@ import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Card, CardHeader, Grid, makeStyles } from '@material-ui/core'
 import NurseProfileCard from '../../../ProfileCard/NurseProfileCard'
 import ScheduleTable from '../../../Table/ScheduleTable'
-import ClinicHistoryTable from '../../../Table/ClinicHistoryTable'
+import NurseClinicHistoryTable from '../../../Table/NurseClinicHistoryTable'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 function Profile() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user='Ms. Asanaka Perera' />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={
@@ -59,7 +59,7 @@ function Content() {
             color: '#fff',
           }}
         ></CardHeader>
-        <ClinicHistoryTable />
+        <NurseClinicHistoryTable />
       </Grid>
     </Grid>
   )

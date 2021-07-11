@@ -13,9 +13,10 @@ import { red } from '@material-ui/core/colors'
 
 const useStyles = makeStyles({
   card: {
-    width: 'inherit',
+    width: '400px',
     height: '100%',
     border: '1px solid #bdc3cb',
+    marginLeft:'390px',
   },
   cardHeader: {
     textAlign: 'center',

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user='Ms. Asanaka Perera' />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={
@@ -55,7 +55,7 @@ function Content() {
        
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
@@ -67,7 +67,7 @@ function Content() {
         </Button>
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
@@ -79,7 +79,7 @@ function Content() {
         </Button>
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
