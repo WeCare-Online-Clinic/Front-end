@@ -43,7 +43,7 @@ let initError = {
 
 const AddDoctors = (props) => {
     const dispatch = useDispatch();
-    const reducerData = useSelector(({ clinic }) => clinic.doctorAddEdit);
+    const reducerData = useSelector(({ doctor }) => doctor.doctorAddEdit);
     const dayList = reducerData.clinicDays;
 
 
@@ -278,13 +278,13 @@ const AddDoctors = (props) => {
                                     </input>
                                 </div>
                                 {/* nic errors */}
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.nicErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.nicErrors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
                                 {/* Address Line 1 Input Field */}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Address</span>
                                     <input type="text"
                                         placeholder="Address line 1"
@@ -293,15 +293,15 @@ const AddDoctors = (props) => {
                                         value={formValue.address1}
                                         onChange={onMyChange}>
                                     </input>
-                                </div>
+                                </div> */}
                                 {/* address line 1 errors */}
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.address1Errors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.address1Errors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
                                 {/* Address Line 2 Input Field */}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Address</span>
                                     <input type="text"
                                         placeholder="Address line 2"
@@ -310,7 +310,7 @@ const AddDoctors = (props) => {
                                         value={formValue.address2}
                                         onChange={onMyChange}>
                                     </input>
-                                </div>
+                                </div> */}
                                 {/* Mobile Input Field*/}
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">Moblie</span>
@@ -329,7 +329,7 @@ const AddDoctors = (props) => {
                                     })}
                                 </div>
                                 {/* Password Input Field*/}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Password</span>
                                     <input
                                         type={showPassword ? "text" : "password"}
@@ -342,15 +342,15 @@ const AddDoctors = (props) => {
                                     <button type="reset" className="btn btn-primary" onClick={() => setShowPassword(showPassword => !showPassword)}>
                                         {showPassword ? <ShowIcon /> : <ShowOffIcon />}
                                     </button>
-                                </div>
+                                </div> */}
                                 {/* password errors */}
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.passwordErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.passwordErrors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
                                 {/* Confirm password Field*/}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Confirm Password</span>
                                     <input
                                         type={showConfirmPassword ? "text" : "password"}
@@ -363,13 +363,13 @@ const AddDoctors = (props) => {
                                     <button type="reset" className="btn btn-primary" onClick={() => setShowConfirmPassword(showConfirmPassword => !showConfirmPassword)}>
                                         {showConfirmPassword ? <ShowIcon /> : <ShowOffIcon />}
                                     </button>
+                                </div> */}
                                     {/* confirm password errors */}
-                                </div>
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.confirmPasswordErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.confirmPasswordErrors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
 
 
                             </form>
@@ -491,4 +491,4 @@ const AddDoctors = (props) => {
     )
 }
 
-export default withReducer('clinic', reducer)(AddDoctors);
+export default withReducer('doctor', reducer)(AddDoctors);

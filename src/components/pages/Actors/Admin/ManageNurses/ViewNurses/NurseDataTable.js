@@ -78,8 +78,11 @@ const NurseDataTable = (props) => {
     // add table header names
     { text: 'Nurse ID' },
     { text: 'Nurse Name' },
-    { text: 'Clinic' },
+    { text: 'Email' },
+    { text: 'Mobile' },
     { text: 'Type' },
+    { text: 'Clinic' },
+    
   ]
 
   const classes = useStyles()
@@ -168,6 +171,12 @@ const NurseDataTable = (props) => {
                             {nurse.firstName+" "+nurse.lastName}
                           </TableCell>
                           <TableCell className={classes.cell}>
+                            {nurse.email}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {nurse.mobile}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
                             {nurse.clinic}
                           </TableCell>
                           <TableCell className={classes.cell}>
@@ -178,7 +187,7 @@ const NurseDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('patientdata')}
+                              onClick={() => history.push('nurseschedule')}
                             >
                               View
                             </Button>

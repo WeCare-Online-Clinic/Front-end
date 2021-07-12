@@ -77,12 +77,12 @@ export const adminMenuItems = [
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
     url: '/admin/nurseschedule',
-  },
-  {
-    icon: <SendIcon style={{ color: '#fff' }} />,
-    name: 'Send Notifications',
-    url: '/admin/notification',
-  },
+  }
+  // {
+  //   icon: <SendIcon style={{ color: '#fff' }} />,
+  //   name: 'Send Notifications',
+  //   url: '/admin/notification',
+  // },
 ]
 
 export const headnurseMenuItems = [

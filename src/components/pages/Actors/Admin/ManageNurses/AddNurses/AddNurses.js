@@ -43,14 +43,14 @@ let initError = {
 
 const AddNurses = (props) => {
     const dispatch = useDispatch();
-    const reducerData = useSelector(({ clinic }) => clinic.manageNurse);
+    const reducerData = useSelector(({ nurse }) => nurse.manageNurse);
     const dayList = reducerData.clinicDays;
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-   
+
 
 
     const onSubmit = (e) => {
@@ -59,7 +59,7 @@ const AddNurses = (props) => {
         if (isValid) {
             console.log("pass");
             console.log("formValues", formValue);
-            dispatch(Actions.saveNurse(formValue));
+            // dispatch(Actions.saveNurse(formValue));
 
         }
         else {
@@ -196,7 +196,7 @@ const AddNurses = (props) => {
         let name = v.target.name;
         if (name == 'clinic') {
             dispatch(Actions.getClinicDays(value));
-        
+
         }
         setFormValue({ ...formValue, [name]: value })
 
@@ -278,7 +278,7 @@ const AddNurses = (props) => {
                                     })}
                                 </div>
                                 {/* Address Line 1 Input Field */}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Address</span>
                                     <input type="text"
                                         placeholder="Address line 1"
@@ -287,15 +287,15 @@ const AddNurses = (props) => {
                                         value={formValue.address1}
                                         onChange={onMyChange}>
                                     </input>
-                                </div>
+                                </div> */}
                                 {/* address line 1 errors */}
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.address1Errors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.address1Errors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
                                 {/* Address Line 2 Input Field */}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Address</span>
                                     <input type="text"
                                         placeholder="Address line 2"
@@ -304,7 +304,7 @@ const AddNurses = (props) => {
                                         value={formValue.address2}
                                         onChange={onMyChange}>
                                     </input>
-                                </div>
+                                </div> */}
                                 {/* Mobile Input Field*/}
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">Moblie</span>
@@ -323,7 +323,7 @@ const AddNurses = (props) => {
                                     })}
                                 </div>
                                 {/* Password Input Field*/}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Password</span>
                                     <input
                                         type={showPassword ? "text" : "password"}
@@ -336,15 +336,15 @@ const AddNurses = (props) => {
                                     <button type="reset" className="btn btn-primary" onClick={() => setShowPassword(showPassword => !showPassword)}>
                                         {showPassword ? <ShowIcon /> : <ShowOffIcon />}
                                     </button>
-                                </div>
+                                </div> */}
                                 {/* password errors */}
-                                <div className="mb-2">
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.passwordErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.passwordErrors[key]}</div>
                                     })}
-                                </div>
+                                </div> */}
                                 {/* Confirm password Field*/}
-                                <div className="input-group mb-3">
+                                {/* <div className="input-group mb-3">
                                     <span className="input-group-text">Confirm Password</span>
                                     <input
                                         type={showConfirmPassword ? "text" : "password"}
@@ -357,12 +357,30 @@ const AddNurses = (props) => {
                                     <button type="reset" className="btn btn-primary" onClick={() => setShowConfirmPassword(showConfirmPassword => !showConfirmPassword)}>
                                         {showConfirmPassword ? <ShowIcon /> : <ShowOffIcon />}
                                     </button>
-                                    {/* confirm password errors */}
-                                </div>
-                                <div className="mb-2">
+                                </div> */}
+                                {/* confirm password errors */}
+                                {/* <div className="mb-2">
                                     {Object.keys(errors.confirmPasswordErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.confirmPasswordErrors[key]}</div>
                                     })}
+                                </div> */}
+                                {/* Nurse Type Input Field*/}
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text">Nurse Type</span>
+
+                                    <select
+                                        name="type" id="type"
+                                        className="form-control"
+                                        value={formValue.type}
+                                        onChange={onMyChange}
+                                    >
+                                        {
+                                            NurseType.map((value, index) => {
+                                                return <option key={index} value={value.value} >{value.label}</option>
+                                            })
+                                        }
+
+                                    </select>
                                 </div>
 
 
@@ -372,24 +390,7 @@ const AddNurses = (props) => {
                     <div className="col">
                         <div className="card-body">
 
-                            {/* Nurse Type Input Field*/}
-                            <div className="input-group mb-3">
-                                <span className="input-group-text">Nurse Type</span>
 
-                                <select
-                                    name="type" id="type"
-                                    className="form-control"
-                                    value={formValue.type}
-                                    onChange={onMyChange}
-                                >
-                                    {
-                                        NurseType.map((value, index) => {
-                                            return <option key={index} value={value.value} >{value.label}</option>
-                                        })
-                                    }
-
-                                </select>
-                            </div>
                             {/* Qualification Input Field*/}
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Qualifications</span>
@@ -477,7 +478,7 @@ const AddNurses = (props) => {
                             <div className="input-group mb-3 mt-5">
                                 <button className="btn " onClick={onSubmit} style={{ width: "100%" }}><h6>Save</h6></button>
                             </div>
-                            
+
 
                         </div>
 
@@ -489,4 +490,4 @@ const AddNurses = (props) => {
     )
 }
 
-export default withReducer('clinic', reducer)(AddNurses);
+export default withReducer('nurse', reducer)(AddNurses);

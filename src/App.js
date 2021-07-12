@@ -37,10 +37,10 @@ const ViewNurses = React.lazy(() =>
   )
 )
 const AdminDoctorSchedule = React.lazy(() =>
-  import('./components/pages/Actors/Admin/DoctorSchedule')
+  import('./components/pages/Actors/Admin/DoctorSchedule/DoctorScheduleBase')
 )
 const AdminNurseSchedule = React.lazy(() =>
-  import('./components/pages/Actors/Admin/NurseSchedule')
+  import('./components/pages/Actors/Admin/NurseShedule/NurseScheduleBase')
 )
 const AdminNotification = React.lazy(() =>
   import('./components/pages/Actors/Admin/Notification')
