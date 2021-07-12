@@ -18,6 +18,16 @@ const Notification = React.lazy(() =>
 const AdminDashboard = React.lazy(() =>
   import('./components/pages/Actors/Admin/AdminDashboard/Dashboard')
 )
+const AdminDoctorSchedule = React.lazy(() =>
+  import('./components/pages/Actors/Admin/DoctorSchedule')
+)
+const AdminNurseSchedule = React.lazy(() =>
+  import('./components/pages/Actors/Admin/NurseSchedule')
+)
+const AdminNotification = React.lazy(() =>
+  import('./components/pages/Actors/Admin/Notification')
+)
+
 const DoctorDashboard = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Dashboard')
 )
@@ -123,6 +133,21 @@ const App = () => {
                 path='/admin/dashboard'
                 exact
                 component={AdminDashboard}
+              ></Route>
+              <Route
+                path='/admin/doctorschedule'
+                exact
+                component={AdminDoctorSchedule}
+              ></Route>
+               <Route
+                path='/admin/nurseschedule'
+                exact
+                component={AdminNurseSchedule}
+              ></Route>
+               <Route
+                path='/admin/notification'
+                exact
+                component={AdminNotification}
               ></Route>
               <Route
                 path='/doctor/dashboard'
