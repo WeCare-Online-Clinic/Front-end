@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: theme.spacing(20),
+       
         // marginLeft:320,
         // marginRight:320,
         flexDirection: 'column',

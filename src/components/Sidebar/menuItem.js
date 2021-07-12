@@ -76,12 +76,12 @@ export const adminMenuItems = [
   {
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
-    url: '/admin/doctorschedule',
+    url: '/admin/nurseschedule',
   },
   {
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Send Notifications',
-    url: '/admin/doctorschedule',
+    url: '/admin/notification',
   },
 ]
 
