@@ -11,13 +11,14 @@ import LineStatCard from '../../../StatCard/LineStatCard'
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
 import { Button } from '@material-ui/core'
+import { useHistory } from 'react-router'
 
 const useStyles = makeStyles({
   dataCard: {
     backgroundColor: '#fff',
     borderRadius: '5px',
-    marginBottom: '10px',
-    marginTop: '10px',
+    margin: '20px',
+    marginBottom: '0px',
   },
 })
 
@@ -38,36 +39,37 @@ function Dashboard() {
 
 function Content() {
   const classes = useStyles()
+  const history = useHistory()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid
+        className={classes.dataCard}
         item
         sm={12}
-        style={{ backgroundColor: '#fff', textAlign: 'center' }}
+        style={{ display: 'flex', justifyContent: 'space-around' }}
       >
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
             height: '80px',
-            margin: '10px 40px 10px 0px',
           }}
         >
-          Add Lab Reports
+          Add Lab Tests
         </Button>
         <Button
           variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           style={{
             width: '200px',
             height: '80px',
-            margin: '10px 0px 10px 40px',
           }}
+          onClick={() => history.push('dashboard')}
         >
-          View Lab Reports
+          Create Lab Reports
         </Button>
       </Grid>
       <Grid className={classes.dataCard} item sm={12}>
@@ -78,7 +80,7 @@ function Content() {
           <Grid className={classes.dataCard} item sm={6}>
             <LineStatCard title='Lab Reports Issued' />
           </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
+          <Grid className={classes.dataCard} item sm={5}>
             <BarStatCard title='Lab Tests - No.of Reports' />
           </Grid>
         </Grid>

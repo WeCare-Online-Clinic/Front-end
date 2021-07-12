@@ -74,10 +74,17 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
   ],
 
   CLINICS: [
+    { label: "Select the clinic", value: '' },
     { label: "Cardioloy", value: 'cardiology' },
     { label: "Dentistry", value: 'dentistry' },
     { label: "Dermatology", value: 'dermatology' },
     { label: "Neurology", value: 'neurology' },
+  ],
+
+  NURSETYPE:[
+    {label:"Select the nurse type", value:''},
+    {label:"Head Nurse", value:1},
+    {label:"Regular Nurse", value:0}
   ],
 
   DAYS_OF_WEEK: {

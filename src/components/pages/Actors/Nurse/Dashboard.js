@@ -6,11 +6,10 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import DataCard from '../../../DataCard/DataCard'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-
 import LineStatCard from '../../../StatCard/LineStatCard'
-
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
+import { Button } from '@material-ui/core'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user='Ms. Asanaka Perera' />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={
@@ -43,13 +42,53 @@ function Content() {
       <Grid className={classes.dataCard} item sm={12}>
         <Grid container>
           <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>10.30 A.M</h3>
+            <h3 style={{ color: '#3f51b5' }}>04.30 P.M</h3>
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Ms.Perera</h3>
+            <h3 style={{ color: '#3f51b5' }}>Welcome Ms. Asanka Perera</h3>
           </Grid>
         </Grid>
+      </Grid>
+
+      <Grid className={classes.dataCard} item sm={12}>
+       
+        <Button
+          variant='contained'
+          color='secondary'
+          size='large'
+          style={{
+            width: '200px',
+            height: '80px',
+            margin: '10px 40px 10px 200px',
+          }}
+        >
+          View Queue
+        </Button>
+        <Button
+          variant='contained'
+          color='secondary'
+          size='large'
+          style={{
+            width: '200px',
+            height: '80px',
+            margin: '10px 40px 10px 40px',
+          }}
+        >
+          View Doctor List
+        </Button>
+        <Button
+          variant='contained'
+          color='secondary'
+          size='large'
+          style={{
+            width: '200px',
+            height: '80px',
+            margin: '10px 35px 10px 40px',
+          }}
+        >
+          Add lAb Tests
+        </Button>
       </Grid>
      
       <Grid item sm={12}>

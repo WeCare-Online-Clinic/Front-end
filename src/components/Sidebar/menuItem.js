@@ -76,12 +76,12 @@ export const adminMenuItems = [
   {
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
-    url: '/admin/doctorschedule',
+    url: '/admin/nurseschedule',
   },
   {
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Send Notifications',
-    url: '/admin/doctorschedule',
+    url: '/admin/notification',
   },
 ]
 
@@ -126,18 +126,32 @@ export const nurseMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
+    url: '/nurse/dashboard',
+  },
+
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Queue',
+    url: '/nurse/viewqueue',
+  },
+
+  {
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Doctor List',
+    url: '/nurse/viewdoctor',
+  },
+
+  {
+    icon: <AssignmentIcon style={{ color: '#fff' }} />,
+    name: 'Lab Tests',
     children: [
       {
-        name: 'View Queue',
-        url: '/nurse/viewqueue',
+        name: 'View Patient List',
+        url: '/nurse/viewpatient',
       },
       {
-        name: 'View Doctors',
-        url: '/nurse/viewdoctors',
-      },
-      {
-        name: 'View Patients',
-        url: '/nurse/viewpatients',
+        name: 'Add Lab Tests',
+        url: '/nurse/addlabtest',
       },
     ],
   },
@@ -178,8 +192,8 @@ export const labtechMenuItems = [
     name: 'Lab Tests',
     children: [
       {
-        name: 'View Lab Tests',
-        url: '/labtech/viewlabtest',
+        name: 'View Patient List',
+        url: '/labtech/viewpatient',
       },
       {
         name: 'Add Lab Tests',
@@ -196,9 +210,15 @@ export const labtechMenuItems = [
         url: '/labtech/viewlabreport',
       },
       {
-        name: 'Add Lab Reports',
+        name: 'Create Lab Reports',
         url: '/labtech/addlabreport',
       },
     ],
+  },
+
+  {
+    icon: <PersonIcon style={{ color: '#fff' }} />,
+    name: 'Profile',
+    url: '/labtech/profile',
   },
 ]

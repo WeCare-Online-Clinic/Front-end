@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import * as _ from 'lodash'
 import ShowIcon from '@material-ui/icons/Visibility';
 import ShowOffIcon from '@material-ui/icons/VisibilityOff';
-import './NewDoctor.css';
+import  '../../ManageDoctors/AddDoctors//NewDoctor.css'
 import { useDispatch, useSelector } from "react-redux";
-import * as Actions from "../store/actions/doctor.add.edit.action";
+import * as Actions from "../store/actions/NurseAction";
 import Constants from '../../../../../../utils/Constants';
 import { showSuccessMessage } from '../../../../../../utils/ToastUtil';
 
 const Clinics = Constants.CLINICS;
+const NurseType =Constants.NURSETYPE;
 
 
 let initFormValue = {
@@ -21,8 +22,8 @@ let initFormValue = {
     password: '',
     confirmPassword: '',
     mobile: '',
+    type:'',
     qualification: '',
-    specialty: '',
     clinic: ''
 }
 let initError = {
@@ -38,24 +39,24 @@ let initError = {
 
 }
 
-const AddDoctors = (props) => {
+const AddNurses = (props) => {
     const dispatch = useDispatch();
-    const reducerData = useSelector(({ doctor }) => doctor.doctorAddEdit);
+    // const reducerData = useSelector(({ doctor }) => doctor.doctorAddEdit);
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    console.log("REDUCER", Clinics);
+  
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
         if (isValid) {
             console.log("pass");
-            console.log("formValues",formValue);
-            dispatch(Actions.saveDoctor(formValue));
+            console.log("formValues", formValue);
+            dispatch(Actions.saveNurse(formValue));
             
-           
+
         }
         else {
             console.log("fail");
@@ -200,7 +201,7 @@ const AddDoctors = (props) => {
         <div className="container mt-5">
             <div className="card ">
                 <div className="title">
-                    <h3 className="text-center">Register New Doctor</h3>
+                    <h3 className="text-center">Register New Nurse</h3>
                 </div>
                 <div className="row">
                     <div className="col">
@@ -365,6 +366,25 @@ const AddDoctors = (props) => {
                     </div>
                     <div className="col">
                         <div className="card-body">
+
+                            {/* Nurse Type Input Field*/}
+                            <div className="input-group mb-3">
+                                <span className="input-group-text">Nurse Type</span>
+
+                                <select
+                                    name="type" id="type"
+                                    className="form-control"
+                                    value={formValue.type}
+                                    onChange={onMyChange}
+                                >
+                                    {
+                                        NurseType.map((value, index) => {
+                                            return <option key={index} value={value.value} >{value.label}</option>
+                                        })
+                                    }
+
+                                </select>
+                            </div>
                             {/* Qualification Input Field*/}
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Qualifications</span>
@@ -381,27 +401,12 @@ const AddDoctors = (props) => {
                                     return <div key={index} style={{ color: "red" }}>{errors.qualificationsError[key]}</div>
                                 })}
                             </div>
-                            {/* Speciality Input Field*/}
-                            <div className="input-group mb-3">
-                                <span className="input-group-text">Specialty</span>
-
-                                <select name="specialty" id="specialty"
-                                    className="form-control"
-                                    value={formValue.specialty}
-                                    onChange={onMyChange}
-                                >
-                                    <option value="cardiologist" selected>Cardiologist</option>
-                                    <option value="bds">BDS-Specialist</option>
-                                    <option value="dermatologist">dermatologist</option>
-                                    <option value="neurologist">Neurologist</option>
-                                </select>
-                            </div>
 
                             {/* Clinic Input Field*/}
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Clinic</span>
 
-                                <select 
+                                <select
                                     name="clinic" id="clinic"
                                     className="form-control"
                                     value={formValue.clinic}
@@ -412,7 +417,7 @@ const AddDoctors = (props) => {
                                             return <option key={index} value={value.value} >{value.label}</option>
                                         })
                                     }
-                                    
+
                                 </select>
                             </div>
 
@@ -426,9 +431,9 @@ const AddDoctors = (props) => {
                                     onChange={onMyChange}
                                 >
                                     {
-                                        reducerData.clinicDates.map((value, index) =>
-                                            <option key={index} value={value.value}>{value.vale}</option>
-                                        )
+                                        // reducerData.clinicDates.map((value, index) =>
+                                        //     <option key={index} value={value.value}>{value.vale}</option>
+                                        // )
                                     }
 
                                     <option value="dentistry">Dentistry</option>
@@ -455,4 +460,4 @@ const AddDoctors = (props) => {
     )
 }
 
-export default AddDoctors;
+export default AddNurses;

@@ -11,7 +11,7 @@ import Card from '@material-ui/core/Card';
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 600,
-        marginLeft:640,
+        marginLeft:540,
         marginTop:50,
         '& > * + *': {
           marginTop: theme.spacing(2),
