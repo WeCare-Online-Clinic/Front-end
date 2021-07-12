@@ -75,7 +75,12 @@ const Consultation = React.lazy(() =>
 const PatientDashboard = React.lazy(() =>
   import('./components/pages/Actors/Patient/Dashboard')
 )
-
+const ClinicHistory = React.lazy(() =>
+  import('./components/pages/Actors/Patient/ClinicHistory')
+)
+const LabReports = React.lazy(() =>
+  import('./components/pages/Actors/Patient/LabReports')
+)
 /* --------------------- */
 
 /* --- Nurse Pages --- */
@@ -232,6 +237,16 @@ const App = () => {
                 path='/patient/dashboard'
                 exact
                 component={PatientDashboard}
+              ></Route>
+              <Route
+                path='/patient/patienthistory'
+                exact
+                component={ClinicHistory}
+              ></Route>
+              <Route
+                path='/patient/patientreport'
+                exact
+                component={LabReports}
               ></Route>
               {/* --------------------- */}
 

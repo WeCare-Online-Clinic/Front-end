@@ -172,12 +172,12 @@ export const patientMenuItems = [
   {
     icon: <AssignmentIcon style={{ color: '#fff' }} />,
     name: 'Reports',
-    url: '/patient/reports',
+    url: '/patient/patientreport',
   },
   {
     icon: <HistoryIcon style={{ color: '#fff' }} />,
     name: 'Clinic History',
-    url: '/patient/history',
+    url: '/patient/patienthistory',
   },
 ]
 
