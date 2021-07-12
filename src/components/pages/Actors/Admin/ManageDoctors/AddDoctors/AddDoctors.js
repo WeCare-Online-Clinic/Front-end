@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Actions from "../store/actions/doctor.add.edit.action";
 import Constants from '../../../../../../utils/Constants';
 import { showSuccessMessage } from '../../../../../../utils/ToastUtil';
-
+import reducer from '../store/reducer';
+import withReducer from '../../../../../../store/withReducer';
 const Clinics = Constants.CLINICS;
+const  Specialty = Constants.SPECIALTY;  
 
 
 let initFormValue = {
@@ -24,6 +26,7 @@ let initFormValue = {
     qualification: '',
     specialty: '',
     clinic: ''
+
 }
 let initError = {
     firstNameErrors: {},
@@ -40,22 +43,26 @@ let initError = {
 
 const AddDoctors = (props) => {
     const dispatch = useDispatch();
-    const reducerData = useSelector(({ doctor }) => doctor.doctorAddEdit);
+    const reducerData = useSelector(({ clinic }) => clinic.doctorAddEdit);
+    const dayList = reducerData.clinicDays;
+
+
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
 
-    console.log("REDUCER", Clinics);
+
+
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
         if (isValid) {
             console.log("pass");
-            console.log("formValues",formValue);
+            console.log("formValues", formValue);
             dispatch(Actions.saveDoctor(formValue));
-            
-           
+
+
         }
         else {
             console.log("fail");
@@ -189,10 +196,15 @@ const AddDoctors = (props) => {
     const onMyChange = (v) => {
         let value = v.target.value;
         let name = v.target.name;
-        // if (name == 'clinic') {
-        //     dispatch(Actions.getClinicDates({ clinic: value }));
-        // }
+        if (name == 'clinic') {
+            console.log(value);
+            dispatch(Actions.getClinicDays(value));
+            
+        }
         setFormValue({ ...formValue, [name]: value })
+
+
+
 
     }
 
@@ -390,10 +402,11 @@ const AddDoctors = (props) => {
                                     value={formValue.specialty}
                                     onChange={onMyChange}
                                 >
-                                    <option value="cardiologist" selected>Cardiologist</option>
-                                    <option value="bds">BDS-Specialist</option>
-                                    <option value="dermatologist">dermatologist</option>
-                                    <option value="neurologist">Neurologist</option>
+                                    {
+                                        Specialty.map((value, index) => {
+                                            return <option key={index} value={value.value} >{value.label}</option>
+                                        })
+                                    }
                                 </select>
                             </div>
 
@@ -401,7 +414,7 @@ const AddDoctors = (props) => {
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Clinic</span>
 
-                                <select 
+                                <select
                                     name="clinic" id="clinic"
                                     className="form-control"
                                     value={formValue.clinic}
@@ -412,38 +425,61 @@ const AddDoctors = (props) => {
                                             return <option key={index} value={value.value} >{value.label}</option>
                                         })
                                     }
-                                    
+
                                 </select>
                             </div>
 
                             {/* Clinic Date Field*/}
-                            <div className="input-group mb-3">
-                                <span className="input-group-text">Date</span>
 
-                                <select name="clinic" id="clinic"
-                                    className="form-control"
-                                    value={formValue.clinic}
-                                    onChange={onMyChange}
-                                >
-                                    {
-                                        reducerData.clinicDates.map((value, index) =>
-                                            <option key={index} value={value.value}>{value.vale}</option>
-                                        )
-                                    }
+                            <div className="input-group mb-3" style={{ display: 'inline',alignContent:'center'}}>
+                                <React.Fragment>
+                                    <span className="input-group-text" style={{width:'100%',height:'50px'}}>Clinic Schedule</span>
+                                    <div className="className=form-control mt-3" style={{ position: 'relative' }}>
+                                                <table border="1px">                                                    
+                                                        <tr> 
+                                                            <th></th>
+                                                            <th> Day </th>
+                                                            <th> Time </th>
+                                                        
+                                                        </tr>
+                                                   
+                                               
+                                        {
+                                            dayList.map((value, index) => {
+                                                return (
+                                                    <tr style={{marginLeft:'5px'}}>
+                                                        <td>
+                                                        <input type="checkbox"
+                                                            style={{width:'50px'}}
+                                                            key={index}
+                                                            id={value.day}
+                                                            name={value.day}
+                                                            value={formValue.clinicDays}
+                                                            onChange={onMyChange}
+                                                        />
+                                                        </td>
+                                                        <td>
+                                                        <label htmlFor="Days"> {value.day} </label>
+                                                        </td>
+                                                        <td>
+                                                        <label htmlFor="Time"> {value.time}</label>
+                                                        </td>
 
-                                    <option value="dentistry">Dentistry</option>
-                                    <option value="dermatology">Dermatology</option>
-                                    <option value="neurology">Neurology</option>
-                                </select>
+                                                    </tr>
+                                                )
+
+                                            })
+                                        }
+                                                 </table>
+                                    </div>
+                                </React.Fragment>
+
                             </div>
 
-
-                            <div className="input-group mb-3">
+                            <div className="input-group mb-3 mt-5">
                                 <button className="btn " onClick={onSubmit} style={{ width: "100%" }}><h6>Save</h6></button>
                             </div>
-                            {/* <div className="mb-2">
-                                    <p>Already Have Account? <Link to="/login">Login</Link></p>
-                                </div> */}
+
 
                         </div>
 
@@ -455,4 +491,4 @@ const AddDoctors = (props) => {
     )
 }
 
-export default AddDoctors;
+export default withReducer('clinic', reducer)(AddDoctors);

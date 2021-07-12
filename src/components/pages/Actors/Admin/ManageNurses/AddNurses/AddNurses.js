@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import * as _ from 'lodash'
 import ShowIcon from '@material-ui/icons/Visibility';
 import ShowOffIcon from '@material-ui/icons/VisibilityOff';
-import  '../../ManageDoctors/AddDoctors//NewDoctor.css'
+import '../../ManageDoctors/AddDoctors//NewDoctor.css'
 import { useDispatch, useSelector } from "react-redux";
 import * as Actions from "../store/actions/NurseAction";
 import Constants from '../../../../../../utils/Constants';
 import { showSuccessMessage } from '../../../../../../utils/ToastUtil';
+import withReducer from '../../../../../../store/withReducer';
+import reducer from '../store/reducer';
 
 const Clinics = Constants.CLINICS;
-const NurseType =Constants.NURSETYPE;
+const NurseType = Constants.NURSETYPE;
 
 
 let initFormValue = {
@@ -22,7 +24,7 @@ let initFormValue = {
     password: '',
     confirmPassword: '',
     mobile: '',
-    type:'',
+    type: '',
     qualification: '',
     clinic: ''
 }
@@ -41,13 +43,16 @@ let initError = {
 
 const AddNurses = (props) => {
     const dispatch = useDispatch();
-    // const reducerData = useSelector(({ doctor }) => doctor.doctorAddEdit);
+    const reducerData = useSelector(({ clinic }) => clinic.manageNurse);
+    const dayList = reducerData.clinicDays;
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  
+   
+
+
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
@@ -55,7 +60,6 @@ const AddNurses = (props) => {
             console.log("pass");
             console.log("formValues", formValue);
             dispatch(Actions.saveNurse(formValue));
-            
 
         }
         else {
@@ -190,9 +194,10 @@ const AddNurses = (props) => {
     const onMyChange = (v) => {
         let value = v.target.value;
         let name = v.target.name;
-        // if (name == 'clinic') {
-        //     dispatch(Actions.getClinicDates({ clinic: value }));
-        // }
+        if (name == 'clinic') {
+            dispatch(Actions.getClinicDays(value));
+        
+        }
         setFormValue({ ...formValue, [name]: value })
 
     }
@@ -422,33 +427,57 @@ const AddNurses = (props) => {
                             </div>
 
                             {/* Clinic Date Field*/}
-                            <div className="input-group mb-3">
-                                <span className="input-group-text">Date</span>
 
-                                <select name="clinic" id="clinic"
-                                    className="form-control"
-                                    value={formValue.clinic}
-                                    onChange={onMyChange}
-                                >
-                                    {
-                                        // reducerData.clinicDates.map((value, index) =>
-                                        //     <option key={index} value={value.value}>{value.vale}</option>
-                                        // )
-                                    }
+                            <div className="input-group mb-3" style={{ display: 'inline', alignContent: 'center' }}>
+                                <React.Fragment>
+                                    <span className="input-group-text" style={{ width: '100%', height: '50px' }}>Clinic Schedule</span>
+                                    <div className="className=form-control mt-3" style={{ position: 'relative' }}>
+                                        <table border="1px">
+                                            <tr>
+                                                <th></th>
+                                                <th> Day </th>
+                                                <th> Time </th>
 
-                                    <option value="dentistry">Dentistry</option>
-                                    <option value="dermatology">Dermatology</option>
-                                    <option value="neurology">Neurology</option>
-                                </select>
+                                            </tr>
+
+
+                                            {
+                                                dayList.map((value, index) => {
+                                                    return (
+                                                        <tr style={{ marginLeft: '5px' }}>
+                                                            <td>
+                                                                <input type="checkbox"
+                                                                    style={{ width: '50px' }}
+                                                                    key={index}
+                                                                    id={value.day}
+                                                                    name={value.day}
+                                                                    value={formValue.clinicDays}
+                                                                    onChange={onMyChange}
+                                                                />
+                                                            </td>
+                                                            <td>
+                                                                <label htmlFor="Days"> {value.day} </label>
+                                                            </td>
+                                                            <td>
+                                                                <label htmlFor="Time"> {value.time}</label>
+                                                            </td>
+
+                                                        </tr>
+                                                    )
+
+                                                })
+                                            }
+                                        </table>
+                                    </div>
+                                </React.Fragment>
+
                             </div>
 
 
-                            <div className="input-group mb-3">
+                            <div className="input-group mb-3 mt-5">
                                 <button className="btn " onClick={onSubmit} style={{ width: "100%" }}><h6>Save</h6></button>
                             </div>
-                            {/* <div className="mb-2">
-                                    <p>Already Have Account? <Link to="/login">Login</Link></p>
-                                </div> */}
+                            
 
                         </div>
 
@@ -460,4 +489,4 @@ const AddNurses = (props) => {
     )
 }
 
-export default AddNurses;
+export default withReducer('clinic', reducer)(AddNurses);

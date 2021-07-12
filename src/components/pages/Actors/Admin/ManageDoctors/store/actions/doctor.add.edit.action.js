@@ -1,4 +1,5 @@
 import { showErrorMessage, showSuccessMessage } from "../../../../../../../utils/ToastUtil";
+import history from '../../../../../../../@history'
 import DoctorService from "./doctor.service";
 
 export const ON_ADD_EDIT_FORM_CHANGE = '[DOCTOR ADD EDIT] ON_ADD_EDIT_FORM_CHANGE';
@@ -7,7 +8,7 @@ export const ON_SAVE_UPDATE_DOCTOR = '[DOCTOR ADD EDIT] ON_SAVE_UPDATE_DOCTOR';
 export const ON_RESET_DOCTOR_FORM_DATA = '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_FORM_DATA';
 export const GET_DOCTOR = '[DOCTOR ADD EDIT] GET_DOCTOR';
 export const ON_RESET_DOCTOR_DATA = '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_DATA';
-export const ON_GET_CLINIC_DATES = '[DOCTOR ADD EDIT] ON_GET_CLINIC_DATES';
+export const ON_GET_CLINIC_DAYS = '[DOCTOR ADD EDIT] ON_GET_CLINIC_DAYS';
 export const ON_SAVE_DOCTOR = '[DOCTOR ADD] ON_SAVE_DOCTOR';
 
 
@@ -15,16 +16,17 @@ export function saveDoctor(doctor) {
     const request = DoctorService.saveDoctor(doctor);
 
     return (dispatch, getState) => {
-        return request.then((response) => {
-            console.log("re",response);
-            showSuccessMessage("Save or Update Success");
+        return request.then((response) => {          
+          
+            alert("Successfully Registered");
+            history.push('viewdoctors');   
             dispatch({
                 type: ON_SAVE_DOCTOR,
                 payload: response.data
             })
         }).catch((error)=>{
-            console.log("error");
-            showErrorMessage("Please Contact Administrator" + error);
+            alert("Register failed, please try again");            
+       
         });
 
     };
@@ -109,14 +111,15 @@ export function setDoctor(data) {
 }
 
 
-export function getClinicDates(data) {
-    const request = DoctorService.getClinicDates(data);
+export function getClinicDays(data) {
+    console.log("data clinic",data);
+    const request = DoctorService.getClinicDays(data);
 
     return (dispatch, getState) => {
         return request.then((response) => {
-            console.log(response);
+            // console.log("days",response.data);
             return dispatch({
-                type: ON_GET_CLINIC_DATES,
+                type: ON_GET_CLINIC_DAYS,
                 payload: response.data
             });
         }

@@ -1,7 +1,7 @@
 import {
     GET_DOCTOR,
     ON_ADD_EDIT_FORM_CHANGE,
-    ON_GET_CLINIC_DATES,
+    ON_GET_CLINIC_DAYS,
     ON_GET_DOCTORS,
     ON_RESET_DOCTOR_DATA, ON_RESET_DOCTOR_FORM_DATA, ON_SAVE_UPDATE_DOCTOR
 } from "../actions/doctor.add.edit.action";
@@ -9,7 +9,7 @@ import {
 const initialState = {
     formData: {},
     doctor: {},
-    clinicDates: [],
+    clinicDays: [],
     doctorList:[]
 };
 
@@ -59,12 +59,13 @@ const doctorAddEditReducer = function (state = initialState, action) {
             }
         }
 
-        case ON_GET_CLINIC_DATES: {
-            console.log("action payload fo clinic dates", action.payload);
+        case ON_GET_CLINIC_DAYS: {            
             return {
                 ...state,
-                clinicDates: [...action.payload]
+                clinicDays: [...action.payload]
+             
             }
+           
         }
 
         default: {

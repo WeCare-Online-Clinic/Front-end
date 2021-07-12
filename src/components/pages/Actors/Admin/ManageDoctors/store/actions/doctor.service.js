@@ -20,8 +20,8 @@ class DoctorService {
     return axios.get(DOCTOR_API_BASE_URL + '/' + doctorID);
   }
 
-  getClinicDates(data) {
-    return axios.post(DOCTOR_API_BASE_URL+'/getClinicDays', data);
+  getClinicDays(data) {
+    return axios.get(DOCTOR_API_BASE_URL+'/getClinicDays/'+data);
   }
 
 
