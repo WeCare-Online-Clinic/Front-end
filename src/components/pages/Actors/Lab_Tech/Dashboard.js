@@ -4,9 +4,9 @@ import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import DataCard from '../../../DataCard/DataCard'
-import { labMenuItems } from '../../../Sidebar/menuItem'
+import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import { labDataItems } from '../../../DataCard/DataItems'
+import { labtechDataItems } from '../../../DataCard/DataItems'
 import LineStatCard from '../../../StatCard/LineStatCard'
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
@@ -25,7 +25,7 @@ function Dashboard() {
   return (
     <Layout
       header={<Header user='Kamal' />}
-      sidebar={<Sidebar menuItems={labMenuItems} />}
+      sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
@@ -71,7 +71,7 @@ function Content() {
         </Button>
       </Grid>
       <Grid className={classes.dataCard} item sm={12}>
-        <DataCard cardItems={labDataItems} />
+        <DataCard cardItems={labtechDataItems} />
       </Grid>
       <Grid item sm={12}>
         <Grid container style={{ marginBottom: '10px' }} spacing={5}>

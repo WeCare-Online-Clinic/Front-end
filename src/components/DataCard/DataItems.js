@@ -36,7 +36,7 @@ export const doctorDataItems = [
   },
 ]
 
-export const labDataItems = [
+export const labtechDataItems = [
   {
     name: 'Lab Tests',
     value: 23,
