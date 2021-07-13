@@ -55,7 +55,7 @@ function ManageQueue() {
           </div>
           <div>
             <Button variant='contained' color='secondary' size='large'>
-              End Session
+              Start Session
             </Button>
           </div>
         </Grid>

@@ -67,7 +67,10 @@ export default function Header(props) {
             {props.user}
           </Grid>
           <Grid item>
-            <IconButton color='primary' style={{ marginRight: '10px' }}>
+            <IconButton 
+              color='primary' 
+              style={{ marginRight: '10px' }}
+              onClick={() => history.push('profile')}>
               <Badge badgeContent={1} color='secondary'>
                 <NotificationsNoneIcon />
               </Badge>

@@ -128,6 +128,7 @@ const LabAddLabReport = React.lazy(() =>
 )
 
 
+/* --- Head Nurse Pages --- */
 const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard')
 )
@@ -150,6 +151,16 @@ const HeadNurseRegister = React.lazy(() =>
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage')
 )
+
+const HeadNurseAddLabTest = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/AddLabTest')
+)
+
+const HeadNurseHandleRequest = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/DateTime')
+)
+
+
 
 
 const loading = (
@@ -308,10 +319,9 @@ const App = () => {
               ></Route>
               {/* -------------------- */}
 
-              {/* --- Head Nurse Routes --- */}
+            
 
-              {/* --------------------- */}
-
+         
               {/* --- Lab Tech Routes --- */}
               <Route
                 path='/labtech/dashboard'
@@ -356,11 +366,12 @@ const App = () => {
                 component={ViewNurses}>
               </Route>
 
-              <Route
-                path='/headnurse/dashboard'
-                exact
-                component={HeadNurseDashboard}
-              ></Route>
+           {/* --- Head Nurse Routes --- */}
+                  <Route
+                    path='/headnurse/dashboard'
+                    exact
+                    component={HeadNurseDashboard}
+                  ></Route>
                   <Route 
                     path='/headnurse/viewqueue' exact 
                     component={HeadNurseViewQueue}>
@@ -373,21 +384,34 @@ const App = () => {
                     path='/headnurse/viewpatients' exact 
                     component={HeadNurseViewPatient}>
                   </Route>
-               <Route
-                path='/headnurse/profile'
-                exact
-                component={HeadNurseProfile}
-              ></Route>
-               <Route
-                path='/headnurse/register/patientregister'
-                exact
-                component={HeadNurseRegister}
-              ></Route>
-		          <Route
-                path='/headnurse/sendmessage'
-                exact
-                component={HeadNurseSendMessage}
-              ></Route>
+                  <Route
+                    path='/headnurse/profile'
+                    exact
+                    component={HeadNurseProfile}
+                  ></Route>
+                  <Route
+                    path='/headnurse/register/patientregister'
+                    exact
+                    component={HeadNurseRegister}
+                  ></Route>
+                  <Route
+                    path='/headnurse/sendmessage'
+                    exact
+                    component={HeadNurseSendMessage}
+                  ></Route>
+                  <Route
+                    path='/headnurse/addlabtest'
+                    exact
+                    component={HeadNurseAddLabTest}
+                  ></Route>
+                    <Route
+                    path='/headnurse/datetime'
+                    exact
+                    component={HeadNurseHandleRequest}
+                  ></Route>
+
+                {/* --------------------- */}
+
 
 
               <Route
