@@ -179,7 +179,7 @@ const PatientDataAddTable = (props) => {
                               color='primary'
                               onClick={() => history.push('patientdata')}
                             >
-                           Add
+                           View
                             </Button>
                           </TableCell>
                         </TableRow>

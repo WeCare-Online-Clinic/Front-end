@@ -126,11 +126,7 @@ export const headnurseMenuItems = [
     name: 'Message',
 
     url: '/headnurse/sendmessage',
-<<<<<<< HEAD
-},
-=======
   },
->>>>>>> a69766b18445ff85ca791f3d9a01c0ba7fa8dd1d
 ]
 
 export const nurseMenuItems = [
@@ -154,7 +150,7 @@ export const nurseMenuItems = [
 
   {
     icon: <AssignmentIcon style={{ color: '#fff' }} />,
-    name: 'Lab Tests',
+    name: 'Lab Reports',
     children: [
       {
         name: 'View Patient List',

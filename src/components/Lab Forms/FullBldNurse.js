@@ -3,7 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import Box from '@material-ui/core/Box';
-
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -11,7 +14,6 @@ import Card from '@material-ui/core/Card';
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 600,
-        marginLeft:'100%',
         marginTop:50,
         '& > * + *': {
           marginTop: theme.spacing(2),
@@ -31,15 +33,63 @@ export default function FullBld() {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      
-        <Box bgcolor="primary.main" color="primary.contrastText" p={2}>
-       FULL BLOOD COUNT
-        </Box>
 
+        <Box bgcolor="primary.main" color="primary.contrastText" p={2}>
+        <InputLabel id="label">Report Type</InputLabel>
+          <Select labelId="label" id="select" value="Full Blood Report">
+            <MenuItem value="Full Blood Report">Full Blood Report</MenuItem>
+            <MenuItem value="chemistry (basic metabolic) panel">chemistry (basic metabolic) panel</MenuItem>
+            <MenuItem value="Thyroid panel">Thyroid panel</MenuItem>
+          
+          </Select>
+        </Box>
+        
+        <div>
+        <Grid container>
+          <Grid item xs={6}>
+            <Box fontSize="h6.fontSize" m={1}>Patient ID</Box>
+                <TextField
+                    id="standard-full-width"
+                    style={{ margin:10 }}
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    />
+          </Grid>
+          <Grid item xs={6}>
+            <Box fontSize="h6.fontSize" m={1}>Date</Box>
+                <TextField
+                    id="date"
+                    type="date"
+                    defaultValue="2021-07-4"
+                    style={{ margin:10 }}
+                    className={classes.textField}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                />
+            </Grid>
+            </Grid>
+            </div>
         <div>
         <Box bgcolor="text.secondary" color="background.paper" p={2}>
           WBC
         </Box>
+        <br /> 
+        <div> 
+            <TextField
+            id="outlined-full-width"
+            label="WBC Count"
+            style={{ margin: 10 }}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+        </div>
+        <br />
         <br /> 
         <div> 
             <TextField
