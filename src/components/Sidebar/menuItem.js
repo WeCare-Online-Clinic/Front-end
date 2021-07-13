@@ -143,7 +143,7 @@ export const nurseMenuItems = [
 
   {
     icon: <AssignmentIcon style={{ color: '#fff' }} />,
-    name: 'Lab Tests',
+    name: 'Lab Reports',
     children: [
       {
         name: 'View Patient List',

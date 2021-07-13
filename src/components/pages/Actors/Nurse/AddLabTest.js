@@ -3,7 +3,7 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import FullBld from '../../../Lab Forms/FullBld'
+import FullBldNurse from '../../../Lab Forms/FullBldNurse'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import PageviewIcon from '@material-ui/icons/Pageview'
@@ -65,26 +65,10 @@ function Content() {
             alignContent='center'
             style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
           >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Report Type'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+            
           </Grid>
         </Grid>
-        <FullBld />
+        <FullBldNurse />
       </Grid>       
     </Grid>
    

@@ -39,57 +39,8 @@ function Content() {
   const classes = useStyles()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <Grid container>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>04.30 P.M</h3>
-          </Grid>
-          <Grid item sm></Grid>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Ms. Asanka Perera</h3>
-          </Grid>
-        </Grid>
-      </Grid>
+    
 
-      <Grid className={classes.dataCard} item sm={12}>
-       
-        <Button
-          variant='contained'
-          color='secondary'
-          size='large'
-          style={{
-            width: '200px',
-            height: '80px',
-            margin: '10px 40px 10px 200px',
-          }}
-        >
-          View Queue
-        </Button>
-        <Button
-          variant='contained'
-          color='secondary'
-          size='large'
-          style={{
-            width: '200px',
-            height: '80px',
-            margin: '10px 40px 10px 40px',
-          }}
-        >
-          View Doctor List
-        </Button>
-        <Button
-          variant='contained'
-          color='secondary'
-          size='large'
-          style={{
-            width: '200px',
-            height: '80px',
-            margin: '10px 35px 10px 40px',
-          }}
-        >
-          Add lAb Tests
-        </Button>
-      </Grid>
      
       <Grid item sm={12}>
         <Grid container style={{ marginBottom: '10px' }} spacing={5}>
