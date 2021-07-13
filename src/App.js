@@ -10,7 +10,7 @@ import history from './@history'
 
 const Home = React.lazy(() => import('./components/pages/HomePage/Home'))
 const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
-const Help = React.lazy(() => import('./components/Register'))
+const Help = React.lazy(() => import('./components/pages/Help/Help'))
 const Login = React.lazy(() => import('./components/pages/Login/Login'))
 const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
@@ -99,6 +99,29 @@ const AddNurses =React.lazy(()=>
 )
 const ViewNurses =React.lazy(()=>
   import ('./components/pages/Actors/Admin/ManageNurses/ViewNurses/ViewNurseBase')
+)
+
+const HeadNurseDashboard = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/Dashboard')
+)
+const  HeadNurseViewPatient =React.lazy(()=>
+  import ('./components/pages/Actors/Head Nurse/ViewPatient')
+)
+const  HeadNurseViewQueue =React.lazy(()=>
+  import ('./components/pages/Actors/Head Nurse/ViewQueue')
+)
+const  HeadNurseViewDoctor =React.lazy(()=>
+  import ('./components/pages/Actors/Head Nurse/ViewDoctor')
+)
+
+const HeadNurseProfile = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/HeadNurseProfile')
+)
+const HeadNurseRegister = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/Register/PatientRegister')
+)
+const HeadNurseSendMessage = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/SendMessage')
 )
 //
 
@@ -260,6 +283,39 @@ const App = () => {
                 path='/admin/viewnurse' exact 
                 component={ViewNurses}>
               </Route>
+
+              <Route
+                path='/headnurse/dashboard'
+                exact
+                component={HeadNurseDashboard}
+              ></Route>
+                  <Route 
+                    path='/headnurse/viewqueue' exact 
+                    component={HeadNurseViewQueue}>
+                  </Route>
+                  <Route 
+                    path='/headnurse/viewdoctors' exact 
+                    component={HeadNurseViewDoctor}>
+                  </Route>
+                  <Route 
+                    path='/headnurse/viewpatients' exact 
+                    component={HeadNurseViewPatient}>
+                  </Route>
+               <Route
+                path='/headnurse/profile'
+                exact
+                component={HeadNurseProfile}
+              ></Route>
+               <Route
+                path='/headnurse/register/patientregister'
+                exact
+                component={HeadNurseRegister}
+              ></Route>
+		          <Route
+                path='/headnurse/sendmessage'
+                exact
+                component={HeadNurseSendMessage}
+              ></Route>
 
             </Switch>
           </React.Suspense>

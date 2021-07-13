@@ -70,7 +70,7 @@ const PatientQueueTable = (props) => {
     { text: 'Patient ID' },
     { text: 'Patient Name' },
     { text: 'Queue Number' },
-    { text: 'Clinic Date' },
+    
   ]
 
   const classes = useStyles()
@@ -87,35 +87,6 @@ const PatientQueueTable = (props) => {
       <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
-          <Grid
-            item
-            alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Patient Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Patient ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
-          </Grid>
         </Grid>
         <CardContent className={classes.content}>
           <PerfectScrollbar>
@@ -160,9 +131,6 @@ const PatientQueueTable = (props) => {
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {patient.queueno}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient. clinic_date}
                           </TableCell>
                         </TableRow>
                       )
