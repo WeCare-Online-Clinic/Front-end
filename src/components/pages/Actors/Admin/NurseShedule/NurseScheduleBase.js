@@ -15,7 +15,7 @@ function NurseScheduleBase() {
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div style={{ padding: '20px' }}>
           <NurseSchedule />
         </div>
       }
