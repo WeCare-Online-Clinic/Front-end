@@ -78,6 +78,46 @@ export const QueueData = [
         clinic_date: '2019/10/09',
         
       },
+
+      {
+        id: '#25',
+        name: 'Kasun Nirmal',
+        queueno: 11,
+        clinic_date: '2019/10/09',
+        
+      },
+
+      {
+        id: '#98',
+        name: 'Kasun Nirmal',
+        queueno: 12,
+        clinic_date: '2019/10/09',
+        
+      },
+
+      {
+        id: '#55',
+        name: 'Kasun Nirmal',
+        queueno: 13,
+        clinic_date: '2019/10/09',
+        
+      },
+
+      {
+        id: '#6',
+        name: 'Kasun Nirmal',
+        queueno: 14,
+        clinic_date: '2019/10/09',
+        
+      },
+
+      {
+        id: '#35',
+        name: 'Kasun Nirmal',
+        queueno: 15,
+        clinic_date: '2019/10/09',
+        
+      },
     
   ]
   

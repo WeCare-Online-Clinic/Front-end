@@ -37,17 +37,6 @@ function Content() {
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid className={classes.dataCard} item sm={12}>
-        <Grid container>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>10.30 A.M</h3>
-          </Grid>
-          <Grid item sm></Grid>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Ms.Perera</h3>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid className={classes.dataCard} item sm={12}>
       <h3 style={{ color: '#000000' }} align='center'>Patients</h3>
       <PatientDataAddTable />
           </Grid>

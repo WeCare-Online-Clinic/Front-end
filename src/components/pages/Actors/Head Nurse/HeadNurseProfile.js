@@ -36,18 +36,10 @@ function Content() {
     <Grid container spacing={5}>
       <Grid item sm={4}>
         <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={12}>
+          <Grid className={classes.dataCard} item sm={6}>
             <HeadNurseProfileCard />
           </Grid>
-          <Grid className={classes.dataCard} item sm={12}>
-            <Card>
-              <CardHeader
-                title='Schedule Info'
-                style={{ textAlign: 'center', color: '#3f51b5' }}
-              ></CardHeader>
-            </Card>
-            <ScheduleTable />
-          </Grid>
+          
         </Grid>
       </Grid>
       <Grid item sm={8}>
@@ -61,6 +53,20 @@ function Content() {
         ></CardHeader>
         < NurseClinicHistoryTable />
       </Grid>
+
+      <Grid className={classes.dataCard} item sm={5}>
+            <Card>
+              <CardHeader
+                title='Schedule Info'
+                style={{ textAlign: 'center', color: '#3f51b5' }}
+              ></CardHeader>
+            </Card>
+            <div align="center">
+            <ScheduleTable />
+            </div>
+          </Grid>
+
+          
     </Grid>
   )
 }
