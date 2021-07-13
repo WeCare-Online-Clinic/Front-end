@@ -5,7 +5,7 @@ import Slide from "./Slide";
 import Clinics from "./Clinics.";
 import ContactUs from "./ContactUs";
 const NavBar = React.lazy(() => import("../../Navbar/Header/Navbar"));
-const Upperbar = React.lazy(() => import("../../Navbar/Upperbar/Upperbar"));
+// const Upperbar = React.lazy(() => import("../../Navbar/Upperbar/Upperbar"));
 
 function Home() {
   useEffect(() => {
@@ -13,7 +13,7 @@ function Home() {
   }, []);
   return (
     <div>
-      <Upperbar />
+      {/* <Upperbar /> */}
       <NavBar />
       <div className="container">
         <div className="row">

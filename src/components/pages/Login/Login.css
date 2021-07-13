@@ -1,0 +1,48 @@
+.input-group{
+    height: 50px;
+    
+}
+
+.input-group span{
+    width: 120px;
+    font-weight:bold;
+}
+.title{
+    border-radius: 5px 5px 0 0;
+    /* background-color: rgb(25, 0, 255); */
+    height: 50px;
+    overflow: hidden;
+    opacity: .8;
+   
+}
+.title h3{
+    color: white;
+}
+
+.card{
+    border-radius: 5px;
+    opacity: .9;
+}
+.btn{
+   
+    background-color: rgb(25, 0, 255);
+}
+.btn h6{
+   
+    color: white;
+ }
+ table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #d6c9e9;
+  }

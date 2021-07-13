@@ -10,19 +10,19 @@ function ContactUs() {
                         <div className="col ml-5 mt-5">
                                 <h5>Clinics</h5>
                                 <ul>
-                                    <li>clinic 1</li>
-                                    <li>clinic 2</li>
-                                    <li>clinic 3</li>
-                                    <li>clinic 4</li>
+                                    <li>Cardiology</li>
+                                    <li>Dentistry</li>
+                                    <li>Dermatology</li>
+                                    <li>Neurology</li>
                                 </ul>
                         </div>
                         <div className="col mt-5">
                                 <h5>Units</h5>
                                 <ul>
-                                    <li>Unit 1</li>
-                                    <li>Unit 2</li>
-                                    <li>Unit 3</li>
-                                    <li>Unit 4</li>
+                                    <li>Cardiology Unit</li>
+                                    <li>Dentistry  Unit</li>
+                                    <li>Dermatology Unit</li>
+                                    <li>Neurology Unit</li>
                                 </ul>
                         </div>
                         <div className="col mt-5">

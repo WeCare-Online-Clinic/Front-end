@@ -5,13 +5,8 @@ export const MenuItems = [
     cName: 'nav-links',
   },
   {
-    title: 'HELP',
+    title: 'ABOUT US',
     link: '/help',
-    cName: 'nav-links',
-  },
-  {
-    title: 'SIGNUP',
-    link: '/Signup',
     cName: 'nav-links',
   },
   {
@@ -19,10 +14,10 @@ export const MenuItems = [
     link: '/login',
     cName: 'nav-links',
   },
-  {
-    title: 'FAQ',
-    link: '/products',
-    cName: 'nav-links',
-  }
+  // {
+  //   title: 'FAQ',
+  //   link: '/products',
+  //   cName: 'nav-links',
+  // }
 
 ]

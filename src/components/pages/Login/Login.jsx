@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as _ from "lodash";
 import ShowIcon from "@material-ui/icons/Visibility";
 import ShowOffIcon from "@material-ui/icons/VisibilityOff";
@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import withReducer from "../../../store/withReducer";
 import reducer from "../../../authStore/reducers/login.reducer";
-
 import * as Action from "../../../authStore/actions/login.actions";
+import NavBar from "../../Navbar/Header/Navbar";
+import back from "../../assets/img/help.jpg";
+import "./Login.css";
 
 let initFormValue = {
   email: "",
@@ -25,6 +27,9 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    document.body.style.backgroundImage = `url('${back}')  `;
+  }, []);
 
   const onSubmit = (e) => {
     console.log("onsubmit");
@@ -82,85 +87,90 @@ const Login = (props) => {
   };
 
   return (
-    <div className="signup">
-      <div className="container mt-5">
-        <div className="card col-md-6 offset-md-3 offset-md-3">
-          <h3 className="text-center">Login</h3>
-          <div className="card-body">
-            <form>
-              {/* user name */}
-              <div className="input-group mb-3">
-                <span className="input-group-text">User Name:</span>
-                <input
-                  placeholder="Email"
-                  name="email"
-                  className="form-control"
-                  value={formValue.email}
-                  onChange={onMyChange}
-                ></input>
-              </div>
-              {/* user name(email) erros */}
-              <div className="mb-2">
-                {Object.keys(errors.emailErrors).map((key, index) => {
-                  return (
-                    <div key={index} style={{ color: "red" }}>
-                      {errors.emailErrors[key]}
-                    </div>
-                  );
-                })}
-              </div>
+    <React.Fragment>
+      <NavBar />
+      <div className="SignUp">
+        <div className="container" style={{marginTop:'200px'}}>
+          <div className="card col-md-6 offset-md-3 offset-md-3">
+            <div className="title">
+              <h3 className="text-center" style={{color:'black'}}>User Login</h3>
+            </div>
+            <div className="card-body">
+              <form>
+                {/* user name */}
+                <div className="input-group mb-3">
+                  <span className="input-group-text">User Name:</span>
+                  <input
+                    placeholder="Email"
+                    name="email"
+                    className="form-control"
+                    value={formValue.email}
+                    onChange={onMyChange}
+                  ></input>
+                </div>
+                {/* user name(email) erros */}
+                <div className="mb-2">
+                  {Object.keys(errors.emailErrors).map((key, index) => {
+                    return (
+                      <div key={index} style={{ color: "red" }}>
+                        {errors.emailErrors[key]}
+                      </div>
+                    );
+                  })}
+                </div>
 
-              {/* password */}
-              <div className="input-group mb-3">
-                <span className="input-group-text">Password:</span>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  name="password"
-                  className="form-control"
-                  value={formValue.password}
-                  onChange={onMyChange}
-                ></input>
-                <button
-                  type="reset"
-                  className="btn btn-primary"
-                  onClick={() =>
-                    setShowPassword((showPassword) => !showPassword)
-                  }
-                >
-                  {showPassword ? <ShowIcon /> : <ShowOffIcon />}
-                </button>
-              </div>
-              {/* password errors */}
-              <div className="mb-2">
-                {Object.keys(errors.passwordErrors).map((key, index) => {
-                  return (
-                    <div key={index} style={{ color: "red" }}>
-                      {errors.passwordErrors[key]}
-                    </div>
-                  );
-                })}
-              </div>
+                {/* password */}
+                <div className="input-group mb-3">
+                  <span className="input-group-text">Password:</span>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    name="password"
+                    className="form-control"
+                    value={formValue.password}
+                    onChange={onMyChange}
+                  ></input>
+                  <button
+                    type="reset"
+                    className="btn btn-primary"
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
+                    {showPassword ? <ShowIcon /> : <ShowOffIcon />}
+                  </button>
+                </div>
+                {/* password errors */}
+                <div className="mb-2">
+                  {Object.keys(errors.passwordErrors).map((key, index) => {
+                    return (
+                      <div key={index} style={{ color: "red" }}>
+                        {errors.passwordErrors[key]}
+                      </div>
+                    );
+                  })}
+                </div>
 
-              <div className="input-group mb-3">
-                <button
-                  className="btn btn-primary"
-                  onClick={onSubmit}
-                  style={{ width: "100%" }}
-                >
-                  Save
-                </button>
-              </div>
-              <div className="mb-2">
-                <p>
-                  No Existing Account? <Link to="/Signup">Sign Up</Link>
-                </p>
-              </div>
-            </form>
+                <div className="input-group mb-3">
+                  <button
+                    className="btn btn-primary"
+                    onClick={onSubmit}
+                    style={{ width: "100%" }}
+                  >
+                    Login
+                  </button>
+                </div>
+                <div className="mb-2">
+                  <p>
+                    <Link to="/Signup">Forgot Password?</Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 export default withReducer("login", reducer)(Login);
