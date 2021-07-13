@@ -18,10 +18,6 @@ let initFormValue = {
     lastName: '',
     email: '',
     nic: '',
-    address1: '',
-    address2: '',
-    password: '',
-    confirmPassword: '',
     mobile: '',
     qualification: '',
     specialty: '',
@@ -32,10 +28,7 @@ let initError = {
     firstNameErrors: {},
     lastNameErrors: {},
     emailErrors: {},
-    nicErrors: {},
-    address1Errors: {},
-    passwordErrors: {},
-    confirmPasswordErrors: {},
+    nicErrors: {}, 
     mobileErrors: {},
     qualificationsError: {}
 
@@ -141,17 +134,7 @@ const AddDoctors = (props) => {
                 localErrors.nicErrors.invalidNic = null;
             }
             localErrors.nicErrors.nicMissing = null;
-        }
-        //validating Address line 1
-        if (formValue.address1.trim().length < 1) {
-            let addressLine1Missing = Object.assign({}, { missing: 'address is missing' });
-            localErrors.address1Errors = addressLine1Missing;
-            isValid = false;
-
-        }
-        else {
-            localErrors.address1Errors.missing = null;
-        }
+        }      
         //validating Mobile
         if (!/^\d{10}$/i.test(formValue.mobile)) {
             let mobileMissing = Object.assign({}, { missing: 'mobile number is missing or invalid' });
@@ -169,25 +152,9 @@ const AddDoctors = (props) => {
         }
         else {
             localErrors.qualificationsError.missing = null;
-        }
-        // validating password
-        if (formValue.password.length < 1) {
-            let passwordMissing = Object.assign({}, { passwordMissing: 'password is missing' })
-            localErrors.passwordErrors = passwordMissing;
-            isValid = false;
-        }
-        else {
-            localErrors.passwordErrors.passwordMissing = null;
-        }
-        //validating confirm password
-        if (formValue.confirmPassword !== formValue.password) {
-            let confirmPasswordWrong = Object.assign({}, { confirmPasswordWrong: 'password is wrong' });
-            localErrors.confirmPasswordErrors = confirmPasswordWrong;
-            isValid = false;
-        }
-        else {
-            localErrors.confirmPasswordErrors.confirmPasswordWrong = null;
-        }
+        }  
+
+       
 
         setErrors({ ...localErrors }); //push all errors to errors object
         return isValid;
@@ -278,39 +245,13 @@ const AddDoctors = (props) => {
                                     </input>
                                 </div>
                                 {/* nic errors */}
-                                {/* <div className="mb-2">
+                                <div className="mb-2">
                                     {Object.keys(errors.nicErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.nicErrors[key]}</div>
                                     })}
-                                </div> */}
-                                {/* Address Line 1 Input Field */}
-                                {/* <div className="input-group mb-3">
-                                    <span className="input-group-text">Address</span>
-                                    <input type="text"
-                                        placeholder="Address line 1"
-                                        name="address1"
-                                        className="form-control"
-                                        value={formValue.address1}
-                                        onChange={onMyChange}>
-                                    </input>
-                                </div> */}
-                                {/* address line 1 errors */}
-                                {/* <div className="mb-2">
-                                    {Object.keys(errors.address1Errors).map((key, index) => {
-                                        return <div key={index} style={{ color: "red" }}>{errors.address1Errors[key]}</div>
-                                    })}
-                                </div> */}
-                                {/* Address Line 2 Input Field */}
-                                {/* <div className="input-group mb-3">
-                                    <span className="input-group-text">Address</span>
-                                    <input type="text"
-                                        placeholder="Address line 2"
-                                        name="address2"
-                                        className="form-control"
-                                        value={formValue.address2}
-                                        onChange={onMyChange}>
-                                    </input>
-                                </div> */}
+                                </div>                
+                         
+                      
                                 {/* Mobile Input Field*/}
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">Moblie</span>
@@ -327,49 +268,7 @@ const AddDoctors = (props) => {
                                     {Object.keys(errors.mobileErrors).map((key, index) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.mobileErrors[key]}</div>
                                     })}
-                                </div>
-                                {/* Password Input Field*/}
-                                {/* <div className="input-group mb-3">
-                                    <span className="input-group-text">Password</span>
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder="Password"
-                                        name="password"
-                                        className="form-control"
-                                        value={formValue.password}
-                                        onChange={onMyChange}>
-                                    </input>
-                                    <button type="reset" className="btn btn-primary" onClick={() => setShowPassword(showPassword => !showPassword)}>
-                                        {showPassword ? <ShowIcon /> : <ShowOffIcon />}
-                                    </button>
-                                </div> */}
-                                {/* password errors */}
-                                {/* <div className="mb-2">
-                                    {Object.keys(errors.passwordErrors).map((key, index) => {
-                                        return <div key={index} style={{ color: "red" }}>{errors.passwordErrors[key]}</div>
-                                    })}
-                                </div> */}
-                                {/* Confirm password Field*/}
-                                {/* <div className="input-group mb-3">
-                                    <span className="input-group-text">Confirm Password</span>
-                                    <input
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        placeholder="Confirm Password"
-                                        name="confirmPassword"
-                                        className="form-control"
-                                        value={formValue.confirmPassword}
-                                        onChange={onMyChange}>
-                                    </input>
-                                    <button type="reset" className="btn btn-primary" onClick={() => setShowConfirmPassword(showConfirmPassword => !showConfirmPassword)}>
-                                        {showConfirmPassword ? <ShowIcon /> : <ShowOffIcon />}
-                                    </button>
-                                </div> */}
-                                    {/* confirm password errors */}
-                                {/* <div className="mb-2">
-                                    {Object.keys(errors.confirmPasswordErrors).map((key, index) => {
-                                        return <div key={index} style={{ color: "red" }}>{errors.confirmPasswordErrors[key]}</div>
-                                    })}
-                                </div> */}
+                                </div>                  
 
 
                             </form>

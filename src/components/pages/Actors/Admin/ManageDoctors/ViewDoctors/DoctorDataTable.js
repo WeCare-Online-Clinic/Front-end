@@ -116,6 +116,12 @@ const DoctorDataTable = (props) => {
                 variant='outlined'
                 size='small'
               ></TextField>
+              <TextField
+                className={classes.search_items}
+                label='Clinic'
+                variant='outlined'
+                size='small'
+              ></TextField>
               <Button
                 startIcon={<PageviewIcon />}
                 variant='contained'

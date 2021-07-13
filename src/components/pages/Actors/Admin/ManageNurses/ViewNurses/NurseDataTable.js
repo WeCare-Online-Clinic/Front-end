@@ -65,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
 
 const NurseDataTable = (props) => {
 
-  const reducerData = useSelector(({nurses}) => nurses.manageNurse);
-  console.log("doctot list",reducerData.nurseList);
-  const nurseList=reducerData.nurseList;
+  const reducerData = useSelector(({ nurses }) => nurses.manageNurse);
+  console.log("doctot list", reducerData.nurseList);
+  const nurseList = reducerData.nurseList;
 
   const history = useHistory()
   const { className } = props
@@ -82,7 +82,7 @@ const NurseDataTable = (props) => {
     { text: 'Mobile' },
     { text: 'Type' },
     { text: 'Clinic' },
-    
+
   ]
 
   const classes = useStyles()
@@ -114,6 +114,12 @@ const NurseDataTable = (props) => {
               <TextField
                 className={classes.search_items}
                 label='Doctor ID'
+                variant='outlined'
+                size='small'
+              ></TextField>
+              <TextField
+                className={classes.search_items}
+                label='Clinic'
                 variant='outlined'
                 size='small'
               ></TextField>
@@ -168,7 +174,7 @@ const NurseDataTable = (props) => {
                             {nurse.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.firstName+" "+nurse.lastName}
+                            {nurse.firstName + " " + nurse.lastName}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {nurse.email}
@@ -177,10 +183,10 @@ const NurseDataTable = (props) => {
                             {nurse.mobile}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.clinic}
+                            {nurse.type == 0 ? 'regular' : 'head'}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.type==0? 'regular':'head'}                       
+                            {nurse.clinic}
                           </TableCell>
                           <TableCell>
                             <Button

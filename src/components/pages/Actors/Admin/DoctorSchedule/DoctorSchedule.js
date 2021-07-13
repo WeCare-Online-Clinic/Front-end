@@ -68,8 +68,9 @@ function DoctorSchedule() {
                                 <tr><td>Saturday</td><td>9.30 a.m</td></tr>
 
                             </table>
-                            <div className="mr-5" style={{ float: 'right' }}>
-                                <button className="btn btn-primary mt-3" style={{ height: '40px' }}>Update Shedule</button>
+                            <div className="mr-5">
+                                <button className="btn btn-primary mt-3" style={{ height: '40px',float:'right' }}>Update Shedule</button>
+                                <button className="btn btn-primary mt-3" style={{ height: '40px',float:'left',backgroundColor:'#b3246b'}}>Delete</button>
                             </div>
                         </div>
                     </div>

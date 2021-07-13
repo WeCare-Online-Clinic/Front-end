@@ -68,16 +68,16 @@ export const adminMenuItems = [
       },
     ],
   },
-  {
-    icon: <ScheduleIcon style={{ color: '#fff' }} />,
-    name: 'Doctor Schedule',
-    url: '/admin/doctorschedule',
-  },
-  {
-    icon: <ScheduleIcon style={{ color: '#fff' }} />,
-    name: 'Nurse Schedule',
-    url: '/admin/nurseschedule',
-  },
+  // {
+  //   icon: <ScheduleIcon style={{ color: '#fff' }} />,
+  //   name: 'Doctor Schedule',
+  //   url: '/admin/doctorschedule',
+  // },
+  // {
+  //   icon: <ScheduleIcon style={{ color: '#fff' }} />,
+  //   name: 'Nurse Schedule',
+  //   url: '/admin/nurseschedule',
+  // },
   // {
   //   icon: <SendIcon style={{ color: '#fff' }} />,
   //   name: 'Send Notifications',
