@@ -17,6 +17,8 @@ const useStyles = makeStyles({
     borderRadius: '5px',
     marginBottom: '10px',
     marginTop: '10px',
+    display: 'flex',
+    justifyContent: 'center',
   },
 })
 
