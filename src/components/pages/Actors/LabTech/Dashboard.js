@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header user='Kamal' />}
+      header={<Header user='Mr. Mahesh Withanage' />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

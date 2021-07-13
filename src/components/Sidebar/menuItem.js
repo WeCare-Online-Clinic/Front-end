@@ -192,11 +192,11 @@ export const labtechMenuItems = [
     name: 'Lab Tests',
     children: [
       {
-        name: 'View Patient List',
-        url: '/labtech/viewpatient',
+        name: 'View Lab Tests',
+        url: '/labtech/viewlabtest',
       },
       {
-        name: 'Add Lab Tests',
+        name: 'Create Lab Test',
         url: '/labtech/addlabtest',
       },
     ],
@@ -206,19 +206,15 @@ export const labtechMenuItems = [
     name: 'Lab Reports',
     children: [
       {
-        name: 'View Lab Reports',
-        url: '/labtech/viewlabreport',
+        name: 'View Patient List',
+        url: '/labtech/viewpatient',
       },
       {
-        name: 'Create Lab Reports',
+        name: 'Add Lab Report',
         url: '/labtech/addlabreport',
       },
     ],
   },
 
-  {
-    icon: <PersonIcon style={{ color: '#fff' }} />,
-    name: 'Profile',
-    url: '/labtech/profile',
-  },
+
 ]

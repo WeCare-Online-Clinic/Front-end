@@ -3,32 +3,52 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import AddReport from '../../../Forms/AddReport'
 import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-
-import LineStatCard from '../../../StatCard/LineStatCard'
-import Register from '../../../Register'
-import PieStatCard from '../../../StatCard/PieStatCard'
-import BarStatCard from '../../../StatCard/BarStatCard'
+import { Button } from '@material-ui/core'
+import QueueBar from '../../../Misc/QueueBar'
+import PatientHisCard from '../../../ClinicCard/PatientHisCard'
+import { TextField } from '@material-ui/core'
+import PatientForm from '../../../Forms/PatientForm'
+import FullBld from '../../../Lab Forms/FullBld'
 
 const useStyles = makeStyles({
-  dataCard: {
-    backgroundColor: '#fff',
-    borderRadius: '5px',
-    margin: '20px',
-    marginBottom: '0px',
+  textTitle: {
+    padding: '5px',
+    color: '#4c5355',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textField: {
+    padding: '5px',
+    color: '#4c5355',
+    fontSize: '16px',
+  },
+  textBox: {
+    height: '140px',
+    margin: '5px 40px 5px 40px',
+    padding: '10px',
+    color: '#4c5355',
+    fontSize: '14px',
+    border: '1px solid #4c5355',
+  },
+  cardActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '0px 40px 20px 40px',
+    width: '100%',
   },
 })
 
-function CreateLabReport() {
+function Dashboard() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
+      header={<Header user='Mr. Mahesh Withange' />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div style={{ backgroundColor: '#ebf5f7' }}>
           <Content />
         </div>
       }
@@ -39,15 +59,28 @@ function CreateLabReport() {
 function Content() {
   const classes = useStyles()
   return (
-    <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <h3 style={{ color: '#000000' }} align='center'>
-          Create Lab Report
-        </h3>
-        <AddReport />
+    <React.Fragment>
+      <Grid container style={{ padding: '20px' }}>
+        <Grid item sm={12}>
+          <Grid container>
+            <Grid item sm={6}>
+              <PatientForm />
+            </Grid>
+            <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
+              <Grid container spacing={2}>
+                <Grid item sm={12}>
+                  <FullBld
+                    title='Lab Report'
+                    subheader='Nimal De Silva ( Age : 48 )'
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
-    </Grid>
+    </React.Fragment>
   )
 }
 
-export default CreateLabReport
+export default Dashboard

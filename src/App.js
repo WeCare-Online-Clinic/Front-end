@@ -120,6 +120,9 @@ const LabAddLabTest = React.lazy(() =>
 const LabViewLabReport = React.lazy(() =>
   import('./components/pages/Actors/LabTech/ViewLabReport')
 )
+const LabViewLabTest = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/ViewLabTest')
+)
 const LabAddLabReport = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabReport')
 )
@@ -296,7 +299,7 @@ const App = () => {
               <Route
                 path='/labtech/viewlabtest'
                 exact
-                component={LabViewPatient}
+                component={LabViewLabTest}
               ></Route>
               <Route
                 path='/labtech/viewlabreport'

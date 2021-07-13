@@ -1,22 +1,25 @@
 import React from 'react'
+import ReactDom from 'react-dom'
+import { useState, useEffect } from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import PatientDataAddTable from '../../../Table/PatientDataAddTable'
+import { Card, CardHeader } from '@material-ui/core'
+import LabReportTable from '../../../Table/LabReportTable'
 
 const useStyles = makeStyles({
   dataCard: {
     backgroundColor: '#fff',
     borderRadius: '5px',
-    margin: '20px',
-    marginBottom: '0px',
+    marginBottom: '10px',
+    marginTop: '10px',
   },
 })
 
-function ViewPatient() {
+function ViewLabReport() {
   return (
     <Layout
       header={<Header user='Mr. Mahesh Withanage' />}
@@ -33,16 +36,21 @@ function ViewPatient() {
 
 function Content() {
   const classes = useStyles()
+  const [isData, setIsData] = useState(false)
+
+  useEffect(() => {})
+
+  const renderData = () => {
+    setIsData(true)
+  }
+
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid className={classes.dataCard} item sm={12}>
-        <h3 style={{ color: '#000000' }} align='center'>
-          Patients
-        </h3>
-        <PatientDataAddTable />
+        <LabReportTable func={renderData} />
       </Grid>
     </Grid>
   )
 }
 
-export default ViewPatient
+export default ViewLabReport
