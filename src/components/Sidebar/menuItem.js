@@ -92,7 +92,7 @@ export const headnurseMenuItems = [
     url: '/headnurse/dashboard',
   },
   {
-    icon: <ScheduleIcon style={{ color: '#fff' }} />,
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
     name: '',
     url: '',
     children: [
@@ -111,11 +111,11 @@ export const headnurseMenuItems = [
     ],
   },
 
-  {
-    icon: <PersonIcon style={{ color: '#fff' }} />,
-    name: 'Profile',
-    url: '/headnurse/profile',
-  },
+  // {
+  //   icon: <PersonIcon style={{ color: '#fff' }} />,
+  //   name: 'Profile',
+  //   url: '/headnurse/profile',
+  // },
   {
     icon: <AssignmentIndIcon style={{ color: '#fff' }} />,
     name: 'Register',
@@ -163,11 +163,11 @@ export const nurseMenuItems = [
     ],
   },
 
-  {
-    icon: <PersonIcon style={{ color: '#fff' }} />,
-    name: 'Profile',
-    url: '/nurse/profile',
-  },
+  // {
+  //   icon: <PersonIcon style={{ color: '#fff' }} />,
+  //   name: 'Profile',
+  //   url: '/nurse/profile',
+  // },
 ]
 
 export const patientMenuItems = [

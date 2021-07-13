@@ -68,11 +68,10 @@ const PatientDataAddTable = (props) => {
   const tableHeaders = [
     // add table header names
     { text: 'Patient Name' },
-    { text: 'Age' },
-    { text: 'Gender' },
-    { text: 'Diagnosis' },
+    { text: 'Clinic' },
     { text: 'First Clinic Date' },
     { text: 'Next Clinic Date' },
+    { text: 'Queue ' },
   ]
 
   const classes = useStyles()
@@ -158,12 +157,6 @@ const PatientDataAddTable = (props) => {
                             {patient.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.age}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.Gender}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
                             {patient.Diagnosis}
                           </TableCell>
                           <TableCell className={classes.cell}>
@@ -172,14 +165,27 @@ const PatientDataAddTable = (props) => {
                           <TableCell className={classes.cell}>
                             {patient.Next_clinic_date}
                           </TableCell>
+                          <TableCell className={classes.cell}>
+                            {patient.age}
+                          </TableCell>
+                          <TableCell className='LabTest'>
+                            <Button
+                              variant='contained'
+                              fullWidth='true'
+                              color='primary'
+                              onClick={() => history.push('addlabtest')}
+                            >
+                         Add
+                            </Button>
+                          </TableCell>
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('patientdata')}
+                              onClick={() => history.push('datetime')}
                             >
-                           View
+                        Change
                             </Button>
                           </TableCell>
                         </TableRow>
