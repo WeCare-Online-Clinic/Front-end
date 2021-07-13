@@ -70,8 +70,6 @@ function Content() {
               <Grid container spacing={2}>
                 <Grid item sm={12}>
                   <LabTechFullBld
-                    title='Lab Report'
-                    subheader='Nimal De Silva ( Age : 48 )'
                   />
                 </Grid>
               </Grid>

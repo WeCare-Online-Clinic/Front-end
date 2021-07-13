@@ -77,7 +77,7 @@ export const adminMenuItems = [
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
     url: '/admin/nurseschedule',
-  }
+  },
   // {
   //   icon: <SendIcon style={{ color: '#fff' }} />,
   //   name: 'Send Notifications',
@@ -86,34 +86,31 @@ export const adminMenuItems = [
 ]
 
 export const headnurseMenuItems = [
-
-
   {
-
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
     url: '/headnurse/dashboard',
-    },
-    {
-      icon: <ScheduleIcon style={{ color: '#fff' }} />,
-      name: '',
-        url: '',
-        children: [
-          {
-            name: 'View Queue',
-            url: '/headnurse/viewqueue',
-          },
-          {
-            name: 'View Doctors',
-            url: '/headnurse/viewdoctors',
-          },
-          {
-            name: 'View Patients',
-            url: '/headnurse/viewpatients',
-          },
-        ],
+  },
+  {
+    icon: <ScheduleIcon style={{ color: '#fff' }} />,
+    name: '',
+    url: '',
+    children: [
+      {
+        name: 'View Queue',
+        url: '/headnurse/viewqueue',
       },
-        
+      {
+        name: 'View Doctors',
+        url: '/headnurse/viewdoctors',
+      },
+      {
+        name: 'View Patients',
+        url: '/headnurse/viewpatients',
+      },
+    ],
+  },
+
   {
     icon: <PersonIcon style={{ color: '#fff' }} />,
     name: 'Profile',
@@ -129,7 +126,8 @@ export const headnurseMenuItems = [
     name: 'Message',
 
     url: '/headnurse/sendmessage',
-},
+  },
+]
 
 export const nurseMenuItems = [
   {
@@ -224,6 +222,4 @@ export const labtechMenuItems = [
       },
     ],
   },
-
-
 ]
