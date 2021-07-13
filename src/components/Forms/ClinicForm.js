@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'inherit',
     minHeight: '100%',
     border: '1px solid #bdc3cb',
+    backgroundColor: '#3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     fontSize: '16px',
     margin: '20px',
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#fff',
   },
   cardActions: {
     display: 'flex',
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
+    padding: '5px',
   },
   presContent: {
     textAlign: 'center',
@@ -54,45 +56,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#fff',
     color: '#3f51b5',
     paddingTop: '20px',
-    margin: '10px',
   },
 }))
-
-function PresRow() {
-  const classes = useStyles()
-  return (
-    <div className={classes.formRow}>
-      <TextField
-        label='Medicine'
-        variant='outlined'
-        size='small'
-        style={{ width: '47%', backgroundColor: '#fff' }}
-      />
-
-      <TextField
-        type='number'
-        label='Morning'
-        variant='outlined'
-        size='small'
-        style={{ width: '15%', backgroundColor: '#fff' }}
-      />
-      <TextField
-        type='number'
-        label='Afternoon'
-        variant='outlined'
-        size='small'
-        style={{ width: '15%', backgroundColor: '#fff' }}
-      />
-      <TextField
-        type='number'
-        label='Evening'
-        variant='outlined'
-        size='small'
-        style={{ width: '15%', backgroundColor: '#fff' }}
-      />
-    </div>
-  )
-}
 
 function ClinicForm() {
   const classes = useStyles()
@@ -105,65 +70,198 @@ function ClinicForm() {
         className={classes.cardHeader}
       ></CardHeader>
       <CardContent className={classes.cardContent}>
-        <form className={classes.root}>
-          <div className={classes.formRow}>
-            <TextField
-              size='small'
-              label='Note'
-              multiline
-              rows={2}
-              variant='outlined'
-              fullWidth
-              style={{ backgroundColor: '#fff' }}
-            />
-          </div>
-          <div className={classes.formRow}>
-            <TextField
-              label='Diagnosis'
-              variant='outlined'
-              multiline
-              rows={2}
-              style={{ width: '47%', backgroundColor: '#fff' }}
-            />
-            <TextField
-              label='Tests To Do'
-              variant='outlined'
-              multiline
-              rows={2}
-              style={{ width: '47%', backgroundColor: '#fff' }}
-            />
-          </div>
-
-          <div
-            id='prescriptions'
-            className={classes.presContent}
-            style={{
-              backgroundColor: '#fff',
-              color: '#3f51b5',
-              paddingTop: '20px',
-            }}
-          >
-            <h4>Prescriptions</h4>
-            <PresRow />
-            <PresRow />
-            <PresRow />
-            <div className={classes.cardActions}>
-              <Button
-                variant='contained'
-                color='secondary'
-                style={{ width: '200px' }}
-                startIcon={<AddCircleOutlineIcon />}
-              ></Button>
-              <Button
-                variant='contained'
-                color='secondary'
-                style={{ width: '200px' }}
+        <div className='card-body'>
+          <form>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
               >
-                Submit
-              </Button>
+                Next Clinic
+              </span>
+              <input
+                name='next clinic'
+                className='form-control'
+                type='date'
+              ></input>
             </div>
-          </div>
-        </form>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Note
+              </span>
+              <input
+                placeholder='Note'
+                name='note'
+                className='form-control'
+                type='text'
+              ></input>
+            </div>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Diagnosis
+              </span>
+              <input
+                placeholder='Diagnosis'
+                name='diagnosis'
+                className='form-control'
+                type='text'
+              ></input>
+            </div>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Tests
+              </span>
+              <input
+                placeholder='Tests to do'
+                name='tests'
+                className='form-control'
+                type='text'
+              ></input>
+            </div>
+            <p className='text-center' style={{ color: '#3f51b5' }}>
+              Prescriptions
+            </p>
+            <hr></hr>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Medicine
+              </span>
+              <input
+                placeholder='Medicine'
+                name='medicine'
+                className='form-control'
+              ></input>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Note
+              </span>
+              <input
+                placeholder='Note'
+                name='note'
+                className='form-control'
+              ></input>
+            </div>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Medicine
+              </span>
+              <input
+                placeholder='Medicine'
+                name='medicine'
+                className='form-control'
+              ></input>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Note
+              </span>
+              <input
+                placeholder='Note'
+                name='note'
+                className='form-control'
+              ></input>
+            </div>
+            <div className='input-group mb-3'>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Medicine
+              </span>
+              <input
+                placeholder='Medicine'
+                name='medicine'
+                className='form-control'
+              ></input>
+              <span
+                className='input-group-text'
+                style={{
+                  backgroundColor: '#3f51b5',
+                  color: '#fff',
+                  width: '100px',
+                }}
+              >
+                Note
+              </span>
+              <input
+                placeholder='Note'
+                name='note'
+                className='form-control'
+              ></input>
+            </div>
+            <div
+              className='input-group mb-3'
+              style={{ justifyContent: 'flex-end' }}
+            >
+              <button
+                className='btn btn-primary'
+                style={{ width: '10%' }}
+                onClick=''
+              >
+                <AddCircleOutlineIcon />
+              </button>
+            </div>
+            <div className='input-group mb-3'>
+              <button className='btn btn-primary' style={{ width: '100%' }}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </CardContent>
     </Card>
   )

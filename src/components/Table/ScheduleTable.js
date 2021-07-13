@@ -75,7 +75,7 @@ function ScheduleTable(props) {
       <CardContent className={classes.content}>
         <PerfectScrollbar>
           <div className={classes.inner}>
-            <Table style={{ maxWidth: '50%' }}>
+            <Table>
               <TableHead
                 style={{
                   backgroundColor: '#ebf5f7',
