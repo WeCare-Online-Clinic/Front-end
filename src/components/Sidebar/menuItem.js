@@ -77,19 +77,19 @@ export const adminMenuItems = [
     icon: <ScheduleIcon style={{ color: '#fff' }} />,
     name: 'Nurse Schedule',
     url: '/admin/nurseschedule',
-  },
-  {
-    icon: <SendIcon style={{ color: '#fff' }} />,
-    name: 'Send Notifications',
-    url: '/admin/notification',
-  },
+  }
+  // {
+  //   icon: <SendIcon style={{ color: '#fff' }} />,
+  //   name: 'Send Notifications',
+  //   url: '/admin/notification',
+  // },
 ]
 
-
 export const headnurseMenuItems = [
-  
-  
-    {
+
+
+  {
+
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
     url: '/headnurse/dashboard',
@@ -113,25 +113,7 @@ export const headnurseMenuItems = [
           },
         ],
       },
-    
-    // icon: <DashboardIcon style={{ color: '#fff' }} />,
-    //     name: 'View Queue',
-    //     url: '/headnurse/viewqueue',
-    //   },
-
-      // {
-      //   icon: <DashboardIcon style={{ color: '#fff' }} />,
-      //   name: 'View Doctors',
-      //   url: '/headnurse/viewdoctors',
-      // },
-
-      // {
-      //   icon: <DashboardIcon style={{ color: '#fff' }} />,
-      //   name: 'View Patients',
-      //   url: '/headnurse/viewpatients',
-      // },
- 
- 
+        
   {
     icon: <PersonIcon style={{ color: '#fff' }} />,
     name: 'Profile',
@@ -145,12 +127,11 @@ export const headnurseMenuItems = [
   {
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Message',
+
     url: '/headnurse/sendmessage',
 },
-]
 
 export const nurseMenuItems = [
-  
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
@@ -160,7 +141,7 @@ export const nurseMenuItems = [
   {
     icon: <ListAltIcon style={{ color: '#fff' }} />,
     name: 'Queue',
-    url: '/nurse/viewqueue',   
+    url: '/nurse/viewqueue',
   },
 
   {
@@ -183,13 +164,12 @@ export const nurseMenuItems = [
       },
     ],
   },
-  
+
   {
     icon: <PersonIcon style={{ color: '#fff' }} />,
     name: 'Profile',
     url: '/nurse/profile',
   },
-  
 ]
 
 export const patientMenuItems = [
@@ -201,17 +181,16 @@ export const patientMenuItems = [
   {
     icon: <AssignmentIcon style={{ color: '#fff' }} />,
     name: 'Reports',
-    url: '/patient/reports',
+    url: '/patient/patientreport',
   },
   {
     icon: <HistoryIcon style={{ color: '#fff' }} />,
     name: 'Clinic History',
-    url: '/patient/history',
-
+    url: '/patient/patienthistory',
   },
 ]
 
-export const labMenuItems = [
+export const labtechMenuItems = [
   {
     icon: <DashboardIcon style={{ color: '#fff' }} />,
     name: 'Dashboard',
@@ -222,11 +201,11 @@ export const labMenuItems = [
     name: 'Lab Tests',
     children: [
       {
-        name: 'View Patient List',
-        url: '/labtech/viewpatient',
+        name: 'View Lab Tests',
+        url: '/labtech/viewlabtest',
       },
       {
-        name: 'Add Lab Tests',
+        name: 'Create Lab Test',
         url: '/labtech/addlabtest',
       },
     ],
@@ -236,19 +215,15 @@ export const labMenuItems = [
     name: 'Lab Reports',
     children: [
       {
-        name: 'View Lab Reports',
-        url: '/labtech/viewlabreport',
+        name: 'View Patient List',
+        url: '/labtech/viewpatient',
       },
       {
-        name: 'Create Lab Reports',
+        name: 'Add Lab Report',
         url: '/labtech/addlabreport',
       },
     ],
   },
 
-  {
-    icon: <PersonIcon style={{ color: '#fff' }} />,
-    name: 'Profile',
-    url: '/labtech/profile',
-  },
+
 ]

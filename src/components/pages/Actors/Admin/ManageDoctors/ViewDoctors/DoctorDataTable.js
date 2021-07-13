@@ -78,6 +78,8 @@ const DoctorDataTable = (props) => {
     // add table header names
     { text: 'Doctor ID' },
     { text: 'Doctor Name' },
+    { text: 'email' },
+    { text: 'Contact No' },
     { text: 'Clinic' },
    
   ]
@@ -168,6 +170,12 @@ const DoctorDataTable = (props) => {
                             {doctor.firstName+" "+doctor.lastName}
                           </TableCell>
                           <TableCell className={classes.cell}>
+                            {doctor.email}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {doctor.mobile}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
                             {doctor.clinic}
                           </TableCell>
                     
@@ -176,7 +184,7 @@ const DoctorDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('patientdata')}
+                              onClick={() => history.push('doctorschedule')}
                             >
                               View
                             </Button>

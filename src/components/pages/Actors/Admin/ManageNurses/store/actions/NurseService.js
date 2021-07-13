@@ -12,17 +12,9 @@ class NurseService {
     return axios.get(NURSE_API_BASE_URL+'/getNurses');
   }
 
-  // saveOrUpdateDoctor(doctor) {
-  //   return axios.post(DOCTOR_API_BASE_URL, doctor);
-  // }
-
-  // getDoctorDTOByID(doctorID) {
-  //   return axios.get(DOCTOR_API_BASE_URL + '/' + doctorID);
-  // }
-
-  // getClinicDates(data) {
-  //   return axios.post(DOCTOR_API_BASE_URL+'/getClinicDays', data);
-  // }
+  getClinicDays(data) {
+    return axios.get(NURSE_API_BASE_URL+'/getClinicDays/'+data);
+  }
 
 
 

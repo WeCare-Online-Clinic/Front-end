@@ -1,8 +1,10 @@
 import { showErrorMessage, showSuccessMessage } from "../../../../../../../utils/ToastUtil";
 import NurseService from "./NurseService";
+import history from '../../../../../../../@history'
 
 export const ON_GET_NURSES='[ON_GET_NURSE] ON_GET_NURSES';
 export const ON_SAVE_NURSE = '[ON_SAVE_NURSE] ON_SAVE_NURSE';
+export const ON_GET_CLINIC_DAYS = '[ON_GET_CLINICS] ON_GET_CLINIC_DAYS';
 
 
 export function saveNurse(nurse) {
@@ -10,15 +12,16 @@ export function saveNurse(nurse) {
 
     return (dispatch, getState) => {
         return request.then((response) => {
-            console.log("re",response);
-            showSuccessMessage("Save or Update Success");
+
+            alert("Successfully Registered"); 
+            history.push('viewnurse');     
             dispatch({
                 type: ON_SAVE_NURSE,
                 payload: response.data
             })
-        }).catch((error)=>{
-            console.log("error nurse");
-            showErrorMessage("Please Contact Administrator" + error);
+            
+        }).catch((error)=>{          
+            alert("Register failed, please try again"); 
         });
 
     };
@@ -40,24 +43,18 @@ export function getNurse() {
 }
 
 
+export function getClinicDays(data) {
+    console.log("data clinic",data);
+    const request = NurseService.getClinicDays(data)
 
-
-
-
-
-
-
-// export function getClinicDates(data) {
-//     const request = DoctorService.getClinicDates(data);
-
-//     return (dispatch, getState) => {
-//         return request.then((response) => {
-//             console.log(response);
-//             return dispatch({
-//                 type: ON_GET_CLINIC_DATES,
-//                 payload: response.data
-//             });
-//         }
-//         );
-//     };
-// }
+    return (dispatch, getState) => {
+        return request.then((response) => {
+            // console.log("days",response.data);
+            return dispatch({
+                type: ON_GET_CLINIC_DAYS,
+                payload: response.data
+            });
+        }
+        );
+    };
+}

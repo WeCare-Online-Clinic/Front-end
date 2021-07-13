@@ -3,12 +3,8 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
-import { useSelector } from 'react-redux'
-import withReducer from '../../../../../../store/withReducer'
-import reducer from '../store/reducer'
-
-
-
+import Typography from '@material-ui/core/Typography'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import {
   Card,
   CardActions,
@@ -24,9 +20,7 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { DoctorData } from './DoctorData'
-import PageviewIcon from '@material-ui/icons/Pageview'
-import { useHistory } from 'react-router-dom'
+import { labTestData } from './LabTestData'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     color: '#4e4f50',
     fontSize: '16px',
+    maxWidth: 'fit-content',
   },
   search_items: {
     maxHeight: '50px',
@@ -63,26 +58,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NurseDataTable = (props) => {
-
-  const reducerData = useSelector(({nurses}) => nurses.manageNurse);
-  console.log("doctot list",reducerData.nurseList);
-  const nurseList=reducerData.nurseList;
-
-  const history = useHistory()
+const LabTestTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Nurse ID' },
-    { text: 'Nurse Name' },
-    { text: 'Email' },
-    { text: 'Mobile' },
-    { text: 'Type' },
-    { text: 'Clinic' },
-    
+    { text: 'Test ID' },
+    { text: 'Test Name' },
+    { text: 'Description' },
   ]
 
   const classes = useStyles()
@@ -97,38 +82,6 @@ const NurseDataTable = (props) => {
   return (
     <div>
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid
-            item
-            alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Doctor Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Doctor ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
-          </Grid>
-        </Grid>
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <div className={classes.inner}>
@@ -157,37 +110,30 @@ const NurseDataTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {nurseList
+                  {labTestData
+
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        nurse // add table rowDoctor
+                        row // add table row of patientData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {nurse.id}
+                            {row.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.firstName+" "+nurse.lastName}
+                            {row.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.email}
+                            {row.description}
                           </TableCell>
-                          <TableCell className={classes.cell}>
-                            {nurse.mobile}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {nurse.clinic}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {nurse.type==0? 'regular':'head'}                       
-                          </TableCell>
+
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('nurseschedule')}
+                              onClick={() => props.func()}
                             >
                               View
                             </Button>
@@ -203,12 +149,12 @@ const NurseDataTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={DoctorData.length} // size of DoctorData array
+            count={labTestData.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 10, 15]}
+            rowsPerPageOptions={[5, 8, 15]}
           />
         </CardActions>
       </Card>
@@ -216,4 +162,4 @@ const NurseDataTable = (props) => {
   )
 }
 
-export default withReducer('nurses', reducer)(NurseDataTable);
+export default LabTestTable

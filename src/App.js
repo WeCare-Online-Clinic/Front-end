@@ -6,8 +6,6 @@ import store from './store/index'
 import Auth from './authStore/Auth'
 import history from './@history'
 
-
-
 const Home = React.lazy(() => import('./components/pages/HomePage/Home'))
 const SignUp = React.lazy(() => import('./components/pages/SignUp/SignUp'))
 const Help = React.lazy(() => import('./components/pages/Help/Help'))
@@ -15,60 +13,43 @@ const Login = React.lazy(() => import('./components/pages/Login/Login'))
 const Notification = React.lazy(() =>
   import('./components/Notification/Notification')
 )
+
+/* --- Admin Pages --- */
 const AdminDashboard = React.lazy(() =>
   import('./components/pages/Actors/Admin/AdminDashboard/Dashboard')
 )
+const AddDoctor = React.lazy(() =>
+  import(
+    './components/pages/Actors/Admin/ManageDoctors/AddDoctors/AddDoctorBase'
+  )
+)
+const ViewDoctors = React.lazy(() =>
+  import(
+    './components/pages/Actors/Admin/ManageDoctors/ViewDoctors/ViewDoctorsBase'
+  )
+)
+const AddNurses = React.lazy(() =>
+  import('./components/pages/Actors/Admin/ManageNurses/AddNurses/AddNurseBase')
+)
+const ViewNurses = React.lazy(() =>
+  import(
+    './components/pages/Actors/Admin/ManageNurses/ViewNurses/ViewNurseBase'
+  )
+)
 const AdminDoctorSchedule = React.lazy(() =>
-  import('./components/pages/Actors/Admin/DoctorSchedule')
+  import('./components/pages/Actors/Admin/DoctorSchedule/DoctorScheduleBase')
 )
 const AdminNurseSchedule = React.lazy(() =>
-  import('./components/pages/Actors/Admin/NurseSchedule')
+  import('./components/pages/Actors/Admin/NurseShedule/NurseScheduleBase')
 )
 const AdminNotification = React.lazy(() =>
   import('./components/pages/Actors/Admin/Notification')
 )
+/* -------------------- */
 
+/* --- Doctor Pages --- */
 const DoctorDashboard = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Dashboard')
-)
-const PatientDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Patient/Dashboard')
-)
-const LabDashboard = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/Dashboard')
-)
-const LabProfile = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/Profile')
-)
-const LabViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/ViewPatient')
-)
-const LabAddLabTest = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/AddLabTest')
-)
-const LabViewLabReport = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/ViewLabReport')
-)
-const LabAddLabReport = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/AddLabReport')
-)
-const NurseDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/Dashboard')
-)
-const NurseProfile = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/Profile')
-)
-const NurseViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewPatient')
-)
-const NurseViewDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewDoctor')
-)
-const NurseViewQueue = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewQueue')
-)
-const NurseAddLabTest = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/AddLabTest')
 )
 const DoctorProfile = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Profile')
@@ -88,18 +69,64 @@ const PatientReport = React.lazy(() =>
 const Consultation = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Consultation')
 )
-const AddDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Admin/ManageDoctors/AddDoctors/AddDoctorBase')
+/* -------------------- */
+
+/* --- Patient Pages --- */
+const PatientDashboard = React.lazy(() =>
+  import('./components/pages/Actors/Patient/Dashboard')
 )
-const ViewDoctors =React.lazy(()=>
-  import('./components/pages/Actors/Admin/ManageDoctors/ViewDoctors/ViewDoctorsBase')
+const ClinicHistory = React.lazy(() =>
+  import('./components/pages/Actors/Patient/ClinicHistory')
 )
-const AddNurses =React.lazy(()=>
-  import ('./components/pages/Actors/Admin/ManageNurses/AddNurses/AddNurseBase')
+const LabReports = React.lazy(() =>
+  import('./components/pages/Actors/Patient/LabReports')
 )
-const ViewNurses =React.lazy(()=>
-  import ('./components/pages/Actors/Admin/ManageNurses/ViewNurses/ViewNurseBase')
+/* --------------------- */
+
+/* --- Nurse Pages --- */
+const NurseDashboard = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/Dashboard')
 )
+const NurseProfile = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/Profile')
+)
+const NurseViewPatient = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewPatient')
+)
+const NurseViewDoctor = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewDoctor')
+)
+const NurseViewQueue = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/ViewQueue')
+)
+const NurseAddLabTest = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/AddLabTest')
+)
+/* ------------------ */
+
+/* --- Lab Tech Pages --- */
+const LabDashboard = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/Dashboard')
+)
+const LabProfile = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/Profile')
+)
+const LabViewPatient = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/ViewPatient')
+)
+const LabAddLabTest = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/AddLabTest')
+)
+const LabViewLabReport = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/ViewLabReport')
+)
+const LabViewLabTest = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/ViewLabTest')
+)
+const LabAddLabReport = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/AddLabReport')
+)
+
 
 const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard')
@@ -123,7 +150,7 @@ const HeadNurseRegister = React.lazy(() =>
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage')
 )
-//
+
 
 const loading = (
   <div className='pt-3 text-center'>
@@ -143,15 +170,12 @@ const App = () => {
               <Route path='/help' component={Help}></Route>
               <Route path='/signup' component={SignUp}></Route>
               <Route
-                path='/doctor/viewpatient'
-                exact
-                component={ViewPatient}
-              ></Route>
-              <Route
                 path='/notification'
                 exact
                 component={Notification}
               ></Route>
+
+              {/* --- Admin Routes --- */}
               <Route
                 path='/admin/dashboard'
                 exact
@@ -162,56 +186,96 @@ const App = () => {
                 exact
                 component={AdminDoctorSchedule}
               ></Route>
-               <Route
+              <Route
                 path='/admin/nurseschedule'
                 exact
                 component={AdminNurseSchedule}
               ></Route>
-               <Route
+              <Route
                 path='/admin/notification'
                 exact
                 component={AdminNotification}
               ></Route>
+              <Route path='/addDoctor' exact component={AddDoctor}></Route>
+              <Route
+                path='/admin/registerdoctors'
+                exact
+                component={AddDoctor}
+              ></Route>
+              <Route
+                path='/admin/viewdoctors'
+                exact
+                component={ViewDoctors}
+              ></Route>
+              <Route
+                path='/admin/registernurse'
+                exact
+                component={AddNurses}
+              ></Route>
+              <Route
+                path='/admin/viewnurse'
+                exact
+                component={ViewNurses}
+              ></Route>
+              {/* --------------------- */}
+
+              {/* --- Doctor Routes --- */}
               <Route
                 path='/doctor/dashboard'
                 exact
                 component={DoctorDashboard}
               ></Route>
               <Route
+                path='/doctor/profile'
+                exact
+                component={DoctorProfile}
+              ></Route>
+              <Route
+                path='/doctor/viewpatient'
+                exact
+                component={ViewPatient}
+              ></Route>
+              <Route
+                path='/doctor/patientdata'
+                exact
+                component={PatientData}
+              ></Route>
+              <Route
+                path='/doctor/patienthistory'
+                exact
+                component={PatientHistory}
+              ></Route>
+              <Route
+                path='/doctor/patientreport'
+                exact
+                component={PatientReport}
+              ></Route>
+              <Route
+                path='/doctor/consultation'
+                exact
+                component={Consultation}
+              ></Route>
+              {/* ------------------ */}
+
+              {/* --- Patient Routes --- */}
+              <Route
                 path='/patient/dashboard'
                 exact
                 component={PatientDashboard}
               ></Route>
               <Route
-                path='/labtech/dashboard'
+                path='/patient/patienthistory'
                 exact
-                component={LabDashboard}
+                component={ClinicHistory}
               ></Route>
               <Route
-                path='/labtech/profile'
+                path='/patient/patientreport'
                 exact
-                component={LabProfile}
+                component={LabReports}
               ></Route>
-              <Route
-                path='/labtech/viewpatient'
-                exact
-                component={LabViewPatient}
-              ></Route>
-              <Route
-                path='/labtech/addlabtest'
-                exact
-                component={LabAddLabTest}
-              ></Route>
-              <Route
-                path='/labtech/viewlabreport'
-                exact
-                component={LabViewLabReport}
-              ></Route>
-              <Route
-                path='/labtech/addlabreport'
-                exact
-                component={LabAddLabReport}
-              ></Route>
+              {/* --------------------- */}
+
+              {/* --- Nurse Routes --- */}
               <Route
                 path='/nurse/dashboard'
                 exact
@@ -242,31 +306,39 @@ const App = () => {
                 exact
                 component={NurseAddLabTest}
               ></Route>
+              {/* -------------------- */}
+
+              {/* --- Head Nurse Routes --- */}
+
+              {/* --------------------- */}
+
+              {/* --- Lab Tech Routes --- */}
               <Route
-                path='/doctor/profile'
+                path='/labtech/dashboard'
                 exact
-                component={DoctorProfile}
+                component={LabDashboard}
               ></Route>
               <Route
-                path='/doctor/patientdata'
+                path='/labtech/viewlabtest'
                 exact
-                component={PatientData}
+                component={LabViewLabTest}
               ></Route>
               <Route
-                path='/doctor/patienthistory'
+                path='/labtech/viewlabreport'
                 exact
-                component={PatientHistory}
+                component={LabViewLabReport}
               ></Route>
               <Route
-                path='/doctor/patientreport'
+                path='/labtech/dashboard'
                 exact
-                component={PatientReport}
+                component={LabDashboard}
               ></Route>
               <Route
-                path='/doctor/consultation'
+                path='/labtech/profile'
                 exact
-                component={Consultation}
+                component={LabProfile}
               ></Route>
+
               <Route 
                 path='/admin/registerdoctors' exact 
                 component={AddDoctor}>
@@ -317,6 +389,28 @@ const App = () => {
                 component={HeadNurseSendMessage}
               ></Route>
 
+
+              <Route
+                path='/labtech/viewpatient'
+                exact
+                component={LabViewPatient}
+              ></Route>
+              <Route
+                path='/labtech/addlabtest'
+                exact
+                component={LabAddLabTest}
+              ></Route>
+              <Route
+                path='/labtech/viewlabreport'
+                exact
+                component={LabViewLabReport}
+              ></Route>
+              <Route
+                path='/labtech/addlabreport'
+                exact
+                component={LabAddLabReport}
+              ></Route>
+
             </Switch>
           </React.Suspense>
         </Router>
@@ -325,4 +419,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

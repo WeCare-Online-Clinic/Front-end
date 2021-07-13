@@ -5,11 +5,11 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { labtechMenuItems } from '../../../Sidebar/menuItem'
+import { patientMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
-import AddTest from '../../../Forms/AddTest'
-import FullBld from '../../../Lab Forms/FullBld'
+import PatientReportsTable from '../../../Table/PatientReportsTable'
+import ReportCard from '../../../ClinicCard/ReportCard'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -20,11 +20,11 @@ const useStyles = makeStyles({
   },
 })
 
-function AddLabTest() {
+function LabReports() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
-      sidebar={<Sidebar menuItems={labtechMenuItems} />}
+      header={<Header user='Dr. Asela' />}
+      sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
@@ -47,11 +47,25 @@ function Content() {
 
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <AddTest func={renderData} />
+      <Grid className={classes.dataCard} item sm={6}>
+        <Card>
+          <CardHeader
+            style={{
+              textAlign: 'center',
+              color: '#fff',
+              borderBottom: '1px solid #000',
+              backgroundColor: '#3f51b5',
+            }}
+            title='Nimal De Silva'
+          ></CardHeader>
+        </Card>
+        <PatientReportsTable func={renderData} />
+      </Grid>
+      <Grid item sm={6} className={classes.dataCard}>
+        {isData && <ReportCard />}
       </Grid>
     </Grid>
   )
 }
 
-export default AddLabTest
+export default LabReports

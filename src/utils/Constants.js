@@ -75,7 +75,7 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
 
   CLINICS: [
     { label: "Select the clinic", value: '' },
-    { label: "Cardioloy", value: 'cardiology' },
+    { label: "Cardiology", value: 'cardiology' },
     { label: "Dentistry", value: 'dentistry' },
     { label: "Dermatology", value: 'dermatology' },
     { label: "Neurology", value: 'neurology' },
@@ -85,6 +85,14 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
     {label:"Select the nurse type", value:''},
     {label:"Head Nurse", value:1},
     {label:"Regular Nurse", value:0}
+  ],
+
+  SPECIALTY:[
+    { label: "Select Specialty", value: '' },
+    { label: "Cardiologist", value: 'cardiologist' },
+    { label: "BDS-Specialist", value: 'bds-specialist' },
+    { label: "Dermatologist", value: 'dermatologist' },
+    { label: "Neurologist", value: 'neurologist' },
   ],
 
   DAYS_OF_WEEK: {

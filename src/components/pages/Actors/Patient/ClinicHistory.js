@@ -5,11 +5,12 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { labtechMenuItems } from '../../../Sidebar/menuItem'
+import DataCard from '../../../DataCard/DataCard'
+import { patientMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
-import AddTest from '../../../Forms/AddTest'
-import FullBld from '../../../Lab Forms/FullBld'
+import PatientClinicHisTable from '../../../Table/PatientClinicHisTable'
+import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -20,11 +21,11 @@ const useStyles = makeStyles({
   },
 })
 
-function AddLabTest() {
+function ClinicHistory() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
-      sidebar={<Sidebar menuItems={labtechMenuItems} />}
+      header={<Header user='Dr. Asela' />}
+      sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
@@ -47,11 +48,25 @@ function Content() {
 
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <AddTest func={renderData} />
+      <Grid className={classes.dataCard} item sm={7}>
+        <Card>
+          <CardHeader
+            style={{
+              textAlign: 'center',
+              color: '#fff',
+              borderBottom: '1px solid #000',
+              backgroundColor: '#3f51b5',
+            }}
+            title='Nimal De Silva'
+          ></CardHeader>
+        </Card>
+        <PatientClinicHisTable func={renderData} />
+      </Grid>
+      <Grid item sm={5} className={classes.dataCard}>
+        {isData && <PatientHisCard />}
       </Grid>
     </Grid>
   )
 }
 
-export default AddLabTest
+export default ClinicHistory

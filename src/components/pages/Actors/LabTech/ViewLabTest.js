@@ -8,8 +8,7 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
-import AddTest from '../../../Forms/AddTest'
-import FullBld from '../../../Lab Forms/FullBld'
+import LabTestTable from '../../../Table/LabTestTable'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-function AddLabTest() {
+function ViewLabReport() {
   return (
     <Layout
       header={<Header user='Mr. Mahesh Withanage' />}
@@ -48,10 +47,10 @@ function Content() {
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid className={classes.dataCard} item sm={12}>
-        <AddTest func={renderData} />
+        <LabTestTable func={renderData} />
       </Grid>
     </Grid>
   )
 }
 
-export default AddLabTest
+export default ViewLabReport

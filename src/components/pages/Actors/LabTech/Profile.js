@@ -3,7 +3,7 @@ import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { labMenuItems } from '../../../Sidebar/menuItem'
+import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Card, CardHeader, Grid, makeStyles } from '@material-ui/core'
 import LabProfileCard from '../../../ProfileCard/LabProfileCard'
 import ScheduleTable from '../../../Table/ScheduleTable'
@@ -19,7 +19,7 @@ function Profile() {
   return (
     <Layout
       header={<Header user='Mr. Mahesh Withanage' />}
-      sidebar={<Sidebar menuItems={labMenuItems} />}
+      sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
@@ -39,7 +39,6 @@ function Content() {
           <Grid className={classes.dataCard} item sm={12}>
             <LabProfileCard />
           </Grid>
-          
         </Grid>
       </Grid>
     </Grid>

@@ -3,12 +3,8 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
-import { useSelector } from 'react-redux'
-import withReducer from '../../../../../../store/withReducer'
-import reducer from '../store/reducer'
-
-
-
+import Typography from '@material-ui/core/Typography'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import {
   Card,
   CardActions,
@@ -24,9 +20,8 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { DoctorData } from './DoctorData'
+import { labReportData } from './LabReportData'
 import PageviewIcon from '@material-ui/icons/Pageview'
-import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     color: '#4e4f50',
     fontSize: '16px',
+    maxWidth: 'fit-content',
   },
   search_items: {
     maxHeight: '50px',
@@ -63,26 +59,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NurseDataTable = (props) => {
-
-  const reducerData = useSelector(({nurses}) => nurses.manageNurse);
-  console.log("doctot list",reducerData.nurseList);
-  const nurseList=reducerData.nurseList;
-
-  const history = useHistory()
+const LabTestTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Nurse ID' },
-    { text: 'Nurse Name' },
-    { text: 'Email' },
-    { text: 'Mobile' },
-    { text: 'Type' },
-    { text: 'Clinic' },
-    
+    { text: 'Report ID' },
+    { text: 'Patient Name' },
+    { text: 'Test Name' },
+    { text: 'Date Added' },
+    { text: 'Date Issued' },
+    { text: 'Availability' },
   ]
 
   const classes = useStyles()
@@ -107,13 +96,19 @@ const NurseDataTable = (props) => {
             <form clasName={classes.root}>
               <TextField
                 className={classes.search_items}
-                label='Doctor Name'
+                label='Report ID'
                 variant='outlined'
                 size='small'
               ></TextField>
               <TextField
                 className={classes.search_items}
-                label='Doctor ID'
+                label='Patient Name'
+                variant='outlined'
+                size='small'
+              ></TextField>
+              <TextField
+                className={classes.search_items}
+                label='Test Name'
                 variant='outlined'
                 size='small'
               ></TextField>
@@ -154,40 +149,67 @@ const NurseDataTable = (props) => {
                     <TableCell
                       style={{ borderBottom: '1px solid #000' }}
                     ></TableCell>
+                    <TableCell
+                      style={{ borderBottom: '1px solid #000' }}
+                    ></TableCell>
+                    <TableCell
+                      style={{ borderBottom: '1px solid #000' }}
+                    ></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {nurseList
+                  {labReportData
+
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        nurse // add table rowDoctor
+                        row // add table row of patientData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {nurse.id}
+                            {row.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.firstName+" "+nurse.lastName}
+                            {row.p_name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.email}
+                            {row.t_name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.mobile}
+                            {row.a_date}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.clinic}
+                            {row.i_date}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.type==0? 'regular':'head'}                       
+                            {row.availability}
                           </TableCell>
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('nurseschedule')}
+                              onClick={() => props.func()}
+                            >
+                              Issue
+                            </Button>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant='contained'
+                              fullWidth='true'
+                              color='primary'
+                              onClick={() => props.func()}
+                            >
+                              Update
+                            </Button>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant='contained'
+                              fullWidth='true'
+                              color='primary'
+                              onClick={() => props.func()}
                             >
                               View
                             </Button>
@@ -203,12 +225,12 @@ const NurseDataTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={DoctorData.length} // size of DoctorData array
+            count={labReportData.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 10, 15]}
+            rowsPerPageOptions={[5, 8, 15]}
           />
         </CardActions>
       </Card>
@@ -216,4 +238,4 @@ const NurseDataTable = (props) => {
   )
 }
 
-export default withReducer('nurses', reducer)(NurseDataTable);
+export default LabTestTable
