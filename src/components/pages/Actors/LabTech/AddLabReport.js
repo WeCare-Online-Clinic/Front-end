@@ -10,7 +10,7 @@ import QueueBar from '../../../Misc/QueueBar'
 import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { TextField } from '@material-ui/core'
 import PatientForm from '../../../Forms/PatientForm'
-import FullBld from '../../../Lab Forms/FullBld'
+import LabTechFullBld from '../../../Lab Forms/LabTechFullBld'
 
 const useStyles = makeStyles({
   textTitle: {
@@ -69,9 +69,7 @@ function Content() {
             <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
               <Grid container spacing={2}>
                 <Grid item sm={12}>
-                  <FullBld
-                    title='Lab Report'
-                    subheader='Nimal De Silva ( Age : 48 )'
+                  <LabTechFullBld
                   />
                 </Grid>
               </Grid>

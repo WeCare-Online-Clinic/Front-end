@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
@@ -40,13 +41,7 @@ function Content() {
             <NurseProfileCard />
           </Grid>
           <Grid className={classes.dataCard} item sm={12}>
-            <Card>
-              <CardHeader
-                title='Schedule Info'
-                style={{ textAlign: 'center', color: '#3f51b5' }}
-              ></CardHeader>
-            </Card>
-            <ScheduleTable />
+            
           </Grid>
         </Grid>
       </Grid>

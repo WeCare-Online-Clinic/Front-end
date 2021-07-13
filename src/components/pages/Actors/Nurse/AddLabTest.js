@@ -1,47 +1,55 @@
+
 import React from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
-import FullBld from '../../../Lab Forms/FullBld'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import PageviewIcon from '@material-ui/icons/Pageview'
-import { useHistory } from 'react-router-dom'
-import LineStatCard from '../../../StatCard/LineStatCard'
-import Register from '../../../Register'
-import PieStatCard from '../../../StatCard/PieStatCard'
-import BarStatCard from '../../../StatCard/BarStatCard'
 import { Button } from '@material-ui/core'
+import QueueBar from '../../../Misc/QueueBar'
+import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { TextField } from '@material-ui/core'
+import PatientSecForm from '../../../Forms/PatientSecForm'
+import LabTechFullBld from '../../../Lab Forms/LabTechFullBld'
 
 const useStyles = makeStyles({
-  dataCard: {
-    backgroundColor: '#fff',
-    borderRadius: '5px',
-    margin: '20px',
-    marginBottom: '0px',
+  textTitle: {
+    padding: '5px',
+    color: '#4c5355',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  root: {
-    padding: 0,
+  textField: {
+    padding: '5px',
+    color: '#4c5355',
+    fontSize: '16px',
   },
-
-  search_items: {
-    maxHeight: '50px',
-    margin: '10px',
-    backgroundColor: '#fff',
+  textBox: {
+    height: '140px',
+    margin: '5px 40px 5px 40px',
+    padding: '10px',
+    color: '#4c5355',
+    fontSize: '14px',
+    border: '1px solid #4c5355',
   },
-
+  cardActions: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '0px 40px 20px 40px',
+    width: '100%',
+  },
 })
 
-function AddLabTest() {
+function Dashboard() {
   return (
     <Layout
       header={<Header user='Ms. Asanaka Perera' />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div style={{ backgroundColor: '#ebf5f7' }}>
           <Content />
         </div>
       }
@@ -52,44 +60,26 @@ function AddLabTest() {
 function Content() {
   const classes = useStyles()
   return (
-    <Grid container style={{ padding: '20px' }} spacing={5}>
-      
-      
-      
-      <Grid className={classes.dataCard} item sm={12}>
-      <h3 style={{ color: '#000000' }} align='center'>Add Lab Test</h3>  
-      <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid
-            item
-            alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Report Type'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+    <React.Fragment>
+      <Grid container style={{ padding: '20px' }}>
+        <Grid item sm={12}>
+          <Grid container>
+            <Grid item sm={6}>
+              <PatientSecForm />
+            </Grid>
+            <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
+              <Grid container spacing={2}>
+                <Grid item sm={12}>
+                  <LabTechFullBld
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-        <FullBld />
-      </Grid>       
-    </Grid>
-   
+      </Grid>
+    </React.Fragment>
   )
 }
 
-
-export default AddLabTest
+export default Dashboard

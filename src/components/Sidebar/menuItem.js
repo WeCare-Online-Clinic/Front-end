@@ -130,6 +130,7 @@ export const headnurseMenuItems = [
 
     url: '/headnurse/sendmessage',
 },
+]
 
 export const nurseMenuItems = [
   {
