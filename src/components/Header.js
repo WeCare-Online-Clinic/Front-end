@@ -54,6 +54,7 @@ export default function Header(props) {
             >
               <ArrowForwardIcon />
             </IconButton>
+
           </Grid>
           <Grid item sm></Grid>
           <Grid
@@ -87,6 +88,7 @@ export default function Header(props) {
               startIcon={<ExitToAppIcon />}
               color='primary'
               size='large'
+              onClick={()=>history.push('/login')}
             >
               Log Out
             </Button>

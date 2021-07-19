@@ -80,6 +80,7 @@ export function submitLogin(data) {
         }).catch(e => {
             console.log(e);
             console.log("skhf");
+            alert('Invalid user name or password');
             history.push({
                 pathname: Constants.PAGES.login
             });

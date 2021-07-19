@@ -40,10 +40,11 @@ function DoctorSchedule() {
                         </div>
                         <div className="card-body">
                             <table className="mytable mt-3">
-                                <tr className="my"><th>Id :</th><th>07</th></tr>
-                                <tr className="my"><th>Name :</th><th>K.M.Silva</th></tr>
+                                <tr className="my"><th>Id :</th><th>34</th></tr>
+                                <tr className="my"><th>Name :</th><th>K.M.P Silva</th></tr>
                                 <tr className="my"><th>Email :</th><th>silva87@gmail.com</th></tr>
                                 <tr className="my"><th>Phone :</th><th>0721256394</th></tr>
+                                <tr className="my"><th>NIC :</th><th>872364086V</th></tr>
                                 <tr className="my"><th>Qualification :</th><th>MBBS</th></tr>
                                 <tr className="my"><th>Specialty :</th><th>Cardiologist</th></tr>
                                 <tr className="my"><th>Registered date :</th><th>2021.07.13</th></tr>

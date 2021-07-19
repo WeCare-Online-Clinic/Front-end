@@ -14,7 +14,7 @@ function Help() {
     <React.Fragment>
       <NavBar />
       <div className="container" style={{marginTop:"100px"}}>
-        <div className="row">
+        <div className="row ">
           <div className="col-6">
             {/* image */}
             <img src={picture } class="img-fluid"  style={{height:'16cm'}}></img>

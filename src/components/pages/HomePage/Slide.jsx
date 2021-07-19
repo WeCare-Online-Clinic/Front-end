@@ -13,7 +13,7 @@ import {
 } from '@coreui/react'
 
 const slides=[
-  img1,img2,img3
+  img2,img1,img3
 ]
 
 
