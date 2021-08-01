@@ -12,7 +12,6 @@ import DoctorDataTable from './DoctorDataTable'
 
 function ViewDoctorsBase() {
 
-//   const reducerData = useSelector(({doctor}) => doctor.doctorAddEdit);
 
 const dispatch = useDispatch();
 useEffect(() => {

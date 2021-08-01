@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 const DoctorDataTable = (props) => {
 
   const reducerData = useSelector(({doctors}) => doctors.doctorAddEdit);
-  console.log("doctot list",reducerData.doctorList);
+  // console.log("doctot list",reducerData.doctorList);
   const doctorList=reducerData.doctorList;
 
   const history = useHistory()
@@ -190,7 +190,7 @@ const DoctorDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('doctorschedule')}
+                              onClick={() => history.push({pathname:'doctorschedule',state:doctor.id})}
                             >
                               View
                             </Button>

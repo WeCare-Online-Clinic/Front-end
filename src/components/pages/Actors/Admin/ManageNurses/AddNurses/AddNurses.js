@@ -19,14 +19,11 @@ let initFormValue = {
     lastName: '',
     email: '',
     nic: '',
-    address1: '',
-    address2: '',
-    password: '',
-    confirmPassword: '',
     mobile: '',
     type: '',
     qualification: '',
-    clinic: ''
+    clinicId: '',
+    nurseSchedule: []
 }
 let initError = {
     firstNameErrors: {},
@@ -47,10 +44,6 @@ const AddNurses = (props) => {
     const dayList = reducerData.clinicDays;
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-
 
 
     const onSubmit = (e) => {
@@ -139,7 +132,7 @@ const AddNurses = (props) => {
                 localErrors.nicErrors.invalidNic = null;
             }
             localErrors.nicErrors.nicMissing = null;
-        }  
+        }
         //validating Mobile
         if (!/^\d{10}$/i.test(formValue.mobile)) {
             let mobileMissing = Object.assign({}, { missing: 'mobile number is missing or invalid' });
@@ -157,8 +150,8 @@ const AddNurses = (props) => {
         }
         else {
             localErrors.qualificationsError.missing = null;
-        }   
-    
+        }
+
 
         setErrors({ ...localErrors }); //push all errors to errors object
         return isValid;
@@ -167,12 +160,44 @@ const AddNurses = (props) => {
     const onMyChange = (v) => {
         let value = v.target.value;
         let name = v.target.name;
-        if (name == 'clinic') {
+        if (name == 'clinicId') {
+            switch (value) {
+                case "cardiology": {
+                    setFormValue({ ...formValue, [name]: "1" })
+                }
+                    break;
+                case "dentistry": {
+                    setFormValue({ ...formValue, [name]: "2" })
+                }
+                    break;
+                case "dermatology": {
+                    setFormValue({ ...formValue, [name]: "3" })
+                }
+                    break;
+                case "neurology": {
+                    setFormValue({ ...formValue, [name]: "4" })
+                }
+                    break;
+                default: {
+                    setFormValue({ ...formValue, [name]: '' })
+                }
+
+
+            }
             dispatch(Actions.getClinicDays(value));
 
         }
-        setFormValue({ ...formValue, [name]: value })
+        else {
 
+            setFormValue({ ...formValue, [name]: value })
+        }
+
+    }
+
+    const onSheduleChange=(v)=>{
+        let value = v.target.value;
+        let name = v.target.name;
+        setFormValue({ ...formValue,  nurseSchedule:formValue.nurseSchedule.concat({["sId"]:name})})
     }
 
     return (
@@ -267,7 +292,7 @@ const AddNurses = (props) => {
                                         return <div key={index} style={{ color: "red" }}>{errors.mobileErrors[key]}</div>
                                     })}
                                 </div>
-                               
+
                                 {/* Nurse Type Input Field*/}
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">Nurse Type</span>
@@ -317,9 +342,10 @@ const AddNurses = (props) => {
                                 <span className="input-group-text">Clinic</span>
 
                                 <select
-                                    name="clinic" id="clinic"
+                                    name="clinicId"
+                                    id="clinic"
                                     className="form-control"
-                                    value={formValue.clinic}
+                                    value={Clinics.value}
                                     onChange={onMyChange}
                                 >
                                     {
@@ -340,6 +366,7 @@ const AddNurses = (props) => {
                                         <table border="1px">
                                             <tr>
                                                 <th></th>
+                                                <th>SID</th>
                                                 <th> Day </th>
                                                 <th> Time </th>
 
@@ -355,10 +382,13 @@ const AddNurses = (props) => {
                                                                     style={{ width: '50px' }}
                                                                     key={index}
                                                                     id={value.day}
-                                                                    name={value.day}
+                                                                    name={value.id}   
                                                                     value={formValue.clinicDays}
-                                                                    onChange={onMyChange}
+                                                                    onChange={onSheduleChange}
                                                                 />
+                                                            </td>
+                                                            <td>
+                                                                <label htmlFor="Id"> {value.id} </label>
                                                             </td>
                                                             <td>
                                                                 <label htmlFor="Days"> {value.day} </label>
