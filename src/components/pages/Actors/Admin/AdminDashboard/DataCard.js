@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   cardContent: {
     textAlign: 'center',
     color: '#fff',
-    backgroundColor: '#ff4500',
+    backgroundColor: '#b3246b',
     fontSize: '24px',
     fontWeight: 'bold',
     flexGrow: 1,

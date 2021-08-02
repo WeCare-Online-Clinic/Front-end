@@ -186,7 +186,12 @@ const DoctorDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('doctorschedule')}
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'doctorschedule',
+                                  state: doctor.id,
+                                })
+                              }
                             >
                               View
                             </Button>
