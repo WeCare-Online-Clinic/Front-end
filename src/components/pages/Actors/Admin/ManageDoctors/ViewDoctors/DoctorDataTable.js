@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
