@@ -67,10 +67,11 @@ export default function Header(props) {
             {props.user}
           </Grid>
           <Grid item>
-            <IconButton 
-              color='primary' 
+            <IconButton
+              color='primary'
               style={{ marginRight: '10px' }}
-              onClick={() => history.push('profile')}>
+              onClick={() => history.push('profile')}
+            >
               <Badge badgeContent={1} color='secondary'>
                 <NotificationsNoneIcon />
               </Badge>
@@ -87,6 +88,7 @@ export default function Header(props) {
               startIcon={<ExitToAppIcon />}
               color='primary'
               size='large'
+              onClick={() => history.push('/login')}
             >
               Log Out
             </Button>

@@ -46,16 +46,16 @@ function Content() {
       <Grid item sm={12}>
         <Grid container style={{ marginBottom: '10px' }} spacing={5}>
           <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='Patients in Clinic' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <BarStatCard title='Diagnosis' />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
             <PieStatCard title='Diagnosis' />
           </Grid>
           <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='New Patients' />
+            <LineStatCard title='Consulted Patients' />
+          </Grid>
+          <Grid className={classes.dataCard} item sm={6}>
+            <LineStatCard title='Patients in Clinic' />
+          </Grid>
+          <Grid className={classes.dataCard} item sm={6}>
+            <BarStatCard title='Patients ( Age )' />
           </Grid>
         </Grid>
       </Grid>

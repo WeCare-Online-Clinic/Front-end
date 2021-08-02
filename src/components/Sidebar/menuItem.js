@@ -93,7 +93,7 @@ export const headnurseMenuItems = [
   },
   {
     icon: <ListAltIcon style={{ color: '#fff' }} />,
-    name: '',
+    name: 'Clinic',
     url: '',
     children: [
       {

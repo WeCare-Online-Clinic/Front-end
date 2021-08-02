@@ -12,7 +12,7 @@ const Layout = (props) => {
           <Grid item sm={12}>
             {props.header}
           </Grid>
-          <Grid item sm={12} style={{ minHeight: '865px' }}>
+          <Grid item sm={12} style={{ minHeight: '895px' }}>
             {props.content}
           </Grid>
           <Grid item sm={12}>

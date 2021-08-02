@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 
-
-
 import {
   Card,
   CardActions,
@@ -23,6 +21,7 @@ import {
   AppBar,
   Grid,
   TextField,
+  CardHeader,
 } from '@material-ui/core'
 import { DoctorData } from './DoctorData'
 import PageviewIcon from '@material-ui/icons/Pageview'
@@ -64,10 +63,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const DoctorDataTable = (props) => {
-
-  const reducerData = useSelector(({doctors}) => doctors.doctorAddEdit);
-  console.log("doctot list",reducerData.doctorList);
-  const doctorList=reducerData.doctorList;
+  const reducerData = useSelector(({ doctors }) => doctors.doctorAddEdit)
+  console.log('doctot list', reducerData.doctorList)
+  const doctorList = reducerData.doctorList
 
   const history = useHistory()
   const { className } = props
@@ -81,7 +79,6 @@ const DoctorDataTable = (props) => {
     { text: 'email' },
     { text: 'Contact No' },
     { text: 'Clinic' },
-   
   ]
 
   const classes = useStyles()
@@ -96,44 +93,43 @@ const DoctorDataTable = (props) => {
   return (
     <div>
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid
-            item
-            alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Doctor Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Doctor ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Clinic'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+        <CardHeader style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}>
+          <Grid className={classes.grid} container justify='space-around'>
+            <Grid item sm></Grid>
+            <Grid item alignContent='center'>
+              <form clasName={classes.root}>
+                <TextField
+                  className={classes.search_items}
+                  label='Doctor Name'
+                  variant='outlined'
+                  size='small'
+                ></TextField>
+                <TextField
+                  className={classes.search_items}
+                  label='Doctor ID'
+                  variant='outlined'
+                  size='small'
+                ></TextField>
+                <TextField
+                  className={classes.search_items}
+                  label='Clinic'
+                  variant='outlined'
+                  size='small'
+                ></TextField>
+                <Button
+                  startIcon={<PageviewIcon />}
+                  variant='contained'
+                  size='large'
+                  color='secondary'
+                  style={{ margin: '10px' }}
+                >
+                  Search
+                </Button>
+              </form>
+            </Grid>
           </Grid>
-        </Grid>
+        </CardHeader>
+
         <CardContent className={classes.content}>
           <PerfectScrollbar>
             <div className={classes.inner}>
@@ -173,7 +169,7 @@ const DoctorDataTable = (props) => {
                             {doctor.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {doctor.firstName+" "+doctor.lastName}
+                            {doctor.firstName + ' ' + doctor.lastName}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {doctor.email}
@@ -184,7 +180,7 @@ const DoctorDataTable = (props) => {
                           <TableCell className={classes.cell}>
                             {doctor.clinic}
                           </TableCell>
-                    
+
                           <TableCell>
                             <Button
                               variant='contained'
@@ -219,4 +215,4 @@ const DoctorDataTable = (props) => {
   )
 }
 
-export default withReducer('doctors', reducer)(DoctorDataTable);
+export default withReducer('doctors', reducer)(DoctorDataTable)

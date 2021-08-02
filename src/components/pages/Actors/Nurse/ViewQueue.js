@@ -39,27 +39,18 @@ function Content() {
     <React.Fragment>
       <ManageQueue />
       <Grid container style={{ padding: '20px' }}>
-      <Grid item sm={12}>
-        <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={4}>
-            <div align = "center">
-           <PatientProfileCard />
-           </div>
-          </Grid>
-          <Grid className={classes.dataCard} item sm={7}>
-            <PatientQueueTable />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={4}>
-          <Box bgcolor="primary.main" color="primary.contrastText" p={2}>
-          Next Queue Numbers
-        </Box>
-          <h5 style={{ color: '#3f51b5' }}>Ms.Perera    Queue   #25</h5>
-          <h5 style={{ color: '#3f51b5' }}>Ms.Silva     Queue   #26</h5>
-          <h5 style={{ color: '#3f51b5' }}>Mr.Jayalath  Queue   #27</h5>
-          <h5 style={{ color: '#3f51b5' }}>Ms.Vithane   Queue   #28</h5>
+        <Grid item sm={12}>
+          <Grid container style={{ marginBottom: '10px' }} spacing={5}>
+            <Grid className={classes.dataCard} item sm={4}>
+              <div align='center'>
+                <PatientProfileCard />
+              </div>
+            </Grid>
+            <Grid className={classes.dataCard} item sm={7}>
+              <PatientQueueTable />
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
       </Grid>
     </React.Fragment>
   )
