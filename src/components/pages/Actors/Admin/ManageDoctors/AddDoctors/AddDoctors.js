@@ -194,8 +194,7 @@ const AddDoctors = (props) => {
         }
     }
 
-    const onSheduleChange = (e, v) => {
-        // let value = v.target.value;
+    const onSheduleChange = (e, v) => {       
 
         let name = console.log("name:", name);
 
@@ -221,8 +220,6 @@ const AddDoctors = (props) => {
         console.log(object);
 
 
-        // setFormValue({ ...formValue,  doctorSchedule:formValue.doctorSchedule.push(v)});
-        // setFormValue({ ...formValue,  doctorSchedule:formValue.doctorSchedule.concat({["sId"]:name})})
     }
 
     return (

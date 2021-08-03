@@ -92,42 +92,44 @@ const DoctorDataTable = (props) => {
   return (
     <div>
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <CardHeader style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}>
-          <Grid className={classes.grid} container justify='space-around'>
-            <Grid item sm></Grid>
-            <Grid item alignContent='center'>
-              <form clasName={classes.root}>
-                <TextField
-                  className={classes.search_items}
-                  label='Doctor Name'
-                  variant='outlined'
-                  size='small'
-                ></TextField>
-                <TextField
-                  className={classes.search_items}
-                  label='Doctor ID'
-                  variant='outlined'
-                  size='small'
-                ></TextField>
-                <TextField
-                  className={classes.search_items}
-                  label='Clinic'
-                  variant='outlined'
-                  size='small'
-                ></TextField>
-                <Button
-                  startIcon={<PageviewIcon />}
-                  variant='contained'
-                  size='large'
-                  color='secondary'
-                  style={{ margin: '10px' }}
-                >
-                  Search
-                </Button>
-              </form>
-            </Grid>
+        <Grid className={classes.grid} container justify='space-around'>
+          <Grid item sm></Grid>
+          <Grid
+            item
+            alignContent='center'
+            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
+          >
+            <form clasName={classes.root}>
+              <TextField
+                className={classes.search_items}
+                label='Doctor Name'
+                variant='outlined'
+                size='small'
+              ></TextField>
+              <TextField
+                className={classes.search_items}
+                label='Doctor ID'
+                variant='outlined'
+                size='small'
+              ></TextField>
+              <TextField
+                className={classes.search_items}
+                label='Clinic'
+                variant='outlined'
+                size='small'
+              ></TextField>
+              <Button
+                startIcon={<PageviewIcon />}
+                variant='contained'
+                size='large'
+                color='secondary'
+                style={{ margin: '10px' }}
+              >
+                Search
+              </Button>
+            </form>
           </Grid>
-        </CardHeader>
+        </Grid>
 
         <CardContent className={classes.content}>
           <PerfectScrollbar>

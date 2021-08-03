@@ -194,10 +194,29 @@ const AddNurses = (props) => {
 
     }
 
-    const onSheduleChange=(v)=>{
-        let value = v.target.value;
-        let name = v.target.name;
-        setFormValue({ ...formValue,  nurseSchedule:formValue.nurseSchedule.concat({["sId"]:name})})
+    const onSheduleChange = (e, v) => {
+        let name = console.log("name:", name);
+
+        let d = formValue.nurseSchedule
+
+        if (e.target.checked) {
+            d.push({clinicSchedule:v});
+        } else {
+           let index =formValue.nurseSchedule.findIndex(x => x.id ===v.id);
+           
+            console.log("index:", index);
+            if (index >= 0) {
+                formValue.nurseSchedule.splice(index,1);
+                d = formValue.nurseSchedule
+                console.log("array:", d);
+            }
+
+        }
+
+
+
+        let object = Object.assign({}, formValue, { nurseSchedule: d });
+        console.log(object);
     }
 
     return (
@@ -382,9 +401,9 @@ const AddNurses = (props) => {
                                                                     style={{ width: '50px' }}
                                                                     key={index}
                                                                     id={value.day}
-                                                                    name={value.id}   
+                                                                    name={{ value }} 
                                                                     value={formValue.clinicDays}
-                                                                    onChange={onSheduleChange}
+                                                                    onChange={(e) => onSheduleChange(e, value)}
                                                                 />
                                                             </td>
                                                             <td>

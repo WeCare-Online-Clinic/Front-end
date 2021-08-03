@@ -106,13 +106,13 @@ const NurseDataTable = (props) => {
             <form clasName={classes.root}>
               <TextField
                 className={classes.search_items}
-                label='Doctor Name'
+                label='Nurse Name'
                 variant='outlined'
                 size='small'
               ></TextField>
               <TextField
                 className={classes.search_items}
-                label='Doctor ID'
+                label='Nurse ID'
                 variant='outlined'
                 size='small'
               ></TextField>
