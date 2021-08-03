@@ -84,7 +84,7 @@ const DoctorSchedule = props => {
                     <div className="card  bg-light mb-3" >
                         <div className="card-header" style={{ textAlign: 'center', backgroundColor: '#3f51b5', color: 'white', height: '3cm' }}><h3>Clinic Details</h3></div>
                         <div className="card-body">
-                            <p>Clinic : Cadiology</p>
+                            <p>Clinic : {reducerData.doctorProfile.doctorSchedule && reducerData.doctorProfile.doctorSchedule[0].clinicSchedule.clinicName} </p>
                             <table className="mt-3">
                                 <tbody>
                                     <tr><th>Day</th><th>Time</th></tr>

@@ -8,7 +8,7 @@ import Sidebar from '../../../../Sidebar/Sidebar'
 import { adminMenuItems } from '../../../../Sidebar/menuItem'
 import DoctorSchedule from './DoctorSchedule'
 import * as Actions from "./store/action";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
  
 
 
