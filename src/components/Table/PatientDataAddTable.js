@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import {
   Card,
   CardActions,
@@ -16,7 +13,6 @@ import {
   TableRow,
   TablePagination,
   Button,
-  AppBar,
   Grid,
   TextField,
 } from '@material-ui/core'

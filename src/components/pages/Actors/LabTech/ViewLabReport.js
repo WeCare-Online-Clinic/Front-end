@@ -6,14 +6,7 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import LabTechFullBld from '../../../Lab Forms/LabTechFullBld'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-import PageviewIcon from '@material-ui/icons/Pageview'
-import { useHistory } from 'react-router-dom'
-import LineStatCard from '../../../StatCard/LineStatCard'
-import Register from '../../../Register'
-import PieStatCard from '../../../StatCard/PieStatCard'
-import BarStatCard from '../../../StatCard/BarStatCard'
-import { Button } from '@material-ui/core'
-import { TextField } from '@material-ui/core'
+
 
 const useStyles = makeStyles({
   dataCard: {

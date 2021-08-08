@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
@@ -63,7 +62,7 @@ const Sidebar = (props) => {
               paddingLeft: '60px',
             }}
           >
-            <img src={logo} style={{ width: '80px' }} />
+            <img src={logo} style={{ width: '80px' }} alt="abc" />
           </div>
         </ListItem>
         <Divider />

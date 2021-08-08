@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { useSelector, useDispatch } from 'react-redux'
 import store from './store/index'
 import Auth from './authStore/Auth'
 import history from './@history'

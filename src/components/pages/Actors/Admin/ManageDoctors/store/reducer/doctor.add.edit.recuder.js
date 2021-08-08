@@ -15,7 +15,7 @@ const initialState = {
   doctor: {},
   clinics: [],
   clinicDays: [],
-  doctorList: [],
+  doctorList: [{}],
 }
 
 const doctorAddEditReducer = function (state = initialState, action) {

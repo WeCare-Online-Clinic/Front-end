@@ -15,8 +15,9 @@ function ViewDoctorsBase() {
 
   const dispatch = useDispatch()
   useEffect(() => {
+    console.log("useEffect");
     dispatch(Actions.getDoctors())
-  }, [])
+  },[])
 
   return (
     <Layout

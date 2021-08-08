@@ -1,9 +1,7 @@
 import React from 'react'
 import {
   Card,
-  CardHeader,
-  CardContent,
-  CardActions,
+  CardHeader, 
   Button,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'

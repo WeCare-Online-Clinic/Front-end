@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, CardHeader, Grid, makeStyles } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
 import PatientQueueTable from '../../../src/components/Table/PatientQueueTable'
 
 const useStyles = makeStyles({
@@ -49,7 +48,7 @@ const useStyles = makeStyles({
 })
 
 function ClinicQueue(props) {
-  const history = useHistory()
+  
   const classes = useStyles()
   return (
     <Card className={classes.card}>

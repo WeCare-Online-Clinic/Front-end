@@ -3,14 +3,11 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Grid,
   makeStyles,
 } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { TextField } from '@material-ui/core'
-import { MenuItem } from '@material-ui/core'
-import { Divider } from '@material-ui/core'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   presContent: {
-    textAlign: 'center',
-    color: '#fff',
+    textAlign: 'center',    
     fontSize: '16px',
     backgroundColor: '#fff',
     color: '#3f51b5',

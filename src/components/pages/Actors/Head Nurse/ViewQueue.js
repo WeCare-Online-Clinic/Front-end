@@ -8,7 +8,7 @@ import { Grid, makeStyles, Box } from '@material-ui/core'
 import PatientQueueTable from '../../../Table/PatientQueueTable'
 import ManageQueue from '../../../Misc/ManageQueue'
 import PatientProfileCard from '../../../ProfileCard/PatientProfileCard'
-import ClinicQueue from '../../../ClinicCard/ClinicQueue'
+
 
 const useStyles = makeStyles({
   dataCard: {

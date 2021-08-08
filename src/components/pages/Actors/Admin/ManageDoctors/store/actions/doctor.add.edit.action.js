@@ -41,14 +41,14 @@ export function getDoctors() {
   return (dispatch, getState) => {
     request
       .then((response) => {
-        console.log('doctor list:', response.data)
+        console.log('doctor list in action:', response.data)
         dispatch({
           type: ON_GET_DOCTORS,
           payload: response.data,
         })
       })
       .catch((error) => {
-        console.log('error doctor list')
+        console.log('error doctor list hhfhfh')
       })
   }
 }

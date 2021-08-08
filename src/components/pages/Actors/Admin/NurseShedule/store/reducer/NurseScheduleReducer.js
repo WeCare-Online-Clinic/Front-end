@@ -2,7 +2,6 @@ import {
     ON_GET_NURSE_PROFILE_BY_ID,
     ON_GET_NURSE_SCHEDULE_BY_ID
 } from "../action/NurseScheduleAction";
-import * as _ from 'lodash'
 const initialState = {
 
     nurseProfile: {},

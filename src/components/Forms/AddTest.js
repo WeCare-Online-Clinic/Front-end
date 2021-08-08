@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import * as _ from 'lodash'
 
-import ShowIcon from '@material-ui/icons/Visibility'
-import ShowOffIcon from '@material-ui/icons/VisibilityOff'
-import { Link } from 'react-router-dom'
 
 let initFormValue = {
   patientName: '',

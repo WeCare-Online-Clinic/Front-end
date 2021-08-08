@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 
+
 import {
   Card,
   CardActions,
@@ -19,8 +20,8 @@ import {
   Button,
   AppBar,
   Grid,
-  TextField,
-  CardHeader,
+  TextField
+ 
 } from '@material-ui/core'
 import { DoctorData } from './DoctorData'
 import PageviewIcon from '@material-ui/icons/Pageview'
@@ -61,9 +62,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const DoctorDataTable = (props) => {
+const DoctorDataTable = (props)=> {
   const reducerData = useSelector(({ doctors }) => doctors.doctorAddEdit)
-  console.log('doctot list', reducerData.doctorList)
+  console.log('doctot list in component', reducerData.doctorList)
   const doctorList = reducerData.doctorList
 
   const history = useHistory()
@@ -90,16 +91,15 @@ const DoctorDataTable = (props) => {
   }
 
   return (
-    <div>
+    <div className="container">
       <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
           <Grid
             item
-            alignContent='center'
             style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
           >
-            <form clasName={classes.root}>
+            <form className={classes.root}>
               <TextField
                 className={classes.search_items}
                 label='Doctor Name'
@@ -160,26 +160,26 @@ const DoctorDataTable = (props) => {
                 </TableHead>
                 <TableBody>
                   {doctorList
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
                         doctor,index// add table rowDoctor
                       ) => (
-                        <TableRow className={classes.tableRow} hover>
+                      
+                        <TableRow className={classes.tableRow} hover key={index}>
                           <TableCell className={classes.cell}>
                             {doctor.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {doctor.firstName + ' ' + doctor.lastName}
+                            {doctor.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {doctor.email}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {doctor.mobile}
+                            {doctor.contact}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {doctor.clinic}
+                           {doctor.clinic && doctor.clinic.name}
                           </TableCell>
 
                           <TableCell>

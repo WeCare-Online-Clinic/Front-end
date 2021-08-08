@@ -13,13 +13,8 @@ import {
   TableHead,
   TableRow,
   TablePagination,
-  Button,
-  AppBar,
-  Grid,
-  TextField,
 } from '@material-ui/core'
 import { clinicHistory } from './ClinicHistoryData'
-import PageviewIcon from '@material-ui/icons/Pageview'
 
 const useStyles = makeStyles((theme) => ({
   root: {
