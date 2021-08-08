@@ -15,9 +15,15 @@ class DoctorScheduleService {
 getDoctorProfileDetailsById(id) {
     return axios.get(DOCTOR_DETAILS_BASE_URL+'/getDoctorProfile/'+id);
   }
-getDoctorScheduleDetailsById(id){
-    return axios.get(DOCTOR_DETAILS_BASE_URL+'/getDoctorSchedule/'+id); 
+getDoctorProfileDetailsByName(name){
+  return axios.get(DOCTOR_DETAILS_BASE_URL+'/getDoctorProfileByName/'+name);
 }
+getDoctorProfileDetailsByClinic(clinicId){
+  return axios.get(DOCTOR_DETAILS_BASE_URL+'/getDoctorProfileDetailsByClinic/'+clinicId);
+}
+// getDoctorScheduleDetailsById(id){
+//     return axios.get(DOCTOR_DETAILS_BASE_URL+'/getDoctorSchedule/'+id); 
+// }
 
 
 

@@ -163,7 +163,7 @@ const DoctorDataTable = (props) => {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        doctor // add table rowDoctor
+                        doctor,index// add table rowDoctor
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>

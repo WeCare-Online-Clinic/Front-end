@@ -3,34 +3,15 @@ import history from '../../../../../../../@history'
 
 export const ON_GET_DOCTOR_PROFILE_BY_ID='[ON_GET_DOCTOR_PROFILE_BY_ID] ON_GET_DOCTOR';
 export const ON_GET_DOCTOR_SCHEDULE_BY_ID='[ON_GET_DOCTOR_SCHEDULE_BY_ID] ON_GET_DOCTOR';
-// export const ON_SAVE_NURSE = '[ON_SAVE_NURSE] ON_SAVE_NURSE';
-// export const ON_GET_CLINIC_DAYS = '[ON_GET_CLINICS] ON_GET_CLINIC_DAYS';
+export const ON_GET_DOCTOR_PROFILE_BY_NAME='[ON_GET_DOCTOR_PROFILE_BY_NAME] ON_GET_DOCTOR';
+export const ON_GET_DOCTOR_PROFILE_BY_CLINIC='[ON_GET_DOCTOR_PROFILE_BY_CLINIC] ON_GET_DOCTOR';
 
-
-// export function saveNurse(nurse) {
-//     const request = NurseService.saveNurse(nurse);
-
-//     return (dispatch, getState) => {
-//         return request.then((response) => {
-
-//             alert("Successfully Registered"); 
-//             history.push('viewnurse');     
-//             dispatch({
-//                 type: ON_SAVE_NURSE,
-//                 payload: response.data
-//             })
-            
-//         }).catch((error)=>{          
-//             alert("Register failed, please try again"); 
-//         });
-
-//     };
-// }
 
 export function getDoctorProfileDetailsById(id) {
     const request =DoctorScheduleService.getDoctorProfileDetailsById(id);
     return (dispatch, getState) => {
-        request.then((response) => {                       
+        request.then((response) => {   
+            console.log('responce object :',response.data)                       
             dispatch({
                 type: ON_GET_DOCTOR_PROFILE_BY_ID,
                 payload: response.data
@@ -42,17 +23,47 @@ export function getDoctorProfileDetailsById(id) {
     };
 }
 
-
-export function getDoctorScheduleDetailsById(id) {
-    const request = DoctorScheduleService.getDoctorScheduleDetailsById(id);
-
+export function getDoctorProfileDetailsByName(name) {
+    const request =DoctorScheduleService.getDoctorProfileDetailsByName(name);
     return (dispatch, getState) => {
-        return request.then((response) => {        
-            return dispatch({
-                type: ON_GET_DOCTOR_SCHEDULE_BY_ID,
+        request.then((response) => {    
+            console.log('responce.. :',response.data)                   
+            dispatch({
+                type: ON_GET_DOCTOR_PROFILE_BY_NAME,
                 payload: response.data
-            });
-        }
-        );
+            })
+         
+        }).catch((error)=>{
+            console.log("error doctor details",)
+        })
     };
 }
+export function getDoctorProfileDetailsByClinic(clinicId) {
+    const request =DoctorScheduleService.getDoctorProfileDetailsByClinic(clinicId);
+    return (dispatch, getState) => {
+        request.then((response) => {    
+            console.log('responce.. :',response.data)                   
+            dispatch({
+                type: ON_GET_DOCTOR_PROFILE_BY_CLINIC,
+                payload: response.data
+            })
+         
+        }).catch((error)=>{
+            console.log("error doctor details",)
+        })
+    };
+}
+// export function getDoctorScheduleDetailsById(id) {
+//     const request = DoctorScheduleService.getDoctorScheduleDetailsById(id);
+
+//     return (dispatch, getState) => {
+//         return request.then((response) => {  
+//             console.log('responce.. : ',request.data)      
+//             return dispatch({
+//                 type: ON_GET_DOCTOR_SCHEDULE_BY_ID,
+//                 payload: response.data
+//             });
+//         }
+//         );
+//     };
+// }
