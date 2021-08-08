@@ -52,7 +52,7 @@ const AddDoctors = (props) => {
         const isValid = validation();
         if (isValid) {
             console.log("formValues before submit", formValue);
-            dispatch(Actions.saveDoctor(formValue));
+            // dispatch(Actions.saveDoctor(formValue));
 
         }
         else {
