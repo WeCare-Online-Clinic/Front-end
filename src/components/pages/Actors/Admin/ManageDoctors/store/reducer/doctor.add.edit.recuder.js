@@ -8,6 +8,9 @@ import {
   ON_RESET_DOCTOR_FORM_DATA,
   ON_SAVE_UPDATE_DOCTOR,
   ON_GET_CLINICS,
+  ON_GET_DOCTOR_PROFILE_BY_ID,
+  ON_GET_DOCTOR_PROFILE_BY_NAME,
+  ON_GET_DOCTOR_PROFILE_BY_CLINIC
 } from '../actions/doctor.add.edit.action'
 
 const initialState = {
@@ -15,7 +18,7 @@ const initialState = {
   doctor: {},
   clinics: [],
   clinicDays: [],
-  doctorList: [{}],
+  doctorList: [],
 }
 
 const doctorAddEditReducer = function (state = initialState, action) {
@@ -82,6 +85,26 @@ const doctorAddEditReducer = function (state = initialState, action) {
         clinicDays: [...action.payload],
       }
     }
+    case ON_GET_DOCTOR_PROFILE_BY_ID: {    
+      // let localdoctorProfile = _.cloneDeep(action.payload);  
+      return {
+          ...state,
+          doctorList: [...action.payload]
+      }
+
+  } 
+  case ON_GET_DOCTOR_PROFILE_BY_NAME:{
+      return{
+          ...state,
+          doctorList:[...action.payload]
+      }
+  }
+  case ON_GET_DOCTOR_PROFILE_BY_CLINIC:{
+      return{
+          ...state,
+          doctorList:[...action.payload]
+      }
+  }
 
     default: {
       return state

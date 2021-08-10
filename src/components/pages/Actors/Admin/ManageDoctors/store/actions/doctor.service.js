@@ -26,6 +26,15 @@ class DoctorService {
   getClinicDays(data) {
     return axios.get(DOCTOR_API_BASE_URL + '/getClinicDays/' + data)
   }
+  getDoctorProfileDetailsById(id) {
+    return axios.get(DOCTOR_API_BASE_URL+'/getDoctorProfile/'+id);
+  }
+  getDoctorProfileDetailsByName(name){
+  return axios.get(DOCTOR_API_BASE_URL+'/getDoctorProfileByName/'+name);
+  }
+  getDoctorProfileDetailsByClinic(clinicId){
+  return axios.get(DOCTOR_API_BASE_URL+'/getDoctorProfileDetailsByClinic/'+clinicId);
+  }
 }
 
 export default new DoctorService()

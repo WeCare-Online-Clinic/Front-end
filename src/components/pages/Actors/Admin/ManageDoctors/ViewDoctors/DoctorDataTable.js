@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
+import SearchBar from './SearchBar'
 
 
 import {
@@ -21,7 +22,7 @@ import {
   AppBar,
   Grid,
   TextField
- 
+
 } from '@material-ui/core'
 import { DoctorData } from './DoctorData'
 import PageviewIcon from '@material-ui/icons/Pageview'
@@ -38,14 +39,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 'inherit',
   },
   nameContainer: {
-    display: 'flex',
+    display: 'inline',
     alignItems: 'baseline',
   },
   status: {
     marginRight: 15,
   },
   actions: {
-    justifyContent: 'flex-end',
+    justifyContent: '',
   },
   cell: {
     color: '#4e4f50',
@@ -60,12 +61,15 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: '2px solid #3f51b5',
     padding: '5px',
   },
+
 }))
 
-const DoctorDataTable = (props)=> {
+const DoctorDataTable = (props) => {
   const reducerData = useSelector(({ doctors }) => doctors.doctorAddEdit)
-  console.log('doctot list in component', reducerData.doctorList)
-  const doctorList = reducerData.doctorList
+
+  const doctorList=reducerData.doctorList;
+
+
 
   const history = useHistory()
   const { className } = props
@@ -93,43 +97,21 @@ const DoctorDataTable = (props)=> {
   return (
     <div className="container">
       <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-          <Grid
-            item
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
-          >
-            <form className={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Doctor Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Doctor ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Clinic'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
-          </Grid>
+
+        <Grid
+          item
+          style={{ backgroundColor: '#3f51b5', borderRadius: '5px', alignItems: 'flex-end' }}
+        >
+
+          <nav className="navbar navbar-expand " style={{ float:'right' }}>
+            <div className="collapse navbar-collapse"   >
+              <SearchBar />
+            </div>
+          </nav>
+
+          
         </Grid>
+
 
         <CardContent className={classes.content}>
           <PerfectScrollbar>
@@ -162,9 +144,9 @@ const DoctorDataTable = (props)=> {
                   {doctorList
                     .map(
                       (
-                        doctor,index// add table rowDoctor
+                        doctor, index// add table rowDoctor
                       ) => (
-                      
+
                         <TableRow className={classes.tableRow} hover key={index}>
                           <TableCell className={classes.cell}>
                             {doctor.id}
@@ -179,7 +161,7 @@ const DoctorDataTable = (props)=> {
                             {doctor.contact}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                           {doctor.clinic && doctor.clinic.name}
+                            {doctor.clinic && doctor.clinic.name}
                           </TableCell>
 
                           <TableCell>

@@ -1,1 +1,1 @@
-export * from './dictor.add.edit.action'
+export * from './doctor.add.edit.action'

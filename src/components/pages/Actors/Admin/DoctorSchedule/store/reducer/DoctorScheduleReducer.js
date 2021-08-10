@@ -18,7 +18,7 @@ const DoctorScheduleReducer = function (state = initialState, action) {
             // let localdoctorProfile = _.cloneDeep(action.payload);  
             return {
                 ...state,
-                doctorProfile: {...action.payload}
+                doctorProfile: [...action.payload]
             }
 
         } 
