@@ -1,23 +1,30 @@
-.input-group {
+.input-group{
   height: 50px;
-  font-weight: bolder;
+  
 }
-.title {
+
+.input-group span{
+  width: 120px;
+  font-weight:bold;
+}
+.title{
   border-radius: 5px 5px 0 0;
-  background-color: #3f51b5;
+  background-color:#3f51b5;
   height: 50px;
 }
-.title h3 {
+.title h3{
   color: white;
 }
 
-.card {
+.card{
   border-radius: 5px;
 }
-.btn {
-  background-color: #3f51b5;
+.btn{
+ 
+ background-color: #3f51b5;
 }
-.btn h6 {
+.btn h6{
+ 
   color: white;
 }
 table {
@@ -26,8 +33,7 @@ table {
   width: 100%;
 }
 
-td,
-th {
+td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -35,4 +41,13 @@ th {
 
 tr:nth-child(even) {
   background-color: #d6c9e9;
+}
+
+.gender{
+  /* display: inline; */
+  margin-left: 10px;
+  /* display: none; */
+}
+.genderdiv{
+  margin-top: 15px;
 }

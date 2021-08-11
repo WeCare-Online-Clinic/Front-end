@@ -80,7 +80,7 @@ const DoctorDataTable = (props) => {
     // add table header names
     { text: 'Doctor ID' },
     { text: 'Doctor Name' },
-    { text: 'email' },
+    { text: 'Email' },
     { text: 'Contact No' },
     { text: 'Clinic' },
   ]
@@ -95,7 +95,7 @@ const DoctorDataTable = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="">
       <Card padding={'0'} className={clsx(classes.root, className)}>
 
         <Grid
