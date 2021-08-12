@@ -11,6 +11,19 @@ import LineStatCard from '../../../StatCard/LineStatCard'
 import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
 import { Button } from '@material-ui/core'
+import { getStorageItem, setStorageItem } from '../../../../utils/StorageUtils'
+import axios from 'axios'
+
+const getUserInfo = axios.get(
+  'http://localhost:8080/wecare/doctor/info/' + getStorageItem('user', true).id
+)
+
+getUserInfo.then((res) => {
+  if (res.status === 200) {
+    console.log(res.data)
+    setStorageItem('doctorInfo', res.data)
+  }
+})
 
 const useStyles = makeStyles({
   dataCard: {
@@ -21,10 +34,24 @@ const useStyles = makeStyles({
   },
 })
 
+const doctorName = getStorageItem('doctorInfo', true).name
+const doctorQualification = getStorageItem('doctorInfo', true).qualification
+const isProf = doctorQualification.includes('PhD')
+
+var fullName = ''
+
+if (isProf) {
+  fullName = 'Prof. ' + doctorName
+} else {
+  fullName = 'Dr. ' + doctorName
+}
+
+setStorageItem('doctorName', fullName)
+
 function Dashboard() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user={fullName} />}
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={

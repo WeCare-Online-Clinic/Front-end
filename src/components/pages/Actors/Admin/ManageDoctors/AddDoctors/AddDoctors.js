@@ -68,7 +68,7 @@ const AddDoctors = (props) => {
       isValid = false
     } else {
       localErrors.nameErrors.tooLong = null
-    }    
+    }
     //validating email
     if (formValue.email.trim().length < 1) {
       let emailMissing = Object.assign({}, { missing: 'Email is missing' })

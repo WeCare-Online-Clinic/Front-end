@@ -1,3 +1,8 @@
+import { getStorageItem, setStorageItem } from '../../utils/StorageUtils'
+
+const user = getStorageItem('user')
+console.log(user)
+
 export const adminDataItems = [
   {
     name: 'Registered Patients',

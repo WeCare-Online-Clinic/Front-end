@@ -5,11 +5,12 @@ import Footer from '../../../Footer'
 import SideBar from '../../../Sidebar/Sidebar'
 import PatientDataTable from '../../../Table/PatientDataTable'
 import { doctorMenuItems } from '../../../Sidebar/menuItem'
+import { getStorageItem } from '../../../../utils/StorageUtils'
 
 function View_Patient() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user={getStorageItem('doctorName')} />}
       sidebar={<SideBar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={

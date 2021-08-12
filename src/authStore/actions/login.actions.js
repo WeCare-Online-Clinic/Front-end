@@ -20,16 +20,17 @@ export function submitLogin(data) {
   return (dispatch, getState) => {
     request
       .then((res) => {
-        console.log('responce', res)
+        console.log('response', res.data)
         Constants.LOGGED_IN_USER = res.data
-        setStorageItem('user', res.data)
         if (res.status === 200) {
           dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data,
           })
           let userRole = res.data.userRole
-          console.log('userRole', userRole)
+          let userId = res.data.id
+          console.log('userRole', userRole, userId)
+          setStorageItem('user', res.data)
           switch (userRole) {
             case 'admin':
               {

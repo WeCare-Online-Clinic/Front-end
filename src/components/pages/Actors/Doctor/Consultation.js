@@ -10,6 +10,7 @@ import QueueBar from '../../../Misc/QueueBar'
 import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { TextField } from '@material-ui/core'
 import ClinicForm from '../../../Forms/ClinicForm'
+import { getStorageItem } from '../../../../utils/StorageUtils'
 
 const useStyles = makeStyles({
   textTitle: {
@@ -43,7 +44,7 @@ const useStyles = makeStyles({
 function Dashboard() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user={getStorageItem('doctorName')} />}
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={

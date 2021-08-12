@@ -11,10 +11,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-
 } from '@material-ui/core'
-import { scheduleData } from './ScheduleData'
-
+import { getStorageItem } from '../../utils/StorageUtils'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '5px',
   },
 }))
+
+const doctorSchedules = getStorageItem('doctorInfo', true).doctorSchedules
+console.log(doctorSchedules)
 
 function ScheduleTable(props) {
   const { className } = props
@@ -91,13 +92,17 @@ function ScheduleTable(props) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {scheduleData.map(
+                {doctorSchedules.map(
                   (
                     row // add table row of patientData
                   ) => (
                     <TableRow className={classes.tableRow} hover>
-                      <TableCell className={classes.cell}>{row.day}</TableCell>
-                      <TableCell className={classes.cell}>{row.time}</TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.clinicSchedule.day}
+                      </TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.clinicSchedule.time}
+                      </TableCell>
                     </TableRow>
                   )
                 )}

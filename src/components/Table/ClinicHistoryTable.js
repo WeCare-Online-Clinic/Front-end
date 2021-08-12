@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ClinicHistoryTable = (props) => {
   const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(9) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
@@ -159,7 +159,7 @@ const ClinicHistoryTable = (props) => {
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 9, 15]}
+            rowsPerPageOptions={[5, 8, 15]}
           />
         </CardActions>
       </Card>

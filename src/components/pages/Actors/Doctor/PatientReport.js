@@ -10,6 +10,7 @@ import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
 import PatientReportsTable from '../../../Table/PatientReportsTable'
 import ReportCard from '../../../ClinicCard/ReportCard'
+import { getStorageItem } from '../../../../utils/StorageUtils'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 function PatientReport() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user={getStorageItem('doctorName')} />}
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={

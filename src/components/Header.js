@@ -18,6 +18,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useHistory } from 'react-router'
+import { clearAppLocalStorage } from '../utils/StorageUtils'
 
 export default function Header(props) {
   const history = useHistory()
@@ -88,7 +89,10 @@ export default function Header(props) {
               startIcon={<ExitToAppIcon />}
               color='primary'
               size='large'
-              onClick={() => history.push('/login')}
+              onClick={() => {
+                clearAppLocalStorage()
+                history.push('/login')
+              }}
             >
               Log Out
             </Button>

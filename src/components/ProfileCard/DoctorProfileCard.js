@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar'
 import { red } from '@material-ui/core/colors'
+import { getStorageItem } from '../../utils/StorageUtils'
 
 const useStyles = makeStyles({
   card: {
@@ -20,13 +21,13 @@ const useStyles = makeStyles({
   cardHeader: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: '24px',
+    fontSize: '18px',
     fontWeight: 'bold',
   },
   cardContent: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: '16px',
+    fontSize: '18px',
   },
   cardActions: {
     display: 'flex',
@@ -36,13 +37,17 @@ const useStyles = makeStyles({
   textField: {
     padding: '5px',
     color: '#4c5355',
-    fontSize: '16px',
+    fontSize: '18px',
     textAlign: 'left',
   },
   avatar: {
+    fontSize: '18px',
     backgroundColor: red[500],
   },
 })
+
+const doctorInfo = getStorageItem('doctorInfo', true)
+console.log(doctorInfo)
 
 function DoctorProfileCard(props) {
   const classes = useStyles()
@@ -58,11 +63,17 @@ function DoctorProfileCard(props) {
         style={{ backgroundColor: '#3f51b5' }}
       >
         <Grid item>
-          <CardHeader avatar={<Avatar className={classes.avatar}>A</Avatar>} />
+          <CardHeader
+            avatar={
+              <Avatar className={classes.avatar}>
+                {doctorInfo.name[0].toUpperCase()}
+              </Avatar>
+            }
+          />
         </Grid>
         <Grid item>
           <CardHeader
-            title='Dr. Asela Gunawardena'
+            title={getStorageItem('doctorName')}
             className={classes.cardHeader}
           />
         </Grid>
@@ -79,11 +90,13 @@ function DoctorProfileCard(props) {
             <div className={classes.textField}>Clinic</div>
           </Grid>
           <Grid item sm={6}>
-            <div className={classes.textField}>: 132323345</div>
-            <div className={classes.textField}>: MBBS</div>
-            <div className={classes.textField}>: 0771234567</div>
-            <div className={classes.textField}>: doctor@gmail.com</div>
-            <div className={classes.textField}>: Eye Clinic</div>
+            <div className={classes.textField}>: {doctorInfo.doctorId}</div>
+            <div className={classes.textField}>
+              : {doctorInfo.qualification}
+            </div>
+            <div className={classes.textField}>: {doctorInfo.contact}</div>
+            <div className={classes.textField}>: {doctorInfo.email}</div>
+            <div className={classes.textField}>: {doctorInfo.clinic.name}</div>
           </Grid>
         </Grid>
       </CardContent>
