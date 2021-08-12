@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
+import SearchBar from './SearchBar'
 
 
 
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 const NurseDataTable = (props) => {
 
   const reducerData = useSelector(({ nurses }) => nurses.manageNurse);
-  console.log("doctot list", reducerData.nurseList);
+  console.log("nurse list", reducerData.nurseList);
   const nurseList = reducerData.nurseList;
 
   const history = useHistory()
@@ -78,7 +79,8 @@ const NurseDataTable = (props) => {
     { text: 'Nurse ID' },
     { text: 'Nurse Name' },
     { text: 'Email' },
-    { text: 'Mobile' },
+    { text: 'Gender' },
+    { text: 'Contact No' },
     { text: 'Type' },
     { text: 'Clinic' },
 
@@ -103,35 +105,11 @@ const NurseDataTable = (props) => {
             alignContent='center'
             style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
           >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Nurse Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Nurse ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Clinic'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+            <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+              <div className="collapse navbar-collapse"   >
+                <SearchBar />
+              </div>
+            </nav>
           </Grid>
         </Grid>
         <CardContent className={classes.content}>
@@ -162,6 +140,7 @@ const NurseDataTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
+
                   {nurseList
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
@@ -173,27 +152,30 @@ const NurseDataTable = (props) => {
                             {nurse.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.firstName + " " + nurse.lastName}
+                            {nurse.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {nurse.email}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.mobile}
+                            {nurse.gender == 'f' ? 'female' : 'male'}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.type == 0 ? 'regular' : 'head'}
+                            {nurse.contact}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {nurse.clinic}
+                            {nurse.isHead == true ? 'head' : 'regular'}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {nurse.clinic && nurse.clinic.name}
                           </TableCell>
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push({pathname:'nurseschedule',state:nurse.id})}
-                         
+                              onClick={() => history.push({ pathname: 'nurseschedule', state: nurse.id })}
+
                             >
                               View
                             </Button>
