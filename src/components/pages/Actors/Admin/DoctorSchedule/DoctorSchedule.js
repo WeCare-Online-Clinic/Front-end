@@ -7,6 +7,9 @@ import reducer from './store/reducer/index'
 import * as Actions from "./store/action";
 import SearchBar from './SearchBar';
 import * as _ from 'lodash'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 
 
 
@@ -15,9 +18,8 @@ import * as _ from 'lodash'
 
 const DoctorSchedule = props => {
     const reducerData = useSelector(({ doctorDetails }) => doctorDetails.doctorSchedule);
-    let doctorProfile;    
+    let doctorProfile;
     doctorProfile = reducerData.doctorProfile;
- 
 
     return (
         <div className="container">
@@ -73,7 +75,7 @@ const DoctorSchedule = props => {
                                 <div className="card  bg-light mb-3" >
                                     <div className="card-header" style={{ textAlign: 'center', backgroundColor: '#3f51b5', color: 'white', height: '3cm' }}><h3>Clinic Details</h3></div>
                                     <div className="card-body">
-                                    <p>Clinic : {doctorProfile.clinic && doctorProfile.clinic.name} </p>
+                                        <p>Clinic : {doctorProfile.clinic && doctorProfile.clinic.name} </p>
                                         <table className="mt-3">
                                             <tbody>
                                                 <tr><th>Day</th><th>Time</th></tr>
@@ -84,14 +86,25 @@ const DoctorSchedule = props => {
                                                             <th>{schedule.clinicSchedule.time}</th>
 
                                                         </tr>
-
-
                                                     )
                                                     )}
                                             </tbody>
                                         </table>
                                         <div className="mr-5">
-                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'right' }}>Update Shedule</button>
+                                            <Popup trigger={<button> Trigger</button>} position="">
+                                               <div>
+                                                   <h1>jhdfjhgS</h1>
+                                               </div>
+                                                {/* {close => (
+                                                    <div>
+                                                        Content here
+                                                        <a className="close" onClick={close}>
+                                                            &times;
+                                                        </a>
+                                                    </div>
+                                                )} */}
+                                            </Popup>
+                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'right' }} >Update Shedule</button>
                                             <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }}>Delete</button>
                                         </div>
                                     </div>
@@ -102,10 +115,6 @@ const DoctorSchedule = props => {
                 ))
 
             }
-     
-
-
-
 
         </div>
     )

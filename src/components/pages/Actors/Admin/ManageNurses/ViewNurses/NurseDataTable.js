@@ -25,7 +25,6 @@ import {
   TextField,
 } from '@material-ui/core'
 import { DoctorData } from './DoctorData'
-import PageviewIcon from '@material-ui/icons/Pageview'
 import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -103,7 +102,7 @@ const NurseDataTable = (props) => {
           <Grid
             item
             alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
+            style={{ backgroundColor: '', borderRadius: '5px' }}
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
