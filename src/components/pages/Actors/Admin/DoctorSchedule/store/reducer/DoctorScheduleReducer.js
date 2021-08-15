@@ -1,17 +1,19 @@
 import {
     ON_GET_DOCTOR_PROFILE_BY_ID,  
     ON_GET_DOCTOR_PROFILE_BY_NAME,
-    ON_GET_DOCTOR_PROFILE_BY_CLINIC
+    ON_GET_DOCTOR_PROFILE_BY_CLINIC,
+    ON_GET_CLINIC_SCHEDULE_BY_CLINICID
 } from "../action/DoctorScheduleAction";
 import * as _ from 'lodash'
 const initialState = {
 
-    doctorProfile: [{}]
+    doctorProfile: [{}],
+    clinicSchedule:[]
   
 
 };
 const DoctorScheduleReducer = function (state = initialState, action) {
-
+    
     switch (action.type) {
     
         case ON_GET_DOCTOR_PROFILE_BY_ID: {    
@@ -32,6 +34,13 @@ const DoctorScheduleReducer = function (state = initialState, action) {
             return{
                 ...state,
                 doctorProfile:[...action.payload]
+            }
+        }
+        case ON_GET_CLINIC_SCHEDULE_BY_CLINICID:{      
+            // console.log("clinic schedule in reducer:",action.payload);     
+            return{
+                ...state,
+                clinicSchedule:{...action.payload}
             }
         }
 

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const patientReportsTable = (props) => {
+const PatientReportsTable = (props) => {
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
@@ -162,4 +162,4 @@ const patientReportsTable = (props) => {
   )
 }
 
-export default patientReportsTable
+export default PatientReportsTable

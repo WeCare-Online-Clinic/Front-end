@@ -7,19 +7,16 @@ import reducer from './store/reducer/index'
 import * as Actions from "./store/action";
 import SearchBar from './SearchBar';
 import * as _ from 'lodash'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
-
-
-
-
+import UpdateSchedule from './UpdateSchedule';
 
 
 const DoctorSchedule = props => {
     const reducerData = useSelector(({ doctorDetails }) => doctorDetails.doctorSchedule);
     let doctorProfile;
     doctorProfile = reducerData.doctorProfile;
+
+    console.log('profile :', doctorProfile);
 
     return (
         <div className="container">
@@ -45,7 +42,7 @@ const DoctorSchedule = props => {
                                                 <img src={profile} height="100" width="100" style={{ marginBottom: '5px' }}></img>
                                             </div>
                                             <div className="col">
-                                                <h3>{doctorProfile.firstName}</h3>
+                                                <h3>{doctorProfile.name}</h3>
                                             </div>
                                         </div>
 
@@ -91,20 +88,9 @@ const DoctorSchedule = props => {
                                             </tbody>
                                         </table>
                                         <div className="mr-5">
-                                            <Popup trigger={<button> Trigger</button>} position="">
-                                               <div>
-                                                   <h1>jhdfjhgS</h1>
-                                               </div>
-                                                {/* {close => (
-                                                    <div>
-                                                        Content here
-                                                        <a className="close" onClick={close}>
-                                                            &times;
-                                                        </a>
-                                                    </div>
-                                                )} */}
-                                            </Popup>
-                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'right' }} >Update Shedule</button>
+                                                   
+                                             {/* <UpdateSchedule doctorProfile={doctorProfile} />                                            */}
+                                            <UpdateSchedule doctorProfile={doctorProfile} />
                                             <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }}>Delete</button>
                                         </div>
                                     </div>
@@ -117,6 +103,7 @@ const DoctorSchedule = props => {
             }
 
         </div>
+                
     )
 }
 
