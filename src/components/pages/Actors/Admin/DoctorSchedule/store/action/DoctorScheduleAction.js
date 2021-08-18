@@ -84,3 +84,34 @@ export function getClinicSchedule(clinicId) {
         })
     };
 }
+
+export function deleteDoctorSchedule(doctorId) {
+    const request = DoctorScheduleService.deleteDoctorSchedule(doctorId);
+    return (dispatch, getState) => {
+        request.then((response) => {          
+            console.log("delete doctor schedule",response.data);       
+
+
+        }).catch((error) => {
+            console.log("delete doctor schedule error",)
+        })
+    };
+}
+
+export function updateDoctorSchedule(newDoctorSchedule,doctorId) {
+    const request = DoctorScheduleService.updateDoctorSchedule(newDoctorSchedule);
+    return (dispatch, getState) => {
+        request.then((response) => { 
+            alert("successfully updated");           
+            console.log("update doctor schedule success",response.data);         
+                // dispatch({
+                //     type: ON_GET_CLINIC_SCHEDULE_BY_CLINICID,
+                //     payload: response.data
+                // })         
+
+
+        }).catch((error) => {
+            console.log("update doctor schedule error",)
+        })
+    };
+}

@@ -1,25 +1,77 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import withReducer from '../../../../../store/withReducer';
 import reducer from './store/reducer/index';
 import * as Actions from "./store/action";
 import { useDispatch, useSelector } from 'react-redux';
+import history from '../../../../../@history'
+
 
 Modal.setAppElement('#root')
 const UpdateSchedule = (props) => {
-    const [modalIsopen, setmodalIsopen] = useState(false);
-
     const dispatch = useDispatch();
     let doctorProfile = props.doctorProfile;
+    console.log("doctor props profile :",doctorProfile);
     let clinicId = doctorProfile.clinic && doctorProfile.clinic.id;
     const reducerData = useSelector(({ doctorClinicSchedule }) => doctorClinicSchedule.doctorSchedule);
     let clinicSchedule = reducerData.clinicSchedule && reducerData.clinicSchedule;
-    console.log("clinic schedule in update---- : ", clinicSchedule.clinicSchedules);
+ 
+
+    const [modalIsopen, setmodalIsopen] = useState(false);
+    const [newdoctorSchedule, setdoctorSchedule] = useState([]);
+    const [formValue,setFormValue]=useState(doctorProfile);
+ 
+   
 
     useEffect(() => {
-        dispatch(Actions.getClinicSchedule(clinicId));
+        setFormValue(doctorProfile);
+        dispatch(Actions.getClinicSchedule(clinicId));        
+       
     }, [modalIsopen])
- 
+
+    const onUpdateSubmit=(e)=>{
+        e.preventDefault();      
+
+        console.log("new doctor schedule",newdoctorSchedule);   
+        const m= parseInt(doctorProfile.id) ;   
+        console.log("doctor id submit:",m);        
+        console.log("formVlaues before submit :: ",formValue);
+        dispatch(Actions.deleteDoctorSchedule(m)); //delete existing schedule form doctor_schedule table
+
+        updateSchedule(newdoctorSchedule);
+             
+
+    }
+    const updateSchedule=(newdoctorSchedule)=>{
+        dispatch(Actions.updateDoctorSchedule(newdoctorSchedule,doctorProfile.id));      
+       setmodalIsopen(false);
+       setdoctorSchedule([]);
+
+    }
+    const  onScheduleChange=(v,schedule)=>{      
+        let name = parseInt(v.target.name)       
+        let d={
+            doctor:{id:doctorProfile.id},
+            clinicSchedule: {id:name}
+        }
+
+        if(v.target.checked){           
+            newdoctorSchedule.push(d)
+        }  
+        else{
+            let index=newdoctorSchedule.findIndex(
+                (x)=>x.clinicSchedule.id===v.id
+            )
+            if(index>=0){
+                newdoctorSchedule.splice(index,1)
+            }
+          //  doctorSchedule.pop(d);
+        }         
+    
+      
+
+    }
+
     return (
         <div>
             <button className="btn btn-primary mt-3" onClick={() => setmodalIsopen(true)} style={{ height: '40px', float: 'right' }}>
@@ -40,8 +92,8 @@ const UpdateSchedule = (props) => {
                         content: {
                             // color: 'orange',
                             top: '50px',
-                            right: '300px',
-                            left: '300px',
+                            right: '400px',
+                            left: '450px',
                             bottom: '50px',
 
 
@@ -51,24 +103,19 @@ const UpdateSchedule = (props) => {
             >
 
 
-                <div
-                    className='input-group mb-3'
-                    style={{ display: 'inline', alignContent: 'center' }}
-                >
+                <form className="form" >
                     <React.Fragment>
                         <span
                             className='input-group-text'
-                            style={{ width: '100%', height: '50px', display: 'inline', float: 'left' }}
+                            style={{ width: '100%', height: '50px', display: 'inline', float: 'left', backgroundColor: '#3f51b5', fontWeight: 'bold', fontSize: '18px', color: 'white' }}
                         >
-                            Clinic Schedule -
+                            Update Clinic Schedule - {clinicSchedule.name}
                         </span>
-                        <div
-                            className='className=form-control mt-3'
-                            style={{ position: 'relative' }}
-                        >
+                        <div className='className=form-control mt-3' style={{ position: 'relative' }}                        >
                             <table border='1px'>
                                 <tr>
                                     <th></th>
+                                    <th>Id</th>
                                     <th> Day </th>
                                     <th> Time </th>
                                 </tr>
@@ -83,9 +130,9 @@ const UpdateSchedule = (props) => {
                                                     key={index}
                                                     id={schedule.id}
                                                     name={schedule.id}
-                                                // onChange={(e) =>
-                                                //     onSheduleChange(e, clinicSchedule)
-                                                // }
+                                                    onChange={(e) =>
+                                                        onScheduleChange(e,schedule)
+                                                    }
                                                 />
                                             </td>
                                             <td>
@@ -108,14 +155,13 @@ const UpdateSchedule = (props) => {
                                 })}
                             </table>
                         </div>
+                        <div className="mt-5">
+                            <button className="btn btn-primary mt-3" style={{ height: '40px', width: '25%', float: 'right', backgroundColor: '#b3246b' }} onClick={() => setmodalIsopen(false)}>close</button>
+                            <button className="btn btn-primary mt-3" style={{ height: '40px', width: '25%', float: 'left', backgroundColor: '#3f51b5' }} onClick={onUpdateSubmit}>Submit</button>
+                        </div>
                     </React.Fragment>
-                </div>
+                </form>
 
-
-
-                <div>
-                    <button onClick={() => setmodalIsopen(false)}>close</button>
-                </div>
             </Modal>
         </div>
     )

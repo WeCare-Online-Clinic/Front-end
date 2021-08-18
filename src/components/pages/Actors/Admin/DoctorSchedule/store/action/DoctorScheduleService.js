@@ -19,6 +19,13 @@ getClinicSchedule(clinicId){
   return axios.get(DOCTOR_DETAILS_BASE_URL+'/getClinicSchedule/'+clinicId);
 }
 
+deleteDoctorSchedule(doctorId){
+  return axios.delete(DOCTOR_DETAILS_BASE_URL+'/deleteDoctorSchedule/'+doctorId);
+}
+
+updateDoctorSchedule(newDoctorSchedule){
+  return axios.post(DOCTOR_DETAILS_BASE_URL+'/updateDoctorSchedule/',newDoctorSchedule);
+}
 
 
 

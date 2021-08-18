@@ -7,8 +7,7 @@ import * as Actions from '../store/actions/doctor.add.edit.action'
 import Constants from '../../../../../../utils/Constants'
 import reducer from '../store/reducer'
 import withReducer from '../../../../../../store/withReducer'
-import axios from 'axios'
-import { forEach } from 'lodash'
+
 const Specialization = Constants.SPECIALIZATION
 
 let initFormValue = {
@@ -24,8 +23,7 @@ let initFormValue = {
 
 let initError = {
   nameErrors: {},
-  emailErrors: {},
-  //doctorIdErrors: {},
+  emailErrors: {}, 
   contactErrors: {},
   qualificationError: {},
 }

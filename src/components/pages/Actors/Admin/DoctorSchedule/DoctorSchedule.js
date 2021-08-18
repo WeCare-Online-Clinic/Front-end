@@ -16,7 +16,7 @@ const DoctorSchedule = props => {
     let doctorProfile;
     doctorProfile = reducerData.doctorProfile;
 
-    console.log('profile :', doctorProfile);
+    // console.log('profile :', doctorProfile);
 
     return (
         <div className="container">
@@ -89,7 +89,7 @@ const DoctorSchedule = props => {
                                         </table>
                                         <div className="mr-5">
                                                    
-                                             {/* <UpdateSchedule doctorProfile={doctorProfile} />                                            */}
+                                           
                                             <UpdateSchedule doctorProfile={doctorProfile} />
                                             <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }}>Delete</button>
                                         </div>

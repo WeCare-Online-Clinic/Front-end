@@ -64,7 +64,7 @@ function SearchBar() {
         e.preventDefault();
         const isValid = validation();
         if (isValid) {
-            console.log("formValues before submit", formValue);
+           // console.log("formValues before submit", formValue);
             if(Object.keys(formValue.doctorId).length!=0){
                 // console.log('doctor id',formValue.doctorId);
                 dispatch(Actions.getDoctorProfileDetailsById(formValue.doctorId));
@@ -120,7 +120,7 @@ function SearchBar() {
         setErrors({ ...localErrors }); //push all errors to errors object
         return isValid;
     }
-    console.log('formvalues', formValue);
+    // console.log('formvalues', formValue);
     return (
         <React.Fragment>
             <form className="form" >
