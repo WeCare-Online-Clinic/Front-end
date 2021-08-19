@@ -140,7 +140,7 @@ const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard')
 )
 const HeadNurseViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/ViewPatient')
+  import('./components/pages/Actors/Head Nurse/ManagePatient/ViewPatients/ViewPatient')
 )
 const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
@@ -153,7 +153,7 @@ const HeadNurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/HeadNurseProfile')
 )
 const HeadNurseRegister = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/Register/PatientRegister')
+  import('./components/pages/Actors/Head Nurse/ManagePatient/Register/PatientRegister')
 )
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage')
