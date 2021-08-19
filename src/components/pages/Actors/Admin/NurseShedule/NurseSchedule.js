@@ -5,6 +5,8 @@ import withReducer from '../../../../../store/withReducer'
 import reducer from './store/reducer/index'
 import {useSelector } from 'react-redux';
 import SearchBar from './SearchBar';
+import 'reactjs-popup/dist/index.css';
+import UpdateSchedule from './UpdateSchedule';
 
 
 const NurseSchedule = props => {
@@ -82,7 +84,7 @@ nurseProfile && nurseProfile.map((nurseProfile, index) => (
                   )}
               </table>
               <div className="mr-5" >
-                <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'right' }}>Update Shedule</button>
+                <UpdateSchedule nurseProfile={nurseProfile} />
                 <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }}>Delete</button>
               </div>
             </div>

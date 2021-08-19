@@ -32,7 +32,7 @@ export function saveDoctor(doctor) {
         })
       })
       .catch((error) => {
-        alert('Register failed, please try again')
+        // alert('Register failed, please try again')
       })
   }
 }

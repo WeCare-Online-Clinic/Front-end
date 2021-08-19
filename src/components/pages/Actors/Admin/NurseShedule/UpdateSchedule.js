@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import withReducer from '../../../../../store/withReducer';
-import reducer from './store/reducer/index';
+import reducer from './store/reducer/index'
 import * as Actions from "./store/action";
 import { useDispatch, useSelector } from 'react-redux';
-import history from '../../../../../@history'
 
 
 Modal.setAppElement('#root')
+
 const UpdateSchedule = (props) => {
     const dispatch = useDispatch();
-    let doctorProfile = props.doctorProfile;
-    console.log("doctor props profile :",doctorProfile);
-    let clinicId = doctorProfile.clinic && doctorProfile.clinic.id;
-    const reducerData = useSelector(({ doctorClinicSchedule }) => doctorClinicSchedule.doctorSchedule);
+    let nurseProfile = props.nurseProfile;
+    console.log("nurse props profile :",nurseProfile);
+    let clinicId = nurseProfile.clinic && nurseProfile.clinic.id;
+    const reducerData = useSelector(({ nurseClinicSchedule }) => nurseClinicSchedule.nurseSchedule);
     let clinicSchedule = reducerData.clinicSchedule && reducerData.clinicSchedule;
  
 
     const [modalIsopen, setmodalIsopen] = useState(false);
-    const [newdoctorSchedule, setdoctorSchedule] = useState([]);
-    const [formValue,setFormValue]=useState(doctorProfile);
+    const [newnurseSchedule, setNurseSchedule] = useState([]);
+    const [formValue,setFormValue]=useState(nurseProfile);
  
    
 
     useEffect(() => {
-        setFormValue(doctorProfile);
+        setFormValue(nurseProfile);
         dispatch(Actions.getClinicSchedule(clinicId));        
        
     }, [modalIsopen])
@@ -32,42 +32,38 @@ const UpdateSchedule = (props) => {
     const onUpdateSubmit=(e)=>{
         e.preventDefault();      
 
-        console.log("new doctor schedule",newdoctorSchedule);   
-        const m= parseInt(doctorProfile.id) ;   
-        console.log("doctor id submit:",m);        
+        console.log("new nurse schedule",newnurseSchedule);   
+        const m= parseInt(nurseProfile.id) ;   
+        console.log("nurse id submit:",m);        
         console.log("formVlaues before submit :: ",formValue);
-        dispatch(Actions.deleteDoctorSchedule(m)); //delete existing schedule form doctor_schedule table
+        dispatch(Actions.deleteNurseSchedule(m)); //delete existing schedule form nurse_schedule table
 
-        updateSchedule(newdoctorSchedule);
+        updateSchedule(newnurseSchedule);
              
 
     }
-    const updateSchedule=(newdoctorSchedule)=>{
-        dispatch(Actions.updateDoctorSchedule(newdoctorSchedule,doctorProfile.id));      
+    const updateSchedule=(newnurseSchedule)=>{
+        dispatch(Actions.updateNurseSchedule(newnurseSchedule,nurseProfile.id));      
        setmodalIsopen(false);
-       setdoctorSchedule([]);
-       history.push({
-        pathname: 'doctorschedule',
-        state: doctorProfile.id,
-      })
-    
+       setNurseSchedule([]);
+
     }
     const  onScheduleChange=(v,schedule)=>{      
         let name = parseInt(v.target.name)       
         let d={
-            doctor:{id:doctorProfile.id},
+            nurse:{id:nurseProfile.id},
             clinicSchedule: {id:name}
         }
 
         if(v.target.checked){           
-            newdoctorSchedule.push(d)
+            newnurseSchedule.push(d)
         }  
         else{
-            let index=newdoctorSchedule.findIndex(
+            let index=newnurseSchedule.findIndex(
                 (x)=>x.clinicSchedule.id===v.id
             )
             if(index>=0){
-                newdoctorSchedule.splice(index,1)
+                newnurseSchedule.splice(index,1)
             }
           //  doctorSchedule.pop(d);
         }         
@@ -105,13 +101,9 @@ const UpdateSchedule = (props) => {
                     }
                 }
             >
-
-
                 <form className="form" >
                     <React.Fragment>
-                        <span
-                            className='input-group-text'
-                            style={{ width: '100%', height: '50px', display: 'inline', float: 'left', backgroundColor: '#3f51b5', fontWeight: 'bold', fontSize: '18px', color: 'white' }}
+                        <span className='input-group-text'   style={{ width: '100%', height: '50px', display: 'inline', float: 'left', backgroundColor: '#3f51b5', fontWeight: 'bold', fontSize: '18px', color: 'white' }}
                         >
                             Update Clinic Schedule - {clinicSchedule.name}
                         </span>
@@ -170,5 +162,4 @@ const UpdateSchedule = (props) => {
         </div>
     )
 }
-// export default UpdateSchedule;
-export default withReducer('doctorClinicSchedule', reducer)(UpdateSchedule);
+export default withReducer('nurseClinicSchedule', reducer)(UpdateSchedule);
