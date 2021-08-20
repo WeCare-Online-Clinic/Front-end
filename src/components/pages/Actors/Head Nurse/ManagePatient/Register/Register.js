@@ -13,11 +13,11 @@ import withReducer from '../../../../../../store/withReducer'
 let initFormValue = {
     name: '',
     nic: '',
-    addr:'',
+    address:'',
     email: '',
     gender: '',
     contact: '',
-    dob: '',
+    birthdate: '',
     clinic: '',
    
 }
@@ -28,8 +28,8 @@ let initError = {
     contactErrors: {},
     nicErrors: {},
     clinicErrors:  {},
-    addrErrors:{},
-    dobErrors:{},   
+    addressErrors:{},
+    birthdateErrors:{},   
 }
 
 const Register = (props) => {
@@ -122,24 +122,24 @@ const Register = (props) => {
             localErrors.nicErrors.nicMissing = null;
         }
 
-        // validating dob
-        if(formValue.dob.length<1){
-            let dobMissing=Object.assign({},{dobMissing:'date of birth is missing'});
-            localErrors.dobErrors=dobMissing;
+        // validating birthdate
+        if(formValue.birthdate.length<1){
+            let birthdateMissing=Object.assign({},{birthdateMissing:'date of birth is missing'});
+            localErrors.birthdateErrors=birthdateMissing;
             isValid=false;
         }
         else{
-            localErrors.dobErrors.dobMissing=null;
+            localErrors.birthdateErrors.birthdateMissing=null;
         }
        
             //validating ptient adress
-            if(formValue.addr.trim().length<1){               
-                let addrMissing=Object.assign({},{missing:' Address is missing'}); //make a local object 'ptientNameMissing' and add the error 
-                localErrors.addrErrors=addrMissing;  //push the error to localErrors   
+            if(formValue.address.trim().length<1){               
+                let addressMissing=Object.assign({},{missing:' addressess is missing'}); //make a local object 'ptientNameMissing' and add the error 
+                localErrors.addressErrors=addressMissing;  //push the error to localErrors   
                 isValid=false;
             }
             else{
-                localErrors.addrErrors.missing=null;
+                localErrors.addressErrors.missing=null;
             }  
 
         setErrors({ ...localErrors }) //push all errors to errors object
@@ -182,20 +182,20 @@ const Register = (props) => {
                                     )
                                 })}
                             </div>
-                            {/* Address */}
+                            {/* addressess */}
                             <div className="input-group mb-3">
                                     <span className="input-group-text">Address:</span>
                                     <textarea placeholder="Patient Address"                                            
-                                           name="addr" 
+                                           name="address" 
                                            className="form-control"
-                                           value={formValue.addr}                                    
+                                           value={formValue.address}                                    
                                            onChange={onValueChange}>
                                     </textarea>                                 
                                  </div>
                                  {/* first address errors */}
                                  <div className="mb-2">
-                                    {Object.keys(errors.addrErrors).map((key,index)=>{
-                                            return <div key={index} style={{color:"red"}}>{errors.addrErrors[key]}</div>
+                                    {Object.keys(errors.addressErrors).map((key,index)=>{
+                                            return <div key={index} style={{color:"red"}}>{errors.addressErrors[key]}</div>
                                         })}
                                  </div>
 
@@ -216,21 +216,21 @@ const Register = (props) => {
                                                 return <div key={index} style={{ color: "red" }}>{errors.nicErrors[key]}</div>
                                             })}
                                         </div>
-                                   {/* DoB */}
+                                   {/* birthdate */}
                                    <div className="input-group mb-3">
                                                 <span className="input-group-text">Date of Birth:</span>
                                                 <input type="date"
                                                     placeholder="Date of Birth" 
-                                                    name="dob" 
+                                                    name="birthdate" 
                                                     className="form-control"
-                                                    value={formValue.dob}
+                                                    value={formValue.birthdate}
                                                     onChange={onValueChange}>
                                                 </input>                
                                             </div>
                                             {/* date of birth errors */}
                                             <div className="mb-2">
-                                                {Object.keys(errors.dobErrors).map((key,index)=>{
-                                                        return <div key={index} style={{color:"red"}}>{errors.dobErrors[key]}</div>
+                                                {Object.keys(errors.birthdateErrors).map((key,index)=>{
+                                                        return <div key={index} style={{color:"red"}}>{errors.birthdateErrors[key]}</div>
                                                 })} 
                                             </div>   
 
