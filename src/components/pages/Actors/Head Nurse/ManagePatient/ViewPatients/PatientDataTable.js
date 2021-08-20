@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const PatientDataTable = (props) => {
-    const reducerData = useSelector(({ patient }) => patient.manageNurse);
+    const reducerData = useSelector(({ patient }) => patient.managePatient);
     console.log("patient list", reducerData.patientList);
     const patientList = reducerData.patientList;
   
@@ -73,7 +73,7 @@ const PatientDataTable = (props) => {
     { text: 'Patient Name' },
     { text: 'Gender' },
     { text: 'Diagnosis' },
-    { text: 'First Clinic Date' },
+    { text: 'Contact' },
     { text: 'Next Clinic Date' },
   ]
 
@@ -163,16 +163,16 @@ const PatientDataTable = (props) => {
                             {patient.age}
                           </TableCell> */}
                           <TableCell className={classes.cell}>
-                            {patient.Gender}
+                            {patient.gender}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.Diagnosis}
+                            {patient.clinic}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.First_clinic_date}
+                            {patient.contact}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.Next_clinic_date}
+                            {patient.clinic}
                           </TableCell>
                           <TableCell>
                             <Button
