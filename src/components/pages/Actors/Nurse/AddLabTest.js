@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 })
 
-function Dashboard() {
+function AddLabTest() {
   return (
     <Layout
       header={<Header user='Ms. Asanaka Perera' />}
@@ -82,4 +82,4 @@ function Content() {
   )
 }
 
-export default Dashboard
+export default AddLabTest
