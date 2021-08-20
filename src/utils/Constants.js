@@ -1,4 +1,6 @@
 const Constants = {
+  API_BASE_URL: 'http://localhost:8080/wecare',
+
   MAXIMUM_TAX_PERCENTAGE: 100,
 
   GRID_RESULT_ROW_DEFAULT_SIZE: 20,
