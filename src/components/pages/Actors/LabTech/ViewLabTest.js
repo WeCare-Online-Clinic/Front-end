@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-function ViewLabReport() {
+function ViewLabTest() {
   return (
     <Layout
       header={<Header user='Mr. Mahesh Withanage' />}
@@ -53,4 +53,4 @@ function Content() {
   )
 }
 
-export default ViewLabReport
+export default ViewLabTest

@@ -15,10 +15,18 @@ class NurseScheduleService {
   }
   getNurseProfileDetailsByClinic(clinicId) {
     return axios.get(NURSE_DETAILS_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId);
-
-
-
-}
+  }
+  getClinicSchedule(clinicId){
+    return axios.get(NURSE_DETAILS_BASE_URL+'/getClinicSchedule/'+clinicId);
+  }
+  
+  deleteNurseSchedule(nurseId){
+    return axios.delete(NURSE_DETAILS_BASE_URL+'/deleteNurseSchedule/'+nurseId);
+  }
+  
+  updateNurseSchedule(newNurseSchedule){
+    return axios.post(NURSE_DETAILS_BASE_URL+'/updateNurseSchedule/',newNurseSchedule);
+  }
 }
 
 export default new NurseScheduleService()

@@ -2,12 +2,14 @@ import {
     ON_GET_NURSE_PROFILE_BY_ID,
     ON_GET_NURSE_SCHEDULE_BY_ID,
     ON_GET_NURSE_PROFILE_BY_NAME,
-    ON_GET_NURSE_PROFILE_BY_CLINIC
+    ON_GET_NURSE_PROFILE_BY_CLINIC,
+    ON_GET_CLINIC_SCHEDULE_BY_CLINICID
 } from "../action/NurseScheduleAction";
 const initialState = {
 
     nurseProfile: [{}],
-    nurseSchedule: [{}]
+    nurseSchedule: [{}],
+    clinicSchedule:[]
 
 };
 const NurseScheduleReducer = function (state = initialState, action) {
@@ -40,6 +42,12 @@ const NurseScheduleReducer = function (state = initialState, action) {
             return{
                 ...state,
                 nurseProfile:[...action.payload]
+            }
+        }
+        case ON_GET_CLINIC_SCHEDULE_BY_CLINICID:{          
+            return{
+                ...state,
+                clinicSchedule:{...action.payload}
             }
         }
 

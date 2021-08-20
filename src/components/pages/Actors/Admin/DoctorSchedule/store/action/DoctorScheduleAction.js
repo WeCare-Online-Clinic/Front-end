@@ -104,10 +104,7 @@ export function updateDoctorSchedule(newDoctorSchedule,doctorId) {
         request.then((response) => { 
             alert("successfully updated");           
             console.log("update doctor schedule success",response.data);         
-                // dispatch({
-                //     type: ON_GET_CLINIC_SCHEDULE_BY_CLINICID,
-                //     payload: response.data
-                // })         
+                     
 
 
         }).catch((error) => {

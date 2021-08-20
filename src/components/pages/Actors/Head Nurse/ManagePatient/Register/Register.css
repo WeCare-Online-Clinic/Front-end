@@ -1,0 +1,33 @@
+.input-group{
+  height: 60px;
+  
+}
+
+.input-group span{
+  width: 150px;
+  font-weight:bold;
+}
+.title{
+  border-radius: 5px 5px 0 0;
+  background-color:#3f51b5;
+  height: 50px;
+}
+.title h3{
+  color: white;
+}
+
+.card{
+  border-radius: 5px;
+}
+.btn{
+ 
+ background-color: #3f51b5;
+}
+.btn h6{
+ 
+  color: white;
+}
+
+.radio{
+  margin-left: 150px;
+  }

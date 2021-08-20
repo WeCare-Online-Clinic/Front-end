@@ -104,10 +104,7 @@ export const headnurseMenuItems = [
         name: 'View Doctors',
         url: '/headnurse/viewdoctors',
       },
-      {
-        name: 'View Patients',
-        url: '/headnurse/viewpatients',
-      },
+      
     ],
   },
 
@@ -118,8 +115,19 @@ export const headnurseMenuItems = [
   // },
   {
     icon: <AssignmentIndIcon style={{ color: '#fff' }} />,
-    name: 'Register',
-    url: '/headnurse/register/patientregister',
+    name: 'Manage Patients',
+    url: '',
+    children: [
+      {
+        name: 'Register Patients',
+        url: '/headnurse/register/patientregister',
+      },
+     
+      {
+        name: 'View Patients',
+        url: '/headnurse/viewpatients',
+      },
+    ],
   },
   {
     icon: <SendIcon style={{ color: '#fff' }} />,

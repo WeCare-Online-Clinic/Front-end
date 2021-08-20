@@ -6,7 +6,7 @@ export const ON_GET_NURSE_SCHEDULE_BY_ID='[ON_GET_NURSE_SCHEDULE_BY_ID] ON_GET_N
 export const ON_GET_NURSE_PROFILE_BY_ID = '[ON_GET_NURSE_PROFILE_BY_ID] ON_GET_NURSE';
 export const ON_GET_NURSE_PROFILE_BY_NAME = '[ON_GET_NURSE_PROFILE_BY_NAME] ON_GET_NURSE';
 export const ON_GET_NURSE_PROFILE_BY_CLINIC = '[ON_GET_NURSE_PROFILE_BY_CLINIC] ON_GET_NURSE';
-
+export const ON_GET_CLINIC_SCHEDULE_BY_CLINICID ='[ON_GET_CLINIC_SCHEDULE_BY_CLINICID] ON_GET_NURSE'
 
 
 // export function getNurseProfileDetailsById(id) {
@@ -89,16 +89,47 @@ export function getNurseProfileDetailsById(id) {
     };
   }
 
-// export function getDoctorScheduleDetailsById(id) {
-//     const request = DoctorScheduleService.getDoctorScheduleDetailsById(id);
+  export function getClinicSchedule(clinicId) {
+    const request = NurseScheduleService.getClinicSchedule(clinicId);
+    return (dispatch, getState) => {
+        request.then((response) => { 
+            console.log("clinic schedule",response.data);         
+                dispatch({
+                    type: ON_GET_CLINIC_SCHEDULE_BY_CLINICID,
+                    payload: response.data
+                })         
 
-//     return (dispatch, getState) => {
-//         return request.then((response) => {        
-//             return dispatch({
-//                 type: ON_GET_DOCTOR_SCHEDULE_BY_ID,
-//                 payload: response.data
-//             });
-//         }
-//         );
-//     };
-// }
+
+        }).catch((error) => {
+            console.log("error clinic schedules",)
+        })
+    };
+}
+
+export function deleteNurseSchedule(doctorId) {
+    const request = NurseScheduleService.deleteNurseSchedule(doctorId);
+    return (dispatch, getState) => {
+        request.then((response) => {          
+            console.log("delete doctor schedule",response.data);       
+
+
+        }).catch((error) => {
+            console.log("delete nurse schedule error",)
+        })
+    };
+}
+
+export function updateNurseSchedule(newDoctorSchedule,doctorId) {
+    const request = NurseScheduleService.updateNurseSchedule(newDoctorSchedule);
+    return (dispatch, getState) => {
+        request.then((response) => { 
+            alert("successfully updated");           
+            console.log("update nurse schedule success",response.data);         
+                    
+
+
+        }).catch((error) => {
+            console.log("update nurse schedule error",)
+        })
+    };
+}
