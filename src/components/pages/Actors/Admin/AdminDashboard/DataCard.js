@@ -28,8 +28,7 @@ const useStyles = makeStyles({
 function DataCard(props) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      {props.cardItems &&
-        props.cardItems.map((card) => (
+      {props.cardItems &&  props.cardItems.map((card) => (
           <CardItem name={card.name} value={card.value} />
         ))}
     </div>

@@ -24,7 +24,7 @@ const SetPasswordError = React.lazy(() =>
 
 /* --- Admin Pages --- */
 const AdminDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Admin/AdminDashboard/Dashboard')
+  import('./components/pages/Actors/Admin/AdminDashboard/AdminDashboardBase')
 )
 const AddDoctor = React.lazy(() =>
   import(
