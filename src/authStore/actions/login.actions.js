@@ -12,7 +12,7 @@ export const LOGIN_SET_USER = 'LOGIN_SET_USER'
 
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
-const USER_LOGIN_URL = 'http://localhost:8080/wecare/userlogin'
+const USER_LOGIN_URL = Constants.API_BASE_URL + '/userlogin'
 
 export function submitLogin(data) {
   const request = axios.post(USER_LOGIN_URL, data)
