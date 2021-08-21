@@ -1,31 +1,33 @@
-import axios from 'axios';
-
-const NURSE_DETAILS_BASE_URL = "http://localhost:8080/wecare";
+import axios from 'axios'
+import Constants from '../../../../../../../utils/Constants'
 
 class NurseScheduleService {
-
-
-
-
   getNurseProfileDetailsById(id) {
-    return axios.get(NURSE_DETAILS_BASE_URL + '/getNurseProfile/' + id);
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfile/' + id)
   }
   getNurseProfileDetailsByName(name) {
-    return axios.get(NURSE_DETAILS_BASE_URL + '/getNurseProfileByName/' + name);
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileByName/' + name)
   }
   getNurseProfileDetailsByClinic(clinicId) {
-    return axios.get(NURSE_DETAILS_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId);
+    return axios.get(
+      Constants.API_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId
+    )
   }
-  getClinicSchedule(clinicId){
-    return axios.get(NURSE_DETAILS_BASE_URL+'/getClinicSchedule/'+clinicId);
+  getClinicSchedule(clinicId) {
+    return axios.get(Constants.API_BASE_URL + '/getClinicSchedule/' + clinicId)
   }
-  
-  deleteNurseSchedule(nurseId){
-    return axios.delete(NURSE_DETAILS_BASE_URL+'/deleteNurseSchedule/'+nurseId);
+
+  deleteNurseSchedule(nurseId) {
+    return axios.delete(
+      Constants.API_BASE_URL + '/deleteNurseSchedule/' + nurseId
+    )
   }
-  
-  updateNurseSchedule(newNurseSchedule){
-    return axios.post(NURSE_DETAILS_BASE_URL+'/updateNurseSchedule/',newNurseSchedule);
+
+  updateNurseSchedule(newNurseSchedule) {
+    return axios.post(
+      Constants.API_BASE_URL + '/updateNurseSchedule/',
+      newNurseSchedule
+    )
   }
 }
 

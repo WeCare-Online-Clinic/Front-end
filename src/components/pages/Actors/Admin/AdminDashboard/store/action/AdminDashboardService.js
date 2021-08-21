@@ -1,17 +1,10 @@
-import axios from 'axios';
-
-const ADMIN_DASHBOARD_BASE_URL = "http://localhost:8080/wecare";
+import axios from 'axios'
+import Constants from '../../../../../../../utils/Constants'
 
 class AdminDashboardService {
-
-
-
   getUserCounts() {
-    return axios.get(ADMIN_DASHBOARD_BASE_URL + '/getUserCounts/');
-  } 
-
-
-
+    return axios.get(Constants.API_BASE_URL + '/getUserCounts/')
+  }
 }
 
 export default new AdminDashboardService()
