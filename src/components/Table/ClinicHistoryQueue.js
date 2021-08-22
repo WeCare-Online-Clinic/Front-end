@@ -26,25 +26,47 @@ import {
 } from '@material-ui/core'
 import PageviewIcon from '@material-ui/icons/Pageview'
 
-const CLINIC = getStorageItem('doctorInfo', true).clinic.id
-console.log(CLINIC)
-
-async function get_clinic_history() {
+async function get_queue(clinic_date) {
   console.log('clinic history')
 
-  let clinic_history = []
+  let queue = []
 
   try {
     await axios
-      .get(Constants.API_BASE_URL + '/clinic/history/' + CLINIC)
+      .get(Constants.API_BASE_URL + '/clinic/queue/' + clinic_date)
       .then((res) => {
         if (res.status == 200) {
-          clinic_history = res.data
+          queue = res.data
         }
       })
-    return clinic_history
+    return queue
   } catch (error) {
     console.log(error)
+  }
+}
+
+function calculate_age(dob) {
+  var dob = new Date(dob)
+  //calculate month difference from current date in time
+  var month_diff = Date.now() - dob.getTime()
+
+  //convert the calculated difference in date format
+  var age_dt = new Date(month_diff)
+
+  //extract year from date
+  var year = age_dt.getUTCFullYear()
+
+  //now calculate the age of the user
+  var age = Math.abs(year - 1970)
+
+  return age
+}
+
+function show_gender(gender) {
+  if (gender == 'f') {
+    return 'Female'
+  } else {
+    return 'Male'
   }
 }
 
@@ -83,27 +105,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ClinicHistoryTable = (props) => {
+const ClinicHistoryQueue = (props) => {
+  console.log(props)
   const history = useHistory()
   const { className } = props
-  const [clinicHistory, setClinicHistory] = useState([])
+  const [queue, setQueue] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   useEffect(() => {
-    get_clinic_history().then((res) => {
-      setClinicHistory(res)
+    get_queue(props.clinic_did).then((res) => {
+      setQueue(res)
       console.log(res)
     })
   }, [])
 
+  console.log(queue)
+
   const tableHeaders = [
     // add table header names
-    { text: 'Date' },
-    { text: 'Start Time' },
-    { text: 'End Time' },
-    { text: 'No.of Patients' },
-    { text: 'Nurse Assigned' },
+    { text: 'Queue No' },
+    { text: 'Time' },
+    { text: 'Name' },
+    { text: 'Age' },
+    { text: 'Gender' },
   ]
 
   const classes = useStyles()
@@ -146,7 +171,7 @@ const ClinicHistoryTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {clinicHistory
+                  {queue
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
@@ -154,34 +179,19 @@ const ClinicHistoryTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {row.clinicDate}
+                            {row.queueNo}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.startTime}
+                            {row.time}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.endTime}
+                            {row.patient.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.noPatients}
+                            {calculate_age(row.patient.birthdate)}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.nurse.name}
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                              onClick={() =>
-                                history.push({
-                                  pathname: 'clinicHistory',
-                                  state: row,
-                                })
-                              }
-                            >
-                              View
-                            </Button>
+                            {show_gender(row.patient.gender)}
                           </TableCell>
                         </TableRow>
                       )
@@ -194,7 +204,7 @@ const ClinicHistoryTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={clinicHistory.length} // size of patientData array
+            count={queue.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
@@ -207,4 +217,4 @@ const ClinicHistoryTable = (props) => {
   )
 }
 
-export default ClinicHistoryTable
+export default ClinicHistoryQueue

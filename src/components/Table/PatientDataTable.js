@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Alert } from '@material-ui/lab'
 import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -34,21 +34,21 @@ var GET_ERROR = false
 async function get_patient_details() {
   console.log('patient info')
 
-  await axios
-    .get(Constants.API_BASE_URL + '/patient/list/' + CLINIC)
-    .then((res) => {
-      if (res.status === 200) {
-        PATIENT_LIST = res.data
-        console.log(PATIENT_LIST)
-      }
-    })
-    .catch((e) => {
-      GET_ERROR = true
-      console.log(e)
-    })
-}
+  let patient_list = []
 
-get_patient_details()
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/patient/list/' + CLINIC)
+      .then((res) => {
+        if (res.status == 200) {
+          patient_list = res.data
+        }
+      })
+    return patient_list
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 function calculate_age(dob) {
   var dob = new Date(dob)
@@ -113,11 +113,18 @@ const useStyles = makeStyles((theme) => ({
 const PatientDataTable = (props) => {
   const history = useHistory()
   const { className } = props
-  const [patientList, setPatientList] = useState(PATIENT_LIST)
+  const [patientList, setPatientList] = useState([])
   const [searchName, setSearchName] = useState('')
   const [searchDiagnosis, setsearchDiagnosis] = useState('')
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
+
+  useEffect(() => {
+    get_patient_details().then((res) => {
+      setPatientList(res)
+      console.log(res)
+    })
+  }, [])
 
   console.log(searchName, searchDiagnosis)
 
