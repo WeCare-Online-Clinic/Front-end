@@ -29,6 +29,10 @@ class DoctorScheduleService {
       newDoctorSchedule
     )
   }
+
+  changeDoctorStatus(doctor){
+    return axios.put( Constants.API_BASE_URL + '/changeDoctorStatus/',doctor);
+  }
 }
 
 export default new DoctorScheduleService()

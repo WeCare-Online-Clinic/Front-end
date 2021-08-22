@@ -5,13 +5,16 @@ import reducer from './store/reducer/index';
 import * as Actions from "./store/action";
 import { useDispatch, useSelector } from 'react-redux';
 import history from '../../../../../@history'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 
 Modal.setAppElement('#root')
 const UpdateSchedule = (props) => {
     const dispatch = useDispatch();
     let doctorProfile = props.doctorProfile;
-    console.log("doctor props profile :",doctorProfile);
+    // console.log("doctor props profile :",doctorProfile);
     let clinicId = doctorProfile.clinic && doctorProfile.clinic.id;
     const reducerData = useSelector(({ doctorClinicSchedule }) => doctorClinicSchedule.doctorSchedule);
     let clinicSchedule = reducerData.clinicSchedule && reducerData.clinicSchedule;
@@ -43,13 +46,13 @@ const UpdateSchedule = (props) => {
 
     }
     const updateSchedule=(newdoctorSchedule)=>{
-        dispatch(Actions.updateDoctorSchedule(newdoctorSchedule,doctorProfile.id));      
+     dispatch(Actions.updateDoctorSchedule(newdoctorSchedule,doctorProfile.id));      
        setmodalIsopen(false);
-       setdoctorSchedule([]);
-       history.push({
-        pathname: 'doctorschedule',
-        state: doctorProfile.id,
-      })
+       setdoctorSchedule([]);       
+    //    history.push({
+    //     pathname: 'doctorschedule',
+    //     state: doctorProfile.id,
+    //   })
     
     }
     const  onScheduleChange=(v,schedule)=>{      
@@ -170,5 +173,4 @@ const UpdateSchedule = (props) => {
         </div>
     )
 }
-// export default UpdateSchedule;
 export default withReducer('doctorClinicSchedule', reducer)(UpdateSchedule);

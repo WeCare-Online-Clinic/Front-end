@@ -46,6 +46,10 @@ const UpdateSchedule = (props) => {
         dispatch(Actions.updateNurseSchedule(newnurseSchedule,nurseProfile.id));      
        setmodalIsopen(false);
        setNurseSchedule([]);
+       history.push({
+        pathname: 'nurseschedule',
+        state: nurseProfile.id,
+      })
 
     }
     const  onScheduleChange=(v,schedule)=>{      
