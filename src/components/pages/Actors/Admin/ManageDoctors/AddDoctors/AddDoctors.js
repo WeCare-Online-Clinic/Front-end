@@ -17,6 +17,8 @@ let initFormValue = {
   contact: '',
   qualification: '',
   specialization: '',
+  status:'true',
+  registeredDate:'',
   clinic: {},
   doctorSchedules: [],
 }

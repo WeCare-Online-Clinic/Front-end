@@ -18,20 +18,23 @@ class DoctorScheduleService {
   }
 
   deleteDoctorSchedule(doctorId) {
+    console.log("delete in service:",doctorId);
     return axios.delete(
       Constants.API_BASE_URL + '/deleteDoctorSchedule/' + doctorId
     )
   }
 
   updateDoctorSchedule(newDoctorSchedule) {
+    console.log("new schedule",newDoctorSchedule);
     return axios.post(
       Constants.API_BASE_URL + '/updateDoctorSchedule/',
       newDoctorSchedule
     )
   }
 
-  changeDoctorStatus(doctor){
-    return axios.put( Constants.API_BASE_URL + '/changeDoctorStatus/',doctor);
+  changeDoctorStatus(doctorId){
+    console.log("doctor in service:",doctorId); 
+    return axios.get( Constants.API_BASE_URL + '/changeDoctorStatus/'+doctorId);
   }
 }
 

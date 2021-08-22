@@ -29,8 +29,8 @@ class NurseScheduleService {
       newNurseSchedule
     )
   }
-  changeNurseStatus(nurse){
-    return axios.put( Constants.API_BASE_URL + '/changeNurseStatus/',nurse);
+  changeNurseStatus(nurseId){
+    return axios.get( Constants.API_BASE_URL + '/changeNurseStatus/'+nurseId);
   }
 }
 

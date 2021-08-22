@@ -28,7 +28,7 @@ const DoctorSchedule = props => {
                 <h4>{deleteDoctor.doctorId } will no longer exist in the system <br/>
                  Are you sure want to perform the task ?</h4>
                 <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#FF0000' }}>No</button>
-                <button onClick={() => dispatch(Actions.changeDoctorStatus(deleteDoctor))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
+                <button onClick={() => dispatch(Actions.changeDoctorStatus(deleteDoctor.id))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
             </div>
         )
     }
@@ -51,7 +51,7 @@ const DoctorSchedule = props => {
             <div className="row " >
                 <nav className="navbar navbar-expand ">
                     <div className="collapse navbar-collapse">
-                        <SearchBar />
+                        {/* <SearchBar /> */}
                     </div>
                 </nav>
             </div>

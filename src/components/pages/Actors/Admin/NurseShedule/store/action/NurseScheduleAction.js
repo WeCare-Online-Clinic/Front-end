@@ -137,8 +137,8 @@ export function updateNurseSchedule(newDoctorSchedule,doctorId) {
         })
     };
 }
-export function changeNurseStatus(nurse) {
-  const request = NurseScheduleService.changeNurseStatus(nurse);
+export function changeNurseStatus(nurseId) {
+  const request = NurseScheduleService.changeNurseStatus(nurseId);
   return (dispatch, getState) => {
       request.then((response) => {
           toast.info('Successfully Deleted', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })

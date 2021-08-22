@@ -117,8 +117,8 @@ export function updateDoctorSchedule(newDoctorSchedule, doctorId) {
         })
     };
 }
-export function changeDoctorStatus(doctor) {  
-    const request = DoctorScheduleService.changeDoctorStatus(doctor);
+export function changeDoctorStatus(doctorId) {     
+    const request = DoctorScheduleService.changeDoctorStatus(doctorId);
 
     return (dispatch, getState) => {
         request.then((response) => {
