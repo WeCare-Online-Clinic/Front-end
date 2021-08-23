@@ -17,12 +17,10 @@ import {
   TableRow,
   TablePagination,
   Button,
-  AppBar,
   Grid,
-  TextField,
+  
 } from '@material-ui/core'
-// import { patientData } from './patientData'
-import PageviewIcon from '@material-ui/icons/Pageview'
+
 import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
