@@ -46,7 +46,7 @@ const UpdateSchedule = (props) => {
 
     }
     const updateSchedule=(newdoctorSchedule)=>{
-     dispatch(Actions.updateDoctorSchedule(newdoctorSchedule,doctorProfile.id));      
+     dispatch(Actions.updateDoctorSchedule(newdoctorSchedule));      
        setmodalIsopen(false);
        setdoctorSchedule([]);       
     //    history.push({
@@ -101,7 +101,7 @@ const UpdateSchedule = (props) => {
                             top: '50px',
                             right: '400px',
                             left: '450px',
-                            bottom: '50px',
+                            bottom: '250px',
 
 
                         }

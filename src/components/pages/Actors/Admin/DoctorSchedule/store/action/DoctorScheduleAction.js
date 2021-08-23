@@ -102,7 +102,7 @@ export function deleteDoctorSchedule(doctorId) {
     };
 }
 
-export function updateDoctorSchedule(newDoctorSchedule, doctorId) {
+export function updateDoctorSchedule(newDoctorSchedule) {
     const request = DoctorScheduleService.updateDoctorSchedule(newDoctorSchedule);    
     return (dispatch, getState) => {
         request.then((response) => {

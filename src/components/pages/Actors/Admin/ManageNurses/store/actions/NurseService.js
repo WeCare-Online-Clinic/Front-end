@@ -23,9 +23,10 @@ class NurseService {
     return axios.get(Constants.API_BASE_URL + '/getNurseProfileByName/' + name)
   }
   getNurseProfileDetailsByClinic(clinicId) {
-    return axios.get(
-      Constants.API_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId
-    )
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId)
+  }
+  getNurseProfileByNurseId(nurseId) {
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileByNurseId/' + nurseId)
   }
 }
 

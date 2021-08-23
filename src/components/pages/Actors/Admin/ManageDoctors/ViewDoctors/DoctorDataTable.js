@@ -149,7 +149,7 @@ const DoctorDataTable = (props) => {
 
                         <TableRow className={classes.tableRow} hover key={index}>
                           <TableCell className={classes.cell}>
-                            {doctor.id}
+                            {doctor.doctorId}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {doctor.name}

@@ -37,6 +37,9 @@ class DoctorService {
       Constants.API_BASE_URL + '/getDoctorProfileDetailsByClinic/' + clinicId
     )
   }
+  getDoctorProfileDetailsByDoctorId(doctorId) { 
+    return axios.get(Constants.API_BASE_URL + '/getDoctorProfileByDoctorId/' + doctorId)
+  }
 }
 
 export default new DoctorService()

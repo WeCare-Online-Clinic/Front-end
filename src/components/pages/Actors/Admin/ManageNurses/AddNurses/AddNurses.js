@@ -13,9 +13,10 @@ import withReducer from '../../../../../../store/withReducer'
 let initFormValue = {
     name: '',
     email: '',
+    nurseId: '',
     gender: '',
     contact: '',
-    isHead:'',
+    isHead: '',
     qualification: '',
     clinic: {},
     nurseSchedule: [],
@@ -190,14 +191,26 @@ const AddNurses = (props) => {
                             {/* Gender Input Field */}
                             <div className='input-group mb-3' >
                                 <span className='input-group-text'>Gender</span>
-                                <div className="genderdiv" style={{marginLeft:'7px'}} >
-                                    <input type="radio"  className="gender" name="gender" value='m' onChange={onValueChange} />
+                                <div className="genderdiv" style={{ marginLeft: '7px' }} >
+                                    <input type="radio" className="gender" name="gender" value='m' onChange={onValueChange} />
                                     <label for="html">Male</label><br />
                                 </div>
                                 <div className="genderdiv" >
-                                <input type="radio"  className="gender" name="gender" value='f' onChange={onValueChange} />
-                                <label for="html">Female</label><br />
+                                    <input type="radio" className="gender" name="gender" value='f' onChange={onValueChange} />
+                                    <label for="html">Female</label><br />
                                 </div>
+                            </div>
+                            {/* Nurse ID Input Field */}
+                            <div className='input-group mb-3'>
+                                <span className='input-group-text'>Nurse ID</span>
+                                <input
+                                    type='text'
+                                    placeholder='Nurse ID'
+                                    name='nurseId'
+                                    className='form-control'
+                                    value={formValue.nurseId}
+                                    onChange={onValueChange}
+                                ></input>
                             </div>
 
 
@@ -248,13 +261,13 @@ const AddNurses = (props) => {
                             {/* Gender Input Field */}
                             <div className='input-group mb-3' >
                                 <span className='input-group-text'>Head Nurse</span>
-                                <div className="genderdiv" style={{marginLeft:'7px'}} >
-                                    <input type="radio"  className="gender" name="isHead" value="true" onChange={onValueChange} />
+                                <div className="genderdiv" style={{ marginLeft: '7px' }} >
+                                    <input type="radio" className="gender" name="isHead" value="true" onChange={onValueChange} />
                                     <label for="html">Yes</label><br />
                                 </div>
                                 <div className="genderdiv" >
-                                <input type="radio"  className="gender" name="isHead" value="false" onChange={onValueChange} />
-                                <label for="html">No</label><br />
+                                    <input type="radio" className="gender" name="isHead" value="false" onChange={onValueChange} />
+                                    <label for="html">No</label><br />
                                 </div>
                             </div>
 

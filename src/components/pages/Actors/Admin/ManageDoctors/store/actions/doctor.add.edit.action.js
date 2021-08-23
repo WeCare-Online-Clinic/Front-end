@@ -17,6 +17,8 @@ export const ON_SAVE_DOCTOR = '[DOCTOR ADD] ON_SAVE_DOCTOR'
 export const ON_GET_DOCTOR_PROFILE_BY_ID = '[ON_GET_DOCTOR_PROFILE_BY_ID] ON_GET_DOCTOR';
 export const ON_GET_DOCTOR_PROFILE_BY_NAME = '[ON_GET_DOCTOR_PROFILE_BY_NAME] ON_GET_DOCTOR';
 export const ON_GET_DOCTOR_PROFILE_BY_CLINIC = '[ON_GET_DOCTOR_PROFILE_BY_CLINIC] ON_GET_DOCTOR';
+export const ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID="[ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID] ON_GET_DOCTOR";
+
 
 export function saveDoctor(doctor) {
   const request = DoctorService.saveDoctor(doctor)
@@ -206,6 +208,28 @@ export function getDoctorProfileDetailsByClinic(clinicId) {
 
     }).catch((error) => {
       console.log("error doctor details",)
+    })
+  };
+}
+export function getDoctorProfileDetailsByDoctorId(doctorId) {
+  const request = DoctorService.getDoctorProfileDetailsByDoctorId(doctorId);
+  return (dispatch, getState) => {
+    request.then((response) => {
+      if (response.data.length == 0) {
+        alert('Sorry,  Id not found');
+      }
+      else {
+        dispatch({
+
+          type: ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID,
+          payload: response.data
+        })
+
+      }
+
+
+    }).catch((error) => {
+      console.log("error doctor id",)
     })
   };
 }
