@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
+import SearchBar from './SearchBar'
 import {
   Card,
   CardActions,
@@ -16,6 +17,7 @@ import {
   TableRow,
   TablePagination,
   Button,
+  AppBar,
   Grid,
   TextField,
 } from '@material-ui/core'
@@ -70,11 +72,12 @@ const PatientDataTable = (props) => {
   
     const tableHeaders = [
     // add table header names
+    { text: 'Paient ID' },
     { text: 'Patient Name' },
     { text: 'Gender' },
     { text: 'Diagnosis' },
     { text: 'Contact' },
-    { text: 'Next Clinic Date' },
+    
   ]
 
   const classes = useStyles()
@@ -88,37 +91,19 @@ const PatientDataTable = (props) => {
 
   return (
     <div>
-      <Card padding={'0'} className={clsx(classes.root, className)}>
+    <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
           <Grid
             item
             alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
+            style={{ backgroundColor: '', borderRadius: '5px' }}
           >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Patient Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Diagnosis'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+            <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+              <div className="collapse navbar-collapse"   >
+                <SearchBar />
+              </div>
+            </nav>
           </Grid>
         </Grid>
         <CardContent className={classes.content}>
@@ -149,6 +134,7 @@ const PatientDataTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
+
                   {patientList
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienList array to no.of rows per page
                     .map(
@@ -156,6 +142,9 @@ const PatientDataTable = (props) => {
                         patient // add table row of patientData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
+                           <TableCell className={classes.cell}>
+                            {patient.id}
+                          </TableCell>
                           <TableCell className={classes.cell}>
                             {patient.name}
                           </TableCell>
@@ -166,14 +155,12 @@ const PatientDataTable = (props) => {
                             {patient.gender}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.clinic}
+                            {patient.clinic && patient.clinic.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {patient.contact}
                           </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.clinic}
-                          </TableCell>
+                         
                           <TableCell>
                             <Button
                               variant='contained'
@@ -181,7 +168,7 @@ const PatientDataTable = (props) => {
                               color='primary'
                               onClick={() => history.push('patientdata')}
                             >
-                              View
+                            View
                             </Button>
                           </TableCell>
                         </TableRow>
@@ -201,11 +188,12 @@ const PatientDataTable = (props) => {
             page={page}
             rowsPerPage={rowsPerPage}
             rowsPerPageOptions={[5, 8, 10, 15]}
+       
           />
         </CardActions>
       </Card>
-    </div>
-  )
-}
+   </div>
+   )
+ }
 
 export default withReducer('patient', reducer)(PatientDataTable);

@@ -18,7 +18,7 @@ let initFormValue = {
     gender: '',
     contact: '',
     birthdate: '',
-    clinic: '',
+    clinic: {}
    
 }
 
@@ -27,13 +27,19 @@ let initError = {
     emailErrors: {},
     contactErrors: {},
     nicErrors: {},
-    clinicErrors:  {},
     addressErrors:{},
     birthdateErrors:{},   
 }
 
 const Register = (props) => {
     const dispatch = useDispatch()
+    const reducerData = useSelector(({ patient }) => patient.managePatient)
+    useEffect(() => {
+        dispatch(Actions.getClinics())
+    }, [])
+
+    const [ClinicSchedules, setClinicSchedules] = useState([])
+    const Clinics = reducerData.clinics
     const [formValue, setFormValue] = useState({ ...initFormValue })
     const [errors, setErrors] = useState({ ...initError })
 
@@ -47,9 +53,11 @@ const Register = (props) => {
             console.log('fail')
         }
     }
+
     const validation = () => {
         let localErrors = _.cloneDeep(errors) //make a seperate local errors object and assign it to localErrors
         let isValid = true
+
         //validating first name
         if (formValue.name.trim().length < 1) {
             let nameMissing = Object.assign({}, { missing: 'Name is missing' }) //make a local object 'name Missing' and add the error
@@ -67,16 +75,6 @@ const Register = (props) => {
         }
 
 
-        //validating clinic
-        if (formValue.clinic.trim().length < 1) {
-            let clinicMissing = Object.assign({}, { missing: 'clinic is missing' }) //make a local object 'name Missing' and add the error
-            localErrors.clinicErrors = clinicMissing //push the error to localErrors
-            isValid = false
-        } else {
-            localErrors.clinicErrors.missing = null
-        }
-
-        //validating email
         if (formValue.email.trim().length < 1) {
             let emailMissing = Object.assign({}, { missing: 'Email is missing' })
             localErrors.emailErrors = emailMissing
@@ -91,6 +89,7 @@ const Register = (props) => {
             }
             localErrors.emailErrors.missing = null
         }
+
         //validating Mobile
         if (!/^\d{9}$/i.test(formValue.contact)) {
             let contactMissing = Object.assign(
@@ -145,13 +144,29 @@ const Register = (props) => {
         setErrors({ ...localErrors }) //push all errors to errors object
         return isValid
     }
+    
+   
 
     const onValueChange = (v) => {
-        let value=v.target.value;
-        let name=v.target.name;
-        setFormValue({ ...formValue, [name]: value })
+        let value = v.target.value
+        let name = v.target.name
+        if (name == 'clinic') {
+            let clinic = Clinics[value]
+            console.log("clinic me", clinic);
+            formValue.clinic = clinic
+            console.log('clinic:', clinic)
+            onClinicChange(v)
+        } else {
+            setFormValue({ ...formValue, [name]: value })
         }
+    }
 
+      const onClinicChange = (v) => {
+        let value = v.target.value
+        let ClinicSchedule = Clinics[value].clinicSchedules
+        setClinicSchedules(ClinicSchedule)
+      }
+    
     return (
         <div className='container mt-5'>
             <div className='card '>
@@ -293,29 +308,31 @@ const Register = (props) => {
                                     )
                                 })}
                             </div>
-                            {/* Clinic Type Input Field */}
+                            {/* Clinic Input Field*/}
                             <div className='input-group mb-3'>
                                 <span className='input-group-text'>Clinic</span>
-                                <input
-                                    placeholder='Clinic'
+
+                                <select
                                     name='clinic'
+                                    id='clinic'
                                     className='form-control'
-                                    value={formValue.clinic}
                                     onChange={onValueChange}
-                                ></input>
+                                >
+                                    <option value='' selected disabled hidden>
+                                        Select Clinic
+                                    </option>
+                                    {Clinics.map((clinic, i) => {
+                                        console.log(clinic, i)
+                                        return (
+                                            <option key={i} value={i}>
+                                                {clinic.name}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
                             </div>
-                            {/* first name errors */}
-                            <div className='mb-2'>
-                                {Object.keys(errors.clinicErrors).map((key, index) => {
-                                    return (
-                                        <div key={index} style={{ color: 'red' }}>
-                                            {errors.clinicErrors[key]}
-                                        </div>
-                                    )
-                                })}
-                            </div>                      
                             <div className='input-group mb-3 mt-5'>
-                                <button
+                                <button 
                                     className='btn '
                                     onClick={onSubmit}
                                     style={{ width: '100%' }}
