@@ -12,14 +12,21 @@ class PatientService {
     return axios.get(PATIENT_API_BASE_URL + '/getPatient');
   }
 
-  
+  getClinicDays(data) {
+    return axios.get(PATIENT_API_BASE_URL + '/getClinicDays/' + data);
+  }
+  getClinics() {
+    return axios.get(PATIENT_API_BASE_URL + '/getClinics')
+  }
   getPatientProfileDetailsById(id) {
     return axios.get(PATIENT_API_BASE_URL + '/getPatientProfile/' + id);
   }
   getPatientProfileDetailsByName(name) {
     return axios.get(PATIENT_API_BASE_URL + '/getPatientProfileByName/' + name);
   }
-
+  getPatientProfileDetailsByClinic(clinicId) {
+    return axios.get(PATIENT_API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
+  }
 
 }
 
