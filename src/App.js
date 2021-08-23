@@ -24,7 +24,7 @@ const SetPasswordError = React.lazy(() =>
 
 /* --- Admin Pages --- */
 const AdminDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Admin/AdminDashboard/Dashboard')
+  import('./components/pages/Actors/Admin/AdminDashboard/AdminDashboardBase')
 )
 const AddDoctor = React.lazy(() =>
   import(
@@ -76,6 +76,9 @@ const PatientReport = React.lazy(() =>
 )
 const Consultation = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Consultation')
+)
+const ViewClinicHistory = React.lazy(() =>
+  import('./components/pages/Actors/Doctor/ViewClinicHistory')
 )
 /* -------------------- */
 
@@ -140,7 +143,9 @@ const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard')
 )
 const HeadNurseViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/ManagePatient/ViewPatients/ViewPatient')
+  import(
+    './components/pages/Actors/Head Nurse/ManagePatient/ViewPatients/ViewPatient'
+  )
 )
 const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
@@ -153,7 +158,9 @@ const HeadNurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/HeadNurseProfile')
 )
 const HeadNurseRegister = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/ManagePatient/Register/PatientRegister')
+  import(
+    './components/pages/Actors/Head Nurse/ManagePatient/Register/PatientRegister'
+  )
 )
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage')
@@ -277,6 +284,11 @@ const App = () => {
                 path='/doctor/consultation'
                 exact
                 component={Consultation}
+              ></Route>
+              <Route
+                path='/doctor/clinichistory'
+                exact
+                component={ViewClinicHistory}
               ></Route>
               {/* ------------------ */}
 

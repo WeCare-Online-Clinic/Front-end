@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     textAlign: 'center',
     color: '#fff',
     backgroundColor: '#ff4500',
-    fontSize: '24px',
+    fontSize: '20px',
     fontWeight: 'bold',
     flexGrow: 1,
   },

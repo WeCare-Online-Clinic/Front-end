@@ -1,5 +1,9 @@
 import NurseScheduleService from "./NurseScheduleService";
 import history from '../../../../../../../@history'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 
 export const ON_GET_NURSE_SCHEDULE_BY_ID='[ON_GET_NURSE_SCHEDULE_BY_ID] ON_GET_NURSE';
@@ -132,4 +136,17 @@ export function updateNurseSchedule(newDoctorSchedule,doctorId) {
             console.log("update nurse schedule error",)
         })
     };
+}
+export function changeNurseStatus(nurseId) {
+  const request = NurseScheduleService.changeNurseStatus(nurseId);
+  return (dispatch, getState) => {
+      request.then((response) => {
+          toast.info('Successfully Deleted', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+          history.push('viewnurse');
+          console.log("delete nurse profile success", response.data);
+
+      }).catch((error) => {
+          console.log("delete doctor error",)
+      })
+  };
 }

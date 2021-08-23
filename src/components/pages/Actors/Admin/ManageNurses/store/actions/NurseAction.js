@@ -9,7 +9,7 @@ export const ON_GET_CLINICS='[ON_GET_CLINICS] ON_GET_CLINIC';
 export const ON_GET_NURSE_PROFILE_BY_ID = '[ON_GET_NURSE_PROFILE_BY_ID] ON_GET_NURSE';
 export const ON_GET_NURSE_PROFILE_BY_NAME = '[ON_GET_NURSE_PROFILE_BY_NAME] ON_GET_NURSE';
 export const ON_GET_NURSE_PROFILE_BY_CLINIC = '[ON_GET_NURSE_PROFILE_BY_CLINIC] ON_GET_NURSE';
-
+export const ON_GET_NURSE_PROFILE_BY_NURSE_ID= '[ON_GET_NURSE_PROFILE_BY_NURSE_ID] ON_GET_NURSE';
 
 export function saveNurse(nurse) {
     const request = NurseService.saveNurse(nurse);
@@ -94,7 +94,7 @@ export function getClinics() {
   
   
       }).catch((error) => {
-        console.log("error doctor id",)
+        console.log("error nurse id",)
       })
     };
   }
@@ -140,3 +140,26 @@ export function getClinics() {
       })
     };
   }
+  export function getNurseProfileByNurseId(nurseId) {
+    const request = NurseService.getNurseProfileByNurseId(nurseId);
+    return (dispatch, getState) => {
+      request.then((response) => {
+        if (response.data.length == 0) {
+          alert('Sorry,  Id not found');
+        }
+        else {
+          dispatch({
+  
+            type: ON_GET_NURSE_PROFILE_BY_NURSE_ID,
+            payload: response.data
+          })
+  
+        }
+  
+  
+      }).catch((error) => {
+        console.log("error doctor id",)
+      })
+    };
+  }
+  

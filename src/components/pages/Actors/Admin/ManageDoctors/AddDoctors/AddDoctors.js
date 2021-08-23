@@ -17,6 +17,8 @@ let initFormValue = {
   contact: '',
   qualification: '',
   specialization: '',
+  status:'true',
+  registeredDate:'',
   clinic: {},
   doctorSchedules: [],
 }
@@ -196,7 +198,7 @@ const AddDoctors = (props) => {
                   onChange={onValueChange}
                 ></input>
               </div>
-              {/* first name errors */}
+              {/* full name errors */}
               <div className='mb-2'>
                 {Object.keys(errors.nameErrors).map((key, index) => {
                   return (
@@ -206,7 +208,7 @@ const AddDoctors = (props) => {
                   )
                 })}
               </div>
-              {/* NIC Input Field */}
+              {/* Doctor ID Input Field */}
               <div className='input-group mb-3'>
                 <span className='input-group-text'>Doctor ID</span>
                 <input

@@ -24,11 +24,11 @@ export const adminDataItems = [
 
 export const doctorDataItems = [
   {
-    name: 'Patients',
+    name: 'Total Registered Patients In Clinic',
     value: 2123,
   },
   {
-    name: 'New Patients',
+    name: 'Patients Registered In Last Week',
     value: 145,
   },
   {
@@ -36,7 +36,7 @@ export const doctorDataItems = [
     value: '2021/07/12',
   },
   {
-    name: 'Patient in Next Clinic',
+    name: 'Patients in Next Clinic Date',
     value: 55,
   },
 ]

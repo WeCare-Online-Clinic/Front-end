@@ -10,7 +10,8 @@ import {
   ON_GET_CLINICS,
   ON_GET_DOCTOR_PROFILE_BY_ID,
   ON_GET_DOCTOR_PROFILE_BY_NAME,
-  ON_GET_DOCTOR_PROFILE_BY_CLINIC
+  ON_GET_DOCTOR_PROFILE_BY_CLINIC,
+  ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID
 } from '../actions/doctor.add.edit.action'
 
 const initialState = {
@@ -104,7 +105,14 @@ const doctorAddEditReducer = function (state = initialState, action) {
           ...state,
           doctorList:[...action.payload]
       }
-  }
+  }  
+  case ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID:{
+    return{
+        ...state,
+        doctorList:[...action.payload]
+    }
+}
+
 
     default: {
       return state

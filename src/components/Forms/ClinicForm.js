@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  makeStyles,
-} from '@material-ui/core'
+import { Card, CardHeader, CardContent, makeStyles } from '@material-ui/core'
 
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 
@@ -143,70 +138,6 @@ function ClinicForm() {
               Prescriptions
             </p>
             <hr></hr>
-            <div className='input-group mb-3'>
-              <span
-                className='input-group-text'
-                style={{
-                  backgroundColor: '#3f51b5',
-                  color: '#fff',
-                  width: '100px',
-                }}
-              >
-                Medicine
-              </span>
-              <input
-                placeholder='Medicine'
-                name='medicine'
-                className='form-control'
-              ></input>
-              <span
-                className='input-group-text'
-                style={{
-                  backgroundColor: '#3f51b5',
-                  color: '#fff',
-                  width: '100px',
-                }}
-              >
-                Note
-              </span>
-              <input
-                placeholder='Note'
-                name='note'
-                className='form-control'
-              ></input>
-            </div>
-            <div className='input-group mb-3'>
-              <span
-                className='input-group-text'
-                style={{
-                  backgroundColor: '#3f51b5',
-                  color: '#fff',
-                  width: '100px',
-                }}
-              >
-                Medicine
-              </span>
-              <input
-                placeholder='Medicine'
-                name='medicine'
-                className='form-control'
-              ></input>
-              <span
-                className='input-group-text'
-                style={{
-                  backgroundColor: '#3f51b5',
-                  color: '#fff',
-                  width: '100px',
-                }}
-              >
-                Note
-              </span>
-              <input
-                placeholder='Note'
-                name='note'
-                className='form-control'
-              ></input>
-            </div>
             <div className='input-group mb-3'>
               <span
                 className='input-group-text'
