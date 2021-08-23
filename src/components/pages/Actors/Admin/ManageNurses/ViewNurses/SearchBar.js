@@ -68,7 +68,7 @@ function SearchBar() {
             console.log("formValues before submit", formValue);
             if (Object.keys(formValue.nurseId).length != 0) {
                 // console.log('nurse id',formValue.nurseId);
-                dispatch(Actions.getNurseProfileDetailsById(formValue.nurseId));
+                dispatch(Actions.getNurseProfileByNurseId(formValue.nurseId));
 
             }
             else {

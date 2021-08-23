@@ -13,17 +13,25 @@ import BarStatCard from '../../../StatCard/BarStatCard'
 import { Button } from '@material-ui/core'
 import { getStorageItem, setStorageItem } from '../../../../utils/StorageUtils'
 import axios from 'axios'
+import Constants from '../../../../utils/Constants'
 
-const getUserInfo = axios.get(
-  'http://localhost:8080/wecare/doctor/info/' + getStorageItem('user', true).id
-)
+async function get_doctor_info() {
+  const getUserInfo = await axios
+    .get(
+      Constants.API_BASE_URL + '/doctor/info/' + getStorageItem('user', true).id
+    )
+    .then((res) => {
+      if (res.status === 200) {
+        console.log(res.data)
+        setStorageItem('doctorInfo', res.data)
+      }
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+}
 
-getUserInfo.then((res) => {
-  if (res.status === 200) {
-    console.log(res.data)
-    setStorageItem('doctorInfo', res.data)
-  }
-})
+get_doctor_info()
 
 const useStyles = makeStyles({
   dataCard: {

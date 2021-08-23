@@ -46,6 +46,7 @@ const UpdateSchedule = (props) => {
         dispatch(Actions.updateNurseSchedule(newnurseSchedule,nurseProfile.id));      
        setmodalIsopen(false);
        setNurseSchedule([]);
+  
 
     }
     const  onScheduleChange=(v,schedule)=>{      
@@ -94,7 +95,7 @@ const UpdateSchedule = (props) => {
                             top: '50px',
                             right: '400px',
                             left: '450px',
-                            bottom: '50px',
+                            bottom: '250px'
 
 
                         }

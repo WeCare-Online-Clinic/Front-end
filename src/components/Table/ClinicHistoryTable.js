@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { getStorageItem } from '../../utils/StorageUtils'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import Constants from '../../utils/Constants'
 import {
   Card,
   CardActions,
@@ -20,8 +24,29 @@ import {
   Grid,
   TextField,
 } from '@material-ui/core'
-import { clinicHistory } from './ClinicHistoryData'
 import PageviewIcon from '@material-ui/icons/Pageview'
+
+const CLINIC = getStorageItem('doctorInfo', true).clinic.id
+console.log(CLINIC)
+
+async function get_clinic_history() {
+  console.log('clinic history')
+
+  let clinic_history = []
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/clinic/history/' + CLINIC)
+      .then((res) => {
+        if (res.status == 200) {
+          clinic_history = res.data
+        }
+      })
+    return clinic_history
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,9 +84,18 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ClinicHistoryTable = (props) => {
+  const history = useHistory()
   const { className } = props
+  const [clinicHistory, setClinicHistory] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
+
+  useEffect(() => {
+    get_clinic_history().then((res) => {
+      setClinicHistory(res)
+      console.log(res)
+    })
+  }, [])
 
   const tableHeaders = [
     // add table header names
@@ -120,25 +154,31 @@ const ClinicHistoryTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {row.date}
+                            {row.clinicDate}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.start}
+                            {row.startTime}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.end}
+                            {row.endTime}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.patients}
+                            {row.noPatients}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.nurse}
+                            {row.nurse.name}
                           </TableCell>
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'clinicHistory',
+                                  state: row,
+                                })
+                              }
                             >
                               View
                             </Button>

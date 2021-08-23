@@ -1,34 +1,33 @@
-import axios from 'axios';
-
-const NURSE_API_BASE_URL = "http://localhost:8080/wecare";
+import axios from 'axios'
+import Constants from '../../../../../../../utils/Constants'
 
 class NurseService {
-
   saveNurse(nurse) {
-    return axios.post(NURSE_API_BASE_URL + '/addNurse', nurse);
+    return axios.post(Constants.API_BASE_URL + '/addNurse', nurse)
   }
 
   getNurses() {
-    return axios.get(NURSE_API_BASE_URL + '/getNurses');
+    return axios.get(Constants.API_BASE_URL + '/getNurses')
   }
 
   getClinicDays(data) {
-    return axios.get(NURSE_API_BASE_URL + '/getClinicDays/' + data);
+    return axios.get(Constants.API_BASE_URL + '/getClinicDays/' + data)
   }
   getClinics() {
-    return axios.get(NURSE_API_BASE_URL + '/getClinics')
+    return axios.get(Constants.API_BASE_URL + '/getClinics')
   }
   getNurseProfileDetailsById(id) {
-    return axios.get(NURSE_API_BASE_URL + '/getNurseProfile/' + id);
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfile/' + id)
   }
   getNurseProfileDetailsByName(name) {
-    return axios.get(NURSE_API_BASE_URL + '/getNurseProfileByName/' + name);
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileByName/' + name)
   }
   getNurseProfileDetailsByClinic(clinicId) {
-    return axios.get(NURSE_API_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId);
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileDetailsByClinic/' + clinicId)
   }
-
-
+  getNurseProfileByNurseId(nurseId) {
+    return axios.get(Constants.API_BASE_URL + '/getNurseProfileByNurseId/' + nurseId)
+  }
 }
 
 export default new NurseService()

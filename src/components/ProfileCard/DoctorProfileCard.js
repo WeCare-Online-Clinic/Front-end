@@ -82,14 +82,14 @@ function DoctorProfileCard(props) {
       <CardContent>
         <Grid container>
           <Grid item sm></Grid>
-          <Grid item sm={5}>
+          <Grid item sm={4}>
             <div className={classes.textField}>ID</div>
             <div className={classes.textField}>Qualification</div>
             <div className={classes.textField}>Conatct No</div>
             <div className={classes.textField}>Email</div>
             <div className={classes.textField}>Clinic</div>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={7}>
             <div className={classes.textField}>: {doctorInfo.doctorId}</div>
             <div className={classes.textField}>
               : {doctorInfo.qualification}

@@ -140,8 +140,10 @@ const DoctorDataTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {DoctorData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
+                  {DoctorData.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  ) // slice patienData array to no.of rows per page
                     .map(
                       (
                         doctor // add table rowDoctor
@@ -157,7 +159,7 @@ const DoctorDataTable = (props) => {
                             {doctor.clinic}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {doctor. clinic_date}
+                            {doctor.clinic_date}
                           </TableCell>
                         </TableRow>
                       )

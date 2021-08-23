@@ -19,7 +19,8 @@ const useStyles = makeStyles({
   },
 })
 
-function PatientData() {
+function PatientData(props) {
+  console.log(props.location.state)
   return (
     <Layout
       header={<Header user={getStorageItem('doctorName')} />}
@@ -27,14 +28,14 @@ function PatientData() {
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
-          <Content />
+          <Content patient={props.location.state} />
         </div>
       }
     ></Layout>
   )
 }
 
-function Content() {
+function Content(props) {
   const classes = useStyles()
   return (
     <Grid
@@ -45,7 +46,7 @@ function Content() {
       <Grid className={classes.dataCard} item sm={12}>
         <Grid container>
           <Grid item sm={4}>
-            <PatientInfoCard />
+            <PatientInfoCard patient={props.patient} />
           </Grid>
           <Grid item sm={8}>
             <ClinicDataCard />

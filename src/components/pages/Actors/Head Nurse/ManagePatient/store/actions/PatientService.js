@@ -1,16 +1,15 @@
-import axios from 'axios';
-
-const PATIENT_API_BASE_URL = "http://localhost:8080/wecare";
+import axios from 'axios'
+import Constants from '../../../../../../../utils/Constants'
 
 class PatientService {
-
   savePatient(patient) {
-    return axios.post(PATIENT_API_BASE_URL + '/addPatient', patient);
+    return axios.post(Constants.API_BASE_URL + '/addPatient', patient)
   }
 
   getPatient() {
-    return axios.get(PATIENT_API_BASE_URL + '/getPatient');
+    return axios.get(Constants.API_BASE_URL + '/getPatient')
   }
+
 
   getClinicDays(data) {
     return axios.get(PATIENT_API_BASE_URL + '/getClinicDays/' + data);
@@ -18,15 +17,20 @@ class PatientService {
   getClinics() {
     return axios.get(PATIENT_API_BASE_URL + '/getClinics')
   }
+
   getPatientProfileDetailsById(id) {
-    return axios.get(PATIENT_API_BASE_URL + '/getPatientProfile/' + id);
+    return axios.get(Constants.API_BASE_URL + '/getPatientProfile/' + id)
   }
   getPatientProfileDetailsByName(name) {
-    return axios.get(PATIENT_API_BASE_URL + '/getPatientProfileByName/' + name);
+    return axios.get(
+      Constants.API_BASE_URL + '/getPatientProfileByName/' + name
+    )
   }
+
   getPatientProfileDetailsByClinic(clinicId) {
     return axios.get(PATIENT_API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
   }
+
 
 }
 

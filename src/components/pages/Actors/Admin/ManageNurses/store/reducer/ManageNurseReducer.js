@@ -5,7 +5,8 @@ import {
     ON_GET_CLINICS,
     ON_GET_NURSE_PROFILE_BY_ID,
     ON_GET_NURSE_PROFILE_BY_NAME,
-    ON_GET_NURSE_PROFILE_BY_CLINIC
+    ON_GET_NURSE_PROFILE_BY_CLINIC,
+    ON_GET_NURSE_PROFILE_BY_NURSE_ID
 
 } from "../actions/NurseAction";
 
@@ -53,6 +54,12 @@ const ManageNurseReducer = function (state = initialState, action) {
             }
         }
         case ON_GET_NURSE_PROFILE_BY_CLINIC:{
+            return{
+                ...state,
+                nurseList:[...action.payload]
+            }
+        }
+        case ON_GET_NURSE_PROFILE_BY_NURSE_ID:{
             return{
                 ...state,
                 nurseList:[...action.payload]

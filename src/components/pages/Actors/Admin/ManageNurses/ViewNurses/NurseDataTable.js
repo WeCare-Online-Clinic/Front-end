@@ -148,7 +148,7 @@ const NurseDataTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {nurse.id}
+                            {nurse.nurse_id}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {nurse.name}

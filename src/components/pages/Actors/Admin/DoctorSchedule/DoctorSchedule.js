@@ -9,21 +9,49 @@ import SearchBar from './SearchBar';
 import * as _ from 'lodash'
 import 'reactjs-popup/dist/index.css';
 import UpdateSchedule from './UpdateSchedule';
+import { format } from 'date-format-parse';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-
+toast.configure()
 const DoctorSchedule = props => {
+    const dispatch = useDispatch();
     const reducerData = useSelector(({ doctorDetails }) => doctorDetails.doctorSchedule);
     let doctorProfile;
     doctorProfile = reducerData.doctorProfile;
+    let deleteDoctor;
 
-    // console.log('profile :', doctorProfile);
+    const ChangeStatus = ({closeToast}) => {
+        // console.log('delete doctor profile 25', deleteDoctor);
+        return (
+            <div >
+                <h4>{deleteDoctor.doctorId } will no longer exist in the system <br/>
+                 Are you sure want to perform the task ?</h4>
+                <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#FF0000' }}>No</button>
+                <button onClick={() => dispatch(Actions.changeDoctorStatus(deleteDoctor.id))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
+            </div>
+        )
+    }
+
+    const onDeactivate = (doctorId) => {        
+        for (var i = 0; i < doctorProfile.length; i++) { 
+            if (doctorProfile[i].id == doctorId) { //search for selected doctor object
+                deleteDoctor=doctorProfile[i];
+                // console.log("doctor object", doctor);
+                toast.error(<ChangeStatus/>, { position: toast.POSITION.TOP_CENTER, autoClose: false })
+            }
+         
+        }
+
+        //types -success,info,warn,error
+    }
 
     return (
         <div className="container">
             <div className="row " >
                 <nav className="navbar navbar-expand ">
                     <div className="collapse navbar-collapse">
-                        <SearchBar />
+                        {/* <SearchBar /> */}
                     </div>
                 </nav>
             </div>
@@ -54,11 +82,13 @@ const DoctorSchedule = props => {
                                             <tbody>
                                                 <tr className="my"><th>Id :</th><th>{doctorProfile.id}</th></tr>
                                                 <tr className="my"><th>Name :</th><th>{doctorProfile.name}</th></tr>
+                                                <tr className="my"><th>Doctor ID :</th><th>{doctorProfile.doctorId}</th></tr>
                                                 <tr className="my"><th>Email :</th><th>{doctorProfile.email}</th></tr>
                                                 <tr className="my"><th>Phone :</th><th>{doctorProfile.contact}</th></tr>
                                                 <tr className="my"><th>Qualification :</th><th>{doctorProfile.qualification}</th></tr>
                                                 <tr className="my"><th>Specialty :</th><th>{doctorProfile.specialization}</th></tr>
-                                                <tr className="my"><th>Registered date :</th><th>2021.07.13</th></tr>
+                                                <tr className="my"><th>Registered date :</th><th>{format(new Date(doctorProfile.registeredDate), 'YYYY-MM-DD')}</th></tr>
+
                                             </tbody>
                                         </table>
 
@@ -88,10 +118,10 @@ const DoctorSchedule = props => {
                                             </tbody>
                                         </table>
                                         <div className="mr-5">
-                                                   
-                                           
+
+
                                             <UpdateSchedule doctorProfile={doctorProfile} />
-                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }}>Delete</button>
+                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }} onClick={() => onDeactivate(doctorProfile.id)}>Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +133,7 @@ const DoctorSchedule = props => {
             }
 
         </div>
-                
+
     )
 }
 
