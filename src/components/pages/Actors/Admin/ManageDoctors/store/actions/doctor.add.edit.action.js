@@ -1,9 +1,10 @@
-import {
-  showErrorMessage,
-  showSuccessMessage,
-} from '../../../../../../../utils/ToastUtil'
+
 import history from '../../../../../../../@history'
 import DoctorService from './doctor.service'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 export const ON_ADD_EDIT_FORM_CHANGE = '[DOCTOR ADD EDIT] ON_ADD_EDIT_FORM_CHANGE'
 export const ON_GET_DOCTORS = '[DOCTOR ADD EDIT] ON_GET_DOCTORS'
@@ -25,8 +26,8 @@ export function saveDoctor(doctor) {
 
   return (dispatch, getState) => {
     return request
-      .then((response) => {
-        alert('Successfully Registered')
+      .then((response) => {      
+        toast.success('Successfully Registered', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         history.push('viewdoctors')
         dispatch({
           type: ON_SAVE_DOCTOR,
@@ -34,7 +35,7 @@ export function saveDoctor(doctor) {
         })
       })
       .catch((error) => {
-        // alert('Register failed, please try again')
+        toast.error('Register failed , Please try agin', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       })
   }
 }
@@ -151,8 +152,8 @@ export function getDoctorProfileDetailsById(id) {
   const request = DoctorService.getDoctorProfileDetailsById(id);
   return (dispatch, getState) => {
     request.then((response) => {
-      if (response.data.length == 0) {
-        alert('Sorry,  Id not found');
+      if (response.data.length == 0) {    
+        toast.error('Sorry,  Id not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       }
       else {
         dispatch({
@@ -175,8 +176,8 @@ export function getDoctorProfileDetailsByName(name) {
   const request = DoctorService.getDoctorProfileDetailsByName(name);
   return (dispatch, getState) => {
     request.then((response) => {
-      if (response.data.length == 0) {
-        alert('Sorry,  Name not found');
+      if (response.data.length == 0) {       
+        toast.error('Sorry,  Name not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       }
       else {
         dispatch({
@@ -195,8 +196,8 @@ export function getDoctorProfileDetailsByClinic(clinicId) {
   const request = DoctorService.getDoctorProfileDetailsByClinic(clinicId);
   return (dispatch, getState) => {
     request.then((response) => {
-      if (response.data.length == 0) {
-        alert('Sorry,  No doctors incharge the clinic');
+      if (response.data.length == 0) {        
+        toast.error('Sorry,  No doctors incharge the clinic', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       }
       else{
         dispatch({
@@ -215,8 +216,8 @@ export function getDoctorProfileDetailsByDoctorId(doctorId) {
   const request = DoctorService.getDoctorProfileDetailsByDoctorId(doctorId);
   return (dispatch, getState) => {
     request.then((response) => {
-      if (response.data.length == 0) {
-        alert('Sorry,  Id not found');
+      if (response.data.length == 0) {       
+        toast.error('Sorry,  Id not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       }
       else {
         dispatch({

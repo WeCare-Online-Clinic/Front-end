@@ -127,7 +127,8 @@ export function updateNurseSchedule(newDoctorSchedule,doctorId) {
     const request = NurseScheduleService.updateNurseSchedule(newDoctorSchedule);
     return (dispatch, getState) => {
         request.then((response) => { 
-            alert("successfully updated");           
+             window.location.reload(false);
+            toast.info('Successfully Updated', { position: toast.POSITION.TOP_CENTER, autoClose: false })       
             console.log("update nurse schedule success",response.data);         
                     
 
