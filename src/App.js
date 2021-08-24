@@ -151,7 +151,7 @@ const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
 )
 const HeadNurseViewDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/ViewDoctor')
+  import('./components/pages/Actors/Head Nurse/Clinic/ViewDoctors/ViewDoctorsBase')
 )
 
 const HeadNurseProfile = React.lazy(() =>
