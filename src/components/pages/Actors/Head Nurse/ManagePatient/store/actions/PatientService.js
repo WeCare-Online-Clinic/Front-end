@@ -12,10 +12,10 @@ class PatientService {
 
 
   getClinicDays(data) {
-    return axios.get(Constants.PATIENT_API_BASE_URL + '/getClinicDays/' + data);
+    return axios.get(Constants.API_BASE_URL + '/getClinicDays/' + data);
   }
   getClinics() {
-    return axios.get(Constants.PATIENT_API_BASE_URL + '/getClinics')
+    return axios.get(Constants.API_BASE_URL + '/getClinics')
   }
 
   getPatientProfileDetailsById(id) {
@@ -28,7 +28,7 @@ class PatientService {
   }
 
   getPatientProfileDetailsByClinic(clinicId) {
-    return axios.get(Constants.PATIENT_API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
+    return axios.get(Constants.API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
   }
 
 

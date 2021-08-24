@@ -1,6 +1,10 @@
 
 import NurseService from "./NurseService";
 import history from '../../../../../../../@history'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 export const ON_GET_NURSES='[ON_GET_NURSE] ON_GET_NURSES';
 export const ON_SAVE_NURSE = '[ON_SAVE_NURSE] ON_SAVE_NURSE';
@@ -17,7 +21,7 @@ export function saveNurse(nurse) {
     return (dispatch, getState) => {
         return request.then((response) => {
 
-            alert("Successfully Registered"); 
+           toast.success('Successfully Registered', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
             history.push('viewnurse');     
             dispatch({
                 type: ON_SAVE_NURSE,
@@ -25,7 +29,7 @@ export function saveNurse(nurse) {
             })
             
         }).catch((error)=>{          
-            // alert("Register failed, please try again"); 
+          toast.error('Register failed , Please try agin', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         });
 
     };
@@ -104,8 +108,8 @@ export function getClinics() {
     const request = NurseService.getNurseProfileDetailsByName(name);
     return (dispatch, getState) => {
       request.then((response) => {
-        if (response.data.length == 0) {
-          alert('Sorry,  Name not found');
+        if (response.data.length == 0) {        
+          toast.error('Sorry,  Name not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         }
         else {
           dispatch({
@@ -124,8 +128,8 @@ export function getClinics() {
     const request = NurseService.getNurseProfileDetailsByClinic(clinicId);
     return (dispatch, getState) => {
       request.then((response) => {
-        if (response.data.length == 0) {
-          alert('Sorry,  No nurses in the clinic');
+        if (response.data.length == 0) {         
+          toast.error('Sorry,  No nurses in the clinic', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         }
         else{
           dispatch({
@@ -144,8 +148,8 @@ export function getClinics() {
     const request = NurseService.getNurseProfileByNurseId(nurseId);
     return (dispatch, getState) => {
       request.then((response) => {
-        if (response.data.length == 0) {
-          alert('Sorry,  Id not found');
+        if (response.data.length == 0) {        
+          toast.error('Sorry,  Id not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         }
         else {
           dispatch({

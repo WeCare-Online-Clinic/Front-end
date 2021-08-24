@@ -1,9 +1,9 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    success: false,
-    user: null,
-    error: null
+    // success: false,
+    user: {},
+    // error: null
 };
 
 const login = function (state = initialState, action) {
@@ -11,9 +11,9 @@ const login = function (state = initialState, action) {
         case Actions.LOGIN_SUCCESS: {
             return {
                 ...initialState,
-                success: true,
+                // success: true,
                 user: action.payload,
-                error: null
+                // error: null
             };
         }
         case Actions.LOGIN_ERROR: {

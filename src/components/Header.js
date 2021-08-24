@@ -1,14 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import {
-  AppBar,
-  Toolbar,
-  Grid,
-  IconButton,
-  Badge,
-  Button,
-  Link,
-} from '@material-ui/core'
+import {useSelector} from 'react-redux';
+import withReducer from '../store/withReducer';
+import reducer from '../authStore/reducers';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
@@ -19,9 +13,29 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useHistory } from 'react-router'
 import { clearAppLocalStorage } from '../utils/StorageUtils'
+import { getStorageItem } from '../utils/StorageUtils';
+import { useDispatch } from 'react-redux'
+import * as Actions from '../authStore/actions/login.actions'
+import {
+  AppBar,
+  Toolbar,
+  Grid,
+  IconButton,
+  Badge,
+  Button,
+  Link,
+} from '@material-ui/core'
 
-export default function Header(props) {
+function Header(props){
   const history = useHistory()
+  const reducerData = useSelector(({ loginUser }) => loginUser.login);
+  // const userDetails=reducerData.user
+  const dispatch = useDispatch(); 
+  let { name } = JSON.parse(getStorageItem('user'));
+  let { id } = JSON.parse(getStorageItem('user'));
+  console.log("user name :",name);
+  console.log("user id :",id);
+  // console.log("reducer Data in Header file:",reducerData.user)
   return (
     <AppBar position='static' style={{ backgroundColor: '#fff' }}>
       <Toolbar>
@@ -65,7 +79,7 @@ export default function Header(props) {
               padding: '10px',
             }}
           >
-            {props.user}
+           Welcome {name}
           </Grid>
           <Grid item>
             <IconButton
@@ -90,8 +104,7 @@ export default function Header(props) {
               color='primary'
               size='large'
               onClick={() => {
-                clearAppLocalStorage()
-                history.push('/login')
+                dispatch(Actions.userLogOut(id));                
               }}
             >
               Log Out
@@ -102,3 +115,5 @@ export default function Header(props) {
     </AppBar>
   )
 }
+
+export default withReducer('loginUser', reducer)(Header);

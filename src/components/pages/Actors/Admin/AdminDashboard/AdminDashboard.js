@@ -1,11 +1,12 @@
 import React,{useEffect,useState} from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import OnlineUserTable from '../../../../Table/OnlineUsersTable'
-import LineStatCard from '../../../../StatCard/LineStatCard'
+import UserTypeChart from './Charts/UserTypeChart'
 import DataCard from './DataCard';
 import {useSelector} from 'react-redux';
 import withReducer from '../../../../../store/withReducer'
 import reducer from './store/reducer/index'
+import RegUsersChart from './Charts/RegUsersChart';
+import OnlineUsersTable from './OnlineUsers';
 
 
 const useStyles = makeStyles({
@@ -22,6 +23,8 @@ function AdminDashboard(){
     const reducerData = useSelector(({ adminData }) => adminData.adminDashboard);
 
     const adminDataItems =reducerData.userCounts;
+    // const onlineUsers =reducerData.onlineUsers;
+    // console.log("online users",onlineUsers);
     const classes = useStyles() ;
    
     return (
@@ -34,11 +37,11 @@ function AdminDashboard(){
                 <Grid item sm={12}>
                     <Grid container style={{ marginBottom: '10px' }} spacing={5}>
                         <Grid className={classes.dataCard} item sm={4}>
-                            <OnlineUserTable />
+                            <OnlineUsersTable />
                         </Grid>
                         <Grid className={classes.dataCard} item sm={7}>
-                            <LineStatCard title='Online Users' />
-                            <LineStatCard title='Registered Users' />
+                            <RegUsersChart />                           
+                            <UserTypeChart  />
                         </Grid>
                     </Grid>
                 </Grid>

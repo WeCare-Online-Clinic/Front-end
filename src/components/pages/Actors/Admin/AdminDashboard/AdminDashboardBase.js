@@ -14,6 +14,7 @@ function AdminDashboardBase() {
   const dispatch = useDispatch(); 
   useEffect(() => {
     dispatch(Actions.getUserCounts());
+    dispatch(Actions.getOnlineUsers());
      
   }, []) 
 
