@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Constants from '../../../../../../../utils/Constants'
 
-class PatientService {
+class PatientService { 
   savePatient(patient) {
     return axios.post(Constants.API_BASE_URL + '/addPatient', patient)
   }
@@ -12,10 +12,10 @@ class PatientService {
 
 
   getClinicDays(data) {
-    return axios.get(PATIENT_API_BASE_URL + '/getClinicDays/' + data);
+    return axios.get(Constants.PATIENT_API_BASE_URL + '/getClinicDays/' + data);
   }
   getClinics() {
-    return axios.get(PATIENT_API_BASE_URL + '/getClinics')
+    return axios.get(Constants.PATIENT_API_BASE_URL + '/getClinics')
   }
 
   getPatientProfileDetailsById(id) {
@@ -28,7 +28,7 @@ class PatientService {
   }
 
   getPatientProfileDetailsByClinic(clinicId) {
-    return axios.get(PATIENT_API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
+    return axios.get(Constants.PATIENT_API_BASE_URL + '/getPatientProfileDetailsByClinic/' + clinicId);
   }
 
 
