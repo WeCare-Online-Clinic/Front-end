@@ -11,7 +11,6 @@ let initFormValue = {
     clinicId: ''
 
 }
-
 let initError = {
     doctorNameErrors: {},
     doctorIdErrors: {}
