@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import Constants from '../../../../../../utils/Constants';
 import * as _ from 'lodash'
-import * as Actions from '../store/actions/doctor.add.edit.action'
-import { useDispatch, useSelector } from 'react-redux';
+import * as Actions from '../store/actions/PatientAction'
+import { useDispatch} from 'react-redux';
 const Clinics = Constants.CLINICS;
 
 let initFormValue = {
-    doctorName: '',
-    doctorId: '',
+    patientName: '',
+    patientId: '',
     clinicId: ''
 
 }
+
 let initError = {
-    doctorNameErrors: {},
-    doctorIdErrors: {}
+    patientNameErrors: {},
+    patientIdErrors: {}
 }
 
 function SearchBar() {
@@ -65,20 +66,20 @@ function SearchBar() {
         const isValid = validation();
         if (isValid) {
             console.log("formValues before submit", formValue);
-            if (Object.keys(formValue.doctorId).length != 0) {
-                // console.log('doctor id',formValue.doctorId);
-                dispatch(Actions.getDoctorProfileDetailsByDoctorId(formValue.doctorId));
+            if (Object.keys(formValue.patientId).length != 0) {
+                // console.log('patient id',formValue.patientId);
+                dispatch(Actions.getPatientProfileDetailsById(formValue.patientId));
 
             }
             else {
-                if (Object.keys(formValue.doctorName).length != 0) {
-                    // console.log('doctor name',formValue.doctorName);
-                    dispatch(Actions.getDoctorProfileDetailsByName(formValue.doctorName));
+                if (Object.keys(formValue.patientName).length != 0) {
+                    // console.log('patient name',formValue.patientName);
+                    dispatch(Actions.getPatientProfileDetailsByName(formValue.patientName));
                 }
                 else {
                     if (Object.keys(formValue.clinicId.length != 0)) {
                         // console.log('clinic name',formValue.clinicName);
-                        dispatch(Actions.getDoctorProfileDetailsByClinic(formValue.clinicId));
+                        dispatch(Actions.getPatientProfileDetailsByClinic(formValue.clinicId));
                     }
 
                 }
@@ -95,24 +96,24 @@ function SearchBar() {
     const validation = () => {
         let localErrors = _.cloneDeep(errors); //make a seperate local errors object and assign it to localErrors 
         let isValid = true;
-        //validating doctor name 
-        if (formValue.doctorName.trim().length > 30) {
-            let doctorNameTooLong = Object.assign({}, { tooLong: 'Too long' })
-            localErrors.doctorNameErrors = doctorNameTooLong;
+        //validating patient name 
+        if (formValue.patientName.trim().length > 30) {
+            let patientNameTooLong = Object.assign({}, { tooLong: 'Too long' })
+            localErrors.patientNameErrors = patientNameTooLong;
             isValid = false;
         }
         else {
-            localErrors.doctorNameErrors.tooLong = null;
+            localErrors.patientNameErrors.tooLong = null;
         }
 
-        //validating doctor id 
-        if (formValue.doctorId.trim().length > 10) {
-            let doctorIdInvalid = Object.assign({}, { invalidId: 'Invalid Id' })
-            localErrors.doctorIdErrors = doctorIdInvalid;
+        //validating patient id 
+        if (formValue.patientId.trim().length > 10) {
+            let patientIdInvalid = Object.assign({}, { invalidId: 'Invalid Id' })
+            localErrors.patientIdErrors = patientIdInvalid;
             isValid = false;
         }
         else {
-            localErrors.doctorIdErrors.invalidId = null;
+            localErrors.patientIdErrors.invalidId = null;
         }
 
 
@@ -129,21 +130,21 @@ function SearchBar() {
                     <input className="form-control me-2"
                         style={{ height: '50px' }}
                         type="search"
-                        placeholder="Doctor Id"
+                        placeholder="Patient Id"
                         aria-label="Search"
-                        name="doctorId"
+                        name="patientId"
                         onChange={onMyChange}
-                        value={formValue.doctorId}
+                        value={formValue.patientId}
                     />
                 </li>
                 <li style={{ display: 'inline-block', margin:'0px 5px' }}>
                     <input className="form-control me-2"
                         style={{ height: '50px' }}
                         type="search"
-                        placeholder="Doctor Name"
+                        placeholder="Patient Name"
                         aria-label="Search"
-                        name="doctorName"
-                        value={formValue.doctorName}
+                        name="patientName"
+                        value={formValue.patientName}
                         onChange={onMyChange}
                     />
                 </li>
