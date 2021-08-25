@@ -162,6 +162,9 @@ const HeadNurseRegister = React.lazy(() =>
     './components/pages/Actors/Head Nurse/ManagePatient/Register/PatientRegister'
   )
 )
+const HeadNurseDoctorProfile = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/DoctorProfile/ViewDoctorBase')
+)
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage')
 )
@@ -421,6 +424,11 @@ const App = () => {
                 path='/headnurse/register/patientregister'
                 exact
                 component={HeadNurseRegister}
+              ></Route>
+               <Route
+                path='/headnurse/doctorprofile'
+                exact
+                component={HeadNurseDoctorProfile}
               ></Route>
               <Route
                 path='/headnurse/sendmessage'
