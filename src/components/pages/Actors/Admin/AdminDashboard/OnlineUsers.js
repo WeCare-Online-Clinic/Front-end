@@ -82,7 +82,7 @@ const OnlineUsers = (props) => {
             <Table>
               <TableHead
                 style={{
-                  backgroundColor: '#ebf5f7',
+                  backgroundColor: 'rgba(0,0,205,0.5)',                
                 }}
                 className={classes.head}
               >
@@ -96,7 +96,7 @@ const OnlineUsers = (props) => {
                   {tableHeaders.map((col) => (
                     <TableCell
                       style={{
-                        color: '#3f51b5',
+                        // color: '#3f51b5',
                         fontWeight: 'bold',
                         fontSize: '16px',
                         borderBottom: '1px solid #000',

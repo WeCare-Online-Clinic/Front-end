@@ -8,6 +8,9 @@ class AdminDashboardService {
   getOnlineUsers() {
     return axios.get(Constants.API_BASE_URL + '/getOnlineUsers/')
   }
+  getRegisteredUsers(){
+    return axios.get(Constants.API_BASE_URL + '/getRegisteredUsers/')
+  }
 }
 
 export default new AdminDashboardService()

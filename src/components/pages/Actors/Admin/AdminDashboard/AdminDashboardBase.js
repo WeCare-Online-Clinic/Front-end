@@ -15,6 +15,8 @@ function AdminDashboardBase() {
   useEffect(() => {
     dispatch(Actions.getUserCounts());
     dispatch(Actions.getOnlineUsers());
+    dispatch(Actions.getRegisteredUsers());
+    
      
   }, []) 
 

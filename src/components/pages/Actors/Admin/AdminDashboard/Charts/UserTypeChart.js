@@ -1,70 +1,81 @@
 import { size } from 'lodash';
 import React from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import withReducer from '../../../../../../store/withReducer'
+import reducer from '../store/reducer/index'
+import { makeStyles } from '@material-ui/styles'
+import {
+  Card,
+  CardContent,
+  CardHeader
 
-const state = {
-  labels: ['January', 'February', 'March',
-           'April', 'May'],
-  datasets: [
-    {
-      label: 'Rainfall',
-      backgroundColor: [
-        '#B21F00',
-        '#C9DE00',
-        '#2FDE00',
-        '#00A6B4',
-        '#6800B4'
-      ],
-      hoverBackgroundColor: [
-      '#501800',
-      '#4B5000',
-      '#175000',
-      '#003350',
-      '#35014F'
-      ],
-      data: [65, 59, 80, 81, 56]
-    }
-  ]
-}
+} from '@material-ui/core'
 
-const UserTypeChart=()=> {
+const useStyles = makeStyles({
+
+  headerTitle: {
+    textAlign:'center',
+    fontWeight:'bold',
+    alignContent:'center',
+    color:'black'
+    
+  }
+});
+
+const UserTypeChart = () => {
+  const reducerData = useSelector(({ userType }) => userType.adminDashboard);
+  const adminDataItems = reducerData.userCounts;
+  console.log("admin data items in usertype:", adminDataItems);
+  const materializeUIClasses = useStyles();
+  let usersData = [];
+  adminDataItems && adminDataItems.map((users) => {
+    usersData.push(users.value);
+  })
+  const state = {
+    labels: ['Patients', 'Doctors', 'Nurses', 'Lab Technicans'],
+    datasets: [
+      {
+        // label: 'Rainfall',
+        backgroundColor: [
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+          '#6800B4'
+        ],
+        hoverBackgroundColor: [
+          '#501800',
+          '#4B5000',
+          '#175000',
+          '#003350',
+          '#35014F'
+        ],
+        data: usersData
+      }
+    ]
+  }
   {
     return (
-      <div>
-        <Pie
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            },
-            
-            
-       
-          }}
-        />
+      <Card>
+        <CardHeader title={"User Types"}  style={{ backgroundColor: 'rgba(0,0,205,0.5)', opacity: '0.9',textAlign: 'center'}} classes={{title: materializeUIClasses.headerTitle}} ></CardHeader>
+        <CardContent>
 
-        <Doughnut
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
+          <div className="mt-3 mb-3 " style={{ width: "10cm", height: "10cm", marginLeft: '6cm' }}>
+       
+            <Pie
+              data={state}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+
+              }}
+            />
+
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 }
-export default UserTypeChart;
+export default withReducer('userType', reducer)(UserTypeChart);
