@@ -17,6 +17,7 @@ let initFormValue = {
     gender: '',
     contact: '',
     isHead: '',
+    status:'true',
     qualification: '',
     clinic: {},
     nurseSchedule: [],

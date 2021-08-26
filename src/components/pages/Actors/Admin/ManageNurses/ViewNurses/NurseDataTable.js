@@ -67,6 +67,7 @@ const NurseDataTable = (props) => {
   const reducerData = useSelector(({ nurses }) => nurses.manageNurse);
   console.log("nurse list", reducerData.nurseList);
   const nurseList = reducerData.nurseList;
+  console.log('nurseList',nurseList)
 
   const history = useHistory()
   const { className } = props
@@ -148,7 +149,7 @@ const NurseDataTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {nurse.nurse_id}
+                            {nurse.nurseId}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {nurse.name}

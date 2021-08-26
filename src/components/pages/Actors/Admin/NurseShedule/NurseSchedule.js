@@ -24,7 +24,7 @@ const NurseSchedule = props => {
       // console.log('delete doctor profile 25', deleteNurse);
       return (
           <div >
-              <h4>{deleteNurse.id } will no longer exist in the system <br/>
+              <h4>{deleteNurse.nurseId } will no longer exist in the system <br/>
                Are you sure want to perform the task ?</h4>
               <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#FF0000' }}>No</button>
               <button onClick={() => dispatch(Actions.changeNurseStatus(deleteNurse.id))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
@@ -75,7 +75,7 @@ const NurseSchedule = props => {
                   </div>
                   <div className="card-body">
                     <table className="mytable mt-3">
-                      <tr className="my"><th>Id :</th><th>{nurseProfile.id}</th></tr>
+                      <tr className="my"><th>Id :</th><th>{nurseProfile.nurseId}</th></tr>
                       <tr className="my"><th>Name :</th><th>{nurseProfile.name}</th></tr>
                       <tr className="my"><th>Email :</th><th>{nurseProfile.email}</th></tr>
                       <tr className="my"><th>Phone :</th><th>{nurseProfile.contact}</th></tr>

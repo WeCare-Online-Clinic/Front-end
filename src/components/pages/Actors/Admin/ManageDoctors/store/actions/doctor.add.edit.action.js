@@ -35,7 +35,7 @@ export function saveDoctor(doctor) {
         })
       })
       .catch((error) => {
-        toast.error('Register failed , Please try agin', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+        // toast.error('Register failed , Please try agin', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
       })
   }
 }

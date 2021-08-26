@@ -80,7 +80,7 @@ const DoctorSchedule = props => {
                                     <div className="card-body">
                                         <table className="mytable mt-3">
                                             <tbody>
-                                                <tr className="my"><th>Id :</th><th>{doctorProfile.id}</th></tr>
+                                                <tr className="my"><th>Id :</th><th>{doctorProfile.doctorId}</th></tr>
                                                 <tr className="my"><th>Name :</th><th>{doctorProfile.name}</th></tr>
                                                 <tr className="my"><th>Doctor ID :</th><th>{doctorProfile.doctorId}</th></tr>
                                                 <tr className="my"><th>Email :</th><th>{doctorProfile.email}</th></tr>

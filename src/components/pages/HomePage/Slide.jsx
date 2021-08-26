@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import img1 from '../../assets/img/1.jpg'
-import img2 from '../../assets/img/2.jpg'
+import img1 from '../../assets/img/sl1.jpg'
+import img2 from '../../assets/img/sl2.jpg'
 import img3 from '../../assets/img/new2.jpg'
 import {
   CCard,
@@ -22,12 +22,12 @@ const Carousels = () => {
           <CCard>
             <CCarousel>
               <CCarouselInner>
-                {/*  <CCarouselItem>
+                 <CCarouselItem>
                   <img className="d-block w-100" src={slides[0]}  alt="slide 1" height="500px"/>
                 </CCarouselItem>
                 <CCarouselItem>
                   <img className="d-block w-100" src={slides[1]} alt="slide 2" height="500px"/>
-                </CCarouselItem> */}
+                </CCarouselItem>
                 <CCarouselItem>
                   <img
                     className='d-block w-100'
