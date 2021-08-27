@@ -55,6 +55,7 @@ if (isProf) {
 }
 
 setStorageItem('doctorName', fullName)
+console.log(fullName)
 
 function Dashboard() {
   return (

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import {useSelector} from 'react-redux';
-import withReducer from '../store/withReducer';
-import reducer from '../authStore/reducers';
+import { useSelector } from 'react-redux'
+import withReducer from '../store/withReducer'
+import reducer from '../authStore/reducers'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
@@ -13,7 +13,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useHistory } from 'react-router'
 import { clearAppLocalStorage } from '../utils/StorageUtils'
-import { getStorageItem } from '../utils/StorageUtils';
+import { getStorageItem } from '../utils/StorageUtils'
 import { useDispatch } from 'react-redux'
 import * as Actions from '../authStore/actions/login.actions'
 import {
@@ -26,15 +26,15 @@ import {
   Link,
 } from '@material-ui/core'
 
-function Header(props){
+function Header(props) {
   const history = useHistory()
-  const reducerData = useSelector(({ loginUser }) => loginUser.login);
+  const reducerData = useSelector(({ loginUser }) => loginUser.login)
   // const userDetails=reducerData.user
-  const dispatch = useDispatch(); 
-  let { name } = JSON.parse(getStorageItem('user'));
-  let { id } = JSON.parse(getStorageItem('user'));
-  console.log("user name :",name);
-  console.log("user id :",id);
+  const dispatch = useDispatch()
+  let { name } = JSON.parse(getStorageItem('user'))
+  let { id } = JSON.parse(getStorageItem('user'))
+  console.log('user name :', name)
+  console.log('user id :', id)
   // console.log("reducer Data in Header file:",reducerData.user)
   return (
     <AppBar position='static' style={{ backgroundColor: '#fff' }}>
@@ -79,7 +79,7 @@ function Header(props){
               padding: '10px',
             }}
           >
-           Welcome {name}
+            Welcome, {props.user}
           </Grid>
           <Grid item>
             <IconButton
@@ -104,7 +104,7 @@ function Header(props){
               color='primary'
               size='large'
               onClick={() => {
-                dispatch(Actions.userLogOut(id));                
+                dispatch(Actions.userLogOut(id))
               }}
             >
               Log Out
@@ -116,4 +116,4 @@ function Header(props){
   )
 }
 
-export default withReducer('loginUser', reducer)(Header);
+export default withReducer('loginUser', reducer)(Header)

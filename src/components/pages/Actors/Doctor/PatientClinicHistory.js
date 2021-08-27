@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import ReactDom from 'react-dom'
 import { useState, useEffect } from 'react'
 import Layout from '../../../Layout'
@@ -12,6 +13,27 @@ import { Card, CardHeader } from '@material-ui/core'
 import PatientClinicHisTable from '../../../Table/PatientClinicHisTable'
 import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { getStorageItem } from '../../../../utils/StorageUtils'
+import Constants from '../../../../utils/Constants'
+
+async function get_clinic_data(id) {
+  console.log('clinic history')
+
+  let clinic_data = []
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/patient/clinic/data/list/' + id)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          clinic_data = res.data
+        }
+      })
+    return clinic_data
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const useStyles = makeStyles({
   dataCard: {
@@ -22,7 +44,8 @@ const useStyles = makeStyles({
   },
 })
 
-function PatientClinicHistory() {
+function PatientClinicHistory(props) {
+  let patient = props.location.state
   return (
     <Layout
       header={<Header user={getStorageItem('doctorName')} />}
@@ -30,22 +53,30 @@ function PatientClinicHistory() {
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
-          <Content />
+          <Content patient={patient} />
         </div>
       }
     ></Layout>
   )
 }
 
-function Content() {
+function Content(props) {
   const classes = useStyles()
-  const [isData, setIsData] = useState(false)
+  const [clinicData, setClinicData] = useState([])
+  const [data, setData] = useState()
 
-  useEffect(() => {})
-
-  const renderData = () => {
-    setIsData(true)
+  const renderData = (data) => {
+    setData(data)
   }
+
+  useEffect(() => {
+    get_clinic_data(props.patient.id).then((res) => {
+      setClinicData(res)
+      console.log(res)
+    })
+  }, [])
+
+  console.log(clinicData)
 
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
@@ -58,13 +89,13 @@ function Content() {
               borderBottom: '1px solid #000',
               backgroundColor: '#3f51b5',
             }}
-            title='Nimal De Silva'
+            title={props.patient.name}
           ></CardHeader>
         </Card>
-        <PatientClinicHisTable func={renderData} />
+        <PatientClinicHisTable clinicData={clinicData} func={renderData} />
       </Grid>
       <Grid item sm={5} className={classes.dataCard}>
-        {isData && <PatientHisCard />}
+        {data && <PatientHisCard clinicData={data} />}
       </Grid>
     </Grid>
   )

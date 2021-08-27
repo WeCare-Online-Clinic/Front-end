@@ -4,6 +4,9 @@ import {
   CardContent,
   CardActions,
   Button,
+  List,
+  ListItem,
+  Divider,
 } from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
@@ -45,36 +48,42 @@ function ClinicHistoryCard(props) {
   return (
     <Card className={classes.card}>
       <CardHeader
-        title={'Clinic History Info ( ' + clinic_history.clinicDate + ' )'}
+        title={'Clinic History Info ( ' + clinic_history.date + ' )'}
         className={classes.cardHeader}
         titleTypographyProps='variant: h4'
       />
       <CardContent>
         <Grid container>
           <Grid item sm></Grid>
-          <Grid item sm={5}>
-            <div className={classes.textField}>Scheduled Start Time</div>
-            <div className={classes.textField}>Start Time</div>
-            <div className={classes.textField}>End Time</div>
-            <div className={classes.textField}>No.of Patients</div>
-            <div className={classes.textField}>Nurse Assigned</div>
-            <div className={classes.textField}>Summary</div>
+          <Grid item sm={6}>
+            <List>
+              <ListItem>Scheduled Start Time</ListItem>
+              <Divider />
+              <ListItem>Start Time</ListItem>
+              <Divider />
+              <ListItem>End Time</ListItem>
+              <Divider />
+              <ListItem>No.of Patients</ListItem>
+              <Divider />
+              <ListItem>Nurse Assigned</ListItem>
+              <Divider />
+              <ListItem>Summary</ListItem>
+            </List>
           </Grid>
           <Grid item sm={6}>
-            <div className={classes.textField}>
-              : {clinic_history.clinicSchedule.time}
-            </div>
-            <div className={classes.textField}>
-              : {clinic_history.startTime}
-            </div>
-            <div className={classes.textField}>: {clinic_history.endTime}</div>
-            <div className={classes.textField}>
-              : {clinic_history.noPatients}
-            </div>
-            <div className={classes.textField}>
-              : {clinic_history.nurse.name}
-            </div>
-            <div className={classes.textField}>: {clinic_history.summary}</div>
+            <List>
+              <ListItem>: {clinic_history.clinicSchedule.time}</ListItem>
+              <Divider />
+              <ListItem>: {clinic_history.startTime}</ListItem>
+              <Divider />
+              <ListItem>: {clinic_history.endTime}</ListItem>
+              <Divider />
+              <ListItem>: {clinic_history.noPatients}</ListItem>
+              <Divider />
+              <ListItem>: {clinic_history.nurse.name}</ListItem>
+              <Divider />
+              <ListItem>: {clinic_history.summary}</ListItem>
+            </List>
           </Grid>
         </Grid>
       </CardContent>

@@ -13,8 +13,7 @@ import {
   TableHead,
   TableRow,
   TablePagination,
-  Button
-
+  Button,
 } from '@material-ui/core'
 import { patientClinicHis } from './PatientClinicHisData'
 
@@ -57,13 +56,14 @@ const PatientClinicHisTable = (props) => {
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(9) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
+  console.log(props)
 
   const tableHeaders = [
     // add table header names
     { text: 'Clinic Date' },
+    { text: 'Queue No' },
     { text: 'Time' },
     { text: 'Doctor' },
-    { text: 'Diagnosis' },
   ]
 
   const classes = useStyles()
@@ -106,7 +106,7 @@ const PatientClinicHisTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {patientClinicHis
+                  {props.clinicData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
@@ -114,24 +114,23 @@ const PatientClinicHisTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {row.date}
+                            {row.clinicAppointment.clinicDate.date}
+                          </TableCell>{' '}
+                          <TableCell className={classes.cell}>
+                            {row.clinicAppointment.queueNo}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.time}
+                            {row.clinicAppointment.time}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {row.doctor}
+                            {row.doctor.name}
                           </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.diagnosis}
-                          </TableCell>
-
                           <TableCell>
                             <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => props.func()}
+                              onClick={() => props.func(row)}
                             >
                               View
                             </Button>

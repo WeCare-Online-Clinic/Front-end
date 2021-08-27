@@ -57,9 +57,7 @@ function calculate_age(dob) {
   var year = age_dt.getUTCFullYear()
 
   //now calculate the age of the user
-  var age = Math.abs(year - 1970)
-
-  return age
+  return Math.abs(year - 1970)
 }
 
 function show_gender(gender) {

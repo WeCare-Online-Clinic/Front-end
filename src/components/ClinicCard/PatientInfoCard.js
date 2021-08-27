@@ -1,4 +1,12 @@
-import { Card, CardHeader, CardContent } from '@material-ui/core'
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
@@ -38,34 +46,44 @@ function PatientInfoCard(props) {
   return (
     <Card className={classes.card}>
       <CardHeader
-        title={props.patient.patient.name}
+        title={props.patient.name}
         className={classes.cardHeader}
         titleTypographyProps='variant: h4'
       />
       <CardContent>
         <Grid container>
           <Grid item sm></Grid>
-          <Grid item sm={4}>
-            <div></div>
-            <div className={classes.textField}>Age</div>
-            <div className={classes.textField}>Gender</div>
-            <div className={classes.textField}>Diagnosis</div>
-            <div className={classes.textField}>Admission Date</div>
+          <Grid item sm={5}>
+            <List>
+              <ListItem>Age</ListItem>
+
+              <Divider />
+              <ListItem>Gender</ListItem>
+
+              <Divider />
+              <ListItem>Diagnosis</ListItem>
+
+              <Divider />
+              <ListItem>Admission Date</ListItem>
+
+              <Divider />
+            </List>
           </Grid>
           <Grid item sm={6}>
-            <div></div>
-            <div className={classes.textField}>
-              : {props.patient.patient.age}
-            </div>
-            <div className={classes.textField}>
-              : {props.patient.patient.gender}
-            </div>
-            <div className={classes.textField}>
-              : {props.patient.patient.diagnosis}
-            </div>
-            <div className={classes.textField}>
-              : {props.patient.patient.admissionDate}
-            </div>
+            <List>
+              <ListItem>: {props.patient.age}</ListItem>
+
+              <Divider />
+              <ListItem>: {props.patient.gender}</ListItem>
+
+              <Divider />
+              <ListItem>: {props.patient.diagnosis}</ListItem>
+
+              <Divider />
+              <ListItem>: {props.patient.admissionDate}</ListItem>
+
+              <Divider />
+            </List>
           </Grid>
         </Grid>
       </CardContent>

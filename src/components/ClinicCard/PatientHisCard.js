@@ -1,7 +1,13 @@
 import React from 'react'
 import {
   Card,
-  CardHeader
+  CardHeader,
+  Button,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
@@ -40,10 +46,10 @@ const useStyles = makeStyles({
   textField: {
     padding: '5px',
     color: '#4c5355',
-    fontSize: '16px',
+    fontSize: '18px',
   },
   textBox: {
-    height: '140px',
+    minheight: '140px',
     margin: '5px 40px 5px 40px',
     padding: '10px',
     color: '#4c5355',
@@ -55,11 +61,23 @@ const useStyles = makeStyles({
 function PatientHisCard(props) {
   const history = useHistory()
   const classes = useStyles()
+  console.log(props)
+  let clinicData = props.clinicData
+
+  const tableHeaders = [
+    // add table header names
+    { text: 'Medicine' },
+    { text: 'Quantity' },
+    { text: 'M' },
+    { text: 'A' },
+    { text: 'E' },
+  ]
+
   return (
     <Card className={classes.card}>
       <CardHeader
-        title={props.title}
-        subheader={props.subheader}
+        title='Clinic Data'
+        subheader={clinicData && clinicData.clinicAppointment.clinicDate.date}
         className={classes.cardHeader}
       />
       <Grid container style={{ backgroundColor: '#3f51b5', padding: '20px' }}>
@@ -68,19 +86,16 @@ function PatientHisCard(props) {
           sm={12}
           style={{ backgroundColor: '#fff', borderRight: '1px solid #4c5355' }}
         >
-          <div className={classes.textTitle}>Test Data</div>
-          <div className={classes.textBox}>
-            <div className={classes.textField}>FBC : </div>
-            <div className={classes.textField}>Blood Sugar Level : </div>
-          </div>
-        </Grid>
-        <Grid
-          item
-          sm={12}
-          style={{ backgroundColor: '#fff', borderRight: '1px solid #4c5355' }}
-        >
           <div className={classes.textTitle}>Notes</div>
-          <div className={classes.textBox}>Clinic Note ...</div>
+          <div className={classes.textBox}>
+            <div className={classes.textField}>
+              Note: <br /> {clinicData && clinicData.note}{' '}
+            </div>
+            <br />
+            <div className={classes.textField}>
+              Lab Tests: <br /> {clinicData && clinicData.labTests}{' '}
+            </div>
+          </div>
         </Grid>
         <Grid
           item
@@ -88,7 +103,49 @@ function PatientHisCard(props) {
           style={{ backgroundColor: '#fff', paddingBottom: '50px' }}
         >
           <div className={classes.textTitle}> Prescriptions</div>
-          <div className={classes.textBox}>Prescription List ...</div>
+          <div className={classes.textBox}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {tableHeaders.map((col) => (
+                    <TableCell
+                      style={{
+                        color: '#3f51b5',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        borderBottom: '1px solid #000',
+                      }}
+                      className={classes.hoverable}
+                    >
+                      <span>{col.text}</span>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {clinicData &&
+                  clinicData.prescription.prescription.map((row) => (
+                    <TableRow className={classes.tableRow} hover>
+                      <TableCell className={classes.cell}>
+                        {row.medicine}
+                      </TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.Quantity}
+                      </TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.morning}
+                      </TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.afternoon}
+                      </TableCell>
+                      <TableCell className={classes.cell}>
+                        {row.evening}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </div>
         </Grid>
       </Grid>
     </Card>

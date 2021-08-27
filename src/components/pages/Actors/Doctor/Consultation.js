@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
@@ -11,6 +13,7 @@ import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { TextField } from '@material-ui/core'
 import ClinicForm from '../../../Forms/ClinicForm'
 import { getStorageItem } from '../../../../utils/StorageUtils'
+import Constants from '../../../../utils/Constants'
 
 const useStyles = makeStyles({
   textTitle: {
@@ -26,7 +29,7 @@ const useStyles = makeStyles({
     fontSize: '16px',
   },
   textBox: {
-    height: '140px',
+    minHeight: '200px',
     margin: '5px 40px 5px 40px',
     padding: '10px',
     color: '#4c5355',
@@ -41,7 +44,40 @@ const useStyles = makeStyles({
   },
 })
 
+const DoctorId = getStorageItem('doctorInfo', true).clinic.id
+
+async function clinic_date_available() {
+  console.log('clinic date available')
+
+  let available = false
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/consultation/available/' + DoctorId)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          available = res.data
+        }
+      })
+    return available
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function Dashboard() {
+  const [available, setAvailable] = useState(true)
+
+  useEffect(() => {
+    clinic_date_available().then((res) => {
+      setAvailable(res)
+      console.log(res)
+    })
+  }, [])
+
+  console.log(available)
+
   return (
     <Layout
       header={<Header user={getStorageItem('doctorName')} />}
@@ -70,10 +106,7 @@ function Content() {
             <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
               <Grid container spacing={2}>
                 <Grid item sm={12}>
-                  <PatientHisCard
-                    title='Previous Clinic Data'
-                    subheader='Nimal De Silva ( Age : 48 )'
-                  />
+                  <PatientHisCard />
                 </Grid>
               </Grid>
             </Grid>
