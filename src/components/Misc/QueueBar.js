@@ -19,7 +19,7 @@ function QueueBar() {
   return (
     <Grid container style={{ padding: '10px' }}>
       <Grid item sm={12} className={classes.queueBar}>
-        <Grid item sm={4} className={classes.queueBar}>
+        <Grid item sm={5} className={classes.queueBar}>
           <div>
             <Button
               variant='contained'
@@ -40,18 +40,18 @@ function QueueBar() {
         </Grid>
         <Grid
           item
-          sm={8}
+          sm={7}
           className={classes.queueBar}
-          style={{ backgroundColor: '#3f51b5' }}
+          style={{ backgroundColor: '#fff', borderLeft: '2px solid #3f51b5' }}
         >
           <div>
-            <h5 style={{ color: '#fff' }}>Start Time: 10.30</h5>
+            <h5 style={{ color: '#3f51b5' }}>Start Time: 10.30</h5>
           </div>
           <div>
-            <h5 style={{ color: '#fff' }}>Current Queue No: 24</h5>
+            <h5 style={{ color: '#3f51b5' }}>Current Queue No: 24</h5>
           </div>
           <div>
-            <h5 style={{ color: '#fff' }}>Patient Left: 34</h5>
+            <h5 style={{ color: '#3f51b5' }}>Patient Left: 34</h5>
           </div>
           <div>
             <Button variant='contained' color='secondary' size='large'>

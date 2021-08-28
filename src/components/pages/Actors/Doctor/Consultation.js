@@ -1,19 +1,20 @@
 import React from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { doctorMenuItems } from '../../../Sidebar/menuItem'
-import { Grid, makeStyles } from '@material-ui/core'
-import { Button } from '@material-ui/core'
+import { Button, Grid, makeStyles } from '@material-ui/core'
 import QueueBar from '../../../Misc/QueueBar'
-import PatientHisCard from '../../../ClinicCard/PatientHisCard'
-import { TextField } from '@material-ui/core'
 import ClinicForm from '../../../Forms/ClinicForm'
 import { getStorageItem } from '../../../../utils/StorageUtils'
 import Constants from '../../../../utils/Constants'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Alert, AlertTitle } from '@material-ui/lab'
 
 const useStyles = makeStyles({
   textTitle: {
@@ -49,7 +50,7 @@ const DoctorId = getStorageItem('doctorInfo', true).clinic.id
 async function clinic_date_available() {
   console.log('clinic date available')
 
-  let available = false
+  let available = null
 
   try {
     await axios
@@ -57,7 +58,9 @@ async function clinic_date_available() {
       .then((res) => {
         if (res.status == 200) {
           console.log(res)
-          available = res.data
+          if (res.data != '') {
+            available = res.data
+          }
         }
       })
     return available
@@ -66,17 +69,38 @@ async function clinic_date_available() {
   }
 }
 
+async function no_clinic() {
+  await toast.error('No Clinic Date Available Today', {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 2000,
+  })
+}
+
 function Dashboard() {
-  const [available, setAvailable] = useState(true)
+  const history = useHistory()
+  const [clinicDate, setClinicDate] = useState(null)
+  const [clinicStarted, setClinicStarted] = useState(false)
+  const [getData, setGetData] = useState(false)
 
   useEffect(() => {
     clinic_date_available().then((res) => {
-      setAvailable(res)
-      console.log(res)
+      setClinicDate(res)
+      setGetData(true)
+      setClinicStarted(res.started)
     })
   }, [])
 
-  console.log(available)
+  console.log(clinicDate)
+
+  if (getData && clinicDate == null) {
+    no_clinic().then(
+      history.push({
+        pathname: '/doctor/dashboard',
+      })
+    )
+  }
+
+  console.log(clinicStarted)
 
   return (
     <Layout
@@ -85,32 +109,51 @@ function Dashboard() {
       footer={<Footer />}
       content={
         <div style={{ backgroundColor: '#ebf5f7' }}>
-          <Content />
+          {clinicStarted && <Content />}
+          {clinicStarted === false && (
+            <Alert
+              severity='info'
+              action={
+                <React.Fragment>
+                  <Button
+                    color='inherit'
+                    size='large'
+                    onClick={() => window.location.reload(false)}
+                  >
+                    Check Again
+                  </Button>
+                  <Button
+                    color='inherit'
+                    size='large'
+                    onClick={() =>
+                      history.push({
+                        pathname: '/doctor/dashboard',
+                      })
+                    }
+                  >
+                    Go Back
+                  </Button>
+                </React.Fragment>
+              }
+            >
+              <AlertTitle>Clinic Not Started</AlertTitle>
+              Clinic has not started yet — <strong>Please check again!</strong>
+            </Alert>
+          )}
         </div>
       }
     ></Layout>
   )
 }
 
-function Content() {
+function Content(props) {
   const classes = useStyles()
   return (
     <React.Fragment>
       <QueueBar />
       <Grid container style={{ padding: '20px' }}>
         <Grid item sm={12}>
-          <Grid container>
-            <Grid item sm={6}>
-              <ClinicForm />
-            </Grid>
-            <Grid item sm={6} style={{ backgroundColor: '#fff' }}>
-              <Grid container spacing={2}>
-                <Grid item sm={12}>
-                  <PatientHisCard />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+          <ClinicForm />
         </Grid>
       </Grid>
     </React.Fragment>

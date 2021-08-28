@@ -46,10 +46,10 @@ const useStyles = makeStyles({
   textField: {
     padding: '5px',
     color: '#4c5355',
-    fontSize: '18px',
+    fontSize: '20px',
   },
   textBox: {
-    minheight: '140px',
+    minHeight: '100px',
     margin: '5px 40px 5px 40px',
     padding: '10px',
     color: '#4c5355',
@@ -89,11 +89,19 @@ function PatientHisCard(props) {
           <div className={classes.textTitle}>Notes</div>
           <div className={classes.textBox}>
             <div className={classes.textField}>
-              Note: <br /> {clinicData && clinicData.note}{' '}
+              {clinicData && clinicData.note}{' '}
             </div>
-            <br />
+          </div>
+        </Grid>
+        <Grid
+          item
+          sm={12}
+          style={{ backgroundColor: '#fff', borderRight: '1px solid #4c5355' }}
+        >
+          <div className={classes.textTitle}>Lab Tests</div>
+          <div className={classes.textBox}>
             <div className={classes.textField}>
-              Lab Tests: <br /> {clinicData && clinicData.labTests}{' '}
+              {clinicData && clinicData.labTests}{' '}
             </div>
           </div>
         </Grid>

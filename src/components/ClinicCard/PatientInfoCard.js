@@ -8,6 +8,7 @@ import {
   Divider,
 } from '@material-ui/core'
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 
@@ -41,12 +42,17 @@ const useStyles = makeStyles({
 })
 
 function PatientInfoCard(props) {
+  const [patient, setPatient] = useState(props.patient)
+
+  useEffect(() => {
+    setPatient(props.patient)
+  }, [])
   console.log(props)
   const classes = useStyles()
   return (
     <Card className={classes.card}>
       <CardHeader
-        title={props.patient.name}
+        title={patient.name}
         className={classes.cardHeader}
         titleTypographyProps='variant: h4'
       />
@@ -71,16 +77,16 @@ function PatientInfoCard(props) {
           </Grid>
           <Grid item sm={6}>
             <List>
-              <ListItem>: {props.patient.age}</ListItem>
+              <ListItem>: {patient.age}</ListItem>
 
               <Divider />
-              <ListItem>: {props.patient.gender}</ListItem>
+              <ListItem>: {patient.gender}</ListItem>
 
               <Divider />
-              <ListItem>: {props.patient.diagnosis}</ListItem>
+              <ListItem>: {patient.diagnosis}</ListItem>
 
               <Divider />
-              <ListItem>: {props.patient.admissionDate}</ListItem>
+              <ListItem>: {patient.admissionDate}</ListItem>
 
               <Divider />
             </List>
