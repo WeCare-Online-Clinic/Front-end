@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
+//import SearchBar from './SearchBar'
 import {
   Card,
   CardActions,
@@ -16,11 +17,11 @@ import {
   TableRow,
   TablePagination,
   Button,
-  AppBar,
   Grid,
-  TextField,
+  
 } from '@material-ui/core'
-import PageviewIcon from '@material-ui/icons/Pageview'
+
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     color: '#4e4f50',
     fontSize: '16px',
-    maxWidth: 'fit-content',
   },
   search_items: {
     maxHeight: '50px',
@@ -58,25 +58,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const LabReportTable = (props) => {
-
-  const reducerData = useSelector(({ report }) => report.manageReport);
-  console.log("report list", reducerData.reportList);
-  const reportList = reducerData.reportList;
-
-  const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
-  const [page, setPage] = useState(0) // set page no
-
-  const tableHeaders = [
-    // add table header names
-    { text: 'Report ID' },
-    { text: 'Patient Name' },
-    { text: 'Test Name' },
-    { text: 'Date Added' },
-    { text: 'Date Issued' },
-    { text: 'Availability' },
-  ]
+const ReportDataTable = (props) => {
+    const reducerData = useSelector(({ report }) => report.manageReport);
+    console.log("report list", reducerData.reportList);
+    const reportList = reducerData.reportList;
+  
+    const history = useHistory()
+    const { className } = props
+    const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+    const [page, setPage] = useState(0) // set page no
+  
+    const tableHeaders = [
+      // add table header names
+      { text: 'Report ID' },
+      { text: 'Patient Name' },
+      { text: 'Test Name' },
+      { text: 'Date Added' },
+      { text: 'Date Issued' },
+      { text: 'Availability' },
+    ]
 
   const classes = useStyles()
 
@@ -89,43 +89,19 @@ const LabReportTable = (props) => {
 
   return (
     <div>
-      <Card padding={'0'} className={clsx(classes.root, className)}>
+    <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
           <Grid
             item
             alignContent='center'
-            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
+            style={{ backgroundColor: '', borderRadius: '5px' }}
           >
-            <form clasName={classes.root}>
-              <TextField
-                className={classes.search_items}
-                label='Report ID'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Patient Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <TextField
-                className={classes.search_items}
-                label='Test Name'
-                variant='outlined'
-                size='small'
-              ></TextField>
-              <Button
-                startIcon={<PageviewIcon />}
-                variant='contained'
-                size='large'
-                color='secondary'
-                style={{ margin: '10px' }}
-              >
-                Search
-              </Button>
-            </form>
+            <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+              <div className="collapse navbar-collapse"   >
+                
+              </div>
+            </nav>
           </Grid>
         </Grid>
         <CardContent className={classes.content}>
@@ -164,8 +140,7 @@ const LabReportTable = (props) => {
                 <TableBody>
 
                   {reportList
-
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienList array to no.of rows per page
                     .map(
                       (
                         report // add table row of patientData
@@ -175,7 +150,7 @@ const LabReportTable = (props) => {
                             {report.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.p_name}
+                            {report.p_name}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {report.t_name}
@@ -189,6 +164,7 @@ const LabReportTable = (props) => {
                           <TableCell className={classes.cell}>
                             {report.availability}
                           </TableCell>
+                         
                           <TableCell>
                             <Button
                               variant='contained'
@@ -214,7 +190,7 @@ const LabReportTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => props.func()}
+                              onClick={() => history.push('reportdata')}
                             >
                               View
                             </Button>
@@ -230,17 +206,18 @@ const LabReportTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={labReportData.length} // size of patientData array
+            count={reportList.length} // size of patientList array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
             rowsPerPageOptions={[5, 8, 15]}
+       
           />
         </CardActions>
       </Card>
-    </div>
-  )
-}
+   </div>
+   )
+ }
 
-export default withReducer('report', reducer)(ReportTable);
+export default withReducer('report', reducer)(ReportDataTable);
