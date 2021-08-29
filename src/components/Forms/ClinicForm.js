@@ -9,9 +9,12 @@ import {
   IconButton,
   Divider,
 } from '@material-ui/core'
-
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import { RemoveCircle, RemoveCircleOutlined } from '@material-ui/icons'
+import { toast } from 'react-toastify'
+import { getStorageItem } from '../../utils/StorageUtils'
+import Constants from '../../utils/Constants'
+import './style.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +61,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function ClinicForm() {
+const clinic = getStorageItem('doctorInfo', true).clinic
+console.log(clinic)
+
+function ClinicForm(props) {
   const classes = useStyles()
   const [medicines, setMedicines] = useState([])
+  const [SuggestionList, setSuggestionList] = useState(Constants.MEDICINES)
+  const [testSuggestions, setTestSuggestions] = useState(Constants.LABTESTS)
+  const [suggestionOn, setSuggestionOn] = useState(true)
+  const [suggestedTest, setSuggestedTest] = useState()
+  const [suggestedList, setSuggestedList] = useState()
   const [data, setData] = useState({
     nextClinic: '',
     note: '',
@@ -68,10 +79,69 @@ function ClinicForm() {
     tests: '',
   })
 
+  useEffect(() => {
+    if (props.patientInfo) {
+      setData({
+        nextClinic: '',
+        note: '',
+        diagnosis: props.patientInfo.diagnosis,
+        tests: '',
+      })
+    }
+  }, [props])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(medicines)
     console.log(data)
+    validation()
+  }
+
+  const search = (value, searchArray) => {
+    let inArray = false
+    searchArray.map((obj) => {
+      if (obj.day == value) {
+        console.log(value)
+        console.log(obj.day)
+        inArray = true
+      }
+    })
+
+    return inArray
+  }
+
+  const validation = () => {
+    const weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ]
+    let isValid = true
+    const currDate = new Date()
+    const nextDate = new Date(data.nextClinic)
+    const nextDay = weekday[nextDate.getDay()]
+
+    console.log('in validation')
+
+    if (nextDate < currDate) {
+      console.log('next clinic date error')
+      isValid = false
+      toast.error('Next Clinic Date Is Invalid', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    } else if (!search(nextDay, clinic.clinicSchedules)) {
+      toast.error('No Clinic Schedule On ' + nextDay, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    }
+
+    return isValid
   }
 
   const addRow = () => {
@@ -98,12 +168,34 @@ function ClinicForm() {
     let newList = [...medicines]
     newList[index][name] = value
     setMedicines(newList)
+    if (name == 'medicine') {
+      const suggested = SuggestionList.filter(
+        (suggestion) =>
+          suggestion.toLowerCase().indexOf(value.toLowerCase()) > -1
+      )
+      setSuggestedList(suggested)
+    }
   }
 
   const handleDataChange = (e) => {
     const name = e.target.name
     const value = e.target.value
+    if (name == 'tests') {
+      const suggested = testSuggestions.filter(
+        (suggestion) =>
+          suggestion.toLowerCase().indexOf(value.toLowerCase()) > -1
+      )
+
+      setSuggestedTest(suggested)
+    }
     setData({ ...data, [name]: value })
+  }
+
+  const addTest = (e) => {
+    let tests = data.tests
+    console.log(tests)
+    setData({ ...data, ['tests']: e.currentTarget.innerText })
+    setSuggestionOn(false)
   }
 
   return (
@@ -189,14 +281,25 @@ function ClinicForm() {
                     Tests
                   </label>
 
-                  <textarea
+                  <input
                     placeholder='Tests to do'
                     name='tests'
                     className='form-control'
                     type='text'
                     value={data.tests}
                     onChange={(e) => handleDataChange(e)}
-                  ></textarea>
+                  ></input>
+                  {suggestedTest && suggestionOn && (
+                    <ul class='suggestions'>
+                      {suggestedTest.map((suggestion, index) => {
+                        return (
+                          <li key={suggestion} onClick={addTest}>
+                            {suggestion}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
                 </div>
                 <div className='input-group'>
                   <button
@@ -318,6 +421,7 @@ function ClinicForm() {
                     <MedicineRow
                       row={medicine}
                       index={index}
+                      suggestedList={suggestedList}
                       func1={removeRow}
                       func2={handleChangeInput}
                     ></MedicineRow>
@@ -341,8 +445,26 @@ function ClinicForm() {
 }
 
 function MedicineRow(props) {
-  let medicine = props.row
+  const [medicine, setMedicine] = useState(props.row)
+  const [suggestedList, setSuggestedList] = useState(props.suggestedList)
+  const [suggestionOn, setSuggestionOn] = useState(true)
   let index = props.index
+
+  useEffect(() => {
+    setMedicine(props.row)
+    setSuggestedList(props.suggestedList)
+  }, [props, medicine, suggestedList])
+
+  const onClick = (e) => {
+    let newMedicine = medicine
+    newMedicine.medicine = e.currentTarget.innerText
+    setMedicine(newMedicine)
+    console.log(medicine)
+    setSuggestionOn(false)
+  }
+
+  console.log(suggestedList)
+
   return (
     <React.Fragment>
       <div
@@ -360,6 +482,17 @@ function MedicineRow(props) {
             value={medicine.medicine}
             onChange={(e) => props.func2(index, e)}
           />
+          {suggestedList && suggestionOn && (
+            <ul class='suggestions'>
+              {suggestedList.map((suggestion, index) => {
+                return (
+                  <li key={suggestion} onClick={onClick}>
+                    {suggestion}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
         </div>
         <div class='form-group col-md-2' style={{ padding: '5px' }}>
           <input

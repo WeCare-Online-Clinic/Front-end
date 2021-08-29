@@ -10,7 +10,7 @@ import { doctorMenuItems } from '../../../Sidebar/menuItem'
 import { Button, Grid, makeStyles } from '@material-ui/core'
 import QueueBar from '../../../Misc/QueueBar'
 import ClinicForm from '../../../Forms/ClinicForm'
-import { getStorageItem } from '../../../../utils/StorageUtils'
+import { getStorageItem, setStorageItem } from '../../../../utils/StorageUtils'
 import Constants from '../../../../utils/Constants'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -45,25 +45,71 @@ const useStyles = makeStyles({
   },
 })
 
-const DoctorId = getStorageItem('doctorInfo', true).clinic.id
+const clinicId = getStorageItem('doctorInfo', true).clinic.id
 
 async function clinic_date_available() {
-  console.log('clinic date available')
+  //console.log('clinic date available')
 
   let available = null
 
   try {
     await axios
-      .get(Constants.API_BASE_URL + '/consultation/available/' + DoctorId)
+      .get(Constants.API_BASE_URL + '/consultation/available/' + clinicId)
       .then((res) => {
         if (res.status == 200) {
-          console.log(res)
+          //console.log(res)
           if (res.data != '') {
             available = res.data
           }
         }
       })
     return available
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function current_queue(id) {
+  //console.log('current queue')
+  //console.log(id)
+
+  let number = 1
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/consultation/queue/no/' + id)
+      .then((res) => {
+        if (res.status == 200) {
+          //console.log(res)
+          if (res.data != '') {
+            number = res.data
+          }
+        }
+      })
+    return number
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function patient_info(id) {
+  //console.log('patient info')
+  //console.log(id)
+
+  let patient = null
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/clinic/profile/' + id + '/' + clinicId)
+      .then((res) => {
+        if (res.status == 200) {
+          //console.log(res)
+          if (res.data != '') {
+            patient = res.data
+          }
+        }
+      })
+    return patient
   } catch (error) {
     console.log(error)
   }
@@ -80,17 +126,37 @@ function Dashboard() {
   const history = useHistory()
   const [clinicDate, setClinicDate] = useState(null)
   const [clinicStarted, setClinicStarted] = useState(false)
+  const [currQueue, setCurrQueue] = useState(0)
   const [getData, setGetData] = useState(false)
+  const [patientInfo, setPatientInfo] = useState(null)
 
   useEffect(() => {
-    clinic_date_available().then((res) => {
-      setClinicDate(res)
+    if (getStorageItem('ClinicDate', true) == null) {
+      clinic_date_available().then((res) => {
+        setStorageItem('ClinicDate', res)
+        setClinicDate(res)
+        setCurrQueue(res.currQueue)
+      })
+    } else {
+      //console.log('in storage')
+      setClinicDate(getStorageItem('ClinicDate', true))
       setGetData(true)
-      setClinicStarted(res.started)
-    })
+      setClinicStarted(getStorageItem('ClinicDate', true).started)
+      current_queue(getStorageItem('ClinicDate', true).id).then((res) => {
+        setCurrQueue(res)
+      })
+    }
   }, [])
 
-  console.log(clinicDate)
+  useEffect(() => {
+    if (currQueue >= 1) {
+      patient_info(clinicDate.queue[currQueue - 1]).then((res) => {
+        setPatientInfo(res)
+      })
+    }
+  }, [currQueue])
+  //console.log(patientInfo)
+  //console.log(clinicDate)
 
   if (getData && clinicDate == null) {
     no_clinic().then(
@@ -100,7 +166,8 @@ function Dashboard() {
     )
   }
 
-  console.log(clinicStarted)
+  //console.log(clinicStarted)
+  //console.log(currQueue)
 
   return (
     <Layout
@@ -109,7 +176,13 @@ function Dashboard() {
       footer={<Footer />}
       content={
         <div style={{ backgroundColor: '#ebf5f7' }}>
-          {clinicStarted && <Content />}
+          {clinicStarted && (
+            <Content
+              clinicInfo={clinicDate}
+              queueNo={currQueue}
+              patientInfo={patientInfo}
+            />
+          )}
           {clinicStarted === false && (
             <Alert
               severity='info'
@@ -147,13 +220,22 @@ function Dashboard() {
 }
 
 function Content(props) {
+  console.log(props)
   const classes = useStyles()
   return (
     <React.Fragment>
-      <QueueBar />
+      <QueueBar
+        clinicInfo={props.clinicInfo}
+        queueNo={props.queueNo}
+        patientInfo={props.patientInfo}
+      />
       <Grid container style={{ padding: '20px' }}>
         <Grid item sm={12}>
-          <ClinicForm />
+          <ClinicForm
+            clinicInfo={props.clinicInfo}
+            queueNo={props.queueNo}
+            patientInfo={props.patientInfo}
+          />
         </Grid>
       </Grid>
     </React.Fragment>

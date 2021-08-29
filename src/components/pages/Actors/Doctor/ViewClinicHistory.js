@@ -25,7 +25,7 @@ function ClinicHistory(props) {
   let clinic_history = props.location.state
   return (
     <Layout
-      header={<Header user={getStorageItem.apply('doctorName')} />}
+      header={<Header user={getStorageItem('doctorName')} />}
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={

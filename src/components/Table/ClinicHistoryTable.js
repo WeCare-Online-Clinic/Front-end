@@ -154,7 +154,7 @@ const ClinicHistoryTable = (props) => {
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {row.clinicDate}
+                            {row.date}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {row.startTime}

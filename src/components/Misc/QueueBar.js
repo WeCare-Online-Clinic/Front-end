@@ -1,4 +1,8 @@
 import React from 'react'
+import axios from 'axios'
+import Constants from '../../utils/Constants'
+import { getStorageItem } from '../../utils/StorageUtils'
+import { useState, useEffect } from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
@@ -13,7 +17,53 @@ const useStyles = makeStyles({
   },
 })
 
-function QueueBar() {
+function calculate_age(dob) {
+  var dob = new Date(dob)
+  //calculate month difference from current date in time
+  var month_diff = Date.now() - dob.getTime()
+
+  //convert the calculated difference in date format
+  var age_dt = new Date(month_diff)
+
+  //extract year from date
+  var year = age_dt.getUTCFullYear()
+
+  //now calculate the age of the user
+  var age = Math.abs(year - 1970)
+
+  return age
+}
+
+function show_gender(gender) {
+  if (gender == 'f') {
+    return 'Female'
+  } else {
+    return 'Male'
+  }
+}
+
+const clinicId = getStorageItem('doctorInfo', true).clinic.id
+
+function QueueBar(props) {
+  const [patientInfo, setPatientInfo] = useState(null)
+  const [queueNo, setQueueNo] = useState()
+  const [patientsLeft, setPatientLeft] = useState()
+
+  useEffect(() => {
+    setQueueNo(props.queueNo)
+    setPatientLeft(props.clinicInfo.noPatients - props.queueNo)
+    setPatientInfo(props.patientInfo)
+
+    return function cleanup() {
+      setPatientInfo(null)
+      setQueueNo(0)
+      setPatientLeft(0)
+    }
+  }, [props])
+
+  console.log(patientInfo)
+
+  console.log(props)
   const classes = useStyles()
   const history = useHistory()
   return (
@@ -26,7 +76,21 @@ function QueueBar() {
               color='secondary'
               size='large'
               onClick={() => {
-                history.push('patientdata')
+                history.push({
+                  pathname: 'patientdata',
+                  state: {
+                    patient: {
+                      id: patientInfo.patient.id,
+                      name: patientInfo.patient.name,
+                      age: calculate_age(patientInfo.patient.birthdate),
+                      gender: show_gender(patientInfo.patient.gender),
+                      diagnosis: patientInfo.diagnosis,
+                      admissionDate: patientInfo.admissionDate,
+                      clinicId: patientInfo.clinic.id,
+                      clinicProfileId: patientInfo.id,
+                    },
+                  },
+                })
               }}
             >
               Patient Profile
@@ -45,18 +109,18 @@ function QueueBar() {
           style={{ backgroundColor: '#fff', borderLeft: '2px solid #3f51b5' }}
         >
           <div>
-            <h5 style={{ color: '#3f51b5' }}>Start Time: 10.30</h5>
+            <h5 style={{ color: '#3f51b5' }}>Patient Name: </h5>
+            <h5 style={{ color: '#000' }}>
+              {patientInfo && patientInfo.patient.name}
+            </h5>
           </div>
           <div>
-            <h5 style={{ color: '#3f51b5' }}>Current Queue No: 24</h5>
+            <h5 style={{ color: '#3f51b5' }}>Current Queue No: </h5>
+            <h5 style={{ color: '#000' }}>{queueNo}</h5>
           </div>
           <div>
-            <h5 style={{ color: '#3f51b5' }}>Patient Left: 34</h5>
-          </div>
-          <div>
-            <Button variant='contained' color='secondary' size='large'>
-              End Session
-            </Button>
+            <h5 style={{ color: '#3f51b5' }}>Patient Left:</h5>
+            <h5 style={{ color: '#000' }}>{patientsLeft}</h5>
           </div>
         </Grid>
       </Grid>
