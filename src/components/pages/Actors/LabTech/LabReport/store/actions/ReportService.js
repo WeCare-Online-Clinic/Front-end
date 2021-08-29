@@ -11,24 +11,26 @@ class ReportService {
   }
 
 
-  getClinicDays(data) {
-    return axios.get(Constants.API_BASE_URL + '/getClinicDays/' + data);
+  getPatients() {
+    return axios.get(Constants.API_BASE_URL + '/getPatients/' );
   }
-  getClinics() {
-    return axios.get(Constants.API_BASE_URL + '/getClinics')
+
+  getTests() {
+    return axios.get(Constants.API_BASE_URL + '/getTests')
   }
 
   getReportProfileDetailsById(id) {
     return axios.get(Constants.API_BASE_URL + '/getReportProfile/' + id)
   }
-  getReportProfileDetailsByName(name) {
+
+  getReportProfileDetailsByPatient(patientName) {
     return axios.get(
-      Constants.API_BASE_URL + '/getReportProfileByName/' + name
+      Constants.API_BASE_URL + '/getReportProfileByPatient/' + patientName
     )
   }
 
-  getReportProfileDetailsByClinic(clinicId) {
-    return axios.get(Constants.API_BASE_URL + '/getReportProfileDetailsByClinic/' + clinicId);
+  getReportProfileDetailsByTest(testId) {
+    return axios.get(Constants.API_BASE_URL + '/getReportProfileDetailsByTest/' + testId);
   }
 
 

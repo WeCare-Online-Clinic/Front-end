@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
-//import SearchBar from './SearchBar'
+
 import {
   Card,
   CardActions,
@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ReportDataTable = (props) => {
-    const reducerData = useSelector(({ report }) => report.manageReport);
-    console.log("report list", reducerData.reportList);
-    const reportList = reducerData.reportList;
+const TestDataTable = (props) => {
+    const reducerData = useSelector(({ test }) => test.manageTest);
+    console.log("test list", reducerData.testList);
+    const testList = reducerData.testList;
   
     const history = useHistory()
     const { className } = props
@@ -70,12 +70,9 @@ const ReportDataTable = (props) => {
   
     const tableHeaders = [
       // add table header names
-      { text: 'Report ID' },
-      { text: 'Patient Name' },
+      { text: 'Test ID' },
       { text: 'Test Name' },
-      { text: 'Date Added' },
-      { text: 'Date Issued' },
-      { text: 'Availability' },
+      { text: 'Description' },
     ]
 
   const classes = useStyles()
@@ -99,7 +96,7 @@ const ReportDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-              
+                <SearchBar />
               </div>
             </nav>
           </Grid>
@@ -129,40 +126,25 @@ const ReportDataTable = (props) => {
                     <TableCell
                       style={{ borderBottom: '1px solid #000' }}
                     ></TableCell>
-                    <TableCell
-                      style={{ borderBottom: '1px solid #000' }}
-                    ></TableCell>
-                    <TableCell
-                      style={{ borderBottom: '1px solid #000' }}
-                    ></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
 
-                  {reportList
+                  {testList
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienList array to no.of rows per page
                     .map(
                       (
-                        report // add table row of patientData
+                        test // add table row of testData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
                           <TableCell className={classes.cell}>
-                            {report.id}
+                            {test.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.p_name}
+                            {test.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.t_name}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {report.a_date}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {report.i_date}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {report.availability}
+                            {test.description}
                           </TableCell>
                          
                           <TableCell>
@@ -170,29 +152,9 @@ const ReportDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => props.func()}
+                              onClick={() => history.push('testdata')}
                             >
-                              Issue
-                            </Button>
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                              onClick={() => props.func()}
-                            >
-                              Update
-                            </Button>
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                              onClick={() => history.push('reportdata')}
-                            >
-                              View
+                            View
                             </Button>
                           </TableCell>
                         </TableRow>
@@ -206,12 +168,12 @@ const ReportDataTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={reportList.length} // size of patientList array
+            count={testList.length} // size of testList array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 15]}
+            rowsPerPageOptions={[5, 8, 10, 15]}
        
           />
         </CardActions>
@@ -220,4 +182,4 @@ const ReportDataTable = (props) => {
    )
  }
 
-export default withReducer('report', reducer)(ReportDataTable);
+export default withReducer('test', reducer)(TestDataTable);
