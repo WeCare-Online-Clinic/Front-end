@@ -123,7 +123,7 @@ const LabProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/Profile')
 )
 const LabViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/LabReport/ViewLabReport/ViewLabReport')
+  import('./components/pages/Actors/LabTech/ViewPatient')
 )
 const LabAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabTest')
