@@ -4,10 +4,11 @@ import history from '../../../../../../../@history'
 export const ON_GET_REPORT='[ON_GET_REPORT] ON_GET_REPORT';
 export const ON_SAVE_REPORT = '[ON_SAVE_REPORT] ON_SAVE_REPORT';
 export const ON_GET_CLINIC_DAYS = '[ON_GET_CLINICS] ON_GET_CLINIC_DAYS';
-export const ON_GET_CLINICS='[ON_GET_CLINICS] ON_GET_CLINIC';
+export const ON_GET_PATIENTS='[ON_GET_PATIENTS] ON_GET_PATIENT';
+export const ON_GET_TESTS='[ON_GET_TESTS] ON_GET_TEST';
 export const ON_GET_REPORT_PROFILE_BY_ID = '[ON_GET_REPORT_PROFILE_BY_ID] ON_GET_REPORT';
-export const ON_GET_REPORT_PROFILE_BY_NAME = '[ON_GET_REPORT_PROFILE_BY_NAME] ON_GET_REPORT';
-export const ON_GET_REPORT_PROFILE_BY_CLINIC = '[ON_GET_REPORT_PROFILE_BY_CLINIC] ON_GET_REPORT';
+export const ON_GET_REPORT_PROFILE_BY_PATIENT = '[ON_GET_REPORT_PROFILE_BY_PATIENT] ON_GET_REPORT';
+export const ON_GET_REPORT_PROFILE_BY_TEST = '[ON_GET_REPORT_PROFILE_BY_TEST] ON_GET_REPORT';
 
 
 export function saveReport(report) {
@@ -60,14 +61,28 @@ export function getClinicDays(data) {
   };
 }
 
-export function getClinics() {
-  const request = ReportService.getClinics()
+export function getPatients() {
+  const request = ReportService.getPatients()
 
   return (dispatch, getState) => {
     return request.then((response) => {
-      console.log('clinics', response.data)
+      console.log('patients', response.data)
       return dispatch({
-        type: ON_GET_CLINICS,
+        type: ON_GET_PATIENTS,
+        payload: response.data,
+      })
+    })
+  }
+}
+
+export function getTests() {
+  const request = ReportService.getTests()
+
+  return (dispatch, getState) => {
+    return request.then((response) => {
+      console.log('tests', response.data)
+      return dispatch({
+        type: ON_GET_TESTS,
         payload: response.data,
       })
     })
@@ -95,9 +110,9 @@ export function getReportProfileDetailsById(id) {
     };
 }
   
-export function getReportProfileDetailsByName(name) {
-    console.log("name:", name)
-    const request = ReportService.getReportProfileDetailsByName(name);
+export function getReportProfileDetailsByPatient(patientName) {
+    console.log("name:", patientName)
+    const request = ReportService.getReportProfileDetailsByPatient(patientName);
     return (dispatch, getState) => {
       request.then((response) => {
         if (response.data.length == 0) {
@@ -105,7 +120,7 @@ export function getReportProfileDetailsByName(name) {
         }
         else {
           dispatch({
-            type: ON_GET_REPORT_PROFILE_BY_NAME,
+            type: ON_GET_REPORT_PROFILE_BY_PATIENT,
             payload: response.data
           })
         } 
@@ -115,8 +130,8 @@ export function getReportProfileDetailsByName(name) {
     };
   }
 
-export function getReportProfileDetailsByClinic(clinicId) {
-    const request = ReportService.getReportProfileDetailsByClinic(clinicId);
+export function getReportProfileDetailsByTest(testId) {
+    const request = ReportService.getReportProfileDetailsByTest(testId);
     return (dispatch, getState) => {
       request.then((response) => {
         if (response.data.length == 0) {
@@ -124,7 +139,7 @@ export function getReportProfileDetailsByClinic(clinicId) {
         }
         else{
           dispatch({
-            type: ON_GET_REPORT_PROFILE_BY_CLINIC,
+            type: ON_GET_REPORT_PROFILE_BY_TEST,
             payload: response.data
           })
         } 

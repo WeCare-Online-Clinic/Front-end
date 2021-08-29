@@ -99,7 +99,7 @@ const ReportDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-                
+              
               </div>
             </nav>
           </Grid>

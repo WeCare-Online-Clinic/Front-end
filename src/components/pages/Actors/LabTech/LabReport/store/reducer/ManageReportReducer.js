@@ -2,18 +2,19 @@ import {
     ON_GET_REPORT,
     ON_SAVE_REPORT,
     ON_GET_CLINIC_DAYS,
-    ON_GET_CLINICS,
+    ON_GET_PATIENTS,
+    ON_GET_TESTS,
     ON_GET_REPORT_PROFILE_BY_ID,
-    ON_GET_REPORT_PROFILE_BY_NAME,
-    ON_GET_REPORT_PROFILE_BY_CLINIC
+    ON_GET_REPORT_PROFILE_BY_PATIENT,
+    ON_GET_REPORT_PROFILE_BY_TEST
 
 } from "../actions/ReportAction";
 
 const initialState = {
 
-    clinicDays: [],
+    patients: [],
     reportList: [],
-    clinics: [],
+    tests: [],
 };
 
 const ManageReportReducer = function (state = initialState, action) {
@@ -40,10 +41,17 @@ const ManageReportReducer = function (state = initialState, action) {
 
             }
         }
-        case ON_GET_CLINICS: {
+        case ON_GET_PATIENTS: {
             return {
                 ...state,
-                clinics: [...action.payload],
+                patients: [...action.payload],
+            }
+        }
+
+        case ON_GET_TESTS: {
+            return {
+                ...state,
+                tests: [...action.payload],
             }
         }
 
@@ -54,14 +62,14 @@ const ManageReportReducer = function (state = initialState, action) {
             }
       
         } 
-        case ON_GET_REPORT_PROFILE_BY_NAME:{
+        case ON_GET_REPORT_PROFILE_BY_PATIENT:{
             return{
                 ...state,
                 reportList:[...action.payload]
             }
         }
 
-        case ON_GET_REPORT_PROFILE_BY_CLINIC:{
+        case ON_GET_REPORT_PROFILE_BY_TEST:{
             return{
                 ...state,
                reportList:[...action.payload]
