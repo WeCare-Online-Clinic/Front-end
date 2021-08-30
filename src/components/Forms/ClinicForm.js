@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import {
   Card,
@@ -62,7 +63,39 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const clinic = getStorageItem('doctorInfo', true).clinic
+const doctor = getStorageItem('doctorInfo', true)
+
 console.log(clinic)
+
+async function send_data(patientClinicData, nextClinic, patientId, clinicDId) {
+  //console.log('clinic date available')
+  console.log(patientClinicData, nextClinic, patientId, clinicDId)
+
+  let status = false
+  let clinicId = clinic.id
+
+  try {
+    await axios
+      .post(Constants.API_BASE_URL + '/consultation/form/', {
+        patientClinicData: patientClinicData,
+        nextClinic: nextClinic,
+        patientId: patientId,
+        clinicDId: clinicDId,
+        clinicId: clinicId,
+      })
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          //console.log(res)
+
+          status = res.data
+        }
+      })
+    return status
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 function ClinicForm(props) {
   const classes = useStyles()
@@ -72,6 +105,7 @@ function ClinicForm(props) {
   const [suggestionOn, setSuggestionOn] = useState(true)
   const [suggestedTest, setSuggestedTest] = useState()
   const [suggestedList, setSuggestedList] = useState()
+  const [submitLock, setSubmitLock] = useState(false)
   const [data, setData] = useState({
     nextClinic: '',
     note: '',
@@ -92,9 +126,39 @@ function ClinicForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    let patientClinicData = {
+      note: data.note,
+      diagnosis: data.diagnosis,
+      labTests: data.labTests,
+      prescription: medicines,
+      doctor: doctor,
+    }
+    let nextClinic = data.nextClinic
+    let patientId = props.patientInfo.patient.id
+    let clinicDId = props.clinicInfo.id
+    setSubmitLock(true)
     console.log(medicines)
     console.log(data)
-    validation()
+    let isValid = validation()
+    if (isValid) {
+      console.log('send data')
+      send_data(patientClinicData, nextClinic, patientId, clinicDId).then(
+        (res) => {
+          console.log(res)
+          if (res) {
+            toast.info('Data Added Successfully', {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 2000,
+            })
+            window.location.reload()
+            console.log(res)
+          }
+        }
+      )
+    } else {
+      setSubmitLock(false)
+    }
   }
 
   const search = (value, searchArray) => {
@@ -120,6 +184,8 @@ function ClinicForm(props) {
       'Friday',
       'Saturday',
     ]
+    let medicineEmpty = false
+    let specialCharacters = false
     let isValid = true
     const currDate = new Date()
     const nextDate = new Date(data.nextClinic)
@@ -127,7 +193,13 @@ function ClinicForm(props) {
 
     console.log('in validation')
 
-    if (nextDate < currDate) {
+    if (data.nextClinic == '') {
+      isValid = false
+      toast.error('Please Select Next Clinic Date', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    } else if (nextDate < currDate) {
       console.log('next clinic date error')
       isValid = false
       toast.error('Next Clinic Date Is Invalid', {
@@ -135,7 +207,50 @@ function ClinicForm(props) {
         autoClose: 2000,
       })
     } else if (!search(nextDay, clinic.clinicSchedules)) {
+      isValid = false
       toast.error('No Clinic Schedule On ' + nextDay, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    }
+
+    if (data.note.match('[^A-Za-z0-9.,\t\n ]')) {
+      isValid = false
+      specialCharacters = true
+    }
+
+    if (data.diagnosis.match('[^A-Za-z0-9.,\t\n ]')) {
+      isValid = false
+      specialCharacters = true
+    }
+    if (data.tests.match('[^A-Za-z0-9.,\t\n ]')) {
+      isValid = false
+      specialCharacters = true
+    }
+
+    if (medicines.length > 0) {
+      medicines.map((row) => {
+        if (row.medicine == '') {
+          isValid = false
+          medicineEmpty = true
+        } else if (
+          row.medicine.match('[^A-Za-z0-9.,\t\n ]') ||
+          row.quantity.match('[^A-Za-z0-9.,\t\n ]')
+        ) {
+          isValid = false
+          specialCharacters = true
+        }
+      })
+    }
+
+    if (specialCharacters) {
+      toast.error('Special Characters Not Allowed', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    }
+    if (medicineEmpty) {
+      toast.error('Medicine Cannot Be Empty', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       })
@@ -306,6 +421,7 @@ function ClinicForm(props) {
                     className='btn btn-primary'
                     style={{ width: 'inherit' }}
                     onClick={handleSubmit}
+                    disabled={submitLock}
                   >
                     Submit
                   </button>

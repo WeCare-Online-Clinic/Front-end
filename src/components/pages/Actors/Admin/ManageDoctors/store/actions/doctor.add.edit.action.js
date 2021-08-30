@@ -1,4 +1,3 @@
-
 import history from '../../../../../../../@history'
 import DoctorService from './doctor.service'
 import { toast } from 'react-toastify'
@@ -6,28 +5,36 @@ import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure()
 
-export const ON_ADD_EDIT_FORM_CHANGE = '[DOCTOR ADD EDIT] ON_ADD_EDIT_FORM_CHANGE'
+export const ON_ADD_EDIT_FORM_CHANGE =
+  '[DOCTOR ADD EDIT] ON_ADD_EDIT_FORM_CHANGE'
 export const ON_GET_DOCTORS = '[DOCTOR ADD EDIT] ON_GET_DOCTORS'
 export const ON_SAVE_UPDATE_DOCTOR = '[DOCTOR ADD EDIT] ON_SAVE_UPDATE_DOCTOR'
-export const ON_RESET_DOCTOR_FORM_DATA = '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_FORM_DATA'
+export const ON_RESET_DOCTOR_FORM_DATA =
+  '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_FORM_DATA'
 export const GET_DOCTOR = '[DOCTOR ADD EDIT] GET_DOCTOR'
 export const ON_RESET_DOCTOR_DATA = '[DOCTOR ADD EDIT] ON_RESET_DOCTOR_DATA'
 export const ON_GET_CLINICS = '[DOCTOR ADD EDIT] ON_GET_CLINICS'
 export const ON_GET_CLINIC_DAYS = '[DOCTOR ADD EDIT] ON_GET_CLINIC_DAYS'
 export const ON_SAVE_DOCTOR = '[DOCTOR ADD] ON_SAVE_DOCTOR'
-export const ON_GET_DOCTOR_PROFILE_BY_ID = '[ON_GET_DOCTOR_PROFILE_BY_ID] ON_GET_DOCTOR';
-export const ON_GET_DOCTOR_PROFILE_BY_NAME = '[ON_GET_DOCTOR_PROFILE_BY_NAME] ON_GET_DOCTOR';
-export const ON_GET_DOCTOR_PROFILE_BY_CLINIC = '[ON_GET_DOCTOR_PROFILE_BY_CLINIC] ON_GET_DOCTOR';
-export const ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID="[ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID] ON_GET_DOCTOR";
-
+export const ON_GET_DOCTOR_PROFILE_BY_ID =
+  '[ON_GET_DOCTOR_PROFILE_BY_ID] ON_GET_DOCTOR'
+export const ON_GET_DOCTOR_PROFILE_BY_NAME =
+  '[ON_GET_DOCTOR_PROFILE_BY_NAME] ON_GET_DOCTOR'
+export const ON_GET_DOCTOR_PROFILE_BY_CLINIC =
+  '[ON_GET_DOCTOR_PROFILE_BY_CLINIC] ON_GET_DOCTOR'
+export const ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID =
+  '[ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID] ON_GET_DOCTOR'
 
 export function saveDoctor(doctor) {
   const request = DoctorService.saveDoctor(doctor)
 
   return (dispatch, getState) => {
     return request
-      .then((response) => {      
-        toast.success('Successfully Registered', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+      .then((response) => {
+        toast.success('Successfully Registered', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        })
         history.push('viewdoctors')
         dispatch({
           type: ON_SAVE_DOCTOR,
@@ -149,88 +156,92 @@ export function getClinicDays(data) {
 }
 
 export function getDoctorProfileDetailsById(id) {
-  const request = DoctorService.getDoctorProfileDetailsById(id);
+  const request = DoctorService.getDoctorProfileDetailsById(id)
   return (dispatch, getState) => {
-    request.then((response) => {
-      if (response.data.length == 0) {    
-        toast.error('Sorry,  Id not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
-      }
-      else {
-        dispatch({
-
-          type: ON_GET_DOCTOR_PROFILE_BY_ID,
-          payload: response.data
-        })
-
-      }
-
-
-    }).catch((error) => {
-      console.log("error doctor id",)
-    })
-  };
+    request
+      .then((response) => {
+        if (response.data.length == 0) {
+          toast.error('Sorry,  Id not found', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else {
+          dispatch({
+            type: ON_GET_DOCTOR_PROFILE_BY_ID,
+            payload: response.data,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error doctor id')
+      })
+  }
 }
 
 export function getDoctorProfileDetailsByName(name) {
-  console.log("name:", name)
-  const request = DoctorService.getDoctorProfileDetailsByName(name);
+  console.log('name:', name)
+  const request = DoctorService.getDoctorProfileDetailsByName(name)
   return (dispatch, getState) => {
-    request.then((response) => {
-      if (response.data.length == 0) {       
-        toast.error('Sorry,  Name not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
-      }
-      else {
-        dispatch({
-          type: ON_GET_DOCTOR_PROFILE_BY_NAME,
-          payload: response.data
-        })
-      }
-
-
-    }).catch((error) => {
-      console.log("error doctor details",)
-    })
-  };
+    request
+      .then((response) => {
+        if (response.data.length == 0) {
+          toast.error('Sorry,  Name not found', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else {
+          dispatch({
+            type: ON_GET_DOCTOR_PROFILE_BY_NAME,
+            payload: response.data,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error doctor details')
+      })
+  }
 }
 export function getDoctorProfileDetailsByClinic(clinicId) {
-  const request = DoctorService.getDoctorProfileDetailsByClinic(clinicId);
+  const request = DoctorService.getDoctorProfileDetailsByClinic(clinicId)
   return (dispatch, getState) => {
-    request.then((response) => {
-      if (response.data.length == 0) {        
-        toast.error('Sorry,  No doctors incharge the clinic', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
-      }
-      else{
-        dispatch({
-          type: ON_GET_DOCTOR_PROFILE_BY_CLINIC,
-          payload: response.data
-        })
-      }
-   
-
-    }).catch((error) => {
-      console.log("error doctor details",)
-    })
-  };
+    request
+      .then((response) => {
+        if (response.data.length == 0) {
+          toast.error('Sorry,  No doctors incharge the clinic', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else {
+          dispatch({
+            type: ON_GET_DOCTOR_PROFILE_BY_CLINIC,
+            payload: response.data,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error doctor details')
+      })
+  }
 }
 export function getDoctorProfileDetailsByDoctorId(doctorId) {
-  const request = DoctorService.getDoctorProfileDetailsByDoctorId(doctorId);
+  const request = DoctorService.getDoctorProfileDetailsByDoctorId(doctorId)
   return (dispatch, getState) => {
-    request.then((response) => {
-      if (response.data.length == 0) {       
-        toast.error('Sorry,  Id not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
-      }
-      else {
-        dispatch({
-
-          type: ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID,
-          payload: response.data
-        })
-
-      }
-
-
-    }).catch((error) => {
-      console.log("error doctor id",)
-    })
-  };
+    request
+      .then((response) => {
+        if (response.data.length == 0) {
+          toast.error('Sorry,  Id not found', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else {
+          dispatch({
+            type: ON_GET_DOCTOR_PROFILE_BY_DOCTOR_ID,
+            payload: response.data,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error doctor id')
+      })
+  }
 }

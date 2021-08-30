@@ -173,13 +173,13 @@ function ClinicDataCard(props) {
               </TableHead>
               <TableBody>
                 {clinicData &&
-                  clinicData.prescription.prescription.map((row) => (
+                  clinicData.prescription.map((row) => (
                     <TableRow className={classes.tableRow} hover>
                       <TableCell className={classes.cell}>
                         {row.medicine}
                       </TableCell>
                       <TableCell className={classes.cell}>
-                        {row.Quantity}
+                        {row.quantity}
                       </TableCell>
                       <TableCell className={classes.cell}>
                         {row.morning}
