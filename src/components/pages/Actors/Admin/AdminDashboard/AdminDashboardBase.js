@@ -7,6 +7,7 @@ import { adminMenuItems } from '../../../../Sidebar/menuItem'
 import AdminDashboard from './AdminDashboard'
 import * as Actions from './store/action'
 import { useDispatch } from 'react-redux'
+// import { getStorageItem } from '../../../../../utils/StorageUtils'
 
 
 
@@ -22,7 +23,7 @@ function AdminDashboardBase() {
 
   return (
     <Layout
-      header={<Header user='Kasun' />}
+      header={<Header user="Sasindu" />}
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

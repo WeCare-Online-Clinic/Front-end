@@ -11,15 +11,15 @@ const useStyles = makeStyles({
     display: 'flex',
   },
   cardHeader: {
-    textAlign: 'center',
     color: '#3f51b5',
     borderBottom: '1px solid #000',
   },
   cardContent: {
+ 
     textAlign: 'center',
     color: '#fff',
     backgroundColor: 'rgb(128, 128, 128,0.9)',
-    fontSize: '24px',
+    fontSize: '20px',
     fontWeight: 'bold',
     flexGrow: 1,
   },

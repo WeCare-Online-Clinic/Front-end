@@ -9,6 +9,7 @@ import { adminMenuItems } from '../../../../Sidebar/menuItem'
 import DoctorSchedule from './DoctorSchedule'
 import * as Actions from "./store/action";
 import { useDispatch } from 'react-redux'
+import { getStorageItem } from '../../../../../utils/StorageUtils'
  
 
 
@@ -22,7 +23,7 @@ function DoctorScheduleBase() {
 }, [location])
   return (
     <Layout
-      header={<Header user='Kasun' />}
+      header={<Header user={getStorageItem('adminName')} />}
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

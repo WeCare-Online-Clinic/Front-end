@@ -57,7 +57,7 @@ const AdminNotification = React.lazy(() =>
 
 /* --- Doctor Pages --- */
 const DoctorDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Doctor/Dashboard')
+  import('./components/pages/Actors/Doctor/DoctorDashboard/DoctorDashboardBase')
 )
 const DoctorProfile = React.lazy(() =>
   import('./components/pages/Actors/Doctor/Profile')
