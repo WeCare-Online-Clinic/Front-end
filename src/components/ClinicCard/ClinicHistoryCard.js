@@ -14,6 +14,7 @@ import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
   card: {
+    maxHeight: '400px',
     width: 'inherit',
     height: '100%',
     border: '1px solid #bdc3cb',
@@ -67,22 +68,24 @@ function ClinicHistoryCard(props) {
               <Divider />
               <ListItem>Nurse Assigned</ListItem>
               <Divider />
-              <ListItem>Summary</ListItem>
             </List>
           </Grid>
           <Grid item sm={6}>
             <List>
               <ListItem>: {clinic_history.clinicSchedule.time}</ListItem>
               <Divider />
-              <ListItem>: {clinic_history.startTime}</ListItem>
+              <ListItem>
+                : {clinic_history && clinic_history.startTime}
+              </ListItem>
               <Divider />
-              <ListItem>: {clinic_history.endTime}</ListItem>
+              <ListItem>: {clinic_history && clinic_history.endTime}</ListItem>
               <Divider />
               <ListItem>: {clinic_history.noPatients}</ListItem>
               <Divider />
-              <ListItem>: {clinic_history.nurse.name}</ListItem>
+              <ListItem>
+                : {clinic_history && clinic_history.visitedPatients}
+              </ListItem>
               <Divider />
-              <ListItem>: {clinic_history.summary}</ListItem>
             </List>
           </Grid>
         </Grid>

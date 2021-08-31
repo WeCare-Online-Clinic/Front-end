@@ -67,10 +67,10 @@ function PatientInfoCard(props) {
               <ListItem>Gender</ListItem>
 
               <Divider />
-              <ListItem>Diagnosis</ListItem>
+              <ListItem>Admission Date</ListItem>
 
               <Divider />
-              <ListItem>Admission Date</ListItem>
+              <ListItem>Diagnosis</ListItem>
 
               <Divider />
             </List>
@@ -83,10 +83,10 @@ function PatientInfoCard(props) {
               <ListItem>: {patient.gender}</ListItem>
 
               <Divider />
-              <ListItem>: {patient.diagnosis}</ListItem>
+              <ListItem>: {patient.admissionDate}</ListItem>
 
               <Divider />
-              <ListItem>: {patient.admissionDate}</ListItem>
+              <ListItem>: {patient.diagnosis}</ListItem>
 
               <Divider />
             </List>

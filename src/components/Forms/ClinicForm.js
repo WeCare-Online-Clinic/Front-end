@@ -13,9 +13,11 @@ import {
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import { RemoveCircle, RemoveCircleOutlined } from '@material-ui/icons'
 import { toast } from 'react-toastify'
-import { getStorageItem } from '../../utils/StorageUtils'
+import { getStorageItem, setStorageItem } from '../../utils/StorageUtils'
 import Constants from '../../utils/Constants'
 import './style.css'
+import { useHistory } from 'react-router-dom'
+import { Alert, AlertTitle } from '@material-ui/lab'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,7 +99,30 @@ async function send_data(patientClinicData, nextClinic, patientId, clinicDId) {
   }
 }
 
+async function add_summary(clinicDId) {
+  //console.log('clinic date available')
+
+  let status = false
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/consultation/summary/' + clinicDId)
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          //console.log(res)
+
+          status = res.data
+        }
+      })
+    return status
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function ClinicForm(props) {
+  const history = useHistory()
   const classes = useStyles()
   const [medicines, setMedicines] = useState([])
   const [SuggestionList, setSuggestionList] = useState(Constants.MEDICINES)
@@ -106,6 +131,7 @@ function ClinicForm(props) {
   const [suggestedTest, setSuggestedTest] = useState()
   const [suggestedList, setSuggestedList] = useState()
   const [submitLock, setSubmitLock] = useState(false)
+  const [endSession, setEndSession] = useState(false)
   const [data, setData] = useState({
     nextClinic: '',
     note: '',
@@ -120,6 +146,13 @@ function ClinicForm(props) {
         note: '',
         diagnosis: props.patientInfo.diagnosis,
         tests: '',
+      })
+    }
+    if (endSession) {
+      setStorageItem('ClinicDate', null)
+      toast.info('Consultation Ended', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
       })
     }
   }, [props])
@@ -146,11 +179,16 @@ function ClinicForm(props) {
       send_data(patientClinicData, nextClinic, patientId, clinicDId).then(
         (res) => {
           console.log(res)
-          if (res) {
-            toast.info('Data Added Successfully', {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 2000,
+          toast.info('Data Added Successfully', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+
+          if (props.queueNo >= props.clinicInfo.noPatients) {
+            add_summary(clinicDId).then((res) => {
+              setEndSession(true)
             })
+          } else {
             window.location.reload()
             console.log(res)
           }
@@ -313,251 +351,260 @@ function ClinicForm(props) {
     setSuggestionOn(false)
   }
 
-  return (
-    <Card className={classes.card}>
-      <CardHeader
-        title='Patient Clinic Data Form'
-        className={classes.cardHeader}
-      ></CardHeader>
-      <CardContent className={classes.cardContent}>
-        <div className='card-body'>
-          <form>
-            <Grid container>
-              <Grid
-                item
-                sm={5}
-                style={{ padding: '20px', border: '1px solid #3f51b5' }}
-              >
-                <div className='form-group mb-3'>
-                  <label
-                    style={{
-                      fontSize: '20px',
-                      color: '#3f51b5',
-                      paddingLeft: '10px',
-                    }}
-                  >
-                    Next Clinic
-                  </label>
-                  <input
-                    name='nextClinic'
-                    className='form-control'
-                    type='date'
-                    value={data.nextClinic}
-                    onChange={(e) => handleDataChange(e)}
-                  ></input>
-                </div>
-                <div className='form-group mb-3'>
-                  <label
-                    style={{
-                      fontSize: '20px',
-                      color: '#3f51b5',
-                      paddingLeft: '10px',
-                    }}
-                  >
-                    Note
-                  </label>
-                  <textarea
-                    placeholder='Note'
-                    name='note'
-                    className='form-control'
-                    type='text'
-                    value={data.note}
-                    onChange={(e) => handleDataChange(e)}
-                  ></textarea>
-                </div>
-                <div className='form-group mb-3'>
-                  <label
-                    style={{
-                      fontSize: '20px',
-                      color: '#3f51b5',
-                      paddingLeft: '10px',
-                    }}
-                  >
-                    Diagnosis
-                  </label>
-
-                  <textarea
-                    placeholder='Diagnosis'
-                    name='diagnosis'
-                    className='form-control'
-                    type='text'
-                    value={data.diagnosis}
-                    onChange={(e) => handleDataChange(e)}
-                  ></textarea>
-                </div>
-                <div className='form-group mb-3'>
-                  <label
-                    style={{
-                      fontSize: '20px',
-                      color: '#3f51b5',
-                      paddingLeft: '10px',
-                    }}
-                  >
-                    Tests
-                  </label>
-
-                  <input
-                    placeholder='Tests to do'
-                    name='tests'
-                    className='form-control'
-                    type='text'
-                    value={data.tests}
-                    onChange={(e) => handleDataChange(e)}
-                  ></input>
-                  {suggestedTest && suggestionOn && (
-                    <ul class='suggestions'>
-                      {suggestedTest.map((suggestion, index) => {
-                        return (
-                          <li key={suggestion} onClick={addTest}>
-                            {suggestion}
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  )}
-                </div>
-                <div className='input-group'>
-                  <button
-                    className='btn btn-primary'
-                    style={{ width: 'inherit' }}
-                    onClick={handleSubmit}
-                    disabled={submitLock}
-                  >
-                    Submit
-                  </button>
-                </div>
-              </Grid>
-              <Grid
-                item
-                sm={7}
-                style={{ padding: '20px', border: '1px solid #3f51b5' }}
-              >
-                <div class='row mb-1'>
-                  <div
-                    class='form-group col-md-3'
-                    style={{
-                      padding: '5px',
-                      borderRight: '1px solid #3f51b5',
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  >
-                    <label
-                      style={{
-                        fontSize: '20px',
-                        color: '#3f51b5',
-                        paddingLeft: '10px',
-                      }}
-                    >
-                      Medicine
-                    </label>
-                  </div>
-                  <div
-                    class='form-group col-md-2'
-                    style={{
-                      padding: '5px',
-                      borderRight: '1px solid #3f51b5',
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  >
-                    <label
-                      style={{
-                        fontSize: '20px',
-                        color: '#3f51b5',
-                        paddingLeft: '10px',
-                      }}
-                    >
-                      Quantity
-                    </label>
-                  </div>
-                  <div
-                    class='form-group col-md-2'
-                    style={{
-                      padding: '5px',
-                      borderRight: '1px solid #3f51b5',
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  >
-                    <label
-                      style={{
-                        fontSize: '20px',
-                        color: '#3f51b5',
-                        paddingLeft: '10px',
-                      }}
-                    >
-                      Morning
-                    </label>
-                  </div>
-                  <div
-                    class='form-group col-md-2'
-                    style={{
-                      padding: '5px',
-                      borderRight: '1px solid #3f51b5',
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  >
-                    <label
-                      style={{
-                        fontSize: '20px',
-                        color: '#3f51b5',
-                        paddingLeft: '10px',
-                      }}
-                    >
-                      Afternoon
-                    </label>
-                  </div>
-                  <div
-                    class='form-group col-md-2'
-                    style={{
-                      padding: '5px',
-                      borderRight: '1px solid #3f51b5',
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  >
-                    <label
-                      style={{
-                        fontSize: '20px',
-                        color: '#3f51b5',
-                        paddingLeft: '10px',
-                      }}
-                    >
-                      Evening
-                    </label>
-                  </div>
-                  <div
-                    class='form-group col-md-1'
-                    style={{
-                      padding: '5px',
-
-                      borderBottom: '1px solid #3f51b5',
-                    }}
-                  ></div>
-                </div>
-                {medicines.map((medicine, index) => (
-                  <React.Fragment>
-                    <MedicineRow
-                      row={medicine}
-                      index={index}
-                      suggestedList={suggestedList}
-                      func1={removeRow}
-                      func2={handleChangeInput}
-                    ></MedicineRow>
-                  </React.Fragment>
-                ))}
-                <div
-                  className='form-group mb-3'
-                  style={{ display: 'grid', justifyItems: 'flex-end' }}
+  if (endSession) {
+    return (
+      <Alert severity='info' onClose={() => history.push('/doctor/dashboard')}>
+        <AlertTitle>Clinic Ended</AlertTitle>
+        Clinic has ended successfully — <strong>Please check again!</strong>
+      </Alert>
+    )
+  } else {
+    return (
+      <Card className={classes.card}>
+        <CardHeader
+          title='Patient Clinic Data Form'
+          className={classes.cardHeader}
+        ></CardHeader>
+        <CardContent className={classes.cardContent}>
+          <div className='card-body'>
+            <form>
+              <Grid container>
+                <Grid
+                  item
+                  sm={5}
+                  style={{ padding: '20px', border: '1px solid #3f51b5' }}
                 >
-                  <IconButton onClick={addRow}>
-                    <AddCircleOutlineIcon />
-                  </IconButton>
-                </div>
+                  <div className='form-group mb-3'>
+                    <label
+                      style={{
+                        fontSize: '20px',
+                        color: '#3f51b5',
+                        paddingLeft: '10px',
+                      }}
+                    >
+                      Next Clinic
+                    </label>
+                    <input
+                      name='nextClinic'
+                      className='form-control'
+                      type='date'
+                      value={data.nextClinic}
+                      onChange={(e) => handleDataChange(e)}
+                    ></input>
+                  </div>
+                  <div className='form-group mb-3'>
+                    <label
+                      style={{
+                        fontSize: '20px',
+                        color: '#3f51b5',
+                        paddingLeft: '10px',
+                      }}
+                    >
+                      Note
+                    </label>
+                    <textarea
+                      placeholder='Note'
+                      name='note'
+                      className='form-control'
+                      type='text'
+                      value={data.note}
+                      onChange={(e) => handleDataChange(e)}
+                    ></textarea>
+                  </div>
+                  <div className='form-group mb-3'>
+                    <label
+                      style={{
+                        fontSize: '20px',
+                        color: '#3f51b5',
+                        paddingLeft: '10px',
+                      }}
+                    >
+                      Diagnosis
+                    </label>
+
+                    <textarea
+                      placeholder='Diagnosis'
+                      name='diagnosis'
+                      className='form-control'
+                      type='text'
+                      value={data.diagnosis}
+                      onChange={(e) => handleDataChange(e)}
+                    ></textarea>
+                  </div>
+                  <div className='form-group mb-3'>
+                    <label
+                      style={{
+                        fontSize: '20px',
+                        color: '#3f51b5',
+                        paddingLeft: '10px',
+                      }}
+                    >
+                      Tests
+                    </label>
+
+                    <input
+                      placeholder='Tests to do'
+                      name='labTests'
+                      className='form-control'
+                      type='text'
+                      value={data.tests}
+                      onChange={(e) => handleDataChange(e)}
+                    ></input>
+                    {suggestedTest && suggestionOn && (
+                      <ul class='suggestions'>
+                        {suggestedTest.map((suggestion, index) => {
+                          return (
+                            <li key={suggestion} onClick={addTest}>
+                              {suggestion}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                  <div className='input-group'>
+                    <button
+                      className='btn btn-primary'
+                      style={{ width: 'inherit' }}
+                      onClick={handleSubmit}
+                      disabled={submitLock}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </Grid>
+                <Grid
+                  item
+                  sm={7}
+                  style={{ padding: '20px', border: '1px solid #3f51b5' }}
+                >
+                  <div class='row mb-1'>
+                    <div
+                      class='form-group col-md-3'
+                      style={{
+                        padding: '5px',
+                        borderRight: '1px solid #3f51b5',
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    >
+                      <label
+                        style={{
+                          fontSize: '20px',
+                          color: '#3f51b5',
+                          paddingLeft: '10px',
+                        }}
+                      >
+                        Medicine
+                      </label>
+                    </div>
+                    <div
+                      class='form-group col-md-2'
+                      style={{
+                        padding: '5px',
+                        borderRight: '1px solid #3f51b5',
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    >
+                      <label
+                        style={{
+                          fontSize: '20px',
+                          color: '#3f51b5',
+                          paddingLeft: '10px',
+                        }}
+                      >
+                        Quantity
+                      </label>
+                    </div>
+                    <div
+                      class='form-group col-md-2'
+                      style={{
+                        padding: '5px',
+                        borderRight: '1px solid #3f51b5',
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    >
+                      <label
+                        style={{
+                          fontSize: '20px',
+                          color: '#3f51b5',
+                          paddingLeft: '10px',
+                        }}
+                      >
+                        Morning
+                      </label>
+                    </div>
+                    <div
+                      class='form-group col-md-2'
+                      style={{
+                        padding: '5px',
+                        borderRight: '1px solid #3f51b5',
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    >
+                      <label
+                        style={{
+                          fontSize: '20px',
+                          color: '#3f51b5',
+                          paddingLeft: '10px',
+                        }}
+                      >
+                        Afternoon
+                      </label>
+                    </div>
+                    <div
+                      class='form-group col-md-2'
+                      style={{
+                        padding: '5px',
+                        borderRight: '1px solid #3f51b5',
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    >
+                      <label
+                        style={{
+                          fontSize: '20px',
+                          color: '#3f51b5',
+                          paddingLeft: '10px',
+                        }}
+                      >
+                        Evening
+                      </label>
+                    </div>
+                    <div
+                      class='form-group col-md-1'
+                      style={{
+                        padding: '5px',
+
+                        borderBottom: '1px solid #3f51b5',
+                      }}
+                    ></div>
+                  </div>
+                  {medicines.map((medicine, index) => (
+                    <React.Fragment>
+                      <MedicineRow
+                        row={medicine}
+                        index={index}
+                        suggestedList={suggestedList}
+                        func1={removeRow}
+                        func2={handleChangeInput}
+                      ></MedicineRow>
+                    </React.Fragment>
+                  ))}
+                  <div
+                    className='form-group mb-3'
+                    style={{ display: 'grid', justifyItems: 'flex-end' }}
+                  >
+                    <IconButton onClick={addRow}>
+                      <AddCircleOutlineIcon />
+                    </IconButton>
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </div>
-      </CardContent>
-    </Card>
-  )
+            </form>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
 }
 
 function MedicineRow(props) {

@@ -102,8 +102,8 @@ const ClinicHistoryTable = (props) => {
     { text: 'Date' },
     { text: 'Start Time' },
     { text: 'End Time' },
-    { text: 'No.of Patients' },
-    { text: 'Nurse Assigned' },
+    { text: '# Patients' },
+    { text: '# Visited' },
   ]
 
   const classes = useStyles()
@@ -146,46 +146,50 @@ const ClinicHistoryTable = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {clinicHistory
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
-                    .map(
-                      (
-                        row // add table row of patientData
-                      ) => (
-                        <TableRow className={classes.tableRow} hover>
-                          <TableCell className={classes.cell}>
-                            {row.date}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.startTime}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.endTime}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.noPatients}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {row.nurse.name}
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                              onClick={() =>
-                                history.push({
-                                  pathname: 'clinicHistory',
-                                  state: row,
-                                })
-                              }
-                            >
-                              View
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      )
-                    )}
+                  {clinicHistory &&
+                    clinicHistory
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      ) // slice patienData array to no.of rows per page
+                      .map(
+                        (
+                          row // add table row of patientData
+                        ) => (
+                          <TableRow className={classes.tableRow} hover>
+                            <TableCell className={classes.cell}>
+                              {row.date}
+                            </TableCell>
+                            <TableCell className={classes.cell}>
+                              {row.summary && row.summary.startTime}
+                            </TableCell>
+                            <TableCell className={classes.cell}>
+                              {row.summary && row.summary.endTime}
+                            </TableCell>
+                            <TableCell className={classes.cell}>
+                              {row.noPatients}
+                            </TableCell>
+                            <TableCell className={classes.cell}>
+                              {row.summary && row.summary.visitedPatients}
+                            </TableCell>
+                            <TableCell>
+                              <Button
+                                variant='contained'
+                                fullWidth='true'
+                                color='primary'
+                                onClick={() =>
+                                  history.push({
+                                    pathname: 'clinicHistory',
+                                    state: row,
+                                  })
+                                }
+                              >
+                                View
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        )
+                      )}
                 </TableBody>
               </Table>
             </div>
@@ -194,7 +198,7 @@ const ClinicHistoryTable = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={clinicHistory.length} // size of patientData array
+            count={clinicHistory && clinicHistory.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}

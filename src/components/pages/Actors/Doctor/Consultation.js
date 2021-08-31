@@ -126,27 +126,22 @@ function Dashboard() {
   const history = useHistory()
   const [clinicDate, setClinicDate] = useState(null)
   const [clinicStarted, setClinicStarted] = useState(false)
+  const [clinicEnded, setClinicEnded] = useState(false)
   const [currQueue, setCurrQueue] = useState(0)
   const [getData, setGetData] = useState(false)
   const [patientInfo, setPatientInfo] = useState(null)
 
   useEffect(() => {
-    if (getStorageItem('ClinicDate', true) == null) {
-      clinic_date_available().then((res) => {
-        setStorageItem('ClinicDate', res)
+    clinic_date_available().then((res) => {
+      if (res != null) {
+        setClinicStarted(res.started)
+        setClinicEnded(res.ended)
         setClinicDate(res)
         setCurrQueue(res.currQueue)
-      })
-    } else {
-      //console.log('in storage')
-      setClinicDate(getStorageItem('ClinicDate', true))
+      }
       setGetData(true)
-      setClinicStarted(getStorageItem('ClinicDate', true).started)
-      current_queue(getStorageItem('ClinicDate', true).id).then((res) => {
-        setCurrQueue(res)
-      })
-    }
-  }, [])
+    })
+  }, [currQueue, clinicStarted, clinicEnded, getData])
 
   useEffect(() => {
     if (currQueue >= 1) {
@@ -155,19 +150,6 @@ function Dashboard() {
       })
     }
   }, [currQueue])
-  //console.log(patientInfo)
-  //console.log(clinicDate)
-
-  if (getData && clinicDate == null) {
-    no_clinic().then(
-      history.push({
-        pathname: '/doctor/dashboard',
-      })
-    )
-  }
-
-  //console.log(clinicStarted)
-  //console.log(currQueue)
 
   return (
     <Layout
@@ -176,14 +158,35 @@ function Dashboard() {
       footer={<Footer />}
       content={
         <div style={{ backgroundColor: '#ebf5f7' }}>
-          {clinicStarted && (
+          {clinicStarted && clinicDate && (
             <Content
               clinicInfo={clinicDate}
               queueNo={currQueue}
               patientInfo={patientInfo}
             />
           )}
-          {clinicStarted === false && (
+
+          {getData && clinicDate == null && (
+            <Alert
+              severity='info'
+              onClose={() => history.push('/doctor/dashboard')}
+            >
+              <AlertTitle>No Clinic</AlertTitle>
+              No Clinic Available Today
+            </Alert>
+          )}
+
+          {clinicEnded && (
+            <Alert
+              severity='info'
+              onClose={() => history.push('/doctor/dashboard')}
+            >
+              <AlertTitle>Clinic has ended</AlertTitle>
+              Clinic has ended — <strong>Please see the summary</strong>
+            </Alert>
+          )}
+
+          {getData && !clinicStarted && !clinicEnded && (
             <Alert
               severity='info'
               action={
