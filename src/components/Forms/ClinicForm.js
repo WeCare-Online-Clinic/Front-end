@@ -8,10 +8,11 @@ import {
   makeStyles,
   Grid,
   IconButton,
-  Divider,
+  Backdrop,
+  CircularProgress,
 } from '@material-ui/core'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
-import { RemoveCircle, RemoveCircleOutlined } from '@material-ui/icons'
+import { RemoveCircle } from '@material-ui/icons'
 import { toast } from 'react-toastify'
 import { getStorageItem, setStorageItem } from '../../utils/StorageUtils'
 import Constants from '../../utils/Constants'
@@ -136,7 +137,7 @@ function ClinicForm(props) {
     nextClinic: '',
     note: '',
     diagnosis: '',
-    tests: '',
+    labTests: '',
   })
 
   useEffect(() => {
@@ -333,7 +334,7 @@ function ClinicForm(props) {
   const handleDataChange = (e) => {
     const name = e.target.name
     const value = e.target.value
-    if (name == 'tests') {
+    if (name == 'labTests') {
       const suggested = testSuggestions.filter(
         (suggestion) =>
           suggestion.toLowerCase().indexOf(value.toLowerCase()) > -1
@@ -347,11 +348,17 @@ function ClinicForm(props) {
   const addTest = (e) => {
     let tests = data.tests
     console.log(tests)
-    setData({ ...data, ['tests']: e.currentTarget.innerText })
+    setData({ ...data, ['labTests']: e.currentTarget.innerText })
     setSuggestionOn(false)
   }
 
-  if (endSession) {
+  if (submitLock) {
+    return (
+      <Backdrop className={classes.backdrop} open>
+        <CircularProgress color='inherit' />
+      </Backdrop>
+    )
+  } else if (endSession) {
     return (
       <Alert severity='info' onClose={() => history.push('/doctor/dashboard')}>
         <AlertTitle>Clinic Ended</AlertTitle>

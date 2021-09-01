@@ -95,7 +95,7 @@ const ClinicHistoryTable = (props) => {
       setClinicHistory(res)
       console.log(res)
     })
-  }, [])
+  }, [props])
 
   const tableHeaders = [
     // add table header names
@@ -161,16 +161,20 @@ const ClinicHistoryTable = (props) => {
                               {row.date}
                             </TableCell>
                             <TableCell className={classes.cell}>
-                              {row.summary && row.summary.startTime}
+                              {row.startTime}
+                              {!row.startTime && '---'}
                             </TableCell>
                             <TableCell className={classes.cell}>
-                              {row.summary && row.summary.endTime}
+                              {row.endTime}
+                              {!row.endTime && '---'}
                             </TableCell>
                             <TableCell className={classes.cell}>
                               {row.noPatients}
+                              {!row.noPatients && '---'}
                             </TableCell>
                             <TableCell className={classes.cell}>
-                              {row.summary && row.summary.visitedPatients}
+                              {row.visitedPatients}
+                              {!row.visitedPatients && '---'}
                             </TableCell>
                             <TableCell>
                               <Button

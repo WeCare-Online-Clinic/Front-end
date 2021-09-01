@@ -122,7 +122,7 @@ async function no_clinic() {
   })
 }
 
-function Dashboard() {
+function Consultation() {
   const history = useHistory()
   const [clinicDate, setClinicDate] = useState(null)
   const [clinicStarted, setClinicStarted] = useState(false)
@@ -130,6 +130,7 @@ function Dashboard() {
   const [currQueue, setCurrQueue] = useState(0)
   const [getData, setGetData] = useState(false)
   const [patientInfo, setPatientInfo] = useState(null)
+  const [noClinic, setNoClinic] = useState(false)
 
   useEffect(() => {
     clinic_date_available().then((res) => {
@@ -138,6 +139,8 @@ function Dashboard() {
         setClinicEnded(res.ended)
         setClinicDate(res)
         setCurrQueue(res.currQueue)
+      } else {
+        setNoClinic(true)
       }
       setGetData(true)
     })
@@ -150,6 +153,8 @@ function Dashboard() {
       })
     }
   }, [currQueue])
+
+  console.log(noClinic)
 
   return (
     <Layout
@@ -166,7 +171,7 @@ function Dashboard() {
             />
           )}
 
-          {getData && clinicDate == null && (
+          {noClinic && (
             <Alert
               severity='info'
               onClose={() => history.push('/doctor/dashboard')}
@@ -179,14 +184,39 @@ function Dashboard() {
           {clinicEnded && (
             <Alert
               severity='info'
-              onClose={() => history.push('/doctor/dashboard')}
+              action={
+                <React.Fragment>
+                  <Button
+                    color='inherit'
+                    size='large'
+                    onClick={() =>
+                      history.push({
+                        pathname: '/doctor/clinicsummary',
+                      })
+                    }
+                  >
+                    Clinic Summary
+                  </Button>
+                  <Button
+                    color='inherit'
+                    size='large'
+                    onClick={() =>
+                      history.push({
+                        pathname: '/doctor/dashboard',
+                      })
+                    }
+                  >
+                    Back
+                  </Button>
+                </React.Fragment>
+              }
             >
               <AlertTitle>Clinic has ended</AlertTitle>
               Clinic has ended — <strong>Please see the summary</strong>
             </Alert>
           )}
 
-          {getData && !clinicStarted && !clinicEnded && (
+          {getData && !clinicStarted && !noClinic && (
             <Alert
               severity='info'
               action={
@@ -245,4 +275,4 @@ function Content(props) {
   )
 }
 
-export default Dashboard
+export default Consultation

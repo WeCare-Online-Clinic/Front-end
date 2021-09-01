@@ -66,19 +66,23 @@ function ClinicHistoryCard(props) {
               <Divider />
               <ListItem>No.of Patients</ListItem>
               <Divider />
-              <ListItem>Nurse Assigned</ListItem>
+              <ListItem>Patients Visited</ListItem>
               <Divider />
             </List>
           </Grid>
           <Grid item sm={6}>
             <List>
-              <ListItem>: {clinic_history.clinicSchedule.time}</ListItem>
-              <Divider />
               <ListItem>
-                : {clinic_history && clinic_history.startTime}
+                : {clinic_history.clinicSchedule.time.substring(0, 5)}
               </ListItem>
               <Divider />
-              <ListItem>: {clinic_history && clinic_history.endTime}</ListItem>
+              <ListItem>
+                : {clinic_history && clinic_history.startTime.substring(0, 5)}
+              </ListItem>
+              <Divider />
+              <ListItem>
+                : {clinic_history && clinic_history.endTime.substring(0, 5)}
+              </ListItem>
               <Divider />
               <ListItem>: {clinic_history.noPatients}</ListItem>
               <Divider />

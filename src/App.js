@@ -80,6 +80,10 @@ const Consultation = React.lazy(() =>
 const ViewClinicHistory = React.lazy(() =>
   import('./components/pages/Actors/Doctor/ViewClinicHistory')
 )
+
+const ClinicSummary = React.lazy(() =>
+  import('./components/pages/Actors/Doctor/ClinicSummary')
+)
 /* -------------------- */
 
 /* --- Patient Pages --- */
@@ -151,7 +155,9 @@ const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
 )
 const HeadNurseViewDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/Clinic/ViewDoctors/ViewDoctorsBase')
+  import(
+    './components/pages/Actors/Head Nurse/Clinic/ViewDoctors/ViewDoctorsBase'
+  )
 )
 
 const HeadNurseProfile = React.lazy(() =>
@@ -296,6 +302,11 @@ const App = () => {
                 exact
                 component={ViewClinicHistory}
               ></Route>
+              <Route
+                path='/doctor/clinicsummary'
+                exact
+                component={ClinicSummary}
+              ></Route>
               {/* ------------------ */}
 
               {/* --- Patient Routes --- */}
@@ -428,7 +439,7 @@ const App = () => {
                 exact
                 component={HeadNurseRegister}
               ></Route>
-               <Route
+              <Route
                 path='/headnurse/doctorprofile'
                 exact
                 component={HeadNurseDoctorProfile}

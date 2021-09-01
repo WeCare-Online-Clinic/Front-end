@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { Alert } from '@material-ui/lab'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import { getStorageItem } from '../../utils/StorageUtils'
-import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 import Constants from '../../utils/Constants'
+import axios from 'axios'
+
 import {
   Card,
   CardActions,
@@ -20,30 +17,13 @@ import {
   TableRow,
   TablePagination,
   Button,
-  AppBar,
   Grid,
   TextField,
 } from '@material-ui/core'
+import { patientData } from './patientData'
 import PageviewIcon from '@material-ui/icons/Pageview'
-
-async function get_queue(clinic_date) {
-  console.log('clinic history')
-
-  let queue = []
-
-  try {
-    await axios
-      .get(Constants.API_BASE_URL + '/clinic/queue/' + clinic_date)
-      .then((res) => {
-        if (res.status == 200) {
-          queue = res.data
-        }
-      })
-    return queue
-  } catch (error) {
-    console.log(error)
-  }
-}
+import { useHistory } from 'react-router-dom'
+import { getStorageItem } from '../../utils/StorageUtils'
 
 function calculate_age(dob) {
   var dob = new Date(dob)
@@ -57,7 +37,9 @@ function calculate_age(dob) {
   var year = age_dt.getUTCFullYear()
 
   //now calculate the age of the user
-  return Math.abs(year - 1970)
+  var age = Math.abs(year - 1970)
+
+  return age
 }
 
 function show_gender(gender) {
@@ -103,30 +85,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ClinicHistoryQueue = (props) => {
-  console.log(props)
+const SummaryPatientsTable = (props) => {
   const history = useHistory()
   const { className } = props
-  const [queue, setQueue] = useState([])
+  const [patientList, setPatientList] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   useEffect(() => {
-    get_queue(props.clinic_did).then((res) => {
-      setQueue(res)
-      console.log(res)
-    })
+    setPatientList(props.patientList)
   }, [props])
-
-  console.log(queue)
 
   const tableHeaders = [
     // add table header names
-    { text: 'Queue No' },
-    { text: 'Time' },
-    { text: 'Name' },
+    { text: 'Patient Name' },
     { text: 'Age' },
     { text: 'Gender' },
+    { text: 'Queue No' },
   ]
 
   const classes = useStyles()
@@ -169,35 +144,28 @@ const ClinicHistoryQueue = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {queue &&
-                    queue
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      ) // slice patienData array to no.of rows per page
-                      .map(
-                        (
-                          row // add table row of patientData
-                        ) => (
-                          <TableRow className={classes.tableRow} hover>
-                            <TableCell className={classes.cell}>
-                              {row.queueNo}
-                            </TableCell>
-                            <TableCell className={classes.cell}>
-                              {row.time.substring(0, 5)}
-                            </TableCell>
-                            <TableCell className={classes.cell}>
-                              {row.patient.name}
-                            </TableCell>
-                            <TableCell className={classes.cell}>
-                              {calculate_age(row.patient.birthdate)}
-                            </TableCell>
-                            <TableCell className={classes.cell}>
-                              {show_gender(row.patient.gender)}
-                            </TableCell>
-                          </TableRow>
-                        )
-                      )}
+                  {patientList
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
+                    .map(
+                      (
+                        row // add table row of rowData
+                      ) => (
+                        <TableRow className={classes.tableRow} hover>
+                          <TableCell className={classes.cell}>
+                            {row.patient.name}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {calculate_age(row.patient.birthdate)}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {show_gender(row.patient.gender)}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {row.queueNo}
+                          </TableCell>
+                        </TableRow>
+                      )
+                    )}
                 </TableBody>
               </Table>
             </div>
@@ -206,12 +174,12 @@ const ClinicHistoryQueue = (props) => {
         <CardActions className={classes.actions}>
           <TablePagination
             component='div'
-            count={queue && queue.length} // size of patientData array
+            count={patientList.length} // size of patientData array
             onChangePage={handlePageChange}
             onChangeRowsPerPage={handleRowsPerPageChange}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 15]}
+            rowsPerPageOptions={[5, 8, 10]}
           />
         </CardActions>
       </Card>
@@ -219,4 +187,4 @@ const ClinicHistoryQueue = (props) => {
   )
 }
 
-export default ClinicHistoryQueue
+export default SummaryPatientsTable
