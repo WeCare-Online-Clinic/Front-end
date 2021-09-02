@@ -30,8 +30,9 @@ get_doctor_info()
 
 
 const doctor = getStorageItem('doctorInfo', true)
-const docotorId=doctor.id
-//   console.log("doctor details in doctor dashboard",doctor.clinic.id)
+const docotorId=doctor.id;
+const clinicId=doctor.clinic.id;
+console.log("clinic id:",clinicId);
 const doctorName = getStorageItem('doctorInfo', true).name
 const doctorQualification = getStorageItem('doctorInfo', true).qualification
 const isProf = doctorQualification.includes('PhD')
@@ -53,8 +54,9 @@ const DoctorDashboardBase = () => {
     const dispatch = useDispatch(); 
     useEffect(() => {    
         dispatch(Actions.getDataCardDetails(docotorId));
-        // dispatch(Actions.getOnlineUsers());
-        // dispatch(Actions.getRegisteredUsers());
+        dispatch(Actions.getDiagnosis(clinicId));
+        dispatch(Actions.getPatientAge(clinicId));
+        dispatch(Actions.getPatientCountInClinic(clinicId));
     
     
     }, [])
