@@ -100,7 +100,7 @@ const LabReports = React.lazy(() =>
 
 /* --- Nurse Pages --- */
 const NurseDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/Dashboard')
+  import('./components/pages/Actors/Nurse/Dashboard/NurseDashboardBase')
 )
 const NurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Nurse/Profile')
@@ -144,7 +144,7 @@ const LabAddLabReport = React.lazy(() =>
 
 /* --- Head Nurse Pages --- */
 const HeadNurseDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/Dashboard')
+  import('./components/pages/Actors/Head Nurse/Dashboard/HeadNurseDashboadBase')
 )
 const HeadNurseViewPatient = React.lazy(() =>
   import(

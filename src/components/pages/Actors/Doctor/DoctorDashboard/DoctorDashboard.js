@@ -1,8 +1,5 @@
-import React ,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import LineStatCard from '../../../../StatCard/LineStatCard'
-import PieStatCard from '../../../../StatCard/PieStatCard'
-import BarStatCard from '../../../../StatCard/BarStatCard'
 import DataCard from '../../../../DataCard/DataCard'
 import withReducer from '../../../../../store/withReducer'
 import reducer from './store/reducer/index'
@@ -27,7 +24,7 @@ const DoctorDashboard = (props) => {
 
   console.log("doctor profile in doctor dashboard: ", props.doctorProfile)
   useEffect(() => {
-  
+
   }, [])
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
@@ -36,14 +33,14 @@ const DoctorDashboard = (props) => {
       </Grid>
       <Grid item sm={12}>
         <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={6}>        
+          <Grid className={classes.dataCard} item sm={6}>
             <DiognosisChart />
           </Grid>
-          <Grid className={classes.dataCard} item sm={6}>        
-          <PatientAgeDataChart />
+          <Grid className={classes.dataCard} item sm={6}>
+            <PatientAgeDataChart />
           </Grid>
           <Grid className={classes.dataCard} item sm={6}>
-            <PatientsInClinicChart />        
+            <PatientsInClinicChart />
           </Grid>
           <Grid className={classes.dataCard} item sm={6}>
             <ConsultedPatientChart />

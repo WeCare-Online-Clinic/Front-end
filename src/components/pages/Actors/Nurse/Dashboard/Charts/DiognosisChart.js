@@ -22,13 +22,13 @@ const useStyles = makeStyles({
 
   }
 });
-const doctor = getStorageItem('doctorInfo', true);
-const clinicId = doctor.clinic.id;
+const nurse = getStorageItem('nurseInfo', true);
+const clinicId = nurse.clinic.id;
 console.log("clinicId in dig chart ", clinicId);
 
 
 const DiognosisChart = () => {
-  const reducerData = useSelector(({ diognosis }) => diognosis.doctorDashboard);
+  const reducerData = useSelector(({ ndiognosis }) => ndiognosis.nurseDashboard);
   const diognosisCount = reducerData.diognosisCount;
   const materializeUIClasses = useStyles();
   let state=[];
@@ -110,4 +110,4 @@ const DiognosisChart = () => {
     );
   }
 }
-export default withReducer('diognosis', reducer)(DiognosisChart);
+export default withReducer('ndiognosis', reducer)(DiognosisChart);

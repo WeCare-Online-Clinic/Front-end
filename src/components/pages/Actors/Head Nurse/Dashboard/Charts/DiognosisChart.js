@@ -28,7 +28,7 @@ console.log("clinicId in dig chart ", clinicId);
 
 
 const DiognosisChart = () => {
-  const reducerData = useSelector(({ diognosis }) => diognosis.doctorDashboard);
+  const reducerData = useSelector(({ hdiognosis }) => hdiognosis.headNurseDashboard);
   const diognosisCount = reducerData.diognosisCount;
   const materializeUIClasses = useStyles();
   let state=[];
@@ -110,4 +110,4 @@ const DiognosisChart = () => {
     );
   }
 }
-export default withReducer('diognosis', reducer)(DiognosisChart);
+export default withReducer('hdiognosis', reducer)(DiognosisChart);
