@@ -5,9 +5,10 @@ export const ON_GET_DATA_CARD_DETAILS = 'ON_GET_DATA_CARD_DETAILS';
 export const ON_GET_PATIENTS_DIOGNOSIS_COUNT=['ON_GET_PATIENTS_DIOGNOSIS_COUNT']
 export const ON_GET_PATIENT_AGE_DATA=['ON_GET_PATIENT_AGE_DATA']
 export const ON_GET_PATIENT_COUNT_IN_CLINIC=['ON_GET_PATIENT_COUNT_IN_CLINIC']
+export const ON_GET_CONSULTED_PATIENTS_DATA=['ON_GET_CONSULTED_PATIENTS_DATA']
 
-export function getDataCardDetails(docotorId) {
-    const request = DoctorDashboardService.getDataCardDetails(docotorId);
+export function getDataCardDetails(doctorId) {
+    const request = DoctorDashboardService.getDataCardDetails(doctorId);
     return (dispatch, getState) => {
         request.then((response) => {
             console.log("data card response", response.data)
@@ -69,5 +70,21 @@ export function getPatientCountInClinic(clinicId) {
     };
 }
 
+export function getConsultedPatientsData(doctorId) {
+    const request = DoctorDashboardService.getConsultedPatientsData(doctorId);
+    return (dispatch, getState) => {
+        request.then((response) => {
+            console.log("consulted patients data ", response.data)
+            dispatch({
+                type: ON_GET_CONSULTED_PATIENTS_DATA,
+                payload: response.data
+            })
 
+        }).catch((error) => {
+            console.log("consulted patients data error")
+        })
+    };
+}
+
+    
 

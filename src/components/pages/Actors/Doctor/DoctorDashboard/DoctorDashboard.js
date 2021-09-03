@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import DiognosisChart from './Charts/DiognosisChart'
 import PatientAgeDataChart from './Charts/PatientAgeDataChart'
 import PatientsInClinicChart from './Charts/PatientsInClinicChart'
+import ConsultedPatientChart from './Charts/ConsultedPatientChart'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -45,7 +46,7 @@ const DoctorDashboard = (props) => {
             <PatientsInClinicChart />        
           </Grid>
           <Grid className={classes.dataCard} item sm={6}>
-            <LineStatCard title='Consulted Patients' />
+            <ConsultedPatientChart />
           </Grid>
         </Grid>
       </Grid>

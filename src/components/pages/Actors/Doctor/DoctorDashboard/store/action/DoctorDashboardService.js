@@ -2,8 +2,8 @@ import axios from 'axios'
 import Constants from '../../../../../../../utils/Constants'
 
 class DoctorDashboardService {
-  getDataCardDetails(docotorId) {
-    return axios.get(Constants.API_BASE_URL + '/getDoctorDataCardDetails/'+docotorId)
+  getDataCardDetails(doctorId) {
+    return axios.get(Constants.API_BASE_URL + '/getDoctorDataCardDetails/'+doctorId)
   }
   getDiagnosis(clinicId){
     return axios.get(Constants.API_BASE_URL + '/getDiognosisDetails/'+clinicId)
@@ -13,6 +13,9 @@ class DoctorDashboardService {
   }
   getPatientCountInClinic(clinicId){
     return axios.get(Constants.API_BASE_URL+ '/getPatientsCountInClinic/'+clinicId)
+  }
+  getConsultedPatientsData(doctorId){
+    return axios.get(Constants.API_BASE_URL+ '/getConsultedPatientsData/'+doctorId)
   }
 
 }

@@ -30,7 +30,7 @@ get_doctor_info()
 
 
 const doctor = getStorageItem('doctorInfo', true)
-const docotorId=doctor.id;
+const doctorId=doctor.id;
 const clinicId=doctor.clinic.id;
 console.log("clinic id:",clinicId);
 const doctorName = getStorageItem('doctorInfo', true).name
@@ -53,10 +53,11 @@ console.log(fullName)
 const DoctorDashboardBase = () => {
     const dispatch = useDispatch(); 
     useEffect(() => {    
-        dispatch(Actions.getDataCardDetails(docotorId));
+        dispatch(Actions.getDataCardDetails(doctorId));
         dispatch(Actions.getDiagnosis(clinicId));
         dispatch(Actions.getPatientAge(clinicId));
         dispatch(Actions.getPatientCountInClinic(clinicId));
+        dispatch(Actions.getConsultedPatientsData(doctorId));
     
     
     }, [])

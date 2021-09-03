@@ -18,7 +18,7 @@ const useStyles = makeStyles({
         textAlign: 'center',
         fontWeight: 'bold',
         alignContent: 'center',
-        color: 'black'
+        color: 'white'
 
     }
 });
@@ -30,7 +30,7 @@ const PatientAgeDataChart = () => {
     const materializeUIClasses = useStyles();
 
     const state = {
-        labels: ['under 10', '10-20', '20-30','30-40','40-50','50-60','60-70','70-80','greater than 80'],
+        labels: ['<10', '10-20', '20-30','30-40','40-50','50-60','60-70','70-80','80+'],
         datasets: [
             {
                 label: 'Number of Patients',
@@ -56,7 +56,7 @@ const PatientAgeDataChart = () => {
     {
         return (
             <Card >
-                <CardHeader title={"Patients ( Age )"} style={{ backgroundColor: 'rgba(0,0,205,0.5)', margin: '0', opacity: '0.9', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
+                <CardHeader title={"Patients ( Age )"} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
                 <CardContent>
                     <div style={{ width: "17cm", height: "11cm", marginLeft: '2cm' }}>
                         <Bar

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer/index'
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     textAlign: 'center',
     fontWeight: 'bold',
     alignContent: 'center',
-    color: 'black'
+    color: 'white'
 
   }
 });
@@ -41,9 +41,9 @@ const DiognosisChart = () => {
             {
               label: 'Number of Patients',
               backgroundColor: [
-                'rgba(75,192,192,0.5)',
-                'rgba(0,0,205,0.5)',
-                'rgba(75,192,192,0.5)',
+                '#66F1BD',
+                '#28B1D6',
+                '#F6C368',
 
               ],
               borderColor: 'rgba(0,0,0,1)',
@@ -83,21 +83,17 @@ const DiognosisChart = () => {
   {
     return (
       <Card >
-        <CardHeader title={"Diognosis Count"} style={{ backgroundColor: 'rgba(0,0,205,0.5)', margin: '0', opacity: '0.9', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
+        <CardHeader title={"Diognosis Count"} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
         <CardContent>
           <div style={{ width: "17cm", height: "11cm", marginLeft: '2cm' }}>
-            <Bar
+            <Pie
               data={state}           
-              height="180%"
+              height="90%"  
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
 
-            //   options = {{
-            //     scales: {
-            //         // xAxes: [{
-            //         //     barThickness : 24
-            //         // }]
-            //         xAxes: [{ barPercentage: 0.5 }]
-            //     }
-            // }}
+              }}
 
             />
           </div>
