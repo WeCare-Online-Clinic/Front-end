@@ -5,6 +5,9 @@ import DiognosisChart from './Charts/DiognosisChart'
 import PatientAgeDataChart from './Charts/PatientAgeDataChart'
 import PatientsInClinicChart from './Charts/PatientsInClinicChart'
 import ConsultedPatientChart from './Charts/ConsultedPatientChart'
+import withReducer from '../../../../../store/withReducer'
+import reducer from './store/reducer/index'
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -15,31 +18,33 @@ const useStyles = makeStyles({
         marginTop: '10px',
       },
 })
-const HeadNurseDataItems = [
-    {
-        name: 'Lab Tests',
-        value: 23,
-    },
-    {
-        name: 'Lab Reports Added (Today)',
-        value: 14,
-    },
-    {
-        name: 'Lab Reports Issued (Month)',
-        value: 145,
-    },
-    {
-        name: 'Lab Reports To Be Issued',
-        value: 45,
-    },
-]
+// const HeadNurseDataItems = [
+//     {
+//         name: 'Lab Tests',
+//         value: 23,
+//     },
+//     {
+//         name: 'Lab Reports Added (Today)',
+//         value: 14,
+//     },
+//     {
+//         name: 'Lab Reports Issued (Month)',
+//         value: 145,
+//     },
+//     {
+//         name: 'Lab Reports To Be Issued',
+//         value: 45,
+//     },
+// ]
 
 const HeadNurseDashboard = () => {
-    const classes = useStyles()
+    const classes = useStyles();
+    const reducerData = useSelector(({ headNurseData }) => headNurseData.headNurseDashboard);
+    const headNurseDataItems = reducerData.dataCardDetails;
     return (
         <Grid container style={{ padding: '20px' }} spacing={5}>
             <Grid className={classes.dataCard} item sm={12}>
-                <DataCard cardItems={HeadNurseDataItems} />
+                <DataCard cardItems={headNurseDataItems} />
             </Grid>
             <Grid item sm={12}>
                 <Grid container style={{ marginBottom: '10px' }} spacing={5}>
@@ -62,4 +67,4 @@ const HeadNurseDashboard = () => {
     )
 }
 
-export default HeadNurseDashboard
+export default withReducer('headNurseData', reducer)(HeadNurseDashboard);

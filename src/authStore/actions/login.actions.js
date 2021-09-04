@@ -111,7 +111,7 @@ export function userLogOut(userId) {
   const request = axios.get(Constants.API_BASE_URL + '/userLogout/'+userId)
   return (dispatch, getState) => {
     request.then((response) => {
-      clearAppLocalStorage() 
+      clearAppLocalStorage();
       history.push({
       pathname: '/login',
       })

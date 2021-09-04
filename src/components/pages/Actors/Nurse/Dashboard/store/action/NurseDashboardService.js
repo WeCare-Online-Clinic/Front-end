@@ -3,7 +3,7 @@ import Constants from '../../../../../../../utils/Constants'
 
 class NurseDashboardService {
   getDataCardDetails(nurseId) {
-    return axios.get(Constants.API_BASE_URL + '/getDoctorDataCardDetails/'+nurseId)
+    return axios.get(Constants.API_BASE_URL + '/getNurseDataCardDetails/'+nurseId)
   }
   getDiagnosis(clinicId){
     return axios.get(Constants.API_BASE_URL + '/getDiognosisDetails/'+clinicId)
@@ -15,7 +15,7 @@ class NurseDashboardService {
     return axios.get(Constants.API_BASE_URL+ '/getPatientsCountInClinic/'+clinicId)
   }
   getConsultedPatientsData(nurseId){
-    return axios.get(Constants.API_BASE_URL+ '/getConsultedPatientsData/'+nurseId)
+    return axios.get(Constants.API_BASE_URL+ '/getConsultedPatientsDataNurse/'+nurseId)
   }
 
 }

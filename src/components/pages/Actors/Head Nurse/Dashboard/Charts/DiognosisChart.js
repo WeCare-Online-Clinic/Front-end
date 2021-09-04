@@ -22,8 +22,8 @@ const useStyles = makeStyles({
 
   }
 });
-const doctor = getStorageItem('doctorInfo', true);
-const clinicId = doctor.clinic.id;
+const headnurse = getStorageItem('nurseInfo', true);
+const clinicId = headnurse.clinic.id;
 console.log("clinicId in dig chart ", clinicId);
 
 

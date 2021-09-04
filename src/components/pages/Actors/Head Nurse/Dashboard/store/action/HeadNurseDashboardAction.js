@@ -7,8 +7,8 @@ export const ON_GET_PATIENT_AGE_DATA=['ON_GET_PATIENT_AGE_DATA']
 export const ON_GET_PATIENT_COUNT_IN_CLINIC=['ON_GET_PATIENT_COUNT_IN_CLINIC']
 export const ON_GET_CONSULTED_PATIENTS_DATA=['ON_GET_CONSULTED_PATIENTS_DATA']
 
-export function getDataCardDetails(headnurseId) {
-    const request = HeadNurseService.getDataCardDetails(headnurseId);
+export function getDataCardDetails(nurseId) {
+    const request = HeadNurseService.getDataCardDetails(nurseId);
     return (dispatch, getState) => {
         request.then((response) => {
             console.log("data card response", response.data)
@@ -70,8 +70,8 @@ export function getPatientCountInClinic(clinicId) {
     };
 }
 
-export function getConsultedPatientsData(headnurseId) {
-    const request = HeadNurseService.getConsultedPatientsData(headnurseId);
+export function getConsultedPatientsData(nurseId) {
+    const request = HeadNurseService.getConsultedPatientsData(nurseId);
     return (dispatch, getState) => {
         request.then((response) => {
             console.log("consulted patients data ", response.data)

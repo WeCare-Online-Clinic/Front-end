@@ -19,7 +19,7 @@ async function get_nurse_info() {
       .then((res) => {
           if (res.status === 200) {
               console.log("responce nurse data",res.data)
-              setStorageItem('headNurseInfo', res.data)
+              setStorageItem('nurseInfo', res.data)
           }
       })
       .catch((e) => {
@@ -27,16 +27,17 @@ async function get_nurse_info() {
       })
 }
 get_nurse_info()
-const nurse = getStorageItem('headNurseInfo', true)
+const nurse = getStorageItem('nurseInfo', true)
 const nurseId=nurse.id;
 const clinicId=nurse.clinic.id;
-console.log("clinic id:",clinicId);
-const nurseName = getStorageItem('headNurseInfo', true).name
+console.log("nurse id from getStorage: ",nurseId)
+console.log("clinic id from getStorage :",clinicId);
+const nurseName = getStorageItem('nurseInfo', true).name
 
 const HeadNurseDashboadBase=()=> {
   const dispatch = useDispatch();
   useEffect(() => {    
-    // dispatch(Actions.getDataCardDetails(nurseId));
+    dispatch(Actions.getDataCardDetails(nurseId));
     dispatch(Actions.getDiagnosis(clinicId));
     dispatch(Actions.getPatientAge(clinicId));
     dispatch(Actions.getPatientCountInClinic(clinicId));

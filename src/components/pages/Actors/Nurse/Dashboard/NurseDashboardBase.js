@@ -33,13 +33,14 @@ const nurse = getStorageItem('nurseInfo', true)
 const nurseId=nurse.id;
 const clinicId=nurse.clinic.id;
 console.log("clinic id:",clinicId);
+console.log("nurseid in nurse Dashboard base:",nurseId);
 const nurseName = getStorageItem('nurseInfo', true).name
 
 
 const NurseDashboardBase=()=> {
   const dispatch = useDispatch(); 
   useEffect(() => {    
-      // dispatch(Actions.getDataCardDetails(nurseId));
+      dispatch(Actions.getDataCardDetails(nurseId));
       dispatch(Actions.getDiagnosis(clinicId));
       dispatch(Actions.getPatientAge(clinicId));
       dispatch(Actions.getPatientCountInClinic(clinicId));

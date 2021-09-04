@@ -71,6 +71,7 @@ export function getPatientCountInClinic(clinicId) {
 }
 
 export function getConsultedPatientsData(nurseId) {
+    console.log("nurseid in getConsultedPatientsData action ")
     const request = NurseDashboardService.getConsultedPatientsData(nurseId);
     return (dispatch, getState) => {
         request.then((response) => {

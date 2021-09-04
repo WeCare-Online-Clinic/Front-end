@@ -17,27 +17,12 @@ const useStyles = makeStyles({
         marginTop: '10px',
       },
 })
-const NurseDataItems = [
-    {
-        name: 'Lab Tests',
-        value: 23,
-    },
-    {
-        name: 'Lab Reports Added (Today)',
-        value: 14,
-    },
-    {
-        name: 'Lab Reports Issued (Month)',
-        value: 145,
-    },
-    {
-        name: 'Lab Reports To Be Issued',
-        value: 45,
-    },
-]
 
-const NurseDashboard = () => {
-    const classes = useStyles()
+const NurseDashboard = () => {   
+  
+    const classes = useStyles();
+    const reducerData = useSelector(({ nurseData }) => nurseData.nurseDashboard);
+    const NurseDataItems = reducerData.dataCardDetails;
     return (
         <Grid container style={{ padding: '20px' }} spacing={5}>
             <Grid className={classes.dataCard} item sm={12}>
@@ -64,4 +49,4 @@ const NurseDashboard = () => {
     )
 }
 
-export default NurseDashboard
+export default withReducer('nurseData', reducer)(NurseDashboard);
