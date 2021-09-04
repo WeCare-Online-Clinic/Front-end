@@ -14,6 +14,12 @@ const useStyles = makeStyles({
     alignContent: 'center',
     color: 'white',
   },
+  chartContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    minWidth: '500px',
+    minHeight: '480px',
+  },
 })
 const doctor = getStorageItem('doctorInfo', true)
 const clinicId = doctor.clinic.id
@@ -21,7 +27,7 @@ console.log('clinicId in dig chart ', clinicId)
 const clinicName = doctor.clinic.name
 
 const DiognosisChart = () => {
-  const reducerData = useSelector(({ diognosis }) => diognosis.doctorDashboard)
+  const reducerData = useSelector(({ diognosis }) => diognosis.statistics)
   const diognosisCount = reducerData.diognosisCount
   const materializeUIClasses = useStyles()
   let state = []
@@ -76,7 +82,7 @@ const DiognosisChart = () => {
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
-          <div style={{ width: '17cm', height: '11cm', marginLeft: '2cm' }}>
+          <div className={materializeUIClasses.chartContainer}>
             <Pie
               data={state}
               height='90%'

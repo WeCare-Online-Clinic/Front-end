@@ -63,7 +63,7 @@ const useStyles = makeStyles({
   textTitle: {
     padding: '5px',
     color: '#4c5355',
-    fontSize: '20px',
+    fontSize: '18px',
     fontWeight: 'bold',
     textAlign: 'center',
   },

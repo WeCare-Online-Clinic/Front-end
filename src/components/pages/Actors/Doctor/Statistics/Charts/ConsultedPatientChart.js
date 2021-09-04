@@ -1,5 +1,5 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer/index'
@@ -14,35 +14,37 @@ const useStyles = makeStyles({
     alignContent: 'center',
     color: 'white',
   },
+  chartContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    minWidth: '500px',
+    minHeight: '480px',
+  },
 })
 
 const doctor = getStorageItem('doctorInfo', true)
 const clinicName = doctor.clinic.name
 
-const PatientsInClinicChart = () => {
+const ConsultedPatientChart = () => {
   const reducerData = useSelector(
-    ({ patientInClinic }) => patientInClinic.doctorDashboard
+    ({ consultedPatients }) => consultedPatients.statistics
   )
-  const monthlyRegisteredUsers = reducerData.patientCountInClinic
+  const consultedPatients = reducerData.consultedPatientsData
+  const arraySize = consultedPatients.length
+  const dateArray = []
+  const countArray = []
+
+  for (let i = 0; i < arraySize; i++) {
+    dateArray[i] = consultedPatients[i].clinicDate
+    countArray[i] = consultedPatients[i].count
+  }
+
   const materializeUIClasses = useStyles()
   const state = {
-    labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ],
+    labels: dateArray,
     datasets: [
       {
-        label: `Regstered Patients `,
+        label: `Vistited Patients`,
         backgroundColor: [
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',
@@ -59,7 +61,7 @@ const PatientsInClinicChart = () => {
         ],
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 0.2,
-        data: monthlyRegisteredUsers,
+        data: countArray,
       },
     ],
   }
@@ -67,13 +69,13 @@ const PatientsInClinicChart = () => {
     return (
       <Card>
         <CardHeader
-          title={`Registered Patients In ${clinicName} Clinic`}
+          title={'Visited Patients In Previous Clinics '}
           style={{ backgroundColor: '#3f51b5', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
-          <div style={{ width: '19cm', height: '11cm', marginLeft: '0cm' }}>
-            <Line
+          <div className={materializeUIClasses.chartContainer}>
+            <Bar
               data={state}
               options={{
                 title: {
@@ -98,4 +100,4 @@ const PatientsInClinicChart = () => {
     )
   }
 }
-export default withReducer('patientInClinic', reducer)(PatientsInClinicChart)
+export default withReducer('consultedPatients', reducer)(ConsultedPatientChart)

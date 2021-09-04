@@ -12,10 +12,10 @@ const useStyles = makeStyles({
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#3f51b5',
+    color: '#fff',
     borderBottom: '1px solid #000',
     backgroundImage: `linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))`,
-    color: '#fff',
+    fontSize: '16px',
   },
   cardContent: {
     width: '140px',
@@ -45,7 +45,12 @@ function CardItem(props) {
     <Card className={classes.card}>
       <CardHeader
         className={classes.cardHeader}
-        title={props.name}
+        subheader={props.name}
+        subheaderTypographyProps={{
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: '#fff',
+        }}
       ></CardHeader>
       <CardContent className={classes.cardContent}>{props.value}</CardContent>
     </Card>

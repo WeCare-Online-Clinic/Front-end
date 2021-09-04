@@ -247,6 +247,14 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
     'Urine Culture',
     'Vitamin B12',
   ],
+
+  STATISTICS: [
+    'Patients Registered In Clinic',
+    'Patients In Clinic According To Age',
+    '# Of Patients According To Diagnosis',
+    '# Of Patients Visited In Clinic Dates',
+    '# Of Patients Not Visited In Clinic Dates',
+  ],
 }
 
 export default Constants
