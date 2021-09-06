@@ -18,7 +18,7 @@ const ViewReport = props => {
     const dispatch = useDispatch();
     const reducerData = useSelector(({ reportDetails }) => reportDetails.viewReport);
     let reportProfile;
-    reporttProfile = reducerData.reportProfile;
+    reportProfile = reducerData.reportProfile;
     let deleteReport;
 
     
@@ -58,13 +58,13 @@ const ViewReport = props => {
                                     <div className="card-body">
                                         <table className="mytable mt-3">
                                             <tbody>
-                                                <tr className="my"><th>Id :</th><th>{reportProfile.id}</th></tr>
-                                                <tr className="my"><th>Name :</th><th>{reportProfile.name}</th></tr>
-                                                <tr className="my"><th>Email :</th><th>{reportProfile.email}</th></tr>
-                                                <tr className="my"><th>Phone :</th><th>{reportProfile.contact}</th></tr>
-                                                <tr className="my"><th>Gender :</th><th>{reportProfile.gender}</th></tr>
-                                                <tr className="my"><th>Address :</th><th>{reportProfile.address}</th></tr>
-                                                <tr className="my"><th>Date of Birth :</th><th>{format(new Date(reportProfile.birthdate), 'YYYY-MM-DD')}</th></tr>
+                                                <tr className="my"><th>Report Id :</th><th>{reportProfile.id}</th></tr>
+                                                <tr className="my"><th>Test Time :</th><th>{reportProfile.name}</th></tr>
+                                                <tr className="my"><th>Test Date :</th><th>{reportProfile.email}</th></tr>
+                                                <tr className="my"><th>Availability :</th><th>{reportProfile.contact}</th></tr>
+                                                <tr className="my"><th>Issued Date :</th><th>{reportProfile.gender}</th></tr>
+                                                <tr className="my"><th>Data :</th><th>{reportProfile.address}</th></tr>
+                                                
 
                                             </tbody>
                                         </table>

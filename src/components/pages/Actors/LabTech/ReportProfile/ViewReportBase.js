@@ -7,7 +7,7 @@ import Layout from '../../../../Layout'
 import Header from '../../../../Header'
 import Footer from '../../../../Footer'
 import Sidebar from '../../../../Sidebar/Sidebar'
-import { nurseMenuItems } from '../../../../Sidebar/menuItem'
+import { labtechMenuItems } from '../../../../Sidebar/menuItem'
 import ViewReport from './ViewReport'
 import * as Actions from "./store/action";
 import { useDispatch } from 'react-redux'
@@ -27,7 +27,7 @@ function ViewReportBase() {
   return (
     <Layout
       header={<Header user='Kasun' />}
-      sidebar={<Sidebar menuItems={nurseMenuItems} />}
+      sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
         <div style={{ padding: '50px' }}>

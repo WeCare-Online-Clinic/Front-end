@@ -144,6 +144,9 @@ const LabAddLabTest = React.lazy(() =>
 const LabTechTestProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/TestProfile/ViewTestBase')
 )
+const LabTechReportProfile = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/ReportProfile/ViewReportBase')
+)
 
 const LabViewLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/LabTest/ViewLabTest/ViewLabTest')
@@ -400,6 +403,11 @@ const App = () => {
                 path='/labtech/testprofile'
                 exact
                 component={LabTechTestProfile}
+              ></Route>
+              <Route
+                path='/labtech/reportprofile'
+                exact
+                component={LabTechReportProfile}
               ></Route>
               <Route
                 path='/labtech/viewlabreport'
