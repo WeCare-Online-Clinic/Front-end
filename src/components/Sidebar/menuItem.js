@@ -221,8 +221,8 @@ export const labtechMenuItems = [
     name: 'Lab Reports',
     children: [
       {
-        name: 'View Patient List',
-        url: '/labtech/viewpatient',
+        name: 'View Lab Report List',
+        url: '/labtech/viewlabreport',
       },
       {
         name: 'Add Lab Report',

@@ -152,7 +152,7 @@ const TestDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('testdata')}
+                              onClick={() => history.push('testprofile')}
                             >
                             View
                             </Button>

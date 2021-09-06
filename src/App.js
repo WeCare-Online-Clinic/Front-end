@@ -135,15 +135,16 @@ const LabDashboard = React.lazy(() =>
 const LabProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/Profile')
 )
-const LabViewPatient = React.lazy(() =>
+const LabViewLabReport = React.lazy(() =>
   import('./components/pages/Actors/LabTech/LabReport/ViewLabReport/ViewLabReport')
 )
 const LabAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabTest')
 )
-const LabViewLabReport = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/ViewLabReport')
+const LabTechTestProfile = React.lazy(() =>
+  import('./components/pages/Actors/LabTech/TestProfile/ViewTestBase')
 )
+
 const LabViewLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/LabTest/ViewLabTest/ViewLabTest')
 )
@@ -396,6 +397,11 @@ const App = () => {
                 component={LabViewLabTest}
               ></Route>
               <Route
+                path='/labtech/testprofile'
+                exact
+                component={LabTechTestProfile}
+              ></Route>
+              <Route
                 path='/labtech/viewlabreport'
                 exact
                 component={LabViewLabReport}
@@ -492,9 +498,9 @@ const App = () => {
               {/* --------------------- */}
 
               <Route
-                path='/labtech/viewpatient'
+                path='/labtech/viewlabreport'
                 exact
-                component={LabViewPatient}
+                component={LabViewLabReport}
               ></Route>
               <Route
                 path='/labtech/addlabtest'
