@@ -42,36 +42,7 @@ function Content() {
   const history = useHistory()
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid
-        className={classes.dataCard}
-        item
-        sm={12}
-        style={{ display: 'flex', justifyContent: 'space-around' }}
-      >
-        <Button
-          variant='contained'
-          color='secondary'
-          size='large'
-          style={{
-            width: '200px',
-            height: '80px',
-          }}
-        >
-          Add Lab Tests
-        </Button>
-        <Button
-          variant='contained'
-          color='secondary'
-          size='large'
-          style={{
-            width: '200px',
-            height: '80px',
-          }}
-          onClick={() => history.push('dashboard')}
-        >
-          Create Lab Reports
-        </Button>
-      </Grid>
+
       <Grid className={classes.dataCard} item sm={12}>
         <DataCard cardItems={labtechDataItems} />
       </Grid>

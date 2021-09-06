@@ -190,7 +190,7 @@ const ReportDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('reportdata')}
+                              onClick={() => history.push('reportprofile')}
                             >
                               View
                             </Button>

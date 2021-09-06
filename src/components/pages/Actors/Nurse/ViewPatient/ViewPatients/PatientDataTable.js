@@ -160,13 +160,18 @@ const PatientDataTable = (props) => {
                           </TableCell>
                          
                           <TableCell>
-                            <Button
+                          <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('patientdata')}
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'patientprofile',
+                                  state: patient.id,
+                                })
+                              }
                             >
-                            View
+                              View
                             </Button>
                           </TableCell>
                         </TableRow>

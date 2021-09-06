@@ -96,7 +96,7 @@ const TestDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-                <SearchBar />
+                
               </div>
             </nav>
           </Grid>
@@ -152,7 +152,7 @@ const TestDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('testdata')}
+                              onClick={() => history.push('testprofile')}
                             >
                             View
                             </Button>

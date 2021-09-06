@@ -210,10 +210,10 @@ export const labtechMenuItems = [
         name: 'View Lab Tests',
         url: '/labtech/viewlabtest',
       },
-      {
-        name: 'Create Lab Test',
-        url: '/labtech/addlabtest',
-      },
+    //  {
+    //    name: 'Create Lab Test',
+    //    url: '/labtech/addlabtest',
+    //  },
     ],
   },
   {
@@ -221,8 +221,8 @@ export const labtechMenuItems = [
     name: 'Lab Reports',
     children: [
       {
-        name: 'View Patient List',
-        url: '/labtech/viewpatient',
+        name: 'View Lab Report List',
+        url: '/labtech/viewlabreport',
       },
       {
         name: 'Add Lab Report',

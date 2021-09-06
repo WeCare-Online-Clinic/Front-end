@@ -171,7 +171,7 @@ const DoctorDataTable = (props) => {
                               color='primary'
                               onClick={() =>
                                 history.push({
-                                  pathname: 'doctorschedule',
+                                  pathname: 'doctorprofile',
                                   state: doctor.id,
                                 })
                               }
