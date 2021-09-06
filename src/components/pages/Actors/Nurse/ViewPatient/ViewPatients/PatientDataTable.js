@@ -164,7 +164,7 @@ const PatientDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('patientdata')}
+                              onClick={() => history.push('patientprofile')}
                             >
                             View
                             </Button>

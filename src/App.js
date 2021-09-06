@@ -111,6 +111,12 @@ const NurseProfile = React.lazy(() =>
 const NurseViewPatient = React.lazy(() =>
   import('./components/pages/Actors/Nurse/ViewPatient/ViewPatients/ViewPatient')
 )
+const NurseDoctorProfile = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/DoctorProfile/ViewDoctorBase')
+)
+const NursePatientProfile = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/PatientProfile/ViewPatientBase')
+)
 const NurseViewDoctor = React.lazy(() =>
   import('./components/pages/Actors/Nurse/ViewDoctor/ViewDoctors/ViewDoctorsBase')
 )
@@ -355,6 +361,16 @@ const App = () => {
                 path='/nurse/viewpatient'
                 exact
                 component={NurseViewPatient}
+              ></Route>
+              <Route
+                path='/nurse/patientprofile'
+                exact
+                component={NursePatientProfile}
+              ></Route>
+              <Route
+                path='/nurse/doctorprofile'
+                exact
+                component={NurseDoctorProfile}
               ></Route>
               <Route
                 path='/nurse/viewdoctor'
