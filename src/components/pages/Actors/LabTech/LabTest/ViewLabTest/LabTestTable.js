@@ -96,7 +96,7 @@ const TestDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-                <SearchBar />
+                
               </div>
             </nav>
           </Grid>

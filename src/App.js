@@ -130,7 +130,7 @@ const LabProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/Profile')
 )
 const LabViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/ViewPatient')
+  import('./components/pages/Actors/LabTech/LabReport/ViewLabReport/ViewLabReport')
 )
 const LabAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabTest')
@@ -139,7 +139,7 @@ const LabViewLabReport = React.lazy(() =>
   import('./components/pages/Actors/LabTech/ViewLabReport')
 )
 const LabViewLabTest = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/ViewLabTest')
+  import('./components/pages/Actors/LabTech/LabTest/ViewLabTest/ViewLabTest')
 )
 const LabAddLabReport = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabReport')
