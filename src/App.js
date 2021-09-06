@@ -109,10 +109,10 @@ const NurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Nurse/Profile')
 )
 const NurseViewPatient = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewPatient')
+  import('./components/pages/Actors/Nurse/ViewPatient/ViewPatients/ViewPatient')
 )
 const NurseViewDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewDoctor')
+  import('./components/pages/Actors/Nurse/ViewDoctor/ViewDoctors/ViewDoctorsBase')
 )
 const NurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Nurse/ViewQueue')
