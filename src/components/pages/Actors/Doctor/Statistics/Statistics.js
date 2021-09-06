@@ -43,38 +43,22 @@ const Statistics = (props) => {
   const dispatch = useDispatch()
   const classes = useStyles()
   const reducerData = useSelector(({ statistics }) => statistics.statistics)
+  console.log(reducerData)
   const [statistic, setStatistic] = useState()
-  const [fromDate, setFromDate] = useState()
-  const [toDate, setToDate] = useState()
-
-  useEffect(() => {
-    switch (statistic) {
-      case 'Patients Registered In Clinic':
-        dispatch(Actions.getPatientCountInClinic(clinicId))
-        break
-      case 'Patients In Clinic According To Age':
-        dispatch(Actions.getPatientAge(clinicId))
-        break
-      case '# Of Patients According To Diagnosis':
-        dispatch(Actions.getDiagnosis(clinicId))
-        break
-      case '# Of Patients Visited In Clinic Dates':
-        dispatch(Actions.getConsultedPatientsData(doctorId))
-        break
-    }
-  }, [statistic])
+  // const [fromDate, setFromDate] = useState()
+  // const [toDate, setToDate] = useState()
 
   const handleChange = (event) => {
     setStatistic(event.target.value)
   }
 
-  const handleFromDateChange = (date) => {
+  /* const handleFromDateChange = (date) => {
     setFromDate(date)
   }
 
   const handleToDateChange = (date) => {
     setToDate(date)
-  }
+  } */
 
   return (
     <React.Fragment>
@@ -105,7 +89,7 @@ const Statistics = (props) => {
                 </Select>
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   disableToolbar
                   variant='inline'
@@ -128,7 +112,7 @@ const Statistics = (props) => {
                     'aria-label': 'change date',
                   }}
                 />
-              </MuiPickersUtilsProvider>
+              </MuiPickersUtilsProvider> */}
             </CardActions>
           </Card>
         </Grid>

@@ -14,8 +14,8 @@ import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
   card: {
-    width: 'inherit',
-    height: '100%',
+    width: '95%',
+    height: '400px',
     border: '1px solid #bdc3cb',
   },
   cardHeader: {

@@ -5,11 +5,9 @@ import Footer from '../../../../Footer'
 import Sidebar from '../../../../Sidebar/Sidebar'
 import { doctorMenuItems } from '../../../../Sidebar/menuItem'
 import { getStorageItem } from '../../../../../utils/StorageUtils'
-import axios from 'axios'
-import Constants from '../../../../../utils/Constants'
 import Statistics from './Statistics'
-//import * as Actions from './store/action'
-//import { useDispatch } from 'react-redux'
+import * as Actions from './store/action'
+import { useDispatch } from 'react-redux'
 
 const doctor = getStorageItem('doctorInfo', true)
 const doctorId = doctor.id
@@ -17,6 +15,14 @@ const clinicId = doctor.clinic.id
 const doctorName = getStorageItem('doctorName')
 
 const StatisticsBase = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(Actions.getDataCardDetails(doctorId))
+    dispatch(Actions.getDiagnosis(clinicId))
+    dispatch(Actions.getPatientAge(clinicId))
+    dispatch(Actions.getPatientCountInClinic(clinicId))
+    dispatch(Actions.getConsultedPatientsData(doctorId))
+  }, [])
   return (
     <Layout
       header={<Header user={doctorName} />}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
@@ -13,8 +13,8 @@ import {
   TableHead,
   TableRow,
   TablePagination,
-  Grid
-
+  Grid,
+  CardHeader,
 } from '@material-ui/core'
 import { QueueData } from './QueueData'
 import { useHistory } from 'react-router-dom'
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   inner: {
-    minWidth: 'inherit',
+    minWidth: '95%',
   },
   nameContainer: {
     display: 'flex',
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#4e4f50',
     fontSize: '16px',
   },
+  highlightCell: {
+    backgroundColor: '#e35',
+    color: '#fff',
+  },
   search_items: {
     maxHeight: '50px',
     margin: '10px',
@@ -54,19 +58,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+function calculate_age(dob) {
+  var dob = new Date(dob)
+  //calculate month difference from current date in time
+  var month_diff = Date.now() - dob.getTime()
+
+  //convert the calculated difference in date format
+  var age_dt = new Date(month_diff)
+
+  //extract year from date
+  var year = age_dt.getUTCFullYear()
+
+  //now calculate the age of the user
+  var age = Math.abs(year - 1970)
+
+  return age
+}
+
+function show_gender(gender) {
+  if (gender == 'f') {
+    return 'Female'
+  } else {
+    return 'Male'
+  }
+}
+
 const PatientQueueTable = (props) => {
   const history = useHistory()
-  const { className } = props
-  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+  const [queue, setQueue] = useState([])
+  const [queueNo, setQueueNo] = useState(1)
+  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
 
   const tableHeaders = [
     // add table header names
-    { text: 'Patient ID' },
+    { text: 'Number' },
     { text: 'Patient Name' },
-    { text: 'Queue Number' },
-    
+    { text: 'Age' },
+    { text: 'Gender' },
   ]
+
+  useEffect(() => {
+    setQueue(props.queue)
+    setQueueNo(props.queueNo)
+  }, [props])
 
   const classes = useStyles()
 
@@ -78,76 +113,137 @@ const PatientQueueTable = (props) => {
   }
 
   return (
-    <div>
-      <Card padding={'0'} className={clsx(classes.root, className)}>
-        <Grid className={classes.grid} container justify='space-around'>
-          <Grid item sm></Grid>
-        </Grid>
-        <CardContent className={classes.content}>
-          <PerfectScrollbar>
-            <div className={classes.inner}>
-              <Table>
-                <TableHead
-                  style={{ backgroundColor: '#ebf5f7' }}
-                  className={classes.head}
-                >
-                  <TableRow>
-                    {tableHeaders.map((col) => (
-                      <TableCell
-                        style={{
-                          color: '#3f51b5',
-                          fontWeight: 'bold',
-                          fontSize: '16px',
-                          borderBottom: '1px solid #000',
-                        }}
-                        className={classes.hoverable}
-                      >
-                        <span>{col.text}</span>
-                      </TableCell>
-                    ))}
+    <Card className={classes.inner}>
+      <CardHeader
+        style={{
+          textAlign: 'center',
+          color: '#fff',
+          borderBottom: '1px solid #000',
+          backgroundColor: '#3f51b5',
+        }}
+        title={'Patient Queue'}
+      ></CardHeader>
+      <CardContent className={classes.content}>
+        <PerfectScrollbar>
+          <div className={classes.inner}>
+            <Table>
+              <TableHead
+                style={{ backgroundColor: '#ebf5f7' }}
+                className={classes.head}
+              >
+                <TableRow>
+                  {tableHeaders.map((col) => (
                     <TableCell
-                      style={{ borderBottom: '1px solid #000' }}
-                    ></TableCell>
-                  </TableRow>
-                </TableHead>
+                      style={{
+                        color: '#3f51b5',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        borderBottom: '1px solid #000',
+                      }}
+                      className={classes.hoverable}
+                    >
+                      <span>{col.text}</span>
+                    </TableCell>
+                  ))}
+                  <TableCell
+                    style={{ borderBottom: '1px solid #000' }}
+                  ></TableCell>
+                </TableRow>
+              </TableHead>
+              {queue.length > 0 && (
                 <TableBody>
-                  {QueueData
+                  {queue
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // slice patienData array to no.of rows per page
                     .map(
                       (
-                        patient // add table row of QueueData
+                        appointment // add table row of QueueData
                       ) => (
                         <TableRow className={classes.tableRow} hover>
-                          <TableCell className={classes.cell}>
-                            {patient.id}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.name}
-                          </TableCell>
-                          <TableCell className={classes.cell}>
-                            {patient.queueno}
-                          </TableCell>
+                          {appointment.queueNo == queueNo && (
+                            <>
+                              <TableCell className={classes.highlightCell}>
+                                {appointment.queueNo}
+                              </TableCell>
+                              <TableCell className={classes.highlightCell}>
+                                {appointment.patient.name}
+                              </TableCell>
+                              <TableCell className={classes.highlightCell}>
+                                {calculate_age(appointment.patient.birthdate)}
+                              </TableCell>
+                              <TableCell className={classes.highlightCell}>
+                                {show_gender(appointment.patient.gender)}
+                              </TableCell>
+                              {appointment.visited && (
+                                <TableCell
+                                  className={classes.highlightCell}
+                                  style={{ color: 'green' }}
+                                >
+                                  Consulted
+                                </TableCell>
+                              )}
+                              {!appointment.visited && (
+                                <TableCell
+                                  className={classes.highlightCell}
+                                  style={{ color: 'red' }}
+                                >
+                                  Not Consulted
+                                </TableCell>
+                              )}
+                            </>
+                          )}
+                          {appointment.queueNo != queueNo && (
+                            <>
+                              <TableCell className={classes.cell}>
+                                {appointment.queueNo}
+                              </TableCell>
+                              <TableCell className={classes.cell}>
+                                {appointment.patient.name}
+                              </TableCell>
+                              <TableCell className={classes.cell}>
+                                {calculate_age(appointment.patient.birthdate)}
+                              </TableCell>
+                              <TableCell className={classes.cell}>
+                                {show_gender(appointment.patient.gender)}
+                              </TableCell>
+                              {appointment.visited && (
+                                <TableCell
+                                  className={classes.cell}
+                                  style={{ color: 'green' }}
+                                >
+                                  Consulted
+                                </TableCell>
+                              )}
+                              {!appointment.visited && (
+                                <TableCell
+                                  className={classes.cell}
+                                  style={{ color: 'red' }}
+                                >
+                                  Not Consulted
+                                </TableCell>
+                              )}
+                            </>
+                          )}
                         </TableRow>
                       )
                     )}
                 </TableBody>
-              </Table>
-            </div>
-          </PerfectScrollbar>
-        </CardContent>
-        <CardActions className={classes.actions}>
-          <TablePagination
-            component='div'
-            count={QueueData.length} // size of QueueData array
-            onChangePage={handlePageChange}
-            onChangeRowsPerPage={handleRowsPerPageChange}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 8, 10, 15]}
-          />
-        </CardActions>
-      </Card>
-    </div>
+              )}
+            </Table>
+          </div>
+        </PerfectScrollbar>
+      </CardContent>
+      <CardActions className={classes.actions}>
+        <TablePagination
+          component='div'
+          count={queue.length} // size of QueueData array
+          onChangePage={handlePageChange}
+          onChangeRowsPerPage={handleRowsPerPageChange}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[5, 8, 10, 15]}
+        />
+      </CardActions>
+    </Card>
   )
 }
 

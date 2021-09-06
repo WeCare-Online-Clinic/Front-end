@@ -17,8 +17,7 @@ const useStyles = makeStyles({
   chartContainer: {
     display: 'flex',
     justifyContent: 'center',
-    minWidth: '500px',
-    minHeight: '480px',
+    flexWrap: 'wrap',
   },
 })
 

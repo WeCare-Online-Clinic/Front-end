@@ -17,8 +17,7 @@ const useStyles = makeStyles({
   chartContainer: {
     display: 'flex',
     justifyContent: 'center',
-    minWidth: '500px',
-    minHeight: '480px',
+    flexWrap: 'wrap',
   },
 })
 
@@ -29,6 +28,7 @@ const ConsultedPatientChart = () => {
   const reducerData = useSelector(
     ({ consultedPatients }) => consultedPatients.statistics
   )
+  console.log(reducerData)
   const consultedPatients = reducerData.consultedPatientsData
   const arraySize = consultedPatients.length
   const dateArray = []
@@ -80,7 +80,6 @@ const ConsultedPatientChart = () => {
               options={{
                 title: {
                   display: true,
-                  text: 'Average Rainfall per month',
                   fontSize: 20,
                 },
                 legend: {
