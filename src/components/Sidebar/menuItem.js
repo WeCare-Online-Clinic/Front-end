@@ -210,10 +210,10 @@ export const labtechMenuItems = [
         name: 'View Lab Tests',
         url: '/labtech/viewlabtest',
       },
-      {
-        name: 'Create Lab Test',
-        url: '/labtech/addlabtest',
-      },
+    //  {
+    //    name: 'Create Lab Test',
+    //    url: '/labtech/addlabtest',
+    //  },
     ],
   },
   {
