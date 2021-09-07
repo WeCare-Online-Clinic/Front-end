@@ -1,0 +1,33 @@
+.input-group{
+  height: 50px;
+  
+}
+
+.input-group span{
+  width: 50px;
+  font-weight:bold;
+}
+.title{
+  border-radius: 5px 5px 0 0;
+  background-color:#3f51b5;
+  height: 50px;
+}
+.title h3{
+  color: white;
+}
+
+.card{
+  border-radius: 5px;
+  width: 600px;
+  height: 600px;
+  margin-left: 70px;
+ 
+}
+.feild{
+  width: 150px;
+}
+.btn{
+ 
+ background-color: #3f51b5;
+ width: 50px;
+}
