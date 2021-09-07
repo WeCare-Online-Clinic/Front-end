@@ -169,7 +169,7 @@ const HeadNursePatientProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/PatientProfile/ViewPatientBase')
 )
 const HeadNurseSendMessage = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/SendMessage')
+  import('./components/pages/Actors/Head Nurse/SendMessage/Message/SendMessage')
 )
 
 const HeadNurseAddLabTest = React.lazy(() =>
