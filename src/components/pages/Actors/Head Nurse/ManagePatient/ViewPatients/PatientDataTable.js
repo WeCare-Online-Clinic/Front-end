@@ -75,6 +75,8 @@ const PatientDataTable = (props) => {
     { text: 'Gender' },
     { text: 'Diagnosis' },
     { text: 'Contact' },
+    { text: 'Profile' },
+    { text: 'Lab Report' },
     
   ]
 
@@ -172,6 +174,21 @@ const PatientDataTable = (props) => {
                               }
                             >
                               View
+                            </Button>
+                          </TableCell>
+                          <TableCell>
+                          <Button
+                              variant='contained'
+                              fullWidth='true'
+                              color='primary'
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'addlabtest',
+                                  state: patient.id,
+                                })
+                              }
+                            >
+                             Add
                             </Button>
                           </TableCell>
                         </TableRow>
