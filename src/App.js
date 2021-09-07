@@ -91,7 +91,7 @@ const Statistics = React.lazy(() =>
 
 /* --- Patient Pages --- */
 const PatientDashboard = React.lazy(() =>
-  import('./components/pages/Actors/Patient/Dashboard')
+  import('./components/pages/Actors/Patient/PatientDashboard/DashboardBase')
 )
 const ClinicHistory = React.lazy(() =>
   import('./components/pages/Actors/Patient/ClinicHistory')
