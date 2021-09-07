@@ -20,6 +20,9 @@ const PatientAgeDataChart = () => {
   const reducerData = useSelector(
     ({ patientAge }) => patientAge.doctorDashboard
   )
+  if (!reducerData) {
+    window.location.reload()
+  }
   const patientAgeCountData = reducerData.patientAgeCount
   const materializeUIClasses = useStyles()
 

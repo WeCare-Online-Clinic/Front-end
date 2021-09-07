@@ -32,20 +32,24 @@ const DoctorDashboard = (props) => {
         <DataCard cardItems={doctorDataItems} />
       </Grid>
       <Grid item sm={12}>
-        <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-          <Grid className={classes.dataCard} item sm={6}>
-            <DiognosisChart />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <PatientAgeDataChart />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <PatientsInClinicChart />
-          </Grid>
-          <Grid className={classes.dataCard} item sm={6}>
-            <ConsultedPatientChart />
-          </Grid>
-        </Grid>
+        {reducerData && (
+          <>
+            <Grid container style={{ marginBottom: '10px' }} spacing={5}>
+              <Grid className={classes.dataCard} item sm={6}>
+                <DiognosisChart />
+              </Grid>
+              <Grid className={classes.dataCard} item sm={6}>
+                <PatientAgeDataChart />
+              </Grid>
+              <Grid className={classes.dataCard} item sm={6}>
+                <PatientsInClinicChart />
+              </Grid>
+              <Grid className={classes.dataCard} item sm={6}>
+                <ConsultedPatientChart />
+              </Grid>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Grid>
   )

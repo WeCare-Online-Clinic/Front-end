@@ -14,11 +14,6 @@ const useStyles = makeStyles({
     alignContent: 'center',
     color: 'white',
   },
-  chartContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
 })
 
 const doctor = getStorageItem('doctorInfo', true)
@@ -28,6 +23,9 @@ const PatientsInClinicChart = () => {
   const reducerData = useSelector(
     ({ patientInClinic }) => patientInClinic.statistics
   )
+  if (!reducerData) {
+    window.location.reload()
+  }
   const monthlyRegisteredUsers = reducerData.patientCountInClinic
   const materializeUIClasses = useStyles()
   const state = {
@@ -77,7 +75,7 @@ const PatientsInClinicChart = () => {
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
-          <div className={materializeUIClasses.chartContainer}>
+          <div style={{ width: '', height: '800px', marginLeft: '0cm' }}>
             <Line
               data={state}
               options={{

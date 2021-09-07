@@ -23,6 +23,9 @@ const PatientsInClinicChart = () => {
   const reducerData = useSelector(
     ({ patientInClinic }) => patientInClinic.doctorDashboard
   )
+  if (!reducerData) {
+    window.location.reload()
+  }
   const monthlyRegisteredUsers = reducerData.patientCountInClinic
   const materializeUIClasses = useStyles()
   const state = {

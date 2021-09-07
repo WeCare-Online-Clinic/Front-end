@@ -40,11 +40,30 @@ const doctorId = doctor.id
 const clinicId = doctor.clinic.id
 
 const Statistics = (props) => {
-  const dispatch = useDispatch()
   const classes = useStyles()
-  const reducerData = useSelector(({ statistics }) => statistics.statistics)
-  console.log(reducerData)
+  const dispatch = useDispatch()
   const [statistic, setStatistic] = useState()
+  const reducerData = useSelector(
+    ({ statisticsData }) => statisticsData.statistics
+  )
+
+  useEffect(() => {
+    switch (statistic) {
+      case 'Patients Registered In Clinic':
+        dispatch(Actions.getPatientCountInClinic(clinicId))
+        break
+      case 'Patients In Clinic According To Age':
+        dispatch(Actions.getPatientAge(clinicId))
+        break
+      case '# Of Patients According To Diagnosis':
+        dispatch(Actions.getDiagnosis(clinicId))
+        break
+      case '# Of Patients Visited In Clinic Dates':
+        dispatch(Actions.getConsultedPatientsData(doctorId))
+        break
+    }
+  }, [statistic])
+
   // const [fromDate, setFromDate] = useState()
   // const [toDate, setToDate] = useState()
 
@@ -118,20 +137,21 @@ const Statistics = (props) => {
         </Grid>
         <Grid item sm={12}></Grid>
       </Grid>
-      {statistic == 'Patients Registered In Clinic' && (
+
+      {reducerData && statistic == 'Patients Registered In Clinic' && (
         <PatientsInClinicChart />
       )}
-      {statistic == 'Patients In Clinic According To Age' && (
+      {reducerData && statistic == 'Patients In Clinic According To Age' && (
         <PatientAgeDataChart />
       )}
-      {statistic == '# Of Patients According To Diagnosis' && (
+      {reducerData && statistic == '# Of Patients According To Diagnosis' && (
         <DiagnosisChart />
       )}
-      {statistic == '# Of Patients Visited In Clinic Dates' && (
+      {reducerData && statistic == '# Of Patients Visited In Clinic Dates' && (
         <ConsultedPatientChart />
       )}
     </React.Fragment>
   )
 }
 
-export default withReducer('statistics', reducer)(Statistics)
+export default withReducer('statisticsData', reducer)(Statistics)

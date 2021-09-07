@@ -28,6 +28,9 @@ const clinicName = doctor.clinic.name
 
 const DiognosisChart = () => {
   const reducerData = useSelector(({ diognosis }) => diognosis.statistics)
+  if (!reducerData) {
+    window.location.reload()
+  }
   const diognosisCount = reducerData.diognosisCount
   const materializeUIClasses = useStyles()
   let state = []

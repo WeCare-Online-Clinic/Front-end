@@ -14,14 +14,13 @@ const useStyles = makeStyles({
     alignContent: 'center',
     color: 'white',
   },
-  chartContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
 })
 
 const PatientAgeDataChart = () => {
   const reducerData = useSelector(({ patientAge }) => patientAge.statistics)
+  if (!reducerData) {
+    window.location.reload()
+  }
   const patientAgeCountData = reducerData.patientAgeCount
   const materializeUIClasses = useStyles()
 
@@ -67,8 +66,8 @@ const PatientAgeDataChart = () => {
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
-          <div className={materializeUIClasses.chartContainer}>
-            <Bar data={state} />
+          <div style={{ width: '', height: '800px', marginLeft: '2cm' }}>
+            <Bar data={state} height='100%' />
           </div>
         </CardContent>
       </Card>

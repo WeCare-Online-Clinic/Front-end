@@ -14,11 +14,6 @@ const useStyles = makeStyles({
     alignContent: 'center',
     color: 'white',
   },
-  chartContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
 })
 
 const doctor = getStorageItem('doctorInfo', true)
@@ -28,7 +23,9 @@ const ConsultedPatientChart = () => {
   const reducerData = useSelector(
     ({ consultedPatients }) => consultedPatients.statistics
   )
-  console.log(reducerData)
+  if (!reducerData) {
+    window.location.reload()
+  }
   const consultedPatients = reducerData.consultedPatientsData
   const arraySize = consultedPatients.length
   const dateArray = []
@@ -74,12 +71,20 @@ const ConsultedPatientChart = () => {
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
-          <div className={materializeUIClasses.chartContainer}>
+          <div
+            style={{
+              width: '',
+              height: '800px',
+              marginLeft: '0cm',
+              margRight: '1cm',
+            }}
+          >
             <Bar
               data={state}
               options={{
                 title: {
                   display: true,
+                  text: 'Average Rainfall per month',
                   fontSize: 20,
                 },
                 legend: {

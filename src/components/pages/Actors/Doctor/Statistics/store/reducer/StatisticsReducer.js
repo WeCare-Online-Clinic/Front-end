@@ -13,6 +13,7 @@ const initialState = {
   patientCountInClinic: [],
   consultedPatientsData: [],
 }
+
 const StatisticsReducer = function (state = initialState, action) {
   switch (action.type) {
     case ON_GET_DATA_CARD_DETAILS: {

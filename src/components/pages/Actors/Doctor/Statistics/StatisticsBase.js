@@ -15,14 +15,6 @@ const clinicId = doctor.clinic.id
 const doctorName = getStorageItem('doctorName')
 
 const StatisticsBase = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(Actions.getDataCardDetails(doctorId))
-    dispatch(Actions.getDiagnosis(clinicId))
-    dispatch(Actions.getPatientAge(clinicId))
-    dispatch(Actions.getPatientCountInClinic(clinicId))
-    dispatch(Actions.getConsultedPatientsData(doctorId))
-  }, [])
   return (
     <Layout
       header={<Header user={doctorName} />}

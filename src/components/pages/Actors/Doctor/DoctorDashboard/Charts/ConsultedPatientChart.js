@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
@@ -23,6 +23,13 @@ const ConsultedPatientChart = () => {
   const reducerData = useSelector(
     ({ consultedPatients }) => consultedPatients.doctorDashboard
   )
+
+  if (!reducerData) {
+    window.location.reload()
+  }
+
+  useEffect(() => {}, [reducerData])
+
   const consultedPatients = reducerData.consultedPatientsData
   const arraySize = consultedPatients.length
   const dateArray = []
