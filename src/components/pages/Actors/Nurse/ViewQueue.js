@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 })
 
-const clinicId = getStorageItem('doctorInfo', true).clinic.id
+const clinicId = getStorageItem('nurseInfo', true).clinic.id
 
 async function clinic_date_available() {
   console.log('clinic date available')
@@ -193,7 +193,7 @@ function ViewQueue() {
   console.log(noClinic)
   return (
     <Layout
-      header={<Header user='Ms. Asanaka Perera' />}
+      header={<Header user={getStorageItem('nurseInfo', true).name} />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={

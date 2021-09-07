@@ -90,9 +90,11 @@ function ManageQueue(props) {
               color='secondary'
               size='medium'
               onClick={() => {
-                start_session(props.clinicInfo.id).then(() => {
-                  window.location.reload()
-                })
+                if (window.confirm('Confirm Start Session')) {
+                  start_session(props.clinicInfo.id).then(() => {
+                    window.location.reload()
+                  })
+                }
               }}
               disabled={props.clinicInfo.started}
             >
@@ -135,9 +137,11 @@ function ManageQueue(props) {
               color='secondary'
               size='medium'
               onClick={() => {
-                end_clinic(props.clinicInfo.id).then(() => {
-                  window.location.reload()
-                })
+                if (window.confirm('Confirm End Session')) {
+                  end_clinic(props.clinicInfo.id).then(() => {
+                    window.location.reload()
+                  })
+                }
               }}
               disabled={!props.clinicInfo.started}
             >
