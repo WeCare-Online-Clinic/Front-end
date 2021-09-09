@@ -148,13 +148,18 @@ const TestDataTable = (props) => {
                           </TableCell>
                          
                           <TableCell>
-                            <Button
+                          <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => history.push('testprofile')}
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'testprofile',
+                                  state: test.id,
+                                })
+                              }
                             >
-                            View
+                              View
                             </Button>
                           </TableCell>
                         </TableRow>

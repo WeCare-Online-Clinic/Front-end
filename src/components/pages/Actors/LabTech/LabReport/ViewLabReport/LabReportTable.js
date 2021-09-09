@@ -132,9 +132,7 @@ const ReportDataTable = (props) => {
                     <TableCell
                       style={{ borderBottom: '1px solid #000' }}
                     ></TableCell>
-                    <TableCell
-                      style={{ borderBottom: '1px solid #000' }}
-                    ></TableCell>
+                    
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -150,7 +148,7 @@ const ReportDataTable = (props) => {
                             {report.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.p_name}
+                            {report.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {report.t_name}
@@ -175,22 +173,18 @@ const ReportDataTable = (props) => {
                               Issue
                             </Button>
                           </TableCell>
+                          
                           <TableCell>
-                            <Button
+                          <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
-                              onClick={() => props.func()}
-                            >
-                              Update
-                            </Button>
-                          </TableCell>
-                          <TableCell>
-                            <Button
-                              variant='contained'
-                              fullWidth='true'
-                              color='primary'
-                              onClick={() => history.push('reportprofile')}
+                              onClick={() =>
+                                history.push({
+                                  pathname: 'reportprofile',
+                                  state: report.id,
+                                })
+                              }
                             >
                               View
                             </Button>
