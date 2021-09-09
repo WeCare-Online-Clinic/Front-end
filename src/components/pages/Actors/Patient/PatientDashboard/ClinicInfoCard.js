@@ -49,9 +49,11 @@ const useStyles = makeStyles({
 const ClinicInfoCard = (props) => {
    const dispatch = useDispatch();
   const reducerData = useSelector(({ nextClinic }) => nextClinic.patientDashboard);
-  const currentClinicDate=reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate;
+  const currentClinicDate=reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.date;
+  let reqestDateObject = Object.assign({}, { clinicId: props.patient.clinic.id,currentClinicDate:currentClinicDate }) //requestdate object
+  console.log("reqestDateObject :",reqestDateObject);
   useEffect(() => {
-    dispatch(Actions.getRequestDates(props.patient.clinic.id,currentClinicDate));
+    // dispatch(Actions.getRequestDates(reqestDateObject));
 
   }, [])
 

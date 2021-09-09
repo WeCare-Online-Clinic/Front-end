@@ -16,8 +16,7 @@ const useStyles = makeStyles({
   },
 })
 
-const doctor = getStorageItem('doctorInfo', true)
-const clinicName = doctor.clinic.name
+
 
 const PatientStaticChart = () => {
   // const reducerData = useSelector(
