@@ -6,7 +6,7 @@ import {
 } from "../action/PatientDashboardAction";
 import * as _ from 'lodash'
 const initialState = {
-
+    
     nextClinicDetails: {},
     onlineUsers:[],
     registeredUsers:[]
@@ -17,13 +17,13 @@ const PatientDashboardReducer = function (state = initialState, action) {
 
     switch (action.type) {
         case ON_GET_NEXT_CLINIC_DETAILS: {
+            console.log("paylocad in reducer:",action.payload)
             return {
                 ...state,
                 nextClinicDetails: {...action.payload}
             }
 
         }
-
 
         default: {
 

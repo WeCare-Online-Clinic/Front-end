@@ -3,17 +3,19 @@ import { Grid, makeStyles } from '@material-ui/core'
 import LineStatCard from '../../../../StatCard/LineStatCard'
 import ClinicInfoCard from './ClinicInfoCard'
 import ClinicDataCard from '../../../../ClinicCard/ClinicDataCard'
+import PatientStaticChart from './Charts/PatientStaticChart'
 const useStyles = makeStyles({
     dataCard: {
       backgroundColor: '#fff',
       borderRadius: '5px',
       marginBottom: '10px',
       marginTop: '10px',
-    },
+    },  
   })
 
 const Dashboard = (props) => {
     const patient=props.patient;
+    console.log("patient :",patient)
     const classes = useStyles()
     return (
         <Grid
@@ -24,7 +26,7 @@ const Dashboard = (props) => {
             <Grid className={classes.dataCard} item sm={12}>
                 <Grid container>
                     <Grid item sm={4}>
-                        <ClinicInfoCard />
+                        <ClinicInfoCard patient={patient} />
                     </Grid>
                     <Grid item sm={8}>
                         <ClinicDataCard patient={patient} />
@@ -34,10 +36,10 @@ const Dashboard = (props) => {
             <Grid item sm={12}>
                 <Grid container style={{ marginBottom: '10px' }} spacing={5}>
                     <Grid className={classes.dataCard} item sm={6}>
-                        <LineStatCard title='Attribute 1' />
+                        <PatientStaticChart />
                     </Grid>
                     <Grid className={classes.dataCard} item sm={6}>
-                        <LineStatCard title='Attribute 2' />
+                        <PatientStaticChart />
                     </Grid>
                 </Grid>
             </Grid>

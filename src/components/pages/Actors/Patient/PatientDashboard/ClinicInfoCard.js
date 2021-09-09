@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import reducer from './store/reducer/'
 import withReducer from '../../../../../store/withReducer'
+import ChangeRequest from './ChangeRequest'
+import { useDispatch } from 'react-redux'
+import * as Actions from './store/action/PatientDashboardAction'
 
 import {
   Card,
@@ -43,10 +46,15 @@ const useStyles = makeStyles({
   },
 })
 
-const ClinicInfoCard=(props)=> {
+const ClinicInfoCard = (props) => {
+   const dispatch = useDispatch();
   const reducerData = useSelector(({ nextClinic }) => nextClinic.patientDashboard);
-  const nextClinicDetails=reducerData.nextClinicDetails;
-  console.log("jdfgdfjdgfjdgdjfdhcbdchdbcdjchvdghc:",nextClinicDetails.id)
+  const currentClinicDate=reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate;
+  useEffect(() => {
+    dispatch(Actions.getRequestDates(props.patient.clinic.id,currentClinicDate));
+
+  }, [])
+
   const classes = useStyles()
   return (
     <Card className={classes.card}>
@@ -66,22 +74,16 @@ const ClinicInfoCard=(props)=> {
             <div className={classes.textField}>Doctor</div>
           </Grid>
           <Grid item sm={6}>
-            <div className={classes.textField}>: {nextClinicDetails.clinicDate.nurse.clinic.name}</div>
-            <div className={classes.textField}>: {nextClinicDetails.clinicDate.date}</div>
-            <div className={classes.textField}>: {nextClinicDetails.time}</div>
-            <div className={classes.textField}>: {nextClinicDetails.queueNo}</div>
+            <div className={classes.textField}>: {reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.nurse.clinic.name}</div>
+            <div className={classes.textField}>: {reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.date}</div>
+            <div className={classes.textField}>: {reducerData.nextClinicDetails.time}</div>
+            <div className={classes.textField}>: {reducerData.nextClinicDetails.queueNo}</div>
             <div className={classes.textField}>: Dr. Asela</div>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button
-          style={{ width: '300px' }}
-          variant='contained'
-          color='secondary'
-        >
-          Request Change
-        </Button>
+        <ChangeRequest />
       </CardActions>
     </Card>
   )

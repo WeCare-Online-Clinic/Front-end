@@ -32,7 +32,7 @@ const Login = (props) => {
   }, [])
 
   const onSubmit = (e) => {
-    console.log('onsubmit')
+    // console.log('onsubmit')
     e.preventDefault()
     const isValid = validation()
 
@@ -40,7 +40,7 @@ const Login = (props) => {
       let data = { email: formValue.email, password: formValue.password }
       // let data ={email:'admin@gmail.com', password: 'ndansdasd'};
       dispatch(Action.submitLogin(data))
-      console.log('pass')
+      // console.log('pass')
     } else {
       console.log('fail')
     }
