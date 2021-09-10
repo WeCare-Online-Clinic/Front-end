@@ -5,12 +5,13 @@ class PatientDashboardService {
   getNextClinicDetails(patientId) {
     return axios.get(Constants.API_BASE_URL + '/getNextClinicDetails/'+patientId);
   }
-  getRequestDates(clinicId,currentClinicDate) {
-    return axios.post(Constants.API_BASE_URL + '/getRequestDates/'+{params:{clinicId:clinicId,currentClinicDate:currentClinicDate}})
+  getRequestDates(requestDateObject) {
+    return axios.post(Constants.API_BASE_URL + '/getRequestDates/',requestDateObject)
+  }  
+  saveRequest(requestObject) {
+    return axios.post(Constants.API_BASE_URL + '/savePatientRequest/',requestObject)
   }
-  // getRegisteredUsers(){
-  //   return axios.get(Constants.API_BASE_URL + '/getRegisteredUsers/')
-  // }
+
 }
 
 export default new PatientDashboardService()

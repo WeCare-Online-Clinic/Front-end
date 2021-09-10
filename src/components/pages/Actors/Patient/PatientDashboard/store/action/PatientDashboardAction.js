@@ -1,5 +1,9 @@
 import PatientDashboardService from "./PatientDashboardService";
 import history from '../../../../../../../@history'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 export const ON_GET_NEXT_CLINIC_DETAILS = 'ON_GET_NEXT_CLINIC_DETAILS';
 export const ON_GET_REQUEST_DATES = 'ON_GET_REQUEST_DATES';
@@ -18,11 +22,11 @@ export function getNextClinicDetails(patientId) {
         })
     };
 }
-export function getRequestDates(clinicId,currentClinicDate) {
-    console.log("Clinic id in actions",clinicId);
-    const request = PatientDashboardService.getRequestDates(clinicId,currentClinicDate);   
+export function getRequestDates(requestDateObject) {  
+    const request = PatientDashboardService.getRequestDates(requestDateObject);   
     return (dispatch, getState) => {
         request.then((response) => {
+            console.log("Request date responce",response.data)
             dispatch({
                 type: ON_GET_REQUEST_DATES,
                 payload: response.data
@@ -33,6 +37,22 @@ export function getRequestDates(clinicId,currentClinicDate) {
     };
 }
 
+export function saveRequest(requestObject) {   
+    const request = PatientDashboardService.saveRequest(requestObject);   
+    return (dispatch, getState) => {
+        request.then((response) => {  
+            if(response.data=='Patient Request save pass'){
+                toast.info('Request Sent', { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+            }
+            else{
+                toast.error('Request Sent fail , Please try agin', { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+            }
+
+        }).catch((error) => {
+            console.log("error in save request")
+        })
+    };
+}
 
 
 

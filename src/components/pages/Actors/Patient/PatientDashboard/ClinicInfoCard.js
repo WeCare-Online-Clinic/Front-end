@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 import { useSelector } from 'react-redux'
@@ -7,7 +7,7 @@ import withReducer from '../../../../../store/withReducer'
 import ChangeRequest from './ChangeRequest'
 import { useDispatch } from 'react-redux'
 import * as Actions from './store/action/PatientDashboardAction'
-
+import Pagination from './Pagination'
 import {
   Card,
   CardHeader,
@@ -47,17 +47,19 @@ const useStyles = makeStyles({
 })
 
 const ClinicInfoCard = (props) => {
-   const dispatch = useDispatch();
-  const reducerData = useSelector(({ nextClinic }) => nextClinic.patientDashboard);
-  const currentClinicDate=reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.date;
-  let reqestDateObject = Object.assign({}, { clinicId: props.patient.clinic.id,currentClinicDate:currentClinicDate }) //requestdate object
-  console.log("reqestDateObject :",reqestDateObject);
-  useEffect(() => {
-    // dispatch(Actions.getRequestDates(reqestDateObject));
-
-  }, [])
-
+  const dispatch = useDispatch();
   const classes = useStyles()
+  const reducerData = useSelector(({ nextClinic }) => nextClinic.patientDashboard);
+  const nextClinicList = reducerData.nextClinicDetails;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(2);
+
+  console.log("nextClinic Details Array in dashboard:  ",nextClinicList);
+
+
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = nextClinicList.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -68,27 +70,32 @@ const ClinicInfoCard = (props) => {
       <CardContent>
         <Grid container>
           <Grid item sm></Grid>
-          <Grid item sm={4}>
-            <div className={classes.textField}>Clinic</div>
-            <div className={classes.textField}>Clinic Date</div>
-            <div className={classes.textField}>Time</div>
-            <div className={classes.textField}>Queue No</div>
-            <div className={classes.textField}>Doctor</div>
-          </Grid>
-          <Grid item sm={6}>
-            <div className={classes.textField}>: {reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.nurse.clinic.name}</div>
-            <div className={classes.textField}>: {reducerData.nextClinicDetails.clinicDate && reducerData.nextClinicDetails.clinicDate.date}</div>
-            <div className={classes.textField}>: {reducerData.nextClinicDetails.time}</div>
-            <div className={classes.textField}>: {reducerData.nextClinicDetails.queueNo}</div>
-            <div className={classes.textField}>: Dr. Asela</div>
-          </Grid>
+          {currentPosts.map((nextClinic, i) => {
+            return (
+              <React.Fragment>
+         
+                <Grid item sm={12}>
+                  <div className={classes.textField}>Clinic : {nextClinic.clinicDate.nurse.clinic.name}</div>
+                  <div className={classes.textField}>Clinic Date : {nextClinic.clinicDate.date}</div>
+                  <div className={classes.textField}>Time : {nextClinic.time}</div>
+                  <div className={classes.textField}>Queue No : {nextClinic.queueNo}</div>
+                  <div className={classes.textField}> Doctor : Dr. Asela</div>
+                </Grid>
+                <CardActions className={classes.cardActions}>
+                  <ChangeRequest nextClinic={nextClinic} />
+                </CardActions>
+              </React.Fragment>
+            )
+          })}
+
         </Grid>
+          {/* <Pagination postPerPage={postPerPage} totalPosts={currentPosts.length}/> */}
       </CardContent>
-      <CardActions className={classes.cardActions}>
-        <ChangeRequest />
-      </CardActions>
+
     </Card>
   )
 }
+
+
 
 export default withReducer('nextClinic', reducer)(ClinicInfoCard);
