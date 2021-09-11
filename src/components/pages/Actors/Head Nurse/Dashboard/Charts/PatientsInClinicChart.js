@@ -23,10 +23,11 @@ const useStyles = makeStyles({
   }
 });
 
-const nurse = getStorageItem('nurseInfo', true);
-const clinicName=nurse.clinic.name
+
 
 const PatientsInClinicChart = () => {
+  const nurse = getStorageItem('nurseInfo', true);
+  const clinicName=nurse.clinic.name
   const reducerData = useSelector(({ hpatientInClinic }) => hpatientInClinic.headNurseDashboard);
   const monthlyRegisteredUsers = reducerData.patientCountInClinic;
   const materializeUIClasses = useStyles();

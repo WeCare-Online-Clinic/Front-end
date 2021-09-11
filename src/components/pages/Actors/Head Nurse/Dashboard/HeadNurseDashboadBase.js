@@ -15,6 +15,7 @@ import {
 } from '../../../../../utils/StorageUtils'
 
 async function get_nurse_info() {
+  console.log(".................................",getStorageItem('user',true).id)
   const getUserInfo = await axios
     .get(
       Constants.API_BASE_URL + '/nurse/info/' + getStorageItem('user', true).id
@@ -27,19 +28,24 @@ async function get_nurse_info() {
     })
     .catch((e) => {
       console.log(e)
+
     })
 }
-get_nurse_info()
+
+
+
+const HeadNurseDashboadBase = () => {
+const dispatch = useDispatch()
 const nurse = getStorageItem('nurseInfo', true)
-const nurseId = nurse.id
-const clinicId = nurse.clinic.id
+const nurseId =nurse.id
+const clinicId =nurse.clinic.id
 console.log('nurse id from getStorage: ', nurseId)
 console.log('clinic id from getStorage :', clinicId)
 const nurseName = getStorageItem('nurseInfo', true).name
 
-const HeadNurseDashboadBase = () => {
-  const dispatch = useDispatch()
   useEffect(() => {
+    get_nurse_info();
+
     dispatch(Actions.getDataCardDetails(nurseId))
     dispatch(Actions.getDiagnosis(clinicId))
     dispatch(Actions.getPatientAge(clinicId))
@@ -48,7 +54,7 @@ const HeadNurseDashboadBase = () => {
   }, [])
   return (
     <Layout
-      header={<Header user={nurseName} />}
+      header={<Header user= {nurseName}/>} 
       sidebar={<Sidebar menuItems={headnurseMenuItems} />}
       footer={<Footer />}
       content={
