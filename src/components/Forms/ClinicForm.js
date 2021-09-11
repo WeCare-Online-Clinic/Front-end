@@ -34,13 +34,12 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#3f51b5',
-    borderBottom: '1px solid #000',
-    backgroundColor: '#fff',
+    color: '#fff',
+    backgroundColor: '#3f51b5',
   },
   cardContent: {
     fontSize: '16px',
-    margin: '20px',
+    margin: '5px',
     backgroundColor: '#fff',
   },
   cardActions: {
@@ -376,11 +375,7 @@ function ClinicForm(props) {
           <div className='card-body'>
             <form>
               <Grid container>
-                <Grid
-                  item
-                  sm={5}
-                  style={{ padding: '20px', border: '1px solid #3f51b5' }}
-                >
+                <Grid item sm={5}>
                   <div className='form-group mb-3'>
                     <label
                       style={{
@@ -480,11 +475,7 @@ function ClinicForm(props) {
                     </button>
                   </div>
                 </Grid>
-                <Grid
-                  item
-                  sm={7}
-                  style={{ padding: '20px', border: '1px solid #3f51b5' }}
-                >
+                <Grid item sm={7}>
                   <div class='row mb-1'>
                     <div
                       class='form-group col-md-3'

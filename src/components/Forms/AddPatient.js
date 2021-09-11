@@ -29,18 +29,16 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 'inherit',
     minHeight: '100%',
-    border: '1px solid #bdc3cb',
     backgroundColor: '#3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#3f51b5',
-    borderBottom: '1px solid #000',
-    backgroundColor: '#fff',
+    color: '#fff',
+    backgroundColor: '#3f51b5',
   },
   cardContent: {
     fontSize: '16px',
-    margin: '20px',
+    margin: '5px',
     backgroundColor: '#fff',
   },
   cardActions: {
@@ -123,13 +121,12 @@ function AddPatient(props) {
   const [check, setCheck] = useState(false)
   const [patientExist, setPatientExist] = useState(false)
   const [profileExist, setProfileExist] = useState(false)
-  const [patientNIC, setPatientNIC] = useState()
   const [submitLock, setSubmitLock] = useState(false)
   const [patient, setPatient] = useState({
     id: '',
     nic: '',
     name: '',
-    birthdate: '',
+    birthdate: null,
     contact: '',
     email: '',
     address: '',
@@ -152,8 +149,8 @@ function AddPatient(props) {
     } else {
       check_patient(patient.nic).then((res) => {
         console.log(res)
+        setCheck(true)
         if (res.patient) {
-          setCheck(true)
           setPatient(res.patient)
           setPatientExist(true)
           if (res.patientClinicProfile) {
@@ -166,7 +163,7 @@ function AddPatient(props) {
             id: '',
             nic: patient.nic,
             name: '',
-            birthdate: '',
+            birthdate: null,
             contact: '',
             email: '',
             address: '',
@@ -189,14 +186,12 @@ function AddPatient(props) {
     let isValid = validation()
     if (isValid) {
       console.log('send data')
-      send_data(patient, clinicDate).then((res) => {
+      send_data(patientData, nextClinic).then((res) => {
         console.log(res)
         toast.info('Patient Added Successfully', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         })
-        window.location.reload()
-        console.log(res)
       })
     } else {
       setSubmitLock(false)
@@ -282,7 +277,7 @@ function AddPatient(props) {
       specialCharacters = true
     }
 
-    if (patient.contact.match('[0-9]{9}')) {
+    if (!patient.contact.match('[0-9]{9}')) {
       isValid = false
       toast.error('Wrong Contact Number', {
         position: toast.POSITION.TOP_CENTER,
@@ -319,12 +314,8 @@ function AddPatient(props) {
       <CardContent className={classes.cardContent}>
         <div className='card-body'>
           <form>
-            <Grid container>
-              <Grid
-                item
-                sm={6}
-                style={{ padding: '20px', border: '1px solid #3f51b5' }}
-              >
+            <Grid container spacing={5}>
+              <Grid item sm={6}>
                 <div className='form-group mb-3'>
                   <label
                     style={{
@@ -399,7 +390,7 @@ function AddPatient(props) {
                     type='text'
                     value={patient.name}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
+                    disabled={patientExist || !check}
                   ></input>
                 </div>
                 <div className='form-group mb-3'>
@@ -417,9 +408,9 @@ function AddPatient(props) {
                     name='birthdate'
                     className='form-control'
                     type='date'
-                    value={Date(patient.birthdate)}
+                    value={patient.birthdate}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
+                    disabled={patientExist || !check}
                   ></input>
                 </div>
                 <div className='form-group mb-3'>
@@ -440,7 +431,7 @@ function AddPatient(props) {
                     type='text'
                     value={patient.gender}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
+                    disabled={patientExist || !check}
                   >
                     <option value='f'>Female</option>
                     <option value='m'>Male</option>
@@ -463,7 +454,7 @@ function AddPatient(props) {
                     type='number'
                     value={patient.contact}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
+                    disabled={patientExist || !check}
                   ></input>
                 </div>
                 <div className='form-group mb-3'>
@@ -483,15 +474,9 @@ function AddPatient(props) {
                     type='text'
                     value={patient.email}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
+                    disabled={patientExist || !check}
                   ></input>
                 </div>
-              </Grid>
-              <Grid
-                item
-                sm={6}
-                style={{ padding: '20px', border: '1px solid #3f51b5' }}
-              >
                 <div className='form-group mb-3'>
                   <label
                     style={{
@@ -502,15 +487,35 @@ function AddPatient(props) {
                   >
                     Address
                   </label>
-                  <textarea
+                  <input
                     placeholder='Address'
                     name='address'
                     className='form-control'
                     type='text'
                     value={patient.address}
                     onChange={(e) => handleDataChange(e)}
-                    disabled={patientExist}
-                  ></textarea>
+                    disabled={patientExist || !check}
+                  ></input>
+                </div>
+              </Grid>
+              <Grid item sm={6}>
+                <div className='form-group mb-3'>
+                  <label
+                    style={{
+                      fontSize: '20px',
+                      color: '#3f51b5',
+                      paddingLeft: '10px',
+                    }}
+                  >
+                    Clinic
+                  </label>
+
+                  <input
+                    className='form-control'
+                    type='text'
+                    value={clinic.name}
+                    disabled={true}
+                  ></input>
                 </div>
                 <div className='form-group mb-3'>
                   <label
@@ -530,6 +535,7 @@ function AddPatient(props) {
                     value={clinicDate}
                     onChange={(e) => handleDataChange(e)}
                     disabled={!check}
+                    disabled={profileExist || !check}
                   ></input>
                 </div>
                 <div className='input-group'>
@@ -537,8 +543,7 @@ function AddPatient(props) {
                     className='btn btn-primary'
                     style={{ width: 'inherit' }}
                     onClick={handleSubmit}
-                    disabled={submitLock}
-                    disabled={!check}
+                    disabled={submitLock || profileExist}
                   >
                     Submit
                   </button>
