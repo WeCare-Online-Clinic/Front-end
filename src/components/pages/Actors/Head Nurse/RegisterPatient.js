@@ -6,9 +6,8 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import { headnurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 
-
 import Register from '../../../Register'
-
+import AddPatient from '../../../Forms/AddPatient'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -35,30 +34,7 @@ function RegisterPatient() {
 }
 
 function Content() {
-  const classes = useStyles()
-  return (
-    <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={12}>
-        <Grid container>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>10.30 A.M</h3>
-          </Grid>
-          <Grid item sm></Grid>
-          <Grid item>
-            <h3 style={{ color: '#3f51b5' }}>Welcome Ms.Perera</h3>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid className={classes.dataCard} item sm={12}>
-      <h3 style={{ color: '#000000' }} align='center'>Patient Register</h3>
-      <Register />
-          </Grid>
-     
-          
-    </Grid>
-   
-  )
+  return <AddPatient />
 }
-
 
 export default RegisterPatient

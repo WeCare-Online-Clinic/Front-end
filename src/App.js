@@ -118,7 +118,9 @@ const NursePatientProfile = React.lazy(() =>
   import('./components/pages/Actors/Nurse/PatientProfile/ViewPatientBase')
 )
 const NurseViewDoctor = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/ViewDoctor/ViewDoctors/ViewDoctorsBase')
+  import(
+    './components/pages/Actors/Nurse/ViewDoctor/ViewDoctors/ViewDoctorsBase'
+  )
 )
 const NurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Nurse/ViewQueue')
@@ -136,7 +138,9 @@ const LabProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/Profile')
 )
 const LabViewLabReport = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/LabReport/ViewLabReport/ViewLabReport')
+  import(
+    './components/pages/Actors/LabTech/LabReport/ViewLabReport/ViewLabReport'
+  )
 )
 const LabAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/LabTech/AddLabTest')
@@ -177,9 +181,7 @@ const HeadNurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/HeadNurseProfile')
 )
 const HeadNurseRegister = React.lazy(() =>
-  import(
-    './components/pages/Actors/Head Nurse/ManagePatient/Register/PatientRegister'
-  )
+  import('./components/pages/Actors/Head Nurse/RegisterPatient')
 )
 const HeadNurseDoctorProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/DoctorProfile/ViewDoctorBase')
