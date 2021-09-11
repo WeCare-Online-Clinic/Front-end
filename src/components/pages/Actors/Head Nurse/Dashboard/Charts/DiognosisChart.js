@@ -22,12 +22,14 @@ const useStyles = makeStyles({
 
   }
 });
-const headnurse = getStorageItem('nurseInfo', true);
-const clinicId = headnurse.clinic.id;
-console.log("clinicId in dig chart ", clinicId);
+
 
 
 const DiognosisChart = () => {
+  const headnurse = getStorageItem('nurseInfo', true);
+  const clinicId = headnurse.clinic.id;
+  console.log("clinicId in dig chart ", clinicId);
+  
   const reducerData = useSelector(({ hdiognosis }) => hdiognosis.headNurseDashboard);
   const diognosisCount = reducerData.diognosisCount;
   const materializeUIClasses = useStyles();

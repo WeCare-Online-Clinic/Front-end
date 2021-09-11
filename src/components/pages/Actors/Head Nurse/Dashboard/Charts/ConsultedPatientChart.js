@@ -23,10 +23,11 @@ const useStyles = makeStyles({
   }
 });
 
-const nurse = getStorageItem('nurseInfo', true);
-const clinicName=nurse.clinic.name
+
 
 const ConsultedPatientChart = () => {
+  const nurse = getStorageItem('nurseInfo', true);
+  const clinicName=nurse.clinic.name
   const reducerData = useSelector(({ hconsultedPatients }) => hconsultedPatients.headNurseDashboard);
   const consultedPatients = reducerData.consultedPatientsData;
   const arraySize=consultedPatients.length;
