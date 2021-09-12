@@ -5,7 +5,7 @@ import Footer from '../../../Footer'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { headnurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
-
+import { getStorageItem } from '../../../../utils/StorageUtils'
 import Register from '../../../Register'
 import AddPatient from '../../../Forms/AddPatient'
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 function RegisterPatient() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user={getStorageItem('nurseInfo', true).name} />}
       sidebar={<Sidebar menuItems={headnurseMenuItems} />}
       footer={<Footer />}
       content={

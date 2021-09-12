@@ -104,7 +104,6 @@ export const headnurseMenuItems = [
         name: 'View Doctors',
         url: '/headnurse/viewdoctors',
       },
-      
     ],
   },
 
@@ -122,12 +121,18 @@ export const headnurseMenuItems = [
         name: 'Register Patients',
         url: '/headnurse/register/patientregister',
       },
-     
+
       {
         name: 'View Patients',
         url: '/headnurse/viewpatients',
       },
     ],
+  },
+  {
+    icon: <SendIcon style={{ color: '#fff' }} />,
+    name: 'Patient Request',
+
+    url: '/headnurse/patientrequest',
   },
   {
     icon: <SendIcon style={{ color: '#fff' }} />,
@@ -210,10 +215,10 @@ export const labtechMenuItems = [
         name: 'View Lab Tests',
         url: '/labtech/viewlabtest',
       },
-    //  {
-    //    name: 'Create Lab Test',
-    //    url: '/labtech/addlabtest',
-    //  },
+      //  {
+      //    name: 'Create Lab Test',
+      //    url: '/labtech/addlabtest',
+      //  },
     ],
   },
   {

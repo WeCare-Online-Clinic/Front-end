@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   card: {
     width: 'inherit',
     minHeight: '100%',
-    border: '1px solid #bdc3cb',
+    border: '2px solid #3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
@@ -80,7 +80,7 @@ function PatientHisCard(props) {
         subheader={clinicData && clinicData.clinicAppointment.clinicDate.date}
         className={classes.cardHeader}
       />
-      <Grid container style={{ backgroundColor: '#3f51b5', padding: '20px' }}>
+      <Grid container>
         <Grid
           item
           sm={12}

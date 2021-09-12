@@ -162,7 +162,7 @@ function Consultation() {
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ backgroundColor: '#ebf5f7' }}>
+        <div style={{ backgroundColor: '#ebf5f7', padding: '20px' }}>
           {clinicStarted && clinicDate && (
             <Content
               clinicInfo={clinicDate}

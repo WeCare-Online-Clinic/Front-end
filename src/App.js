@@ -176,7 +176,6 @@ const HeadNurseViewDoctor = React.lazy(() =>
     './components/pages/Actors/Head Nurse/Clinic/ViewDoctors/ViewDoctorsBase'
   )
 )
-
 const HeadNurseProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/HeadNurseProfile')
 )
@@ -192,13 +191,14 @@ const HeadNursePatientProfile = React.lazy(() =>
 const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/SendMessage/Message/SendMessage')
 )
-
 const HeadNurseAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/AddLabTest')
 )
-
 const HeadNurseHandleRequest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/DateTime')
+)
+const HeadNurseManageRequest = React.lazy(() =>
+  import('./components/pages/Actors/Head Nurse/ManageRequest')
 )
 
 const loading = (
@@ -504,7 +504,11 @@ const App = () => {
                 exact
                 component={HeadNurseHandleRequest}
               ></Route>
-
+              <Route
+                path='/headnurse/patientrequest'
+                exact
+                component={HeadNurseManageRequest}
+              ></Route>
               {/* --------------------- */}
 
               <Route

@@ -29,16 +29,18 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: 'inherit',
     minHeight: '100%',
+    border: '1px solid #bdc3cb',
     backgroundColor: '#3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#3f51b5',
+    color: '#3f51b5',
+    backgroundColor: '#fff',
+    margin: '2px',
   },
   cardContent: {
     fontSize: '16px',
-    margin: '5px',
+    margin: '2px',
     backgroundColor: '#fff',
   },
   cardActions: {

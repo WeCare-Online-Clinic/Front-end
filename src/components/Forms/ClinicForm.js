@@ -27,19 +27,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    width: 'inherit',
+    width: '100%',
     minHeight: '100%',
     border: '1px solid #bdc3cb',
     backgroundColor: '#3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#3f51b5',
+    color: '#3f51b5',
+    backgroundColor: '#fff',
+    margin: '2px',
   },
   cardContent: {
     fontSize: '16px',
-    margin: '5px',
+    margin: '2px',
     backgroundColor: '#fff',
   },
   cardActions: {
@@ -374,7 +375,7 @@ function ClinicForm(props) {
         <CardContent className={classes.cardContent}>
           <div className='card-body'>
             <form>
-              <Grid container>
+              <Grid container spacing={10}>
                 <Grid item sm={5}>
                   <div className='form-group mb-3'>
                     <label

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   card: {
     width: 'inherit',
     height: '100%',
-    border: '1px solid #bdc3cb',
+    border: '2px solid #3f51b5',
   },
   cardHeader: {
     textAlign: 'center',

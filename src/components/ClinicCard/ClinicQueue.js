@@ -4,9 +4,8 @@ import PatientQueueTable from '../../../src/components/Table/PatientQueueTable'
 
 const useStyles = makeStyles({
   card: {
-    
     minHeight: '100%',
-    border: '1px solid #bdc3cb',
+    border: '2px solid #3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
@@ -48,26 +47,20 @@ const useStyles = makeStyles({
 })
 
 function ClinicQueue(props) {
-  
   const classes = useStyles()
   return (
     <Card className={classes.card}>
-      <CardHeader
-        title='Clinic Details'
-        className={classes.cardHeader}
-      
-      />
+      <CardHeader title='Clinic Details' className={classes.cardHeader} />
       <Grid container style={{ backgroundColor: '#3f51b5', padding: '20px' }}>
-        
-      <Grid className={classes.dataCard} item sm={12}>
-            <Card>
-             <h6 style={{ color: '#3f51b5' }}>Clinic : ENT</h6>
-             <h6 style={{ color: '#3f51b5' }}>Schedule Info</h6>
-            </Card>
-            <div align="center">
+        <Grid className={classes.dataCard} item sm={12}>
+          <Card>
+            <h6 style={{ color: '#3f51b5' }}>Clinic : ENT</h6>
+            <h6 style={{ color: '#3f51b5' }}>Schedule Info</h6>
+          </Card>
+          <div align='center'>
             <PatientQueueTable />
-            </div>
-          </Grid>
+          </div>
+        </Grid>
       </Grid>
     </Card>
   )

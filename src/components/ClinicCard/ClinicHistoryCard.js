@@ -16,19 +16,21 @@ const useStyles = makeStyles({
   card: {
     maxHeight: '400px',
     width: 'inherit',
-    height: '100%',
     border: '1px solid #bdc3cb',
+    backgroundColor: '#3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#fff',
-    borderBottom: '1px solid #000',
-    backgroundColor: '#3f51b5',
+    color: '#3f51b5',
+    backgroundColor: '#fff',
+    margin: '2px',
   },
   cardContent: {
     textAlign: 'center',
-    color: '#fff',
+    color: '#000',
     fontSize: '16px',
+    margin: '2px',
+    backgroundColor: '#fff',
   },
   cardActions: {
     display: 'flex',
@@ -53,7 +55,7 @@ function ClinicHistoryCard(props) {
         className={classes.cardHeader}
         titleTypographyProps='variant: h4'
       />
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Grid container>
           <Grid item sm></Grid>
           <Grid item sm={6}>
@@ -77,17 +79,23 @@ function ClinicHistoryCard(props) {
               </ListItem>
               <Divider />
               <ListItem>
-                : {clinic_history && clinic_history.startTime.substring(0, 5)}
+                :{' '}
+                {clinic_history.startTime &&
+                  clinic_history.startTime.substring(0, 5)}
               </ListItem>
               <Divider />
               <ListItem>
-                : {clinic_history && clinic_history.endTime.substring(0, 5)}
+                :{' '}
+                {clinic_history.endTime &&
+                  clinic_history.endTime.substring(0, 5)}
               </ListItem>
               <Divider />
               <ListItem>: {clinic_history.noPatients}</ListItem>
               <Divider />
               <ListItem>
-                : {clinic_history && clinic_history.visitedPatients}
+                :{' '}
+                {clinic_history.visitedPatients &&
+                  clinic_history.visitedPatients}
               </ListItem>
               <Divider />
             </List>

@@ -59,7 +59,7 @@ async function end_clinic(id) {
   }
 }
 
-const clinicId = getStorageItem('doctorInfo', true).clinic.id
+const clinicId = getStorageItem('nurseInfo', true).clinic.id
 
 function ManageQueue(props) {
   const classes = useStyles()
@@ -81,104 +81,111 @@ function ManageQueue(props) {
   }, [props])
 
   return (
-    <Grid container style={{ padding: '10px' }}>
-      <Grid item sm={12} className={classes.queueBar}>
-        <Grid item sm={5} className={classes.queueBar}>
-          <div>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='medium'
-              onClick={() => {
-                if (window.confirm('Confirm Start Session')) {
-                  start_session(props.clinicInfo.id).then(() => {
-                    window.location.reload()
-                  })
-                }
-              }}
-              disabled={props.clinicInfo.started}
-            >
-              Start Session
-            </Button>
-          </div>
-          <div>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='medium'
-              onClick={() => {
-                window.location.reload()
-              }}
-              disabled={!props.clinicInfo.started}
-            >
-              Next Patient
-            </Button>
-          </div>
-          <div>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='medium'
-              onClick={() => {
-                if (window.confirm('Confirm Skip Patient')) {
-                  skip_patient(props.clinicInfo.id).then(() => {
-                    window.location.reload()
-                  })
-                }
-              }}
-              disabled={!props.clinicInfo.started}
-            >
-              Skip Patient
-            </Button>
-          </div>
-          <div>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='medium'
-              onClick={() => {
-                if (window.confirm('Confirm End Session')) {
-                  end_clinic(props.clinicInfo.id).then(() => {
-                    window.location.reload()
-                  })
-                }
-              }}
-              disabled={!props.clinicInfo.started}
-            >
-              End Session
-            </Button>
-          </div>
-        </Grid>
+    <div style={{ padding: '20px' }}>
+      <Grid>
         <Grid
           item
-          sm={7}
+          sm={12}
           className={classes.queueBar}
-          style={{ backgroundColor: '#fff', borderLeft: '2px solid #3f51b5' }}
+          style={{ border: '2px solid #3f51b5' }}
         >
-          {props.clinicInfo.started && (
-            <>
-              <div>
-                <h5 style={{ color: '#3f51b5' }}>Patient Name: </h5>
-                <h5 style={{ color: '#000' }}>
-                  {patientInfo && patientInfo.patient.name}
-                </h5>
-              </div>
-              <div>
-                <h5 style={{ color: '#3f51b5' }}>Current Queue No: </h5>
-                <h5 style={{ color: '#000' }}>{queueNo}</h5>
-              </div>
-              <div>
-                <h5 style={{ color: '#3f51b5' }}>Patient Left:</h5>
-                <h5 style={{ color: '#000' }}>{patientsLeft}</h5>
-              </div>
-            </>
-          )}
-          {!props.clinicInfo.started && (
-            <Alert severity='info'>Clinic Not Started Yet</Alert>
-          )}
+          <Grid item sm={5} className={classes.queueBar}>
+            <div>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='medium'
+                onClick={() => {
+                  if (window.confirm('Confirm Start Session')) {
+                    start_session(props.clinicInfo.id).then(() => {
+                      window.location.reload()
+                    })
+                  }
+                }}
+                disabled={props.clinicInfo.started}
+              >
+                Start Session
+              </Button>
+            </div>
+            <div>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='medium'
+                onClick={() => {
+                  window.location.reload()
+                }}
+                disabled={!props.clinicInfo.started}
+              >
+                Next Patient
+              </Button>
+            </div>
+            <div>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='medium'
+                onClick={() => {
+                  if (window.confirm('Confirm Skip Patient')) {
+                    skip_patient(props.clinicInfo.id).then(() => {
+                      window.location.reload()
+                    })
+                  }
+                }}
+                disabled={!props.clinicInfo.started}
+              >
+                Skip Patient
+              </Button>
+            </div>
+            <div>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='medium'
+                onClick={() => {
+                  if (window.confirm('Confirm End Session')) {
+                    end_clinic(props.clinicInfo.id).then(() => {
+                      window.location.reload()
+                    })
+                  }
+                }}
+                disabled={!props.clinicInfo.started}
+              >
+                End Session
+              </Button>
+            </div>
+          </Grid>
+          <Grid
+            item
+            sm={7}
+            className={classes.queueBar}
+            style={{ backgroundColor: '#fff', borderLeft: '2px solid #3f51b5' }}
+          >
+            {props.clinicInfo.started && (
+              <>
+                <div>
+                  <h5 style={{ color: '#3f51b5' }}>Patient Name: </h5>
+                  <h5 style={{ color: '#000' }}>
+                    {patientInfo && patientInfo.patient.name}
+                  </h5>
+                </div>
+                <div>
+                  <h5 style={{ color: '#3f51b5' }}>Current Queue No: </h5>
+                  <h5 style={{ color: '#000' }}>{queueNo}</h5>
+                </div>
+                <div>
+                  <h5 style={{ color: '#3f51b5' }}>Patient Left:</h5>
+                  <h5 style={{ color: '#000' }}>{patientsLeft}</h5>
+                </div>
+              </>
+            )}
+            {!props.clinicInfo.started && (
+              <Alert severity='info'>Clinic Not Started Yet</Alert>
+            )}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   )
 }
 
