@@ -1,30 +1,18 @@
 import React from 'react'
 
-const Pagination = ({ postPerPage, totalPosts }) => {
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
-      pageNumbers.push(i);
-  
-      return (
-        <nav>
-          <ul className="pagination">
-            {
-              pageNumbers.map(number => {
-                <li key={number} className="page-item">
-                  <a href="!#" className='page-link'>
-                    {number}
-                  </a>
-  
-                </li>
-              })
-            }
-  
-          </ul>
-        </nav>
-      )
-  
-    }
+const Pagination = ({totalPages,handleClick}) => {
+    const pages=[...Array(totalPages).keys()].map(num=>num+1); 
+    return (
+        <div>
+          {
+              pages.map(num=>(
+                  <button key={num} onClick={()=>handleClick(num)}  className="btn btn-primary mt-3" style={{ backgroundColor: '#b3246b',width:'60px' }}  >
+                      {num}
+                  </button>
+              ))
+          }
+        </div>
+    )
 }
 
 export default Pagination
-
