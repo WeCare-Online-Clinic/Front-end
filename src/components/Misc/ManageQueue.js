@@ -17,10 +17,12 @@ const useStyles = makeStyles({
   },
 })
 
+const nurseId = getStorageItem('nurseInfo', true).id
+
 async function start_session(id) {
   try {
     await axios
-      .get(Constants.API_BASE_URL + '/manage/queue/start/' + id)
+      .get(Constants.API_BASE_URL + '/manage/queue/start/' + id + '/' + nurseId)
       .then((res) => {
         if (res.status == 200) {
           console.log(res)
