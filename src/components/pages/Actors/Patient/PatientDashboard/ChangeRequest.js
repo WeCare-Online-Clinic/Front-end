@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import history from '../../../../../@history'
 import { toast } from 'react-toastify'
 import './ChangeDate.css'
-import {
-    Button,
-} from '@material-ui/core'
+import {    Button,} from '@material-ui/core'
 import 'react-toastify/dist/ReactToastify.css'
-
+import ScheduleIcon from '@material-ui/icons/Schedule'
 toast.configure()
 
 Modal.setAppElement('#root')
@@ -23,6 +21,7 @@ const ChangeRequest = (props) => {
     const [modalIsopen, setmodalIsopen] = useState(false);
 
     const nextClinic = props.nextClinic;
+    console.log("nextClinic....", nextClinic)
 
     const currentClinicDate = nextClinic.clinicDate && nextClinic.clinicDate.date;
     const sendRequest = () => {
@@ -38,7 +37,7 @@ const ChangeRequest = (props) => {
     const requestChange = () => {
         setmodalIsopen(true);
         let reqestDateObject = Object.assign({}, {
-            clinicId: nextClinic.patient.clinic.id,
+            clinicId: nextClinic.clinicDate.nurse.clinic.id,
             currentClinicDate: currentClinicDate
         }) //requestdate object    
         dispatch(Actions.getRequestDates(reqestDateObject));// this is to bring the alternative day list
@@ -68,44 +67,42 @@ const ChangeRequest = (props) => {
                         },
                         content: {
                             // color: 'orange',
-                            top: '150px',
+                            top: '180px',
                             right: '500px',
                             left: '550px',
-                            bottom: '500px',
+                            bottom: '450px',
                         }
                     }
                 }
             >
 
 
-                <div>
-                    <form>
-                        <div>
-                            <span
-                                className='input-group-text'
-                                style={{ width: '100%', height: '50px', display: 'inline', float: 'left', backgroundColor: '#3f51b5', fontSize: '18px', color: 'white' }}
-                            >
-                                Alternative dates will be
-                            </span>
-                            <ul className='' style={{fontSize:'12px'}} >                              
-                                    {requestDateList.map((date, i) => {
-                                        return (                                      
-                                                
-                                                    <li><label>{date}</label></li>
-                                                                                        
-                                        )
-                                    })}
-                           
 
-                            </ul>
-                            <div className="mt-5">
-                                <button className="btn btn-primary mt-3" style={{ height: '40px', width: '25%', float: 'right', backgroundColor: '#b3246b' }} onClick={() => setmodalIsopen(false)}>close</button>
-                                <button type="button" className="btn btn-primary mt-3" style={{ height: '40px', width: '25%', float: 'left', backgroundColor: '#3f51b5' }} onClick={sendRequest} >Send Request</button>
-                            </div>
-                        </div>
+                <div className="mt-3">
+                    <div>
+                        <span className='input-group-text'
+                            style={{ width: '100%', height: '50px', display: 'inline', float: 'left', backgroundColor: '#3f51b5', fontSize: '18px', color: 'white' }}
+                        >
+                            Alternative dates will be
+                        </span>
 
-                    </form>
+                        <ul style={{ fontSize: '13px' }} >
+                            {requestDateList.map((date, i) => {
+                                return (
+
+                                    <li ><label ><ScheduleIcon style={{ color: 'blue',marginRight:'5px' }} /> {date}</label></li>
+
+                                )
+                            })}
+                        </ul>
+                    </div>
+                    <div className="">
+                       
+                        <button type="button" className="btn btn-primary " style={{ height: '40px', width: '25%', float: 'right', backgroundColor: '#b3246b' ,marginTop:'2cm'}} onClick={() => setmodalIsopen(false)}>close</button>
+                        <button type="button" className="btn btn-primary " style={{ height: '40px', width: '25%', float: 'left', backgroundColor: '#3f51b5', marginTop:'2cm' }} onClick={sendRequest} >Send Request</button>
+                    </div>
                 </div>
+
 
             </Modal>
         </div>

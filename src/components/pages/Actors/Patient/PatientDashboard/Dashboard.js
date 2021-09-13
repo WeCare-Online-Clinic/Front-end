@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import LineStatCard from '../../../../StatCard/LineStatCard'
 import ClinicInfoCard from './ClinicInfoCard'
-import ClinicDataCard from '../../../../ClinicCard/ClinicDataCard'
+import PatientClinicDataCard from '../PatientClinicDataCard/PatientClinicDataCard'
 import PatientStaticChart from './Charts/PatientStaticChart'
 const useStyles = makeStyles({
     dataCard: {
@@ -29,7 +29,7 @@ const Dashboard = (props) => {
                         <ClinicInfoCard patient={patient} />
                     </Grid>
                     <Grid item sm={8}>
-                        <ClinicDataCard patient={patient} />
+                        <PatientClinicDataCard patient={patient} />
                     </Grid>
                 </Grid>
             </Grid>

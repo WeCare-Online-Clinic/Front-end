@@ -360,9 +360,9 @@ const AddNurses = (props) => {
                                                                 }
                                                             />
                                                         </td>
-                                                        <td>
+                                                        {/* <td>
                                                             <label htmlFor='Id'> {clinicSchedule.id} </label>
-                                                        </td>
+                                                        </td> */}
                                                         <td>
                                                             <label htmlFor='Days'>
                                                                 {' '}

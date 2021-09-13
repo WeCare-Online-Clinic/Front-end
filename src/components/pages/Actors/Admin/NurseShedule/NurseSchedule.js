@@ -26,8 +26,8 @@ const NurseSchedule = props => {
           <div >
               <h4>{deleteNurse.nurseId } will no longer exist in the system <br/>
                Are you sure want to perform the task ?</h4>
-              <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#FF0000' }}>No</button>
-              <button onClick={() => dispatch(Actions.changeNurseStatus(deleteNurse.id))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
+              <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#3f51b5',color:'white' }}>No</button>
+              <button onClick={() => dispatch(Actions.changeNurseStatus(deleteNurse.id))} style={{ float: 'right', backgroundColor: '#FF0000',color:'white' }}>Yes</button>
           </div>
       )
   }
@@ -93,10 +93,10 @@ const NurseSchedule = props => {
                 <div className="row align-items-center"></div>
                 <div className="card  bg-light mb-3" >
                   <div clasName="card-header" style={{ textAlign: 'center', backgroundColor: '#3f51b5', color: 'white', height: '3cm', verticalAlign: 'middle' }}>
-                    <h3>Clinic Details</h3>
+                    <h3 className="mt-5">Clinic Details</h3>
                   </div>
                   <div className="card-body">
-                    <p>Clinic : {nurseProfile.clinic && nurseProfile.clinic.name}</p>
+                    <p style={{fontWeight:'bold'}}>Clinic : {nurseProfile.clinic && nurseProfile.clinic.name}</p>
                     <table className="mt-3">
                       <tr><th>Day</th><th>Time</th></tr>
                       {nurseProfile.nurseSchedule && nurseProfile.nurseSchedule
@@ -113,7 +113,7 @@ const NurseSchedule = props => {
                     </table>
                     <div className="mr-5" >
                       <UpdateSchedule nurseProfile={nurseProfile} />
-                      <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }} onClick={() => onDeactivate(nurseProfile.id)}>Delete</button>
+                      <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }} onClick={() => onDeactivate(nurseProfile.id)}>Block Nurse</button>
                     </div>
                   </div>
                 </div>

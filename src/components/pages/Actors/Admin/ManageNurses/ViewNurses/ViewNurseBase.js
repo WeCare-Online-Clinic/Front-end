@@ -9,6 +9,9 @@ import reducer from '../store/reducer/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from "../store/actions/NurseAction";
 import NurseDataTable from './NurseDataTable'
+import { getStorageItem } from '../../../../../../utils/StorageUtils'
+
+const adminDetails= getStorageItem('adminInfo', true);
 
 function ViewNurseBase() {
 
@@ -22,7 +25,7 @@ useEffect(() => {
 
   return (
     <Layout
-      header={<Header />}    
+      header={<Header user={adminDetails.name} />}    
       sidebar={<AdminSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

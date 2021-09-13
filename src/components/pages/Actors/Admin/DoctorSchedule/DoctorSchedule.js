@@ -21,26 +21,26 @@ const DoctorSchedule = props => {
     doctorProfile = reducerData.doctorProfile;
     let deleteDoctor;
 
-    const ChangeStatus = ({closeToast}) => {
+    const ChangeStatus = ({ closeToast }) => {
         // console.log('delete doctor profile 25', deleteDoctor);
         return (
             <div >
-                <h4>{deleteDoctor.doctorId } will no longer exist in the system <br/>
-                 Are you sure want to perform the task ?</h4>
-                <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#FF0000' }}>No</button>
-                <button onClick={() => dispatch(Actions.changeDoctorStatus(deleteDoctor.id))} style={{ float: 'right', backgroundColor: '#3f51b5' }}>Yes</button>
+                <h4>{deleteDoctor.doctorId} will no longer exist in the system <br />
+                    Are you sure want to perform the task ?</h4>
+                <button onClick={closeToast} style={{ float: 'left', backgroundColor: '#3f51b5',color:'white' }}>No</button>
+                <button onClick={() => dispatch(Actions.changeDoctorStatus(deleteDoctor.id))} style={{ float: 'right', backgroundColor: '#FF0000',color:'white' }}>Yes</button>
             </div>
         )
     }
 
-    const onDeactivate = (doctorId) => {        
-        for (var i = 0; i < doctorProfile.length; i++) { 
+    const onDeactivate = (doctorId) => {
+        for (var i = 0; i < doctorProfile.length; i++) {
             if (doctorProfile[i].id == doctorId) { //search for selected doctor object
-                deleteDoctor=doctorProfile[i];
+                deleteDoctor = doctorProfile[i];
                 // console.log("doctor object", doctor);
-                toast.error(<ChangeStatus/>, { position: toast.POSITION.TOP_CENTER, autoClose: false })
+                toast.error(<ChangeStatus />, { position: toast.POSITION.TOP_CENTER, autoClose: false })
             }
-         
+
         }
 
         //types -success,info,warn,error
@@ -100,9 +100,11 @@ const DoctorSchedule = props => {
                             <div className="col">
                                 <div className="row align-items-center"></div>
                                 <div className="card  bg-light mb-3" >
-                                    <div className="card-header" style={{ textAlign: 'center', backgroundColor: '#3f51b5', color: 'white', height: '3cm' }}><h3>Clinic Details</h3></div>
+                                    <div clasName="card-header" style={{ textAlign: 'center', backgroundColor: '#3f51b5', color: 'white', height: '3cm', verticalAlign: 'middle' }}>
+                                        <h3 className="mt-5">Clinic Details</h3>
+                                    </div>
                                     <div className="card-body">
-                                        <p>Clinic : {doctorProfile.clinic && doctorProfile.clinic.name} </p>
+                                        <p style={{fontWeight:'bold'}}>Clinic : {doctorProfile.clinic && doctorProfile.clinic.name} </p>
                                         <table className="mt-3">
                                             <tbody>
                                                 <tr><th>Day</th><th>Time</th></tr>
@@ -121,7 +123,7 @@ const DoctorSchedule = props => {
 
 
                                             <UpdateSchedule doctorProfile={doctorProfile} />
-                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }} onClick={() => onDeactivate(doctorProfile.id)}>Delete</button>
+                                            <button className="btn btn-primary mt-3" style={{ height: '40px', float: 'left', backgroundColor: '#b3246b' }} onClick={() => onDeactivate(doctorProfile.id)}>Block Doctor</button>
                                         </div>
                                     </div>
                                 </div>

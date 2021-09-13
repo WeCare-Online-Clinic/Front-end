@@ -11,15 +11,18 @@ const useStyles = makeStyles({
     display: 'flex',
   },
   cardHeader: {
-    color: '#3f51b5',
-    borderBottom: '1px solid #000',
-  },
-  cardContent: {
- 
     textAlign: 'center',
     color: '#fff',
-    backgroundColor: 'rgb(128, 128, 128,0.9)',
-    fontSize: '20px',
+    borderBottom: '1px solid #000',
+    backgroundImage: `linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))`,
+    fontSize: '16px',
+  },
+  cardContent: {
+    width: '140px',
+    textAlign: 'center',
+    // color: '#fff',
+    // backgroundImage: `linear-gradient(to right, rgba(0, 224, 255, 1), rgba(0, 133, 255, 1))`,
+    fontSize: '18px',
     fontWeight: 'bold',
     flexGrow: 1,
   },
@@ -28,7 +31,8 @@ const useStyles = makeStyles({
 function DataCard(props) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      {props.cardItems &&  props.cardItems.map((card) => (
+      {props.cardItems &&
+        props.cardItems.map((card) => (
           <CardItem name={card.name} value={card.value} />
         ))}
     </div>
@@ -41,7 +45,12 @@ function CardItem(props) {
     <Card className={classes.card}>
       <CardHeader
         className={classes.cardHeader}
-        title={props.name}
+        subheader={props.name}
+        subheaderTypographyProps={{
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: '#fff',
+        }}
       ></CardHeader>
       <CardContent className={classes.cardContent}>{props.value}</CardContent>
     </Card>

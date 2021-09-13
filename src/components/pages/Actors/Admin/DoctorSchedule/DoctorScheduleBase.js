@@ -12,22 +12,22 @@ import { useDispatch } from 'react-redux'
 import { getStorageItem } from '../../../../../utils/StorageUtils'
  
 
-
+const adminDetails= getStorageItem('adminInfo', true);
 function DoctorScheduleBase() {
   const dispatch = useDispatch(); 
   const location = useLocation();
-  useEffect(() => {
+  useEffect(() => {    
     console.log("doctorId:",location.state);
     dispatch(Actions.getDoctorProfileDetailsById(location.state));
 
 }, [location])
   return (
     <Layout
-      header={<Header user={getStorageItem('adminName')} />}
+      header={<Header user={adminDetails.name} />}
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '50px' }}>
+        <div style={{ padding: '100px' }}>
           <DoctorSchedule />
         </div>
       }

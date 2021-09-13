@@ -9,6 +9,9 @@ import reducer from '../store/reducer/index';
 import { useDispath, useSelector } from 'react-redux';
 import * as Actions from "../store/actions/NurseAction";
 import AddNurses from './AddNurses'
+import { getStorageItem } from '../../../../../../utils/StorageUtils'
+
+const adminDetails= getStorageItem('adminInfo', true);
 
 function AddNurseBase() {
 
@@ -16,7 +19,7 @@ function AddNurseBase() {
 
   return (
     <Layout
-      header={<Header />}
+      header={<Header user={adminDetails.name}/>}
       sidebar={<AdminSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

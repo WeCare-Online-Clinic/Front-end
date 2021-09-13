@@ -5,11 +5,14 @@ import Footer from '../../../../../Footer'
 import AdminSideBar from '../../../../../Sidebar/Sidebar'
 import AddDoctors from './AddDoctors'
 import { adminMenuItems } from '../../../../../Sidebar/menuItem'
+import { getStorageItem } from '../../../../../../utils/StorageUtils'
+
+const adminDetails= getStorageItem('adminInfo', true);
 
 function AddDoctorBase() {
   return (
     <Layout
-      header={<Header />}
+      header={<Header user={adminDetails.name} />}
       sidebar={<AdminSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

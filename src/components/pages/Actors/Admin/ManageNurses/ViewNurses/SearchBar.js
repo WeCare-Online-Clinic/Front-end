@@ -34,7 +34,7 @@ function SearchBar() {
                     setFormValue({ ...formValue, [name]: 1 })
                 }
                     break;
-                case "dentistry": {
+                case "gastroenterology": {
                     setFormValue({ ...formValue, [name]: 2 })
                 }
                     break;

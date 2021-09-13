@@ -14,6 +14,7 @@ import PatientClinicHisTable from '../../../Table/PatientClinicHisTable'
 import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { getStorageItem } from '../../../../utils/StorageUtils'
 import Constants from '../../../../utils/Constants'
+import {useLocation} from 'react-router-dom'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -46,10 +47,17 @@ async function get_clinic_data() {
   }
 }
 
-function ClinicHistory() {
+function ClinicHistory(props) {
+  const location = useLocation();
+  const [patient,setPatient]=useState({})
+  useEffect(() => {
+    const patient=location.state
+    setPatient(patient)
+    console.log("patient clinic history:",location.state);    
+  }, [])
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user={patient.name} />}
       sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
@@ -88,7 +96,7 @@ function Content() {
               borderBottom: '1px solid #000',
               backgroundColor: '#3f51b5',
             }}
-            title='Nimal De Silva'
+            title='Clinic History'
           ></CardHeader>
         </Card>
         <PatientClinicHisTable clinicData={clinicData} func={renderData} />

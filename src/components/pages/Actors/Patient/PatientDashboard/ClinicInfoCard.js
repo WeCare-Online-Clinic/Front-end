@@ -53,6 +53,8 @@ const ClinicInfoCard = (props) => {
   const [page, setPage] = useState(1);
   const startIndex = (page - 1) * 1;
   const selectedClinicDetails = nextClinicList.slice(startIndex, startIndex + 1)
+  console.log("reducerData.nextClinicDetails : ",reducerData.nextClinicDetails)
+  console.log("reducerData.nextClinicDetails. length ..........",reducerData.nextClinicDetails.length)
   const totalPages=reducerData.nextClinicDetails.length/1
 
   const handleClick = (num) => {
@@ -74,11 +76,11 @@ const ClinicInfoCard = (props) => {
             <React.Fragment>
 
               <Grid item sm={12}>
-                <div className={classes.textField}>Clinic : {nextClinic.clinicDate.nurse.clinic.name}</div>
-                <div className={classes.textField}>Clinic Date : {nextClinic.clinicDate.date}</div>
-                <div className={classes.textField}>Time : {nextClinic.time}</div>
-                <div className={classes.textField}>Queue No : {nextClinic.queueNo}</div>
-                <div className={classes.textField}> Doctor : Dr. Asela</div>
+                <div className={classes.textField}>Clinic : {nextClinic.clinicDate.nurse.clinic.name && nextClinic.clinicDate.nurse.clinic.name}</div>
+                <div className={classes.textField}>Clinic Date : {nextClinic.clinicDate.date && nextClinic.clinicDate.date }</div>
+                <div className={classes.textField}>Time : {nextClinic.time && nextClinic.time }</div>
+                <div className={classes.textField}>Queue No : {nextClinic.queueNo && nextClinic.queueNo}</div>
+                {/* <div className={classes.textField}> Doctor : Dr. Asela</div> */}
               </Grid>
               <CardActions className={classes.cardActions}>
                 <ChangeRequest nextClinic={nextClinic} />

@@ -59,6 +59,9 @@ const OnlineUsers = (props) => {
   const reducerData = useSelector(({ onlineUser }) => onlineUser.adminDashboard);
   const onlineUsersList=reducerData.onlineUsers;
 
+  console.log("onlineUsersList in admin Dashboard:",onlineUsersList)
+  
+
   const tableHeaders = [
     // add table header names
     { text: 'User' },

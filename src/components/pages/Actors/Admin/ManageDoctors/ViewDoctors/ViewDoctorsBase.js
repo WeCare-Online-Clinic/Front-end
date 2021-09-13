@@ -9,6 +9,9 @@ import reducer from '../store/reducer/index'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Actions from '../store/actions/doctor.add.edit.action'
 import DoctorDataTable from './DoctorDataTable'
+import { getStorageItem } from '../../../../../../utils/StorageUtils'
+
+const adminDetails= getStorageItem('adminInfo', true);
 
 function ViewDoctorsBase() {
   //   const reducerData = useSelector(({doctor}) => doctor.doctorAddEdit);
@@ -21,7 +24,7 @@ function ViewDoctorsBase() {
 
   return (
     <Layout
-      header={<Header />}
+      header={<Header user={adminDetails.name}/>}
       sidebar={<DoctorSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={

@@ -77,9 +77,9 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
   CLINICS: [
     { label: 'Select the clinic', value: '' },
     { label: 'Cardiology', value: 'cardiology' },
-    { label: 'Dentistry', value: 'dentistry' },
-    { label: 'Dermatology', value: 'dermatology' },
-    { label: 'Neurology', value: 'neurology' },
+    { label: 'gastroenterology', value: 'gastroenterology' },
+    // { label: 'Dermatology', value: 'dermatology' },
+    // { label: 'Neurology', value: 'neurology' },
   ],
 
   NURSETYPE: [
