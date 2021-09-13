@@ -103,6 +103,7 @@ async function send_data(patient, clinicDate) {
     await axios
       .post(Constants.API_BASE_URL + '/patient/registration/form/', {
         patient: patient,
+        clinic: clinic,
         clinicDate: clinicDate,
       })
       .then((res) => {
@@ -232,7 +233,7 @@ function AddPatient(props) {
 
     console.log('in validation')
 
-    if (clinicDate == '') {
+    if (clinicDate == null) {
       isValid = false
       toast.error('Please Select Next Clinic Date', {
         position: toast.POSITION.TOP_CENTER,

@@ -12,6 +12,9 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import Constants from '../../utils/Constants'
 
 const useStyles = makeStyles({
   card: {
@@ -59,6 +62,32 @@ const useStyles = makeStyles({
   },
 })
 
+async function send_data(requestData, date) {
+  //console.log('clinic date available')
+
+  let status = false
+  console.log(requestData, date)
+
+  try {
+    await axios
+      .post(Constants.API_BASE_URL + '/change/appointment/form/', {
+        patientRequest: requestData,
+        date: date,
+      })
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          //console.log(res)
+
+          status = res.data
+        }
+      })
+    return status
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function getModalStyle() {
   const top = 50
   const left = 50
@@ -75,6 +104,7 @@ function ChangeAppointment(props) {
   const [modalStyle] = React.useState(getModalStyle)
   const classes = useStyles()
   const [availableDates, setAvailableDates] = useState([])
+  const [submitLock, setSubmitLock] = useState(false)
   const [requestData, setRequestData] = useState()
   const [newDate, setNewDate] = useState()
   console.log(props)
@@ -86,6 +116,74 @@ function ChangeAppointment(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setSubmitLock(true)
+
+    let isValid = validation()
+    if (isValid) {
+      send_data(requestData, newDate).then((res) => {
+        console.log(res)
+        toast.info('Appointment Added Successfully', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        })
+        //window.location.reload()
+        // console.log(res)
+      })
+    }
+  }
+
+  const search = (value, searchArray) => {
+    let inArray = false
+    searchArray.map((obj) => {
+      if (obj.day == value) {
+        console.log(value)
+        console.log(obj.day)
+        inArray = true
+      }
+    })
+
+    return inArray
+  }
+
+  const validation = () => {
+    const weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ]
+    let isValid = true
+    const currDate = new Date()
+    const nextDate = new Date(newDate)
+    const nextDay = weekday[nextDate.getDay()]
+
+    console.log('in validation')
+
+    if (newDate == null) {
+      isValid = false
+      toast.error('Please Select Next Clinic Date', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    } else if (nextDate < currDate) {
+      console.log('next clinic date error')
+      isValid = false
+      toast.error('Next Clinic Date Is Invalid', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    } else if (!search(nextDay, requestData.clinic.clinicSchedules)) {
+      isValid = false
+      toast.error('No Clinic Schedule On ' + nextDay, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    }
+
+    return isValid
   }
 
   const tableHeaders = [
@@ -105,7 +203,7 @@ function ChangeAppointment(props) {
       <Grid container>
         <Grid
           item
-          sm={4}
+          sm={5}
           style={{
             backgroundColor: '#fff',
             paddingRight: '20px',
@@ -131,7 +229,7 @@ function ChangeAppointment(props) {
                   type='date'
                   value={newDate}
                   onChange={(e) => {
-                    setNewDate(e.value)
+                    setNewDate(e.target.value)
                   }}
                 ></input>
               </div>
@@ -195,6 +293,7 @@ function ChangeAppointment(props) {
                   className='btn btn-primary'
                   style={{ width: 'inherit' }}
                   onClick={handleSubmit}
+                  disabled={submitLock}
                 >
                   Submit
                 </button>
@@ -205,7 +304,7 @@ function ChangeAppointment(props) {
 
         <Grid
           item
-          sm={8}
+          sm={7}
           style={{
             backgroundColor: '#fff',
             borderLeft: '1px solid #000',
