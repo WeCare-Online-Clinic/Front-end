@@ -29,7 +29,7 @@ function ViewReportBase() {
 
   return (
     <Layout
-      header={<Header user={labTechDetails.name} />}
+      header={<Header user="madhavi" />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

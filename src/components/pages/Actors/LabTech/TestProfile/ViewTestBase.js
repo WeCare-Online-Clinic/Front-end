@@ -26,7 +26,7 @@ function ViewTestBase() {
 
   return (
     <Layout
-      header={<Header user='Kasun' />}
+      header={<Header user="madhavi" />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
