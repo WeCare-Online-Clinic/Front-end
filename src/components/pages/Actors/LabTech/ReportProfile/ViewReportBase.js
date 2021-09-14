@@ -11,7 +11,10 @@ import { labtechMenuItems } from '../../../../Sidebar/menuItem'
 import ViewReport from './ViewReport'
 import * as Actions from "./store/action";
 import { useDispatch } from 'react-redux'
+import { getStorageItem } from '../../../../../utils/StorageUtils'
  
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 
 function ViewReportBase() {
@@ -26,7 +29,7 @@ function ViewReportBase() {
 
   return (
     <Layout
-      header={<Header user='Kasun' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

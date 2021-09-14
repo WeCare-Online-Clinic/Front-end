@@ -9,6 +9,10 @@ import reducer from '../store/reducer/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from "../store/actions/ReportAction";
 import LabReportTable from './LabReportTable'
+import { getStorageItem } from '../../../../../../utils/StorageUtils'
+ 
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 function ViewReport() {
 
@@ -22,7 +26,7 @@ useEffect(() => {
 
   return (
     <Layout
-      header={<Header />}    
+      header={<Header user={labTechDetails.name}/>}    
       sidebar={<SideBar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

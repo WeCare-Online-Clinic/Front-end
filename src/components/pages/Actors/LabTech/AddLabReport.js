@@ -11,6 +11,10 @@ import PatientHisCard from '../../../ClinicCard/PatientHisCard'
 import { TextField } from '@material-ui/core'
 import PatientForm from '../../../Forms/PatientForm'
 import LabTechFullBld from '../../../Lab Forms/LabTechFullBld'
+import { getStorageItem } from '../../../../utils/StorageUtils'
+ 
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 const useStyles = makeStyles({
   textTitle: {
@@ -44,7 +48,7 @@ const useStyles = makeStyles({
 function AddLabReport() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withange' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

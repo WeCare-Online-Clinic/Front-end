@@ -6,6 +6,10 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import LabTechFullBld from '../../../Lab Forms/LabTechFullBld'
 import { nurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
+import { getStorageItem } from '../../../../utils/StorageUtils'
+ 
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 
 const useStyles = makeStyles({
@@ -30,7 +34,7 @@ const useStyles = makeStyles({
 function ViewLabReport() {
   return (
     <Layout
-      header={<Header user='Ms. Asanaka Perera' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={

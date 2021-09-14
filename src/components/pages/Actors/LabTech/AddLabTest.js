@@ -10,6 +10,10 @@ import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
 import AddTest from '../../../Forms/AddTest'
 import FullBld from '../../../Lab Forms/FullBld'
+import { getStorageItem } from '../../../../utils/StorageUtils'
+ 
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 const useStyles = makeStyles({
   dataCard: {
@@ -25,7 +29,7 @@ const useStyles = makeStyles({
 function AddLabTest() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

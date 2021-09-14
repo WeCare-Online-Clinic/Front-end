@@ -8,6 +8,10 @@ import { Grid, makeStyles } from '@material-ui/core'
 import LabProfileCard from '../../../ProfileCard/LabProfileCard'
 import ScheduleTable from '../../../Table/ScheduleTable'
 import ClinicHistoryTable from '../../../Table/ClinicHistoryTable'
+import { getStorageItem } from '../../../../utils/StorageUtils'
+ 
+
+const labTechDetails= getStorageItem('labTechInfo', true);
 
 const useStyles = makeStyles({
   dataCard: {
@@ -18,7 +22,7 @@ const useStyles = makeStyles({
 function Profile() {
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
