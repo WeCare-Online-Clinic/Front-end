@@ -3,6 +3,8 @@ import Constants from '../../../../../../utils/Constants';
 import * as _ from 'lodash'
 import * as Actions from '../store/actions/PatientAction'
 import { useDispatch} from 'react-redux';
+import PageviewIcon from '@material-ui/icons/Pageview'
+
 const Clinics = Constants.CLINICS;
 
 let initFormValue = {
@@ -124,11 +126,15 @@ function SearchBar() {
     console.log('formvalues', formValue);
     return (
 
-        <form className="form " >
+        <form className="form " 
+        style={{  maxHeight: '50px',
+                       }}>
             <ul className='nav-menu'  >
                 <li style={{ display: 'inline-block',margin:'0px 5px' }}>
                     <input className="form-control me-2"
-                        style={{ height: '50px' }}
+                        style={{  maxHeight: '50px',
+                        margin: '10px',
+                        backgroundColor: '#fff', }}
                         type="search"
                         placeholder="Patient Id"
                         aria-label="Search"
@@ -139,7 +145,9 @@ function SearchBar() {
                 </li>
                 <li style={{ display: 'inline-block', margin:'0px 5px' }}>
                     <input className="form-control me-2"
-                        style={{ height: '50px' }}
+                        style={{  maxHeight: '50px',
+                        margin: '10px',
+                        backgroundColor: '#fff', }}
                         type="search"
                         placeholder="Patient Name"
                         aria-label="Search"
@@ -153,7 +161,9 @@ function SearchBar() {
                         name="clinicId"
                         id="clinic"
                         className="form-control"
-                        style={{ height: '50px', width: '150px' }}
+                        style={{  maxHeight: '50px',
+                        margin: '10px',
+                        backgroundColor: '#fff',}}
                         value={Clinics.value}
                         onChange={onMyChange}
                     >
@@ -166,12 +176,19 @@ function SearchBar() {
                     </select>
                 </li>
                 <li style={{ display: 'inline-block' ,margin:'0px 5px'}}>
-                    <button className="btn"
-                        type="submit"
-                        style={{ backgroundColor: '#b3246b', color: 'white', fontWeight: 'bold', width: '100px', height: '50px' }}
+                
+                    <button 
+                        // type="submit"
+                        startIcon={<PageviewIcon />}
+                        variant='contained'
+                        size='large'
+                        color='secondary'
+                        style={{  maxHeight: '50px',
+                        margin: '10px',
+                        backgroundColor: '#f50057',}}
                         onClick={onSubmit}
                     >
-                        SEARCH</button>
+                        Search</button>
                 </li>
             </ul>
         </form>
