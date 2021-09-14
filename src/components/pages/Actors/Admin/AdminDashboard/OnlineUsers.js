@@ -64,7 +64,7 @@ const OnlineUsers = (props) => {
 
   const tableHeaders = [
     // add table header names
-    { text: 'User' },
+    { text: 'Online Users' },
     { text: 'Role' },
   ]
 

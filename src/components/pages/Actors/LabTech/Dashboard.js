@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect} from 'react'
 import Layout from '../../../Layout'
 import Header from '../../../Header'
 import Footer from '../../../Footer'
@@ -8,9 +8,10 @@ import { labtechMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import { labtechDataItems } from '../../../DataCard/DataItems'
 import LineStatCard from '../../../StatCard/LineStatCard'
-import PieStatCard from '../../../StatCard/PieStatCard'
 import BarStatCard from '../../../StatCard/BarStatCard'
-import { Button } from '@material-ui/core'
+import { getStorageItem ,setStorageItem} from '../../../../utils/StorageUtils'
+import axios from 'axios'
+import Constants from '../../../../utils/Constants'
 import { useHistory } from 'react-router'
 
 const useStyles = makeStyles({
@@ -22,10 +23,37 @@ const useStyles = makeStyles({
   },
 })
 
-function Dashboard() {
+
+async function get_labTech_info() {  
+  const getUserInfo = await axios
+    .get(
+      Constants.API_BASE_URL +'/labTech/info/' + getStorageItem('user', true).id )
+    .then((res) => {
+      if (res.status === 200) {
+        setStorageItem('labTechInfo', res.data);
+        console.log("LabTech Details..............:",res.data)
+      }
+      else{
+        console.log("djfdfjdgfhg")
+      }
+    })
+    .catch((e) => {
+      console.log("error in labtech login")
+      console.log(e)
+    })
+}
+const labTechDetails= getStorageItem('labTechInfo', true);
+console.log("labTechDetails",labTechDetails)
+const Dashboard=()=> {
+
+  useEffect(() => {  
+    get_labTech_info();      
+     
+  }, []) 
+
   return (
     <Layout
-      header={<Header user='Mr. Mahesh Withanage' />}
+      header={<Header user={labTechDetails.name} />}
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={

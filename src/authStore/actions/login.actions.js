@@ -65,7 +65,7 @@ export function submitLogin(data) {
                 })
               }
               break
-            case 'lab':
+            case 'labtech':
               {
                 history.push({
                   pathname: '/labtech/dashboard',
