@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+
 const PatientDataTable = (props) => {
     const reducerData = useSelector(({ patient }) => patient.managePatient);
     console.log("patient list", reducerData.patientList);
@@ -67,7 +68,8 @@ const PatientDataTable = (props) => {
     const { className } = props
     const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
     const [page, setPage] = useState(0) // set page no
-  
+    const [state, setState] = useState()
+    const data = new FormData() 
     const tableHeaders = [
     // add table header names
     { text: 'Paient ID' },
@@ -79,7 +81,7 @@ const PatientDataTable = (props) => {
     { text: 'Lab Report' },
     
   ]
-
+  
   const classes = useStyles()
 
   const handlePageChange = (event, page) => {
@@ -89,6 +91,12 @@ const PatientDataTable = (props) => {
     setRowsPerPage(event.target.value)
   }
 
+
+  
+  const  handleFileUpload = event => {
+      console.log(event.target.files[0].name);
+    }
+
   return (
     <div>
     <Card padding={'0'} className={clsx(classes.root, className)}>
@@ -97,7 +105,7 @@ const PatientDataTable = (props) => {
           <Grid
             item
             alignContent='center'
-            style={{ backgroundColor: '', borderRadius: '5px' }}
+            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
@@ -190,6 +198,16 @@ const PatientDataTable = (props) => {
                             >
                              Add
                             </Button>
+                            {/* <input
+                              // ref="fileInput"
+                             ref={(ref) => this.inputRef = ref}
+                              onChange={handleFileUpload}
+                              type="file"
+                              style={{ display: "none" }}
+                              // multiple={false}
+                            />
+                            <button onClick={() => this.refs.fileInput.click()}>Upload File</button> */}
+                        
                           </TableCell>
                         </TableRow>
                       )
