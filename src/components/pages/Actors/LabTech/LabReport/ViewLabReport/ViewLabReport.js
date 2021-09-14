@@ -26,7 +26,7 @@ useEffect(() => {
 
   return (
     <Layout
-      header={<Header user={labTechDetails.name}/>}    
+      header={<Header user="madhavi"/>}    
       sidebar={<SideBar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
