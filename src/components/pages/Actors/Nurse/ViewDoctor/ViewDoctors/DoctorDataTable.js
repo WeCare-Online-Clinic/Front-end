@@ -98,18 +98,20 @@ const DoctorDataTable = (props) => {
     <div className="">
       <Card padding={'0'} className={clsx(classes.root, className)}>
 
-        <Grid
-          item
-          style={{ backgroundColor: '#3f51b5', borderRadius: '5px', alignItems: 'flex-end' }}
-        >
-
-          <nav className="navbar navbar-expand " style={{ float:'right' }}>
-            <div className="collapse navbar-collapse"   >
+      <Grid className={classes.grid} container justify='space-around'>
+          <Grid item sm></Grid>
+      <Grid
+            item
+            alignContent='center'
+            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
+          >
+            <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+              <div className="collapse navbar-collapse"   >
               <SearchBar />
             </div>
           </nav>
 
-          
+          </Grid>
         </Grid>
 
 
