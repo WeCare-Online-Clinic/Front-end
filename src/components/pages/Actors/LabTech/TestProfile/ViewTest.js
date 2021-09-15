@@ -58,11 +58,11 @@ const ViewTest = props => {
                                     <div className="card-body">
                                         <table className="mytable mt-3">
                                             <tbody>
-                                                <tr className="my"><th>Id :</th><th>{testProfile.id}</th></tr>
-                                                <tr className="my"><th>Name :</th><th>{testProfile.name}</th></tr>
-                                                <tr className="my"><th>Description :</th><th>{testProfile.description}</th></tr>
-                                                <tr className="my"><th>field 1 :</th><th>{testProfile.field1}</th></tr>
-                                                <tr className="my"><th>field 2 :</th><th>{testProfile.field2}</th></tr>
+                                                <tr className="my" ><th width="150">Id :</th><th>{testProfile.id}</th></tr>
+                                                <tr className="my"><th width="150">Name :</th><th>{testProfile.name}</th></tr>
+                                                <tr className="my"><th width="150">Description :</th><th>{testProfile.description}</th></tr>
+                                                <tr className="my"><th width="150">field 1 :</th><th>{testProfile.field1}</th></tr>
+                                                <tr className="my"><th width="150">field 2 :</th><th>{testProfile.field2}</th></tr>
                                             </tbody>
                                         </table>
 
