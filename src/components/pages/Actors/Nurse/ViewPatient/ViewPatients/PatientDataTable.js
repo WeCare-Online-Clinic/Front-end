@@ -68,6 +68,8 @@ const PatientDataTable = (props) => {
     const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
     const [page, setPage] = useState(0) // set page no
   
+    const [state, setState] = useState()
+    const data = new FormData() 
     const tableHeaders = [
     // add table header names
     { text: 'Paient ID' },
@@ -86,6 +88,10 @@ const PatientDataTable = (props) => {
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(event.target.value)
   }
+  const  handleFileUpload = event => {
+    console.log(event.target.files[0].name);
+  }
+
 
   return (
     <div>
@@ -95,7 +101,7 @@ const PatientDataTable = (props) => {
           <Grid
             item
             alignContent='center'
-            style={{ backgroundColor: '', borderRadius: '5px' }}
+            style={{ backgroundColor: '#3f51b5', borderRadius: '5px' }}
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
@@ -173,6 +179,16 @@ const PatientDataTable = (props) => {
                             >
                               View
                             </Button>
+                            {/* <input
+                              // ref="fileInput"
+                             ref={(ref) => this.inputRef = ref}
+                              onChange={handleFileUpload}
+                              type="file"
+                              style={{ display: "none" }}
+                              // multiple={false}
+                            />
+                            <button onClick={() => this.refs.fileInput.click()}>Upload File</button> */}
+
                           </TableCell>
                         </TableRow>
                       )
