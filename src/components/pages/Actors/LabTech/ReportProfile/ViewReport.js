@@ -59,6 +59,7 @@ const ViewReport = props => {
                                         <table className="mytable mt-3">
                                             <tbody>
                                                 <tr className="my" ><th>Report Id :</th><th>{reportProfile.id}</th></tr>
+                                                <tr className="my" ><th>Patient Name :</th><th>{reportProfile.patient && reportProfile.patient.name}</th></tr>
                                                 <tr className="my" ><th>Test Name :</th><th>{reportProfile.test && reportProfile.test.name}</th></tr>
                                                 <tr className="my"><th>Test Time :</th><th>{reportProfile.testTime}</th></tr>
                                                 <tr className="my"><th>Test Date :</th><th>{reportProfile.testDate}</th></tr>
