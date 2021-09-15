@@ -59,11 +59,12 @@ const ViewReport = props => {
                                         <table className="mytable mt-3">
                                             <tbody>
                                                 <tr className="my"><th>Report Id :</th><th>{reportProfile.id}</th></tr>
-                                                <tr className="my"><th>Test Time :</th><th>{reportProfile.name}</th></tr>
-                                                <tr className="my"><th>Test Date :</th><th>{reportProfile.email}</th></tr>
-                                                <tr className="my"><th>Availability :</th><th>{reportProfile.contact}</th></tr>
-                                                <tr className="my"><th>Issued Date :</th><th>{reportProfile.gender}</th></tr>
-                                                <tr className="my"><th>Data :</th><th>{reportProfile.address}</th></tr>
+                                                <tr className="my"><th>Test Time :</th><th>{reportProfile.testTime}</th></tr>
+                                                <tr className="my"><th>Test Date :</th><th>{reportProfile.testDate}</th></tr>
+                                                <tr className="my"><th>Availability :</th><th>{reportProfile.availability}</th></tr>
+                                                <tr className="my"><th>Issued Date :</th><th>{reportProfile.issuedDate}</th></tr>
+                                                <tr className="my"><th>Data 1 :</th><th>{reportProfile.data1}</th></tr>
+                                                <tr className="my"><th>Data 2 :</th><th>{reportProfile.data2}</th></tr>
                                                 
 
                                             </tbody>
