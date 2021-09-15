@@ -74,7 +74,8 @@ const ReportDataTable = (props) => {
       { text: 'Patient Name' },
       { text: 'Test Name' },
       { text: 'Date Added' },
-      { text: 'Date Issued' },
+      { text: 'Test Time' },
+      { text: 'Issued Date' },
       { text: 'Availability' },
     ]
 
@@ -160,17 +161,20 @@ const ReportDataTable = (props) => {
                             {report.testTime}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.availability}
+                            {report.issuedDate==null? "not issued yet":report.issuedDate}
+                          </TableCell>
+                          <TableCell className={classes.cell}>
+                            {report.availability ==false? "false":"true"}
                           </TableCell>
                          
                           <TableCell>
                             <Button
                               variant='contained'
-                              fullWidth='true'
-                              color='primary'
+                              fullWidth='true'                             
+                              color={report.issuedDate==null? "primary":"#f44336"}
                               onClick={() => props.func()}
                             >
-                              Issue
+                             {report.issuedDate==null? "issue":"issued"}
                             </Button>
                           </TableCell>
                           

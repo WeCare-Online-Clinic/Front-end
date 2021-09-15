@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './profile.css'
-import profile from './../.././../../assets/img/pro.png'
+import profile from './../.././../../assets/img/test.png'
 import { useDispatch, useSelector } from 'react-redux';
 import withReducer from '../../../../../store/withReducer'
 import reducer from './store/reducer/index'

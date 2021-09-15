@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-// import Constants from '../../../../../utils/Constants';
+import withReducer from '../../../../../store/withReducer'
 import * as _ from 'lodash'
 import * as Actions from './store/action/AddLabTestAction'
 import { useDispatch, useSelector } from 'react-redux';
+import reducer from './store/reducer'
 
 let initFormValue = {
     patientNic: ''
@@ -13,11 +14,18 @@ let initError = {
 }
 
 function SearchBar() {
-
+    const dispatch = useDispatch();
     const [formValue, setFormValue] = useState({ ...initFormValue });
     const [errors, setErrors] = useState({ ...initError });
 
-    const dispatch = useDispatch();
+    const reducerData = useSelector(({ getNIC }) => getNIC.addLabTest);   
+
+    useEffect(() => {
+        dispatch(Actions.getTestTypes(reducerData.patientProfile));
+    }, [reducerData.patientProfile])
+
+
+
 
     const onMyChange = (v) => {
         let value = v.target.value;
@@ -25,13 +33,13 @@ function SearchBar() {
 
         setFormValue({ ...formValue, [name]: value });
 
-    }
+    } 
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
         if (isValid) {
-            console.log("patient nic...", formValue.patientNic)
-            dispatch(Actions.getPatientProfileById(formValue.patientNic));
+            // console.log("patient nic...", formValue.patientNic)
+            dispatch(Actions.getPatientProfileByNIC(formValue.patientNic));
         }
         else {
             console.log("fail");
@@ -69,9 +77,9 @@ function SearchBar() {
             <form className="form" >
                 <ul className='nav-menu' >
                     <li> <input className="form-control me-2"
-                        style={{ height: '30px' }}
+                        style={{ height: '40px' }}
                         type="search"
-                        placeholder="Patient NIC"
+                        placeholder="Patient NIC Number -> eg: 990060754V"
                         aria-label="Search"
                         name="patientNic"
                         onChange={onMyChange}
@@ -81,7 +89,7 @@ function SearchBar() {
 
                     <li> <button className="btn"
                         type="submit"
-                        style={{ backgroundColor: '#b3246b', color: 'white', fontWeight: 'bold', width: '100px', height: '30px' }}
+                        style={{ backgroundColor: '#b3246b', color: 'white', fontWeight: 'bold', width: '100px', height: '40px' }}
                         onClick={onSubmit}
                     >
                         SEARCH</button>
@@ -92,4 +100,4 @@ function SearchBar() {
     )
 }
 
-export default SearchBar
+export default withReducer('getNIC', reducer)(SearchBar)

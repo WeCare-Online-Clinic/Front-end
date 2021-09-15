@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './profile.css'
-import profile from './../.././../../assets/img/pro.png'
+import profile from './../.././../../assets/img/patient.png'
 import { useDispatch, useSelector } from 'react-redux';
 import withReducer from '../../../../../store/withReducer'
 import reducer from './store/reducer/index'
@@ -48,7 +48,7 @@ const ViewReport = props => {
                                                 <img src={profile} height="100" width="100" style={{ marginBottom: '5px' }}></img>
                                             </div>
                                             <div className="col">
-                                                <h3>{reportProfile.patient && reportProfile.patient.name}</h3>
+                                                <h3>{reportProfile.patient && reportProfile.patient.name} - {reportProfile.test && reportProfile.test.name} Report </h3>
                                             </div>
                                         </div>
 

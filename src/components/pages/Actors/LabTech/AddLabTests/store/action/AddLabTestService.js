@@ -4,8 +4,14 @@ import Constants from '../../../../../../../utils/Constants'
 class AddLabTestService { 
   
 
-  getPatientProfileById(nic) {   
-    return axios.get(Constants.API_BASE_URL + '/getPatientProfileById'+nic);
+  getPatientProfileByNIC(patientNIC) {   
+    return axios.get(Constants.API_BASE_URL + '/getPatientProfileByNIC/'+patientNIC);
+  }
+  getTestTypes(patientProfile){    
+    return axios.post(Constants.API_BASE_URL + '/getTestTypes/',patientProfile);
+  }
+  savePatientTest(patientTestObject){
+    return axios.post(Constants.API_BASE_URL + '/savePatientTest/',patientTestObject);
   }
 
 
