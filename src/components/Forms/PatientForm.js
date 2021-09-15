@@ -22,16 +22,16 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#3f51b5',
+    color: '#fff',
     borderBottom: '1px solid #000',
-    backgroundColor: '#fff',
+    backgroundColor: '#3f51b5',
   },
   cardContent: {
     textAlign: 'center',
     color: '#fff',
     fontSize: '16px',
     margin: '20px',
-    backgroundColor: '#3f51b5',
+    // backgroundColor: '#3f51b5',
   },
   cardActions: {
     display: 'flex',
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   presContent: {
-    textAlign: 'center',    
+    textAlign: 'center',
     fontSize: '16px',
     backgroundColor: '#fff',
     color: '#3f51b5',
@@ -97,7 +97,7 @@ function ClinicForm() {
     <Card className={classes.card}>
       <CardHeader
         title='Patient Details'
-        subheader='Form'
+        // subheader='Form'
         className={classes.cardHeader}
       ></CardHeader>
       <CardContent className={classes.cardContent}>
@@ -147,18 +147,18 @@ function ClinicForm() {
             />
           </div>
 
-          
-            <div className={classes.cardActions}>
-            
-              <Button
-                variant='contained'
-                color='secondary'
-                style={{ width: '200px' }}
-              >
-                Submit
-              </Button>
-            </div>
-          
+
+          <div className={classes.cardActions}>
+
+            <Button
+              variant='contained'
+              color='secondary'
+              style={{ width: '200px' }}
+            >
+              Submit
+            </Button>
+          </div>
+
         </form>
       </CardContent>
     </Card>

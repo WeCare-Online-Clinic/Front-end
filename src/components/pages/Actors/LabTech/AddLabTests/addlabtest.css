@@ -1,0 +1,64 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 250px;
+  }
+  
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #cad3f0;
+  }
+
+  .title{
+      background: #3f51b5;
+      border-radius: 5px 5px 5px 5px;
+      
+  }
+  .card{
+    border-radius: 5px 5px 5px 5px;
+  }
+  h5{
+    font-family: arial, sans-serif;
+    font-weight: 600;
+  }
+  .btn{
+    background-color: #3f51b5;
+  }
+
+  .my:nth-child(even){
+    background-color: #ffffff;
+  }
+  .mytable th{
+    border: 0px solid #dddddd;
+   
+  }
+  .mytable{
+    height: 250px;
+  }
+
+  .nav-menu{
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    grid-gap:5px;
+    list-style: none;
+    width: 68vw;
+    /* justify-content: end; */
+  }
+  .card-header{
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    vertical-align: middle;
+    
+  }
+ .card{
+   /* width: 50px; */
+   height: 500px;
+ }

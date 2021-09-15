@@ -212,13 +212,13 @@ export const labtechMenuItems = [
     name: 'Lab Tests',
     children: [
       {
-        name: 'View Lab Tests',
+        name: 'View Lab Test Types',
         url: '/labtech/viewlabtest',
       },
-      //  {
-      //    name: 'Create Lab Test',
-      //    url: '/labtech/addlabtest',
-      //  },
+       {
+         name: 'Add Lab Test',
+         url: '/labtech/addlabtest',
+       },
     ],
   },
   {
@@ -229,10 +229,10 @@ export const labtechMenuItems = [
         name: 'View Lab Report List',
         url: '/labtech/viewlabreport',
       },
-      {
-        name: 'Add Lab Report',
-        url: '/labtech/addlabreport',
-      },
+      // {
+      //   name: 'Add Lab Report',
+      //   url: '/labtech/addlabreport',
+      // },
     ],
   },
 ]
