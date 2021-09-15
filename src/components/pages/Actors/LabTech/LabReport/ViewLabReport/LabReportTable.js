@@ -148,16 +148,16 @@ const ReportDataTable = (props) => {
                             {report.id}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.name}
+                            {report.patient && report.patient.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.t_name}
+                            {report.test && report.test.name}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.a_date}
+                            {report.testDate}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.i_date}
+                            {report.testTime}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {report.availability}
