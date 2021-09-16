@@ -75,7 +75,7 @@ const PatientDataTable = (props) => {
     { text: 'Paient ID' },
     { text: 'Patient Name' },
     { text: 'Gender' },
-    { text: 'Diagnosis' },
+    { text: 'email' },
     { text: 'Contact' },
     
   ]
@@ -159,7 +159,7 @@ const PatientDataTable = (props) => {
                             {patient.gender}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {patient.clinic && patient.clinic.name}
+                            {patient.email}
                           </TableCell>
                           <TableCell className={classes.cell}>
                             {patient.contact}
