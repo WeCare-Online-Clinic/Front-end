@@ -63,7 +63,6 @@ const ViewReport = props => {
                                                 <tr className="my" ><th>Test Name :</th><th>{reportProfile.test && reportProfile.test.name}</th></tr>
                                                 <tr className="my"><th>Test Time :</th><th>{reportProfile.testTime}</th></tr>
                                                 <tr className="my"><th>Test Date :</th><th>{reportProfile.testDate}</th></tr>
-                                                <tr className="my"><th>Availability :</th><th>{reportProfile.availability}</th></tr>
                                                 <tr className="my"><th>Issued Date :</th><th>{reportProfile.issuedDate}</th></tr>
                                                 <tr className="my"><th>{reportProfile.test && reportProfile.test.field1} :</th><th>{reportProfile.data1}</th></tr>
                                                 <tr className="my"><th>{reportProfile.test && reportProfile.test.field2} :</th><th>{reportProfile.data2}</th></tr>

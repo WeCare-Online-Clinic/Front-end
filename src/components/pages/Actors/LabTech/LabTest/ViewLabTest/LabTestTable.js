@@ -73,6 +73,7 @@ const TestDataTable = (props) => {
       { text: 'Test ID' },
       { text: 'Test Name' },
       { text: 'Description' },
+      { text: 'Clinic Name' },
     ]
 
   const classes = useStyles()
@@ -146,7 +147,9 @@ const TestDataTable = (props) => {
                           <TableCell className={classes.cell}>
                             {test.description}
                           </TableCell>
-                         
+                          <TableCell className={classes.cell}>
+                            {test.clinic && test.clinic.name}
+                          </TableCell>
                           <TableCell>
                           <Button
                               variant='contained'

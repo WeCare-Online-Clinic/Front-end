@@ -61,6 +61,7 @@ const ViewTest = props => {
                                                 <tr className="my" ><th width="150">Test Id :</th><th>{testProfile.id}</th></tr>
                                                 <tr className="my"><th width="150">Test Name :</th><th>{testProfile.name}</th></tr>
                                                 <tr className="my"><th width="150">Description :</th><th>{testProfile.description}</th></tr>
+                                                <tr className="my"><th width="150">Clinic Name :</th><th>{testProfile.clinic && testProfile.clinic.name}</th></tr>
                                                 <tr className="my"><th width="150">field 1 :</th><th>{testProfile.field1}</th></tr>
                                                 <tr className="my"><th width="150">field 2 :</th><th>{testProfile.field2}</th></tr>
                                             </tbody>
