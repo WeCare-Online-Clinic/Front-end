@@ -56,7 +56,7 @@ const AddLabTestForm = ({ patientProfile }) => {
                         id='tests'
                         className='form-control'
                         onChange={onMyChange}
-                        style={{height: '40px',fontSize:'14px',fontWeight:'bold'}}
+                        style={{height: '50px',fontSize:'14px',fontWeight:'bold'}}
                     >
                         <option value='' selected disabled hidden>
                             Select Test

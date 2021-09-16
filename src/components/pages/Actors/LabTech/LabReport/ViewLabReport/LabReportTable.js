@@ -18,7 +18,7 @@ import {
   TablePagination,
   Button,
   Grid,
-  
+
 } from '@material-ui/core'
 
 import { useHistory } from 'react-router-dom'
@@ -59,25 +59,25 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ReportDataTable = (props) => {
-    const reducerData = useSelector(({ report }) => report.manageReport);
-    console.log("report list", reducerData.reportList);
-    const reportList = reducerData.reportList;
-  
-    const history = useHistory()
-    const { className } = props
-    const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
-    const [page, setPage] = useState(0) // set page no
-  
-    const tableHeaders = [
-      // add table header names
-      { text: 'Report ID' },
-      { text: 'Patient Name' },
-      { text: 'Test Name' },
-      { text: 'Date Added' },
-      { text: 'Test Time' },
-      { text: 'Issued Date' },
-      { text: 'Availability' },
-    ]
+  const reducerData = useSelector(({ report }) => report.manageReport);
+  console.log("report list", reducerData.reportList);
+  const reportList = reducerData.reportList;
+
+  const history = useHistory()
+  const { className } = props
+  const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
+  const [page, setPage] = useState(0) // set page no
+
+  const tableHeaders = [
+    // add table header names
+    { text: 'Report ID' },
+    { text: 'Patient Name' },
+    { text: 'Test Name' },
+    { text: 'Date Added' },
+    { text: 'Test Time' },
+    { text: 'Issued Date' },
+    // { text: 'Availability' },
+  ]
 
   const classes = useStyles()
 
@@ -90,7 +90,7 @@ const ReportDataTable = (props) => {
 
   return (
     <div>
-    <Card padding={'0'} className={clsx(classes.root, className)}>
+      <Card padding={'0'} className={clsx(classes.root, className)}>
         <Grid className={classes.grid} container justify='space-around'>
           <Grid item sm></Grid>
           <Grid
@@ -100,7 +100,7 @@ const ReportDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-              
+
               </div>
             </nav>
           </Grid>
@@ -133,7 +133,7 @@ const ReportDataTable = (props) => {
                     <TableCell
                       style={{ borderBottom: '1px solid #000' }}
                     ></TableCell>
-                    
+
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -161,25 +161,29 @@ const ReportDataTable = (props) => {
                             {report.testTime}
                           </TableCell>
                           <TableCell className={classes.cell}>
-                            {report.issuedDate==null? "not issued yet":report.issuedDate}
+                            {report.issuedDate == null ? "not issued yet" : report.issuedDate}
                           </TableCell>
-                          <TableCell className={classes.cell}>
-                            {report.availability ==false? "false":"true"}
-                          </TableCell>
-                         
+                          {/* <TableCell className={classes.cell}>
+                            {report.availability == false ? "false" : "true"}
+                          </TableCell> */}
+
                           <TableCell>
                             <Button
                               variant='contained'
-                              fullWidth='true'                             
-                              color={report.issuedDate==null? "primary":"#f44336"}
-                              onClick={() => props.func()}
+                              fullWidth='true'
+                              color={report.issuedDate == null ? "primary" : "#f44336"}
+                              onClick={()=>
+                                history.push({
+                                  pathname: 'addlabreport',
+                                  state: report
+                                })}
                             >
-                             {report.issuedDate==null? "issue":"issued"}
+                              {report.issuedDate == null ? "issue" : "issued"}
                             </Button>
                           </TableCell>
-                          
+
                           <TableCell>
-                          <Button
+                            <Button
                               variant='contained'
                               fullWidth='true'
                               color='primary'
@@ -210,12 +214,12 @@ const ReportDataTable = (props) => {
             page={page}
             rowsPerPage={rowsPerPage}
             rowsPerPageOptions={[5, 8, 15]}
-       
+
           />
         </CardActions>
       </Card>
-   </div>
-   )
- }
+    </div>
+  )
+}
 
 export default withReducer('report', reducer)(ReportDataTable);

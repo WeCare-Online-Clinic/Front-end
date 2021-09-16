@@ -3,7 +3,7 @@ import Constants from '../../../../../../../utils/Constants'
 
 class ReportService { 
   saveReport(report) {
-    return axios.post(Constants.API_BASE_URL + '/addReport', report)
+    return axios.post(Constants.API_BASE_URL + '/addReport/', report)
   }
 
   getReport() {
