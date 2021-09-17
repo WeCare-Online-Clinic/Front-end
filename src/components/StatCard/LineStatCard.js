@@ -5,8 +5,8 @@ import { Card, CardHeader, CardContent, makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
   cardHeader: {
     textAlign: 'center',
-    color: '#145da0',
-    backgroundColor: '#ebf5f7',
+    color: '#fff',
+    backgroundColor: '#145da0',
     borderBottom: '1px solid #000',
     height: '50px',
   },

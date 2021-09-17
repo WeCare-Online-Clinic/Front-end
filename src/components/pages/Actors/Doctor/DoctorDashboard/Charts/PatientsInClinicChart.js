@@ -71,7 +71,7 @@ const PatientsInClinicChart = () => {
       <Card>
         <CardHeader
           title={`Registered Patients In ${clinicName} Clinic`}
-          style={{ backgroundColor: '#3f51b5', textAlign: 'center' }}
+          style={{ backgroundColor: '#145da0', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>

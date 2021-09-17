@@ -99,6 +99,9 @@ const ClinicHistory = React.lazy(() =>
 const LabReports = React.lazy(() =>
   import('./components/pages/Actors/Patient/LabReports')
 )
+const PatientNotifications = React.lazy(() =>
+  import('./components/pages/Actors/Patient/Notifications')
+)
 /* --------------------- */
 
 /* --- Nurse Pages --- */
@@ -346,6 +349,11 @@ const App = () => {
                 path='/patient/patientreport'
                 exact
                 component={LabReports}
+              ></Route>
+              <Route
+                path='/patient/notifications'
+                exact
+                component={PatientNotifications}
               ></Route>
               {/* --------------------- */}
 
