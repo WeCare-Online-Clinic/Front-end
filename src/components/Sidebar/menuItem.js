@@ -138,7 +138,7 @@ export const headnurseMenuItems = [
     icon: <SendIcon style={{ color: '#fff' }} />,
     name: 'Message',
 
-    url: '/headnurse/sendmessage',
+    url: '/headnurse/notifications',
   },
 ]
 
@@ -215,10 +215,10 @@ export const labtechMenuItems = [
         name: 'View Lab Test Types',
         url: '/labtech/viewlabtest',
       },
-       {
-         name: 'Add Lab Test',
-         url: '/labtech/addlabtest',
-       },
+      {
+        name: 'Add Lab Test',
+        url: '/labtech/addlabtest',
+      },
     ],
   },
   {

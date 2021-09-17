@@ -85,9 +85,9 @@ function Header(props) {
             <IconButton
               color='primary'
               style={{ marginRight: '10px' }}
-              onClick={() => history.push('profile')}
+              onClick={() => history.push('notifications')}
             >
-              <Badge badgeContent={1} color='secondary'>
+              <Badge color='secondary'>
                 <NotificationsNoneIcon />
               </Badge>
             </IconButton>

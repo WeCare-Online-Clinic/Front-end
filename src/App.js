@@ -143,7 +143,9 @@ const LabViewLabReport = React.lazy(() =>
   )
 )
 const AddLabReport = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/LabReport/AddLabReport/AddLabReportBase')
+  import(
+    './components/pages/Actors/LabTech/LabReport/AddLabReport/AddLabReportBase'
+  )
 )
 const LabTechTestProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/TestProfile/ViewTestBase')
@@ -189,7 +191,7 @@ const HeadNursePatientProfile = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/PatientProfile/ViewPatientBase')
 )
 const HeadNurseSendMessage = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/SendMessage/Message/SendMessage')
+  import('./components/pages/Actors/Head Nurse/Notifications')
 )
 const HeadNurseAddLabTest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/AddLabTest')
@@ -490,7 +492,7 @@ const App = () => {
                 component={HeadNursePatientProfile}
               ></Route>
               <Route
-                path='/headnurse/sendmessage'
+                path='/headnurse/notifications'
                 exact
                 component={HeadNurseSendMessage}
               ></Route>
