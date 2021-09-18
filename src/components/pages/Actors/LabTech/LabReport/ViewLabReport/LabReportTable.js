@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
-//import SearchBar from './SearchBar'
+import SearchBar from './SearchBar'
 import {
   Card,
   CardActions,
@@ -100,7 +100,7 @@ const ReportDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-
+              <SearchBar />
               </div>
             </nav>
           </Grid>
