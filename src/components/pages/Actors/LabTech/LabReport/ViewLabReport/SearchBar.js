@@ -1,20 +1,20 @@
-/*
+
 import React, {useState } from 'react'
 import Constants from '../../../../../../utils/Constants';
 import * as _ from 'lodash'
 import * as Actions from '../store/actions/ReportAction'
 import { useDispatch} from 'react-redux';
-const Tests = Constants.TESTS;
+// const Tests = Constants.TESTS;
 
 let initFormValue = {
-    patientName: '',
+  
     reportId: '',
-    testId: ''
+   
 
 }
 
 let initError = {
-    patientNameErrors: {},
+   
     reportIdErrors: {}
 }
 
@@ -29,39 +29,9 @@ function SearchBar() {
     const onMyChange = (v) => {
         let value = v.target.value;
         let name = v.target.name;
-        if (name == 'testId') {
-            switch (value) {
-                case "cardiology": {
-                    setFormValue({ ...formValue, [name]: 1 })
-                }
-                    break;
-                case "dentistry": {
-                    setFormValue({ ...formValue, [name]: 2 })
-                }
-                    break;
-                case "dermatology": {
-                    setFormValue({ ...formValue, [name]: 3 })
-                }
-                    break;
-                case "neurology": {
-                    setFormValue({ ...formValue, [name]: 4 })
-                }
-                    break;
-                default: {
-                    setFormValue({ ...formValue, [name]: '' })
-                }
-
-
-            }
-
-        }
-        else {
-            setFormValue({ ...formValue, [name]: value });
-
-        }
-
-
+        setFormValue({ ...formValue, [name]: value });
     }
+
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
@@ -72,40 +42,18 @@ function SearchBar() {
                 dispatch(Actions.getReportProfileDetailsById(formValue.reportId));
 
             }
-            else {
-                if (Object.keys(formValue.patientName).length != 0) {
-                    // console.log('patient name',formValue.patientName);
-                    dispatch(Actions.getReportProfileDetailsByPatient(formValue.patientName));
-                }
-                else {
-                    if (Object.keys(formValue.testId.length != 0)) {
-                        // console.log('test name',formValue.testName);
-                        dispatch(Actions.getReportProfileDetailsByTest(formValue.testId));
-                    }
-
-                }
-            }
-
-
-        }
+        
         else {
             console.log("fail");
             alert('Invalid Search Input');
         }
-
     }
+ }
     const validation = () => {
         let localErrors = _.cloneDeep(errors); //make a seperate local errors object and assign it to localErrors 
         let isValid = true;
-        //validating patient name 
-        if (formValue.patientName.trim().length > 30) {
-            let patientNameTooLong = Object.assign({}, { tooLong: 'Too long' })
-            localErrors.patientNameErrors = patientNameTooLong;
-            isValid = false;
-        }
-        else {
-            localErrors.patientNameErrors.tooLong = null;
-        }
+        //validating test name 
+       
 
         //validating report id 
         if (formValue.reportId.trim().length > 10) {
@@ -138,18 +86,18 @@ function SearchBar() {
                         value={formValue.reportId}
                     />
                 </li>
-                <li style={{ display: 'inline-block', margin:'0px 5px' }}>
+                {/* <li style={{ display: 'inline-block', margin:'0px 5px' }}>
                     <input className="form-control me-2"
                         style={{ height: '50px' }}
                         type="search"
-                        placeholder="Patient Name"
+                        placeholder="Test Name"
                         aria-label="Search"
-                        name="patientName"
-                        value={formValue.patientName}
+                        name="testName"
+                        value={formValue.testName}
                         onChange={onMyChange}
                     />
-                </li>
-                <li style={{ display: 'inline-block',margin:'0px 5px' }}>
+                </li> */}
+                {/* <li style={{ display: 'inline-block',margin:'0px 5px' }}>
                     <select
                         name="testId"
                         id="test"
@@ -165,7 +113,7 @@ function SearchBar() {
                         }
 
                     </select>
-                </li>
+                </li> */}
                 <li style={{ display: 'inline-block' ,margin:'0px 5px'}}>
                     <button className="btn"
                         type="submit"
@@ -177,10 +125,11 @@ function SearchBar() {
             </ul>
         </form>
 
-    )
-}
+)
+}  
+
 
 export default SearchBar
 
-*/
+
 
