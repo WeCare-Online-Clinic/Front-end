@@ -28,7 +28,7 @@ class ReportService {
       Constants.API_BASE_URL + '/getReportProfileByPatient/' + patientName
     )
   }
-
+  
   getReportProfileDetailsByTest(testId) {
     return axios.get(Constants.API_BASE_URL + '/getReportProfileDetailsByTest/' + testId);
   }
