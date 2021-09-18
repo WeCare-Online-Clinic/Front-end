@@ -15,11 +15,11 @@ import {
 const useStyles = makeStyles({
 
   headerTitle: {
-    textAlign:'center',
-    fontWeight:'bold',
-    alignContent:'center',
-    color:'black'
-    
+    textAlign: 'center',
+    fontWeight: 'bold',
+    alignContent: 'center',
+    color: 'black'
+
   }
 });
 
@@ -38,18 +38,17 @@ const UserTypeChart = () => {
       {
         // label: 'Rainfall',
         backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4'
+          '#28B1D6',
+          '#66F1BD',
+          '#00ff00',
+          '#C1C2AD',
+
         ],
         hoverBackgroundColor: [
-          '#501800',
-          '#4B5000',
-          '#175000',
-          '#003350',
-          '#35014F'
+          '#2771D6',
+          '#6771BD',
+          '#077f00',
+          '#C772AD',
         ],
         data: usersData
       }
@@ -58,11 +57,11 @@ const UserTypeChart = () => {
   {
     return (
       <Card>
-        <CardHeader title={"User Types"}  style={{ backgroundColor: 'rgba(0,0,205,0.5)', opacity: '0.9',textAlign: 'center'}} classes={{title: materializeUIClasses.headerTitle}} ></CardHeader>
+        <CardHeader title={"User Types"} style={{ backgroundColor: 'rgba(0,0,205,0.5)', opacity: '0.9', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }} ></CardHeader>
         <CardContent>
 
           <div className="mt-3 mb-3 " style={{ width: "10cm", height: "10cm", marginLeft: '6cm' }}>
-       
+
             <Pie
               data={state}
               options={{

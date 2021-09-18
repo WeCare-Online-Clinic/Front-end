@@ -136,7 +136,7 @@ const NurseViewQueue = React.lazy(() =>
 
 /* --- Lab Tech Pages --- */
 const LabDashboard = React.lazy(() =>
-  import('./components/pages/Actors/LabTech/Dashboard')
+  import('./components/pages/Actors/LabTech/Dashboard/DashboardBase')
 )
 const LabProfile = React.lazy(() =>
   import('./components/pages/Actors/LabTech/Profile')

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer/index'
 import { makeStyles } from '@material-ui/styles'
-import { getStorageItem } from '../../../../../../utils/StorageUtils'
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -15,66 +14,52 @@ const useStyles = makeStyles({
     color: 'white',
   },
 })
-const doctor = getStorageItem('doctorInfo', true)
-const clinicId = doctor.clinic.id
-console.log('clinicId in dig chart ', clinicId)
-const clinicName = doctor.clinic.name
 
-const DiognosisChart = () => {
-  const reducerData = useSelector(({ diognosis }) => diognosis.doctorDashboard)
+
+const IssuedReportTypes = () => {
+  const reducerData = useSelector(({ reportTypes }) => reportTypes.LabDashboard)
   if (!reducerData) {
     window.location.reload()
   }
-  const diognosisCount = reducerData.diognosisCount
+  const reportTypesCount = reducerData.reportTypesCount
   const materializeUIClasses = useStyles()
   let state = []
-  switch (clinicId) {
-    case 1:
+
+    
       {
         state = {
           labels: [
-            'Coronary Heart Disease',
-            'Peripheral Heart Disease',
-            'Rheumatic Heart Disease',
+            'FBC ',
+            'Bio Chemistry',
+            'Diagnoscic test',
+            'Iron-Deficiency-Anemia Test'
           ],
           datasets: [
             {
-              label: 'Number of Patients',
-              backgroundColor: ['#66F1BD', '#28B1D6', '#00ff00'],
+              label: 'Number of Isuued Reports',
+              backgroundColor: ['#66F1BD', '#28B1D6', '#C1C2AD','#00ff00'],
+              hoverBackgroundColor: [
+                '#6771BD',
+                '#2771D6',
+                '#C772AD',
+                '#077f00',
+              ],
               borderColor: 'rgba(0,0,0,1)',
               borderWidth: 0.2,
-              data: diognosisCount,
+              data: reportTypesCount,
             },
           ],
         }
       }
-      break
-    case 2:
-      {
-        state = {
-          labels: ['Peptic Ulcer Disease', 'Crohn’s Disease'],
-          datasets: [
-            {
-              label: 'Number of Patients',
-              backgroundColor: ['rgba(75,192,192,0.5)', 'rgba(0,0,205,0.5)'],
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 0.2,
-              data: diognosisCount,
-            },
-          ],
-        }
-      }
-      break
-    default: {
-      state = []
-    }
-  }
+   
+
+
 
   {
     return (
       <Card>
         <CardHeader
-          title={`Diognosis Of Patients In ${clinicName} Clinic`}
+          title={`Issued Report Types`}
           style={{ backgroundColor: '#145da0', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
@@ -101,4 +86,4 @@ const DiognosisChart = () => {
     )
   }
 }
-export default withReducer('diognosis', reducer)(DiognosisChart)
+export default withReducer('reportTypes', reducer)(IssuedReportTypes)

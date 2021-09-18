@@ -41,9 +41,9 @@ function AdminDashboard(){
                             <OnlineUsersTable />
                         </Grid>
                         <Grid className={classes.dataCard} item sm={7}>
-                            <RegUsersChart /> 
-                            <hr  className="mt-5" style={{width:'100%',height:'1px'}}/>                          
                             <UserTypeChart  />
+                            <hr  className="mt-5" style={{width:'100%',height:'1px'}}/>                          
+                            <RegUsersChart /> 
                         </Grid>
                     </Grid>
                 </Grid>

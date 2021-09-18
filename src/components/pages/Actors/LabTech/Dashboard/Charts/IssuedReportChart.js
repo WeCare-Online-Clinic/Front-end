@@ -1,10 +1,9 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer/index'
 import { makeStyles } from '@material-ui/styles'
-import { getStorageItem } from '../../../../../../utils/StorageUtils'
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -16,17 +15,13 @@ const useStyles = makeStyles({
   },
 })
 
-const doctor = getStorageItem('doctorInfo', true)
-const clinicName = doctor.clinic.name
 
-const PatientsInClinicChart = () => {
-  const reducerData = useSelector(
-    ({ patientInClinic }) => patientInClinic.doctorDashboard
-  )
+const IssuedReportChart = () => {
+  const reducerData = useSelector(({ issuedReports }) => issuedReports.LabDashboard)
   if (!reducerData) {
     window.location.reload()
   }
-  const monthlyRegisteredUsers = reducerData.patientCountInClinic
+  const issuedReports = reducerData.monthlyIssuedReports
   const materializeUIClasses = useStyles()
   const state = {
     labels: [
@@ -49,20 +44,20 @@ const PatientsInClinicChart = () => {
         backgroundColor: [
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',
-          '#00ff00',
+          'rgb(0,255,0,0.5)',
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',
-          '#00ff00',
+          'rgb(0,255,0,0.5)',
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',
-          '#00ff00',
+          'rgb(0,255,0,0.5)',
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',
-          '#00ff00',
+          'rgb(0,255,0,0.5)',
         ],
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 0.2,
-        data: monthlyRegisteredUsers,
+        data: issuedReports,
       },
     ],
   }
@@ -70,18 +65,18 @@ const PatientsInClinicChart = () => {
     return (
       <Card>
         <CardHeader
-          title={`Registered Patients In ${clinicName} Clinic`}
+          title={`Monthly Issued Reports Count`}
           style={{ backgroundColor: '#145da0', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
         <CardContent>
           <div style={{ width: '19cm', height: '11cm', marginLeft: '0cm' }}>
-            <Line
+            <Bar
               data={state}
               options={{
                 title: {
                   display: true,
-                  text: 'Average Rainfall per month',
+                  text: '',
                   fontSize: 20,
                 },
                 legend: {
@@ -101,4 +96,4 @@ const PatientsInClinicChart = () => {
     )
   }
 }
-export default withReducer('patientInClinic', reducer)(PatientsInClinicChart)
+export default withReducer('issuedReports', reducer)(IssuedReportChart)
