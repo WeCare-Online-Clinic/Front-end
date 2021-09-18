@@ -2,7 +2,7 @@ import axios from 'axios'
 import Constants from '../../../../../../../utils/Constants'
 
 class ViewReportService {
-  getReportProfileDetailsById(id) {
+  getReportProfileDetailsById(id) {    
     return axios.get(Constants.API_BASE_URL + '/getReportProfile/' + id)
   }
   

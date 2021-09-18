@@ -1,9 +1,16 @@
 import axios from 'axios'
 import Constants from '../../../../../../../utils/Constants'
 
-class ReportService { 
+class ReportService {
+
+
+
   saveReport(report) {
-    return axios.post(Constants.API_BASE_URL + '/addReport/', report)
+    return axios.post(Constants.API_BASE_URL + '/addReport/', report, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
   }
 
   getReport() {
@@ -12,7 +19,7 @@ class ReportService {
 
 
   getPatients() {
-    return axios.get(Constants.API_BASE_URL + '/getPatients/' );
+    return axios.get(Constants.API_BASE_URL + '/getPatients/');
   }
 
   getTests() {

@@ -1,26 +1,24 @@
 import {
-    ON_GET_REPORT_PROFILE_BY_ID,  
+    ON_GET_REPORT_BY_ID,
 } from "../action/ViewReportAction";
-import * as _ from 'lodash'
+
+
 const initialState = {
 
-    reportProfile: [{}],
-  
+    reportProfile: {}
+
 
 };
 const ViewReportReducer = function (state = initialState, action) {
-    
     switch (action.type) {
-    
-        case ON_GET_REPORT_PROFILE_BY_ID: {    
-            // let localreportProfile = _.cloneDeep(action.payload);  
+        case ON_GET_REPORT_BY_ID: {
             return {
                 ...state,
-                reportProfile: [...action.payload]
+                reportProfile: { ...action.payload }
             }
 
-        } 
-        
+        }
+
         default: {
 
             return state;
