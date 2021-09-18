@@ -125,12 +125,13 @@ const NurseViewDoctor = React.lazy(() =>
     './components/pages/Actors/Nurse/ViewDoctor/ViewDoctors/ViewDoctorsBase'
   )
 )
+const NurseAddLabTest = React.lazy(() =>
+  import('./components/pages/Actors/Nurse/AddLabTests/AddLabTestBase')
+)
 const NurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Nurse/ViewQueue')
 )
-const NurseAddLabTest = React.lazy(() =>
-  import('./components/pages/Actors/Nurse/AddLabTest')
-)
+
 /* ------------------ */
 
 /* --- Lab Tech Pages --- */
