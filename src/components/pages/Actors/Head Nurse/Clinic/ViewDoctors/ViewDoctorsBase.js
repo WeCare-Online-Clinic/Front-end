@@ -11,7 +11,7 @@ import * as Actions from '../store/actions/doctor.add.edit.action'
 import DoctorDataTable from './DoctorDataTable'
 
 function ViewDoctorsBase() {
-  //   const reducerData = useSelector(({doctor}) => doctor.doctorAddEdit);
+    const reducerData = useSelector(({doctor}) => doctor.doctorAddEdit);
 
   const dispatch = useDispatch()
   useEffect(() => {
