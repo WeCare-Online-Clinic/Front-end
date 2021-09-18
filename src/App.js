@@ -197,7 +197,7 @@ const HeadNurseSendMessage = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Notifications')
 )
 const HeadNurseAddLabTest = React.lazy(() =>
-  import('./components/pages/Actors/Head Nurse/AddLabTest')
+  import('./components/pages/Actors/Head Nurse/AddLabTests/AddLabTestBase')
 )
 const HeadNurseHandleRequest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/DateTime')
@@ -205,6 +205,7 @@ const HeadNurseHandleRequest = React.lazy(() =>
 const HeadNurseManageRequest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ManageRequest')
 )
+
 
 const loading = (
   <div className='pt-3 text-center'>
