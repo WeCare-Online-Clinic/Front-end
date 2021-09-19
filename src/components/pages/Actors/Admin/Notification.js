@@ -8,8 +8,6 @@ import { Grid, makeStyles } from '@material-ui/core'
 import NotificationDataTable from '../../../Table/NotificationDataTable'
 import Message from '../../../Notification/Message'
 
-
-
 const useStyles = makeStyles({
   dataCard: {
     backgroundColor: '#fff',
@@ -26,7 +24,13 @@ function Notification() {
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div
+          style={{
+            padding: '20px',
+            minHeight: '880px',
+            backgroundColor: '#ebf5f7',
+          }}
+        >
           <Content />
         </div>
       }
@@ -38,12 +42,12 @@ function Content() {
   const classes = useStyles()
   return (
     <Grid container spacing={5}>
-    <Grid  item sm={6}>
-        <Message />  
-    </Grid>
-    <Grid  item sm={6}>
+      <Grid item sm={6}>
+        <Message />
+      </Grid>
+      <Grid item sm={6}>
         <NotificationDataTable />
-    </Grid>
+      </Grid>
     </Grid>
   )
 }

@@ -41,7 +41,7 @@ function Content(props) {
   return (
     <Grid
       container
-      style={{ paddingLeft: '20px', paddingRight: '20px' }}
+      style={{ paddingLeft: '20px', minHeight: '880px', paddingRight: '20px' }}
       spacing={5}
     >
       <Grid className={classes.dataCard} item sm={12}>

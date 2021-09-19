@@ -162,7 +162,13 @@ function Consultation() {
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ backgroundColor: '#ebf5f7', padding: '20px' }}>
+        <div
+          style={{
+            backgroundColor: '#ebf5f7',
+            minHeight: '880px',
+            padding: '20px',
+          }}
+        >
           {clinicStarted && clinicDate && (
             <Content
               clinicInfo={clinicDate}
@@ -216,7 +222,7 @@ function Consultation() {
             </Alert>
           )}
 
-          {getData && !clinicStarted && !noClinic && (
+          {getData && !clinicStarted && !clinicEnded && (
             <Alert
               severity='info'
               action={

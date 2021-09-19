@@ -197,7 +197,7 @@ function ViewQueue() {
       sidebar={<Sidebar menuItems={headnurseMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ backgroundColor: '#ebf5f7' }}>
+        <div style={{ backgroundColor: '#ebf5f7', minHeight: '880px' }}>
           {clinicDate && (
             <Content
               clinicInfo={clinicDate}

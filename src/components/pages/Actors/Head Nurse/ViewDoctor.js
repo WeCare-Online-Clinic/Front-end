@@ -7,7 +7,6 @@ import { headnurseMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import DoctorDataTable from '../../../Table/DoctorDataTable'
 
-
 const useStyles = makeStyles({
   dataCard: {
     backgroundColor: '#fff',
@@ -24,7 +23,13 @@ function ViewDoctor() {
       sidebar={<Sidebar menuItems={headnurseMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div
+          style={{
+            padding: '20px',
+            minHeight: '880px',
+            backgroundColor: '#ebf5f7',
+          }}
+        >
           <Content />
         </div>
       }
@@ -37,15 +42,13 @@ function Content() {
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
       <Grid className={classes.dataCard} item sm={12}>
-      <h3 style={{ color: '#000000' }} align='center'>Doctors</h3>
-      <DoctorDataTable />
-          </Grid>
-     
-          
+        <h3 style={{ color: '#000000' }} align='center'>
+          Doctors
+        </h3>
+        <DoctorDataTable />
+      </Grid>
     </Grid>
-   
   )
 }
-
 
 export default ViewDoctor

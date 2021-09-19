@@ -28,10 +28,18 @@ const useStyles = makeStyles({
     padding: '0px',
     margin: '0px',
   },
+  card1: {
+    minWidth: 'inherit',
+    border: '1px solid #bdc3cb',
+    padding: '0px',
+    margin: '10px',
+    backgroundColor: '#25D366',
+    borderRadius: '10px 10px 10px 0px;',
+  },
   cardHeader: {
     textAlign: 'center',
-    color: '#3f51b5',
-    backgroundColor: '#fff',
+    backgroundColor: '#3f51b5',
+    color: '#fff',
     margin: '2px',
   },
   cardContent: {
@@ -81,7 +89,13 @@ function Notifications() {
       sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div
+          style={{
+            padding: '20px',
+            minHeight: '880px',
+            backgroundColor: '#ebf5f7',
+          }}
+        >
           <Content />
         </div>
       }
@@ -91,7 +105,7 @@ function Notifications() {
 
 function Content() {
   const classes = useStyles()
-  const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
+  const [rowsPerPage, setRowsPerPage] = useState(4) // set no.of rows per page
   const [pagePrivate, setPagePrivate] = useState(0)
   const [pagePublic, setPagePublic] = useState(0)
   const [messageList, setMessageList] = useState({
@@ -140,16 +154,34 @@ function Content() {
                 pagePrivate * rowsPerPage + rowsPerPage
               )
               .map((row) => (
-                <CardContent className={classes.cardContent}>
-                  <List>
-                    <ListItem>{row.date}</ListItem>
-                    <Divider />
-                    <ListItem>{row.time}</ListItem>
-                    <Divider />
-                    <ListItem>{row.message}</ListItem>
-                    <Divider />
-                  </List>
-                </CardContent>
+                <Card className={classes.card1}>
+                  <CardContent
+                    style={{
+                      color: '#333',
+                      fontSize: '20px',
+                    }}
+                  >
+                    <Grid container>
+                      <Grid item sm={4}></Grid>
+                      <Grid item sm={4}>
+                        {'Sent : ' + row.date}
+                      </Grid>
+                      <Grid item sm={4}>
+                        {row.time}
+                      </Grid>
+
+                      <Grid
+                        item
+                        sm={12}
+                        style={{
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {row.message}
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </Card>
               ))}
           <CardActions className={classes.cardActions}>
             <TablePagination
@@ -163,7 +195,7 @@ function Content() {
               onChangeRowsPerPage={handleRowsPerPageChange}
               page={pagePrivate}
               rowsPerPage={rowsPerPage}
-              rowsPerPageOptions={[5, 8, 15]}
+              rowsPerPageOptions={[4, 8, 15]}
             />
           </CardActions>
         </Card>
@@ -183,16 +215,40 @@ function Content() {
                 pagePublic * rowsPerPage + rowsPerPage
               )
               .map((row) => (
-                <CardContent className={classes.cardContent}>
-                  <List>
-                    <ListItem>{row.date}</ListItem>
-                    <Divider />
-                    <ListItem>{row.time}</ListItem>
-                    <Divider />
-                    <ListItem>{row.message}</ListItem>
-                    <Divider />
-                  </List>
-                </CardContent>
+                <Card className={classes.card1}>
+                  <CardContent
+                    style={{
+                      color: '#333',
+                      fontSize: '20px',
+                    }}
+                  >
+                    <Grid container>
+                      <Grid item sm={4}>
+                        {'Clinic : ' + row.clinic.name}
+                      </Grid>
+                      <Grid item sm={4}>
+                        {'Sent : ' + row.date}
+                      </Grid>
+                      <Grid item sm={4}>
+                        {row.time}
+                      </Grid>
+                      {row.clinicDate && (
+                        <Grid item sm={12}>
+                          {'Clinic Date : ' + row.clinicDate.date}
+                        </Grid>
+                      )}
+                      <Grid
+                        item
+                        sm={12}
+                        style={{
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {row.message}
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </Card>
               ))}
           <CardActions className={classes.cardActions}>
             <TablePagination

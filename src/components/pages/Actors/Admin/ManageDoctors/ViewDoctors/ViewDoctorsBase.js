@@ -11,24 +11,24 @@ import * as Actions from '../store/actions/doctor.add.edit.action'
 import DoctorDataTable from './DoctorDataTable'
 import { getStorageItem } from '../../../../../../utils/StorageUtils'
 
-const adminDetails= getStorageItem('adminInfo', true);
+const adminDetails = getStorageItem('adminInfo', true)
 
 function ViewDoctorsBase() {
   //   const reducerData = useSelector(({doctor}) => doctor.doctorAddEdit);
 
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log("useEffect");
+    console.log('useEffect')
     dispatch(Actions.getDoctors())
-  },[])
+  }, [])
 
   return (
     <Layout
-      header={<Header user={adminDetails.name}/>}
+      header={<Header user={adminDetails.name} />}
       sidebar={<DoctorSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px' }}>
+        <div style={{ padding: '20px', minHeight: '880px' }}>
           <DoctorDataTable />
         </div>
       }

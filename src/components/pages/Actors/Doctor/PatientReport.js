@@ -72,7 +72,13 @@ function PatientReport(props) {
       sidebar={<Sidebar menuItems={doctorMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div
+          style={{
+            padding: '20px',
+            minHeight: '880px',
+            backgroundColor: '#ebf5f7',
+          }}
+        >
           <Content patient={patient} />
         </div>
       }

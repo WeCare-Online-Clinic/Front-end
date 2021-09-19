@@ -7,7 +7,7 @@ import AddDoctors from './AddDoctors'
 import { adminMenuItems } from '../../../../../Sidebar/menuItem'
 import { getStorageItem } from '../../../../../../utils/StorageUtils'
 
-const adminDetails= getStorageItem('adminInfo', true);
+const adminDetails = getStorageItem('adminInfo', true)
 
 function AddDoctorBase() {
   return (
@@ -16,7 +16,7 @@ function AddDoctorBase() {
       sidebar={<AdminSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px' }}>
+        <div style={{ padding: '20px', minHeight: '880px' }}>
           <AddDoctors />
         </div>
       }
