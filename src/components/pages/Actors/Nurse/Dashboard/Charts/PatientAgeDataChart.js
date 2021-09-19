@@ -56,7 +56,7 @@ const PatientAgeDataChart = () => {
     {
         return (
             <Card >
-                <CardHeader title={"Patients ( Age )"} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
+                <CardHeader title={"Patients In Clinic According To Age"} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
                 <CardContent>
                     <div style={{ width: "17cm", height: "11cm", marginLeft: '2cm' }}>
                         <Bar

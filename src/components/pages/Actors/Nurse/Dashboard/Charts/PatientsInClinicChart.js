@@ -59,7 +59,7 @@ const PatientsInClinicChart = () => {
   {
     return (
       <Card >
-        <CardHeader title={`Monthly Regstered Patients In ${clinicName} Clinic(2021)`} style={{ backgroundColor: '#3f51b5',textAlign: 'center' }} classes={{title: materializeUIClasses.headerTitle}}></CardHeader>
+        <CardHeader title={`Registered Patients In ${clinicName} Clinic`} style={{ backgroundColor: '#3f51b5',textAlign: 'center' }} classes={{title: materializeUIClasses.headerTitle}}></CardHeader>
         <CardContent>
           <div style={{ width: "19cm", height: "11cm", marginLeft: '0cm' }}>
             <Line

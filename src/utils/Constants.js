@@ -1,5 +1,5 @@
 const Constants = {
-  //API_BASE_URL: 'https://wecarehospital.azurewebsites.net/wecare',
+  // API_BASE_URL: 'https://wecarehospital.azurewebsites.net/wecare',
 
   API_BASE_URL: 'http://localhost:8080/wecare',
 

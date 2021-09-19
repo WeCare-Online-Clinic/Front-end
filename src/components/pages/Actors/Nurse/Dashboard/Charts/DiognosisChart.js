@@ -24,6 +24,7 @@ const useStyles = makeStyles({
 });
 const nurse = getStorageItem('nurseInfo', true);
 const clinicId = nurse.clinic.id;
+const clinicName=nurse.clinic.name;
 console.log("clinicId in dig chart ", clinicId);
 
 
@@ -83,7 +84,7 @@ const DiognosisChart = () => {
   {
     return (
       <Card >
-        <CardHeader title={"Diognosis Count"} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
+        <CardHeader title={`Diognosis Of Patients In ${clinicName} Clinic`} style={{ backgroundColor: '#3f51b5', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }}></CardHeader>
         <CardContent>
           <div style={{ width: "17cm", height: "11cm", marginLeft: '2cm' }}>
             <Pie
