@@ -50,7 +50,7 @@ const NurseDashboardBase = () => {
   }, [])
   return (
     <Layout
-      header={<Header user={nurseName} />}
+      header={<Header user="J.T.Prasadi Thilakarathne" />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={

@@ -26,7 +26,7 @@ function ViewPatientBase() {
 
   return (
     <Layout
-      header={<Header user='Kasun' />}
+      header={<Header user="J.T.Prasadi Thilakarathne" />}
       sidebar={<Sidebar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={

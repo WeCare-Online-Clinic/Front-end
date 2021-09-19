@@ -22,7 +22,7 @@ useEffect(() => {
 
   return (
     <Layout
-      header={<Header />}    
+      header={<Header user="J.T.Prasadi Thilakarathne" />}    
       sidebar={<SideBar menuItems={nurseMenuItems} />}
       footer={<Footer />}
       content={
