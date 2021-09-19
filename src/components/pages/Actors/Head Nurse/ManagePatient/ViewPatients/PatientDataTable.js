@@ -78,7 +78,7 @@ const PatientDataTable = (props) => {
     { text: 'Diagnosis' },
     { text: 'Contact' },
     { text: 'Profile' },
-    { text: 'Lab Report' },
+    // { text: 'Lab Report' },
     
   ]
   
@@ -184,7 +184,7 @@ const PatientDataTable = (props) => {
                               View
                             </Button>
                           </TableCell>
-                          <TableCell>
+                          {/* <TableCell>
                           <Button
                               variant='contained'
                               fullWidth='true'
@@ -208,7 +208,7 @@ const PatientDataTable = (props) => {
                             />
                             <button onClick={() => this.refs.fileInput.click()}>Upload File</button> */}
                         
-                          </TableCell>
+                          {/* </TableCell> */} 
                         </TableRow>
                       )
                     )}
