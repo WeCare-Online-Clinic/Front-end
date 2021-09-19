@@ -1,11 +1,9 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
-import { useSelector } from 'react-redux'
-// import withReducer from '../../../../../../store/withReducer'
-// import reducer from '../store/reducer/index'
+import {Line} from 'react-chartjs-2'
 import { makeStyles } from '@material-ui/styles'
 import { getStorageItem } from '../../../../../../utils/StorageUtils'
 import { Card, CardContent, CardHeader } from '@material-ui/core'
+import { LeakAdd } from '@material-ui/icons'
 
 const useStyles = makeStyles({
   headerTitle: {
@@ -18,59 +16,48 @@ const useStyles = makeStyles({
 
 
 
-const PatientStaticChart = () => {
-  // const reducerData = useSelector(
-  //   ({ patientInClinic }) => patientInClinic.doctorDashboard
-  // )
-  // if (!reducerData) {
-  //   window.location.reload()
-  // }
-  // const monthlyRegisteredUsers = reducerData.patientCountInClinic
-  const materializeUIClasses = useStyles()
+const PatientStaticChart = ({stat}) => {
+  
+  const materializeUIClasses = useStyles();
+  let statLabels=[];
+  let data1=[];
+  let data2=[];
+  
+  let dataLength=stat.dataList && stat.dataList.length;
+  for(var i=0; i<dataLength; i++){
+    statLabels[i] = stat.dataList[i].date;    
+  }
+  for(var j=0; j<dataLength; j++){
+    data1[j]=stat.dataList[j].data1;   
+  }  
+  for(var z=0; z<dataLength; z++){
+    data2[z]=stat.dataList[z].data2;
+  }  
   const state = {
-    labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ],
+    labels: statLabels,      
     datasets: [
       {
-        label: `Suger Level `,
-        backgroundColor: [
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-          'rgba(75,192,192,0.5)',
-          'rgba(0,0,205,0.5)',
-        ],
+        label:`${stat.field1}` ,
+        backgroundColor: '#00ff00',        
         borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 0.2,
-        // data: monthlyRegisteredUsers,
-        data:[2,5,7,3,8,9,4,5,7,3,5,6]
+        borderWidth: 0.2, 
+        fill: true, 
+        data:data1
       },
+      {
+        label: `${stat.field2}` ,
+        backgroundColor: 'rgba(0,0,205,0.5)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 0.2,        
+        data:data2
+      }
     ],
   }
   {
     return (
       <Card>
         <CardHeader
-          title={"Patient Statics"}
+          title={stat.testName && stat.testName}
           style={{ backgroundColor: '#3f51b5', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>
@@ -78,22 +65,22 @@ const PatientStaticChart = () => {
           <div style={{ width: '19cm', height: '11cm', marginLeft: '0cm' }}>
             <Line
               data={state}
-              options={{
-                title: {
-                  display: true,
-                  text: 'Average Rainfall per month',
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: 'right',
-                },
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                  },
-                },
-              }}
+              // options={{
+              //   title: {
+              //     display: true,
+              //     text: 'Average Rainfall per month',
+              //     fontSize: 20,
+              //   },
+              //   legend: {
+              //     display: true,
+              //     position: 'right',
+              //   },
+              //   scales: {
+              //     y: {
+              //       beginAtZero: true,
+              //     },
+              //   },
+              // }}
             />
           </div>
         </CardContent>
@@ -102,4 +89,4 @@ const PatientStaticChart = () => {
   }
 }
 export default PatientStaticChart
-// export default withReducer('patientInClinic', reducer)(PatientsInClinicChart)
+

@@ -4,19 +4,23 @@ import LineStatCard from '../../../../StatCard/LineStatCard'
 import ClinicInfoCard from './ClinicInfoCard'
 import PatientClinicDataCard from '../PatientClinicDataCard/PatientClinicDataCard'
 import PatientStaticChart from './Charts/PatientStaticChart'
+import { useSelector } from 'react-redux'
+import withReducer from '../../../../../store/withReducer'
+import reducer from './store/reducer'
 const useStyles = makeStyles({
     dataCard: {
-      backgroundColor: '#fff',
-      borderRadius: '5px',
-      marginBottom: '10px',
-      marginTop: '10px',
-    },  
-  })
+        backgroundColor: '#fff',
+        borderRadius: '5px',
+        marginBottom: '10px',
+        marginTop: '10px',
+    },
+})
 
 const Dashboard = (props) => {
-    const patient=props.patient;
-    console.log("patient :",patient)
+    const patient = props.patient; 
     const classes = useStyles()
+    const reducerData = useSelector(({ patientStatistics }) => patientStatistics.patientDashboard)
+ 
     return (
         <Grid
             container
@@ -35,16 +39,21 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item sm={12}>
                 <Grid container style={{ marginBottom: '10px' }} spacing={5}>
-                    <Grid className={classes.dataCard} item sm={6}>
-                        <PatientStaticChart />
-                    </Grid>
-                    <Grid className={classes.dataCard} item sm={6}>
-                        <PatientStaticChart />
-                    </Grid>
+                    {reducerData.patientStats && reducerData.patientStats
+                        .map((stat, index) => (
+                            <React.Fragment>
+                                <Grid className={classes.dataCard} item sm={6}>
+                                    <PatientStaticChart  stat={stat}/>
+                                </Grid>
+                            </React.Fragment>
+                        )
+                        )}
+
+
                 </Grid>
             </Grid>
         </Grid>
     )
 }
 
-export default Dashboard
+export default withReducer('patientStatistics', reducer)(Dashboard)

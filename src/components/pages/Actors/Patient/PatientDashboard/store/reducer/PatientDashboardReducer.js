@@ -1,7 +1,7 @@
 import {
     ON_GET_NEXT_CLINIC_DETAILS,
     ON_GET_REQUEST_DATES,
-    // ON_GET_REGISTERED_USERS
+    PATIENT_STATISTICS
 
 } from "../action/PatientDashboardAction";
 import * as _ from 'lodash'
@@ -9,6 +9,7 @@ const initialState = {
     
     nextClinicDetails: [],
     requestDateList:[],
+    patientStats:[]
 
 
 
@@ -27,6 +28,13 @@ const PatientDashboardReducer = function (state = initialState, action) {
             return {
                 ...state,
                 requestDateList: [...action.payload]
+            }
+
+        }
+        case PATIENT_STATISTICS: {            
+            return {
+                ...state,
+                patientStats: [...action.payload]
             }
 
         }

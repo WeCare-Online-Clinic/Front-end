@@ -11,6 +11,9 @@ class PatientDashboardService {
   saveRequest(requestObject) {
     return axios.post(Constants.API_BASE_URL + '/savePatientRequest/',requestObject)
   }
+  getPatientStatistics(patientId){
+    return axios.get(Constants.API_BASE_URL + '/getPatientStatistics/'+patientId)
+  }
 
 }
 

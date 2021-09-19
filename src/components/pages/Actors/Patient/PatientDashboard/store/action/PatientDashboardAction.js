@@ -7,10 +7,10 @@ toast.configure()
 
 export const ON_GET_NEXT_CLINIC_DETAILS = 'ON_GET_NEXT_CLINIC_DETAILS';
 export const ON_GET_REQUEST_DATES = 'ON_GET_REQUEST_DATES';
-// export const ON_GET_REGISTERED_USERS="ON_GET_REGISTERED_USERS";
+export const PATIENT_STATISTICS="ON_GET_PATIENT_STATISTICS";
 
 export function getNextClinicDetails(patientId) {
-    const request = PatientDashboardService.getNextClinicDetails(patientId);   
+    const request = PatientDashboardService.getNextClinicDetails(patientId);
     return (dispatch, getState) => {
         request.then((response) => {
             dispatch({
@@ -22,11 +22,11 @@ export function getNextClinicDetails(patientId) {
         })
     };
 }
-export function getRequestDates(requestDateObject) {  
-    const request = PatientDashboardService.getRequestDates(requestDateObject);   
+export function getRequestDates(requestDateObject) {
+    const request = PatientDashboardService.getRequestDates(requestDateObject);
     return (dispatch, getState) => {
         request.then((response) => {
-            console.log("Request date responce",response.data)
+            console.log("Request date responce", response.data)
             dispatch({
                 type: ON_GET_REQUEST_DATES,
                 payload: response.data
@@ -37,16 +37,32 @@ export function getRequestDates(requestDateObject) {
     };
 }
 
-export function saveRequest(requestObject) {   
-    const request = PatientDashboardService.saveRequest(requestObject);   
+export function saveRequest(requestObject) {
+    const request = PatientDashboardService.saveRequest(requestObject);
     return (dispatch, getState) => {
-        request.then((response) => {  
-            if(response.data=='Patient Request save pass'){
+        request.then((response) => {
+            if (response.data == 'Patient Request save pass') {
                 toast.info('Request Sent', { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
             }
-            else{
+            else {
                 toast.error(response.data, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
             }
+
+        }).catch((error) => {
+            console.log("error in save request")
+        })
+    };
+}
+export function getPatientStatistics(patientId) {
+    const request = PatientDashboardService.getPatientStatistics(patientId);
+    return (dispatch, getState) => {
+        request.then((response) => {
+
+            console.log("Patients statics", response.data)
+            dispatch({
+                type: PATIENT_STATISTICS,
+                payload: response.data
+            })
 
         }).catch((error) => {
             console.log("error in save request")

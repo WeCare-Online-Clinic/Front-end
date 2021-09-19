@@ -45,6 +45,7 @@ const DashboardBase = () => {
   useEffect(() => {
     get_patient_info()
     dispatch(Actions.getNextClinicDetails(patientId))
+    dispatch(Actions.getPatientStatistics(patientId))
   }, [])
 
   return (
