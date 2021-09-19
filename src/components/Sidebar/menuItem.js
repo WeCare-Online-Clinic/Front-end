@@ -162,19 +162,25 @@ export const nurseMenuItems = [
   },
 
   {
-    icon: <AssignmentIcon style={{ color: '#fff' }} />,
-    name: 'Lab Reports',
-    children: [
-      {
-        name: 'View Patient List',
-        url: '/nurse/viewpatient',
-      },
-      {
-        name: 'Add Lab Tests',
-        url: '/nurse/addlabtest',
-      },
-    ],
+    icon: <ListAltIcon style={{ color: '#fff' }} />,
+    name: 'Patient List',
+    url: '/nurse/viewpatient',
   },
+
+ // {
+ //   icon: <AssignmentIcon style={{ color: '#fff' }} />,
+ //   name: 'Lab Reports',
+ //  children: [
+ //     {
+ //       name: 'View Patient List',
+ //       url: '/nurse/viewpatient',
+ //     },
+ //     {
+ //       name: 'Add Lab Tests',
+ //       url: '/nurse/addlabtest',
+ //     },
+//    ],
+//  },
 
   // {
   //   icon: <PersonIcon style={{ color: '#fff' }} />,
