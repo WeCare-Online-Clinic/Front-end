@@ -15,12 +15,13 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Constants from '../../utils/Constants'
+import { getStorageItem } from '../../utils/StorageUtils'
 
 const useStyles = makeStyles({
   card: {
     position: 'absolute',
     width: '70%',
-    minHeight: '550px',
+    minHeight: '450px',
     border: '2px solid #3f51b5',
   },
   cardHeader: {
@@ -62,16 +63,18 @@ const useStyles = makeStyles({
   },
 })
 
-async function send_data(requestData, date) {
+const CLINIC = getStorageItem('nurseInfo', true).clinic
+
+async function send_data(patient, date) {
   //console.log('clinic date available')
 
   let status = false
-  console.log(requestData, date)
 
   try {
     await axios
-      .post(Constants.API_BASE_URL + '/change/appointment/form/', {
-        patientRequest: requestData,
+      .post(Constants.API_BASE_URL + '/add/appointment/', {
+        patient: patient,
+        clinic: CLINIC,
         date: date,
       })
       .then((res) => {
@@ -99,7 +102,7 @@ function getModalStyle() {
   }
 }
 
-function ChangeAppointment(props) {
+function AddAppointment(props) {
   const history = useHistory()
   const [modalStyle] = React.useState(getModalStyle)
   const classes = useStyles()
@@ -177,7 +180,7 @@ function ChangeAppointment(props) {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       })
-    } else if (!search(nextDay, requestData.clinic.clinicSchedules)) {
+    } else if (!search(nextDay, CLINIC.clinicSchedules)) {
       isValid = false
       toast.error('No Clinic Schedule On ' + nextDay, {
         position: toast.POSITION.TOP_CENTER,
@@ -249,7 +252,7 @@ function ChangeAppointment(props) {
                   name='name'
                   className='form-control'
                   type='text'
-                  value={requestData.patient.name}
+                  value={requestData.name}
                   disabled={true}
                 ></input>
               </div>
@@ -267,29 +270,10 @@ function ChangeAppointment(props) {
                   name='clinic'
                   className='form-control'
                   type='text'
-                  value={requestData.clinic.name}
+                  value={CLINIC.name}
                   disabled={true}
                 ></input>
               </div>
-              <div className='form-group mb-3'>
-                <label
-                  style={{
-                    fontSize: '20px',
-                    color: '#3f51b5',
-                    paddingLeft: '10px',
-                  }}
-                >
-                  Current Date
-                </label>
-                <input
-                  name='clinic'
-                  className='form-control'
-                  type='text'
-                  value={requestData.clinicDate.date}
-                  disabled={true}
-                ></input>
-              </div>
-
               <div className='input-group'>
                 <button
                   className='btn btn-primary'
@@ -358,4 +342,4 @@ function ChangeAppointment(props) {
   )
 }
 
-export default ChangeAppointment
+export default AddAppointment

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
-
 import {
   Card,
   CardActions,
@@ -15,9 +13,34 @@ import {
   TablePagination,
   Grid,
   CardHeader,
+  Button,
 } from '@material-ui/core'
-import { QueueData } from './QueueData'
 import { useHistory } from 'react-router-dom'
+import { getStorageItem } from '../../utils/StorageUtils'
+import Constants from '../../utils/Constants'
+import axios from 'axios'
+import AddAppointment from '../Forms/AddAppointment'
+import Modal from '@material-ui/core/Modal'
+
+const CLINIC = getStorageItem('nurseInfo', true).clinic.id
+console.log(CLINIC)
+
+async function get_available_dates() {
+  let availableDates = []
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/clinic/available/dates/' + CLINIC)
+      .then((res) => {
+        if (res.status == 200) {
+          availableDates = res.data
+        }
+      })
+    return availableDates
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,6 +108,9 @@ function show_gender(gender) {
 
 const PatientQueueTable = (props) => {
   const history = useHistory()
+  const [availableDates, setAvailableDates] = useState([])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [formData, setFormData] = useState(null)
   const [queue, setQueue] = useState([])
   const [queueNo, setQueueNo] = useState(1)
   const [rowsPerPage, setRowsPerPage] = useState(8) // set no.of rows per page
@@ -96,12 +122,30 @@ const PatientQueueTable = (props) => {
     { text: 'Patient Name' },
     { text: 'Age' },
     { text: 'Gender' },
+    { text: 'Consulted/Not' },
   ]
 
   useEffect(() => {
     setQueue(props.queue)
     setQueueNo(props.queueNo)
   }, [props])
+
+  useEffect(() => {
+    get_available_dates().then((res) => {
+      setAvailableDates(res)
+    })
+  }, [props])
+
+  console.log(availableDates)
+
+  const renderForm = (request) => {
+    setModalOpen(true)
+    setFormData(request)
+  }
+
+  const handleClose = () => {
+    setModalOpen(false)
+  }
 
   const classes = useStyles()
 
@@ -145,6 +189,7 @@ const PatientQueueTable = (props) => {
                       <span>{col.text}</span>
                     </TableCell>
                   ))}
+
                   <TableCell
                     style={{ borderBottom: '1px solid #000' }}
                   ></TableCell>
@@ -176,7 +221,7 @@ const PatientQueueTable = (props) => {
                               {appointment.visited && (
                                 <TableCell
                                   className={classes.highlightCell}
-                                  style={{ color: 'green' }}
+                                  style={{ color: 'white' }}
                                 >
                                   Consulted
                                 </TableCell>
@@ -184,11 +229,24 @@ const PatientQueueTable = (props) => {
                               {!appointment.visited && (
                                 <TableCell
                                   className={classes.highlightCell}
-                                  style={{ color: 'red' }}
+                                  style={{ color: 'white' }}
                                 >
                                   Not Consulted
                                 </TableCell>
                               )}
+                              <TableCell className={classes.highlightCell}>
+                                <Button
+                                  variant='contained'
+                                  fullWidth='true'
+                                  color='primary'
+                                  disabled={appointment.visited}
+                                  onClick={() => {
+                                    renderForm(appointment.patient)
+                                  }}
+                                >
+                                  Add Appointment Date
+                                </Button>
+                              </TableCell>
                             </>
                           )}
                           {appointment.queueNo != queueNo && (
@@ -221,6 +279,19 @@ const PatientQueueTable = (props) => {
                                   Not Consulted
                                 </TableCell>
                               )}
+                              <TableCell>
+                                <Button
+                                  variant='contained'
+                                  fullWidth='true'
+                                  color='primary'
+                                  disabled={appointment.visited}
+                                  onClick={() => {
+                                    renderForm(appointment.patient)
+                                  }}
+                                >
+                                  Add Appointment Date
+                                </Button>
+                              </TableCell>
                             </>
                           )}
                         </TableRow>
@@ -243,6 +314,13 @@ const PatientQueueTable = (props) => {
           rowsPerPageOptions={[5, 8, 10, 15]}
         />
       </CardActions>
+
+      <Modal open={modalOpen} onClose={handleClose}>
+        <AddAppointment
+          availableDates={availableDates}
+          requestData={formData}
+        />
+      </Modal>
     </Card>
   )
 }
