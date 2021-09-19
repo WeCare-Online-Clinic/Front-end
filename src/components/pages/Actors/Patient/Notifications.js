@@ -106,9 +106,7 @@ function Content() {
       setMessageList(res)
       console.log(res)
       if (res) {
-        setClinicMessages(
-          messageList.clinicDateMessages.concat(messageList.clinicMessages)
-        )
+        setClinicMessages(res.clinicDateMessages.concat(res.clinicMessages))
       }
     })
   }, [])

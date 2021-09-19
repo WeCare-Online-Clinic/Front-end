@@ -9,8 +9,9 @@ import { doctorMenuItems } from '../../../Sidebar/menuItem'
 import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
 import PatientReportsTable from '../../../Table/PatientReportsTable'
-import ReportCard from '../../../ClinicCard/ReportCard'
 import { getStorageItem } from '../../../../utils/StorageUtils'
+import axios from 'axios'
+import Constants from '../../../../utils/Constants'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -21,7 +22,50 @@ const useStyles = makeStyles({
   },
 })
 
-function PatientReport() {
+async function get_clinic_reports(id) {
+  let reports = []
+
+  try {
+    await axios
+      .get(
+        Constants.API_BASE_URL +
+          '/clinic/report/list/' +
+          id +
+          '/' +
+          getStorageItem('doctorInfo', true).clinic.id
+      )
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          reports = res.data
+        }
+      })
+    return reports
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function get_all_reports(id) {
+  let reports = []
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/getLabReportDetails/' + id)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          reports = res.data
+        }
+      })
+    return reports
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function PatientReport(props) {
+  let patient = props.location.state
   return (
     <Layout
       header={<Header user={getStorageItem('doctorName')} />}
@@ -29,26 +73,32 @@ function PatientReport() {
       footer={<Footer />}
       content={
         <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
-          <Content />
+          <Content patient={patient} />
         </div>
       }
     ></Layout>
   )
 }
 
-function Content() {
+function Content(props) {
   const classes = useStyles()
-  const [isData, setIsData] = useState(false)
+  const [reports, setReports] = useState([])
 
-  useEffect(() => {})
-
-  const renderData = () => {
-    setIsData(true)
-  }
+  useEffect(() => {
+    if (getStorageItem('user', true).role == 'doctor') {
+      get_clinic_reports(props.patient.id).then((res) => {
+        setReports(res)
+      })
+    } else if (getStorageItem('user', true).role == 'patient') {
+      get_all_reports(props.patient.id).then((res) => {
+        setReports(res)
+      })
+    }
+  }, [])
 
   return (
     <Grid container style={{ padding: '20px' }} spacing={5}>
-      <Grid className={classes.dataCard} item sm={6}>
+      <Grid className={classes.dataCard} item sm={12}>
         <Card>
           <CardHeader
             style={{
@@ -57,13 +107,10 @@ function Content() {
               borderBottom: '1px solid #000',
               backgroundColor: '#3f51b5',
             }}
-            title='Nimal De Silva'
+            title={props.patient.name}
           ></CardHeader>
         </Card>
-        <PatientReportsTable func={renderData} />
-      </Grid>
-      <Grid item sm={6} className={classes.dataCard}>
-        {isData && <ReportCard />}
+        {reports && <PatientReportsTable reports={reports} />}
       </Grid>
     </Grid>
   )

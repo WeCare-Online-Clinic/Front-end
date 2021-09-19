@@ -200,7 +200,12 @@ function ClinicDataCard(props) {
               style={{ width: 'inherit' }}
               variant='contained'
               color='secondary'
-              onClick={() => history.push('patientreport')}
+              onClick={() =>
+                history.push({
+                  pathname: 'patientreport',
+                  state: props.patient,
+                })
+              }
             >
               Lab Tests
             </Button>
