@@ -10,6 +10,10 @@ import { Grid, makeStyles } from '@material-ui/core'
 import { Card, CardHeader } from '@material-ui/core'
 import PatientReportsTable from '../../../Table/PatientReportsTable'
 import ReportCard from '../../../ClinicCard/ReportCard'
+import Constants from '../../../../utils/Constants'
+import axios from 'axios'
+import PatientHisCard from '../../../ClinicCard/PatientHisCard'
+import { getStorageItem } from '../../../../utils/StorageUtils'
 
 const useStyles = makeStyles({
   dataCard: {
@@ -19,6 +23,27 @@ const useStyles = makeStyles({
     marginTop: '10px',
   },
 })
+
+const patientId = getStorageItem('patientInfo', true).id
+
+async function get_all_reports(id) {
+  let reports = []
+
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/getLabReportDetails/' + id)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+          reports = res.data
+        }
+      })
+    return reports
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 
 function LabReports() {
   return (
@@ -38,6 +63,16 @@ function LabReports() {
 function Content() {
   const classes = useStyles()
   const [isData, setIsData] = useState(false)
+
+  const [reports, setReports] = useState([])
+
+  useEffect(() => {
+    
+      get_all_reports(patientId).then((res) => {
+        setReports(res)
+      })
+    
+  }, [])
 
   useEffect(() => {})
 
@@ -59,7 +94,7 @@ function Content() {
             title='Nimal De Silva'
           ></CardHeader>
         </Card>
-        <PatientReportsTable func={renderData} />
+        {reports && <PatientReportsTable reports={reports} />}
       </Grid>
       <Grid item sm={6} className={classes.dataCard}>
         {isData && <ReportCard />}
