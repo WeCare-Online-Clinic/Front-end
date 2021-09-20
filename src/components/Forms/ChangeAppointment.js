@@ -122,10 +122,17 @@ function ChangeAppointment(props) {
     if (isValid) {
       send_data(requestData, newDate).then((res) => {
         console.log(res)
-        toast.info('Appointment Added Successfully', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        })
+        if (res) {
+          toast.info('Appointment Added Successfully', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else if (!res) {
+          toast.info('Appointment Already Available For Selected Date', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        }
         //window.location.reload()
         // console.log(res)
       })

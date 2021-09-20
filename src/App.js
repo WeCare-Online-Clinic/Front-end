@@ -170,9 +170,7 @@ const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard/HeadNurseDashboadBase')
 )
 const HeadNurseViewPatient = React.lazy(() =>
-  import(
-    './components/pages/Actors/Head Nurse/ManagePatient/ViewPatients/ViewPatient'
-  )
+  import('./components/pages/Actors/Head Nurse/ViewPatient')
 )
 const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
@@ -206,7 +204,6 @@ const HeadNurseHandleRequest = React.lazy(() =>
 const HeadNurseManageRequest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ManageRequest')
 )
-
 
 const loading = (
   <div className='pt-3 text-center'>

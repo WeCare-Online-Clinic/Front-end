@@ -125,10 +125,17 @@ function AddAppointment(props) {
     if (isValid) {
       send_data(requestData, newDate).then((res) => {
         console.log(res)
-        toast.info('Appointment Added Successfully', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        })
+        if (res) {
+          toast.info('Appointment Added Successfully', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        } else if (!res) {
+          toast.info('Appointment Already Available For Selected Date', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+          })
+        }
         //window.location.reload()
         // console.log(res)
       })
@@ -173,7 +180,7 @@ function AddAppointment(props) {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       })
-    } else if (nextDate < currDate) {
+    } else if (!nextDate > currDate) {
       console.log('next clinic date error')
       isValid = false
       toast.error('Next Clinic Date Is Invalid', {
