@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 })
 
 const patientId = getStorageItem('patientInfo', true).id
+const patientName=getStorageItem('patientInfo', true).name
 
 async function get_all_reports(id) {
   let reports = []
@@ -48,7 +49,7 @@ async function get_all_reports(id) {
 function LabReports() {
   return (
     <Layout
-      header={<Header user='Dr. Asela' />}
+      header={<Header user={patientName}/>}
       sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
@@ -91,7 +92,7 @@ function Content() {
               borderBottom: '1px solid #000',
               backgroundColor: '#3f51b5',
             }}
-            title='Nimal De Silva'
+            title='Lab Reports'
           ></CardHeader>
         </Card>
         {reports && <PatientReportsTable reports={reports} />}

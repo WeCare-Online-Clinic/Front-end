@@ -1,17 +1,15 @@
-import React, { useEffect,useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './addreport.css'
 import test from '../../.././../../assets/img/test.png'
 import AddReportForm from './AddReportForm'
 import { useReactToPrint } from 'react-to-print';
+import { render } from '@testing-library/react';
 
 
 
 
 const AddLabReport = ({ testDetails }) => {
-    const componentRef = useRef();
-    const handlePrint = useReactToPrint({
-      content: () => componentRef.current,
-    });
+
     useEffect(() => {
 
     }, [])
@@ -73,20 +71,32 @@ const AddLabReport = ({ testDetails }) => {
                                     <AddReportForm testDetails={testDetails} />
 
                                 </div>
-                                {/* <div>
-                                    <AddReportForm ref={componentRef} />
-                                    <button onClick={handlePrint}>Print this out!</button>
-                                </div> */}
+
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </div>                        
             </div>
 
         </React.Fragment>
     )
 }
 
+const Example = () => {
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
+    return (
+
+        <div>
+            <AddReportForm ref={componentRef} />
+            <button onClick={handlePrint}>Print this out!</button>
+        </div>
+    )
+
+}
+
+// render(<Example />,document.querySelector("#root"));
 export default AddLabReport
 // export default withReducer('patientProfile', reducer)(AddLabTest);

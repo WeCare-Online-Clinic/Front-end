@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 import SearchBar from './SearchBar'
+
 
 
 import {
@@ -27,6 +28,7 @@ import {
 import { DoctorData } from './DoctorData'
 import PageviewIcon from '@material-ui/icons/Pageview'
 import { useHistory } from 'react-router-dom'
+import { useReactToPrint } from 'react-to-print'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,9 +67,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const DoctorDataTable = (props) => {
+  const componentRef = useRef();
+  const handePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
+
   const reducerData = useSelector(({ doctors }) => doctors.doctorAddEdit)
 
-  const doctorList=reducerData.doctorList;
+  const doctorList = reducerData.doctorList;
 
 
 
@@ -94,8 +101,13 @@ const DoctorDataTable = (props) => {
     setRowsPerPage(event.target.value)
   }
 
+
+  const generatePDF = () => {
+    handePrint();
+
+  }
   return (
-    <div className="">
+    <div className="" id="content">
       <Card padding={'0'} className={clsx(classes.root, className)}>
 
         <Grid
@@ -103,17 +115,21 @@ const DoctorDataTable = (props) => {
           style={{ backgroundColor: '#3f51b5', borderRadius: '5px', alignItems: 'flex-end' }}
         >
 
-          <nav className="navbar navbar-expand " style={{ float:'right' }}>
+          <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+            <div>
+              <button style={{ marginRight: '22cm',color: 'balck',width: '100px', height: '40px'}} onClick={generatePDF}>Print List</button>
+              
+            </div>
             <div className="collapse navbar-collapse"   >
               <SearchBar />
             </div>
           </nav>
 
-          
+
         </Grid>
 
 
-        <CardContent className={classes.content}>
+        <CardContent className={classes.content} ref={componentRef}>
           <PerfectScrollbar>
             <div className={classes.inner}>
               <Table>

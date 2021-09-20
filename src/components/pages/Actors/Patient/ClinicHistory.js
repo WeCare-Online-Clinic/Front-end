@@ -61,7 +61,7 @@ function ClinicHistory(props) {
       sidebar={<Sidebar menuItems={patientMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', backgroundColor: '#ebf5f7' }}>
+        <div style={{ padding: '20px', backgroundColor: '#ebf5f7',minHeight:'889px' }}>
           <Content />
         </div>
       }

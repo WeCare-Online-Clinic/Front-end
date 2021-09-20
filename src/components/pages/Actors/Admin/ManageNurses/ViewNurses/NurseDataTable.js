@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useRef} from 'react'
 import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 import SearchBar from './SearchBar'
+import { useReactToPrint } from 'react-to-print'
 
 
 
@@ -64,10 +65,13 @@ const useStyles = makeStyles((theme) => ({
 
 const NurseDataTable = (props) => {
 
-  const reducerData = useSelector(({ nurses }) => nurses.manageNurse);
-  console.log("nurse list", reducerData.nurseList);
+  const componentRef = useRef();
+  const handePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
+  const reducerData = useSelector(({ nurses }) => nurses.manageNurse); 
   const nurseList = reducerData.nurseList;
-  console.log('nurseList',nurseList)
+
 
   const history = useHistory()
   const { className } = props
@@ -94,6 +98,10 @@ const NurseDataTable = (props) => {
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(event.target.value)
   }
+  const generatePDF = () => {
+    handePrint();
+
+  }
 
   return (
     <div>
@@ -106,13 +114,17 @@ const NurseDataTable = (props) => {
             style={{ backgroundColor: '', borderRadius: '5px' }}
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+              <div>
+                <button style={{ marginRight: '22cm', color: 'balck', width: '100px', height: '40px' }} onClick={generatePDF}>Print List</button>
+
+              </div>
               <div className="collapse navbar-collapse"   >
                 <SearchBar />
               </div>
             </nav>
           </Grid>
         </Grid>
-        <CardContent className={classes.content}>
+        <CardContent className={classes.content} ref={componentRef}>
           <PerfectScrollbar>
             <div className={classes.inner}>
               <Table>

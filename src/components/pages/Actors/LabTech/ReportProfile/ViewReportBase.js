@@ -33,7 +33,7 @@ function ViewReportBase() {
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '50px' }}>
+        <div style={{ padding: '50px' ,minHeight: '890px'}}>
           <ViewReport />
         </div>
       }

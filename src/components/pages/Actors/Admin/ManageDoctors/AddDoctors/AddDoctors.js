@@ -182,7 +182,7 @@ const AddDoctors = (props) => {
     <div className='container mt-5'>
       <div className='card '>
         <div className='title'>
-          <h3 className='text-center'>Register New Doctor</h3>
+          <h3 className='text-center mt-2'>Register New Doctor</h3>
         </div>
         <div className='row'>
           <div className='col'>

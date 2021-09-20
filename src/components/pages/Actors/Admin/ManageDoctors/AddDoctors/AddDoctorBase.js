@@ -16,7 +16,7 @@ function AddDoctorBase() {
       sidebar={<AdminSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', minHeight: '880px' }}>
+        <div style={{ padding: '20px', minHeight: '889px' }}>
           <AddDoctors />
         </div>
       }

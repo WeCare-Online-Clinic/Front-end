@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { makeStyles } from '@material-ui/styles'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 import SearchBar from './SearchBar'
+import { useReactToPrint } from 'react-to-print'
 
 import {
   Card,
@@ -67,6 +68,14 @@ const ReportDataTable = (props) => {
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
   const [page, setPage] = useState(0) // set page no
+  const componentRef = useRef();
+  const handePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
+  const generatePDF = () => {
+    handePrint();
+
+  }
 
   const tableHeaders = [
     // add table header names
@@ -99,13 +108,17 @@ const ReportDataTable = (props) => {
             style={{ backgroundColor: '', borderRadius: '5px' }}
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
+            <div>
+              <button style={{ marginRight: '20cm',color: 'balck',width: '100px', height: '40px'}} onClick={generatePDF}>Print List</button>
+              
+            </div>
               <div className="collapse navbar-collapse"   >
                 <SearchBar />
               </div>
             </nav>
           </Grid>
         </Grid>
-        <CardContent className={classes.content}>
+        <CardContent className={classes.content} ref={componentRef} >
           <PerfectScrollbar>
             <div className={classes.inner}>
               <Table>

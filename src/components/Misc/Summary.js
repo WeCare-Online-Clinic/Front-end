@@ -9,11 +9,10 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useRef } from 'react'
 import SummaryPatientsTable from '../Table/SummaryPatientsTable'
 import { Alert, AlertTitle } from '@material-ui/lab'
-
+import { useReactToPrint } from 'react-to-print'
 const useStyles = makeStyles({
   paperContainer: {
     display: 'flex',
@@ -64,6 +63,15 @@ function Summary(props) {
     setNotVisited(props.summary.notVisitedPatients.length)
   }, [props])
 
+  const componentRef = useRef();
+  const handePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
+  const generatePDF = () => {
+    handePrint();
+
+  }
+
   return (
     <div className={classes.paperContainer}>
       {page != 1 && (
@@ -78,7 +86,7 @@ function Summary(props) {
         </IconButton>
       )}
       {page == 1 && (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} ref={componentRef} >
           <div className={classes.header}>
             <h4>Clinic Summary</h4>
           </div>
@@ -141,6 +149,9 @@ function Summary(props) {
                   <Divider />
                 </List>
               )}
+              <div className="mr-5" style={{marginTop:'4cm'}}>
+              <button style={{color: 'balck',width: '100px', height: '40px'}} onClick={generatePDF}>Print Summary</button>
+              </div>
             </Grid>
           </Grid>
         </Paper>

@@ -30,7 +30,7 @@ useEffect(() => {
       sidebar={<SideBar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px' }}>
+        <div style={{ padding: '20px',minHeight: '890px' }}>
         <LabReportTable/>
           
         </div>

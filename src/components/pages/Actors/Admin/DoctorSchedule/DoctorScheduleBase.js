@@ -25,7 +25,7 @@ function DoctorScheduleBase() {
       sidebar={<Sidebar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '100px', minHeight: '880px' }}>
+        <div style={{ padding: '100px', minHeight: '889px' }}>
           <DoctorSchedule />
         </div>
       }

@@ -28,7 +28,7 @@ function ViewDoctorsBase() {
       sidebar={<DoctorSideBar menuItems={adminMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ padding: '20px', minHeight: '880px' }}>
+        <div style={{ padding: '20px', minHeight: '889px' }}>
           <DoctorDataTable />
         </div>
       }

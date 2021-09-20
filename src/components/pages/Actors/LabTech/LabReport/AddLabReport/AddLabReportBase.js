@@ -21,7 +21,7 @@ const AddLabReportBase=()=> {
       sidebar={<Sidebar menuItems={labtechMenuItems} />}
       footer={<Footer />}
       content={
-        <div style={{ backgroundColor: '#fff' }}>
+        <div style={{ backgroundColor: '#fff',minHeight: '775px', }}>
           <AddLabReport testDetails={testDetails} />
         </div>
       }
