@@ -57,7 +57,7 @@ const UserTypeChart = () => {
   {
     return (
       <Card>
-        <CardHeader title={"User Types"} style={{ backgroundColor: 'rgba(0,0,205,0.5)', opacity: '0.9', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }} ></CardHeader>
+        <CardHeader title={"Registered User Types"} style={{ backgroundColor: 'rgba(0,0,205,0.5)', opacity: '0.9', textAlign: 'center' }} classes={{ title: materializeUIClasses.headerTitle }} ></CardHeader>
         <CardContent>
 
           <div className="mt-3 mb-3 " style={{ width: "10cm", height: "10cm", marginLeft: '6cm' }}>

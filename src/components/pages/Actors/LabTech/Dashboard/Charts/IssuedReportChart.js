@@ -40,7 +40,7 @@ const IssuedReportChart = () => {
     ],
     datasets: [
       {
-        label: `Regstered Patients `,
+        label: `Number of issued reports `,
         backgroundColor: [
           'rgba(75,192,192,0.5)',
           'rgba(0,0,205,0.5)',

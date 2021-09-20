@@ -15,6 +15,9 @@ export function getPatientProfileByNIC(nic) {
     const request =AddLabTestService.getPatientProfileByNIC(nic);
     return (dispatch, getState) => {
         request.then((response) => {
+            if(response.data==null){
+                toast.error("Not found patient!!", { position: toast.POSITION.TOP_CENTER, autoClose: 3000 });
+            }
             // console.log("patient profile:",response.data)
             // getTestTypes(response.data);
             dispatch({
@@ -22,7 +25,7 @@ export function getPatientProfileByNIC(nic) {
                 payload: response.data
             })
         }).catch((error)=>{
-            // console.log("patient profile error",)
+            toast.error("Not found patient!!", { position: toast.POSITION.TOP_CENTER, autoClose: 3000 });
         })
     };
 }
