@@ -17,20 +17,20 @@ import {
 
 const useStyles = makeStyles({
   card: {
-    width: 'inherit',
-    height: '100%',
-    border: '1px solid #bdc3cb',
+    width: '95%',
+    height: '400px',
+    border: '2px solid #3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
-    color: '#fff',
+    backgroundColor: '#fff',
     borderBottom: '1px solid #000',
-    backgroundColor: '#3f51b5',
+    color: '#3f51b5',
   },
   cardContent: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: '16px',
+    fontSize: '20px',
   },
   cardActions: {
     display: 'flex',
@@ -40,7 +40,11 @@ const useStyles = makeStyles({
   textField: {
     padding: '5px',
     color: '#4c5355',
-    fontSize: '16px',
+    fontSize: '20px',
+  },
+  avatar: {
+    fontSize: '18px',
+    // backgroundColor: red[500],
   },
 })
 

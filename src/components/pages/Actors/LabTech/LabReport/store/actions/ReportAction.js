@@ -13,6 +13,9 @@ export const ON_GET_TESTS = '[ON_GET_TESTS] ON_GET_TEST';
 export const ON_GET_REPORT_PROFILE_BY_ID = '[ON_GET_REPORT_PROFILE_BY_ID] ON_GET_REPORT';
 export const ON_GET_REPORT_PROFILE_BY_PATIENT = '[ON_GET_REPORT_PROFILE_BY_PATIENT] ON_GET_REPORT';
 export const ON_GET_REPORT_PROFILE_BY_TEST = '[ON_GET_REPORT_PROFILE_BY_TEST] ON_GET_REPORT';
+export const ON_GET_REPORT_BY_PATIENT_NAME='[ON_GET_REPORT_BY_PATIENT_NAME] ON_GET_REPORT'
+export const ON_GET_REPORT_BY_PATIENT_NIC='[ON_GET_REPORT_BY_PATIENT_NIC] _ON_GET_REPORTS'
+export const ON_GET_REPORT_BY_TEST_TYPE='[ON_GET_REPORT_BY_TEST_TYPE] _ON_GET_REPORTS'
 
 
 export function saveReport(report) {
@@ -50,36 +53,6 @@ export function getReport() {
   };
 }
 
-
-export function getClinicDays(data) {
-  console.log("data clinic", data);
-  const request = ReportService.getClinicDays(data)
-
-  return (dispatch, getState) => {
-    return request.then((response) => {
-      // console.log("days",response.data);
-      return dispatch({
-        type: ON_GET_CLINIC_DAYS,
-        payload: response.data
-      });
-    }
-    );
-  };
-}
-
-export function getPatients() {
-  const request = ReportService.getPatients()
-
-  return (dispatch, getState) => {
-    return request.then((response) => {
-      console.log('patients', response.data)
-      return dispatch({
-        type: ON_GET_PATIENTS,
-        payload: response.data,
-      })
-    })
-  }
-}
 
 export function getTests() {
   const request = ReportService.getTests()
@@ -154,4 +127,60 @@ export function getReportProfileDetailsByTest(testId) {
     })
   };
 }
+export function getPatientReportsByPatientName(patientName) {
+  const request = ReportService.getPatientReportsByPatientName(patientName);
+  return (dispatch, getState) => {
+    request.then((response) => {
+      if (response.data.length == 0) {
+        toast.error('Patient name not found ', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+      }
+      else {
+        dispatch({
+          type: ON_GET_REPORT_BY_PATIENT_NAME,
+          payload: response.data
+        })
+      }
+    }).catch((error) => {
+      console.log("error report details",)
+    })
+  };
+}
+export function getPatientReportsByPatientNIC(patientNIC) {
+  const request = ReportService.getPatientReportsByPatientNIC(patientNIC);
+  return (dispatch, getState) => {
+    request.then((response) => {
+      if (response.data.length == 0) {
+        toast.error('Patient patientNIC not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+      }
+      else {
+        dispatch({
+          type: ON_GET_REPORT_BY_PATIENT_NIC,
+          payload: response.data
+        })
+      }
+    }).catch((error) => {
+      console.log("error report details",)
+    })
+  };
+}
+export function getPatientReportsByTestType(reportType) {
+  const request = ReportService.getPatientReportsByTestType(reportType);
+  return (dispatch, getState) => {
+    request.then((response) => { 
+      console.log('jsdgsjdhsgdj:',response.data)    
+      if (response.data.length == 0) {
+        toast.error('Test Type not found', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
+      }
+      else {
+        dispatch({
+          type: ON_GET_REPORT_BY_TEST_TYPE,
+          payload: response.data
+        })
+      }
+    }).catch((error) => {
+      console.log("error report details",)
+    })
+  };
+}
+
 

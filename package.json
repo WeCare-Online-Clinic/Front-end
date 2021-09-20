@@ -48,6 +48,7 @@
     "react-scripts": "^4.0.3",
     "react-slideshow-image": "^3.5.0",
     "react-social-icons": "^5.6.1",
+    "react-to-print": "^2.13.0",
     "react-toastify": "^7.0.4",
     "reactjs-popup": "^2.0.5",
     "redux": "^4.1.1",

@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   card: {
     width: 'inherit',
     minHeight: '100%',
-    border: '1px solid #bdc3cb',
+    border: '2px solid #3f51b5',
   },
   cardHeader: {
     textAlign: 'center',
@@ -83,7 +83,7 @@ const useStyles = makeStyles({
 })
 
 const PatientClinicDataCard=(props)=> {
-  console.log(props)
+  console.log("sdsdsd",props)
   let id = props.patient.id
   const patient=props.patient;
   const history = useHistory()
@@ -112,13 +112,11 @@ const PatientClinicDataCard=(props)=> {
     <Card className={classes.card}>
       <CardHeader
         title={
-          'Previous Clinic Data (' +
-          (clinicData && clinicData.clinicAppointment.clinicDate.date) +
-          ')'
+          `Previous Clinic Data - ${clinicData && clinicData.doctor.clinic.name} (${clinicData && clinicData.clinicAppointment.clinicDate.date}) `
         }
         className={classes.cardHeader}
       />
-      <Grid container style={{ backgroundColor: '#3f51b5', padding: '20px' }}>
+      <Grid container style={{ backgroundColor: '', padding: '20px' }}>
         <Grid
           item
           sm={6}

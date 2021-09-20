@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect,useRef } from 'react'
 import './addreport.css'
-import profile from '../../.././../../assets/img/patient.png'
 import test from '../../.././../../assets/img/test.png'
-import reducer from '../store/reducer'
-import withReducer from '../../../../../../store/withReducer'
-import { useDispatch, useSelector } from 'react-redux'
-import * as Actions from '../store/actions'
 import AddReportForm from './AddReportForm'
+import { useReactToPrint } from 'react-to-print';
 
 
 
-const AddLabReport = ({ testDetails }) => { 
+
+const AddLabReport = ({ testDetails }) => {
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
     useEffect(() => {
 
     }, [])
@@ -42,16 +43,16 @@ const AddLabReport = ({ testDetails }) => {
                                         <tr className="my"><th><hr /> </th><th><hr /></th></tr>
 
                                     </tbody>
-                                    
+
                                     <tbody>
                                         <tr className="my"><th>Test :</th><th>{testDetails && testDetails.test.name}</th></tr>
                                         <tr className="my"><th>Tested Date :</th><th>{testDetails && testDetails.testDate}</th></tr>
                                         <tr className="my"><th>Tested Time :</th><th>{testDetails && testDetails.testTime}</th></tr>
-                                        
+
                                     </tbody>
                                 </table>
-                               
-                  
+
+
 
 
 
@@ -72,6 +73,10 @@ const AddLabReport = ({ testDetails }) => {
                                     <AddReportForm testDetails={testDetails} />
 
                                 </div>
+                                {/* <div>
+                                    <AddReportForm ref={componentRef} />
+                                    <button onClick={handlePrint}>Print this out!</button>
+                                </div> */}
                             </div>
                         </div>
                     </div>

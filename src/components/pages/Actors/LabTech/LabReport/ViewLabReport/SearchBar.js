@@ -1,21 +1,24 @@
-
-import React, {useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Constants from '../../../../../../utils/Constants';
 import * as _ from 'lodash'
-import * as Actions from '../store/actions/ReportAction'
-import { useDispatch} from 'react-redux';
-// const Tests = Constants.TESTS;
+import * as Actions from '../store/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
+const TestTypes = Constants.TESTTYPES;
 
 let initFormValue = {
-  
-    reportId: '',
-   
+    patientName: '',
+    patientNIC: '',
+    testType: ''
 
 }
 
 let initError = {
-   
-    reportIdErrors: {}
+    patientNameErrors: {},
+    patientNICErrors: {}
 }
 
 function SearchBar() {
@@ -29,40 +32,91 @@ function SearchBar() {
     const onMyChange = (v) => {
         let value = v.target.value;
         let name = v.target.name;
-        setFormValue({ ...formValue, [name]: value });
-    }
+        if (name == 'testType') {
+            switch (value) {
+                case "fbc": {
+                    setFormValue({ ...formValue, [name]: 1 })
+                }
+                    break;
+                case "bio": {
+                    setFormValue({ ...formValue, [name]: 2 })
+                }
+                    break;
+                case "diagnoscic": {
+                    setFormValue({ ...formValue, [name]: 3 })
+                }
+                    break;
+                case "iron": {
+                    setFormValue({ ...formValue, [name]: 4 })
+                }
+                    break;
+                default: {
+                    setFormValue({ ...formValue, [name]: '' })
+                }
 
+
+            }
+
+        }
+        else {
+            setFormValue({ ...formValue, [name]: value });
+
+        }
+
+
+    }
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validation();
         if (isValid) {
             console.log("formValues before submit", formValue);
-            if (Object.keys(formValue.reportId).length != 0) {
-                // console.log('report id',formValue.reportId);
-                dispatch(Actions.getReportProfileDetailsById(formValue.reportId));
+            if (Object.keys(formValue.patientName).length != 0) {
+                // console.log('doctor id',formValue.doctorId);
+                dispatch(Actions.getPatientReportsByPatientName(formValue.patientName));
 
             }
-        
+            else {
+                if (Object.keys(formValue.patientNIC).length != 0) {
+                    // console.log('doctor name',formValue.doctorName);
+                    dispatch(Actions.getPatientReportsByPatientNIC(formValue.patientNIC));
+                }
+                else {
+                    if (Object.keys(formValue.testType.length != 0)) {
+                        // console.log('clinic name',formValue.clinicName);
+                        dispatch(Actions.getPatientReportsByTestType(formValue.testType));
+                    }
+
+                }
+            }
+
+
+        }
         else {
             console.log("fail");
-            alert('Invalid Search Input');
+            toast.error('Invalid Search Input', { position: toast.POSITION.TOP_CENTER, autoClose: 2000 })
         }
+
     }
- }
     const validation = () => {
         let localErrors = _.cloneDeep(errors); //make a seperate local errors object and assign it to localErrors 
         let isValid = true;
-        //validating test name 
-       
-
-        //validating report id 
-        if (formValue.reportId.trim().length > 10) {
-            let reportIdInvalid = Object.assign({}, { invalidId: 'Invalid Id' })
-            localErrors.reportIdErrors = reportIdInvalid;
+        //validating patient name 
+        if (formValue.patientName.trim().length > 30) {        
             isValid = false;
         }
         else {
-            localErrors.reportIdErrors.invalidId = null;
+            isValid = true;
+        }
+
+        //validating patient id 
+        if (formValue.patientNIC.trim().length > 10) {
+    
+            isValid = false;
+        }
+        else {                  
+
+                isValid = true;
+           
         }
 
 
@@ -75,46 +129,46 @@ function SearchBar() {
 
         <form className="form " >
             <ul className='nav-menu'  >
-                <li style={{ display: 'inline-block',margin:'0px 5px' }}>
+                <li style={{ display: 'inline-block', margin: '0px 5px' }}>
                     <input className="form-control me-2"
                         style={{ height: '50px' }}
                         type="search"
-                        placeholder="Report Id"
+                        placeholder="Patient Name"
                         aria-label="Search"
-                        name="reportId"
+                        name="patientName"
                         onChange={onMyChange}
-                        value={formValue.reportId}
+                        value={formValue.patientName}
                     />
                 </li>
-                {/* <li style={{ display: 'inline-block', margin:'0px 5px' }}>
+                <li style={{ display: 'inline-block', margin: '0px 5px' }}>
                     <input className="form-control me-2"
                         style={{ height: '50px' }}
                         type="search"
-                        placeholder="Test Name"
+                        placeholder="Patient NIC"
                         aria-label="Search"
-                        name="testName"
-                        value={formValue.testName}
+                        name="patientNIC"
+                        value={formValue.patientNIC}
                         onChange={onMyChange}
                     />
-                </li> */}
-                {/* <li style={{ display: 'inline-block',margin:'0px 5px' }}>
+                </li>
+                <li style={{ display: 'inline-block', margin: '0px 5px' }}>
                     <select
-                        name="testId"
-                        id="test"
+                        name="testType"
+                        id="testType"
                         className="form-control"
                         style={{ height: '50px', width: '150px' }}
-                        value={Tests.value}
+                        value={TestTypes.value}
                         onChange={onMyChange}
                     >
                         {
-                            Tests.map((value, index) => {
+                            TestTypes.map((value, index) => {
                                 return <option key={index} value={value.value} >{value.label}</option>
                             })
                         }
 
                     </select>
-                </li> */}
-                <li style={{ display: 'inline-block' ,margin:'0px 5px'}}>
+                </li>
+                <li style={{ display: 'inline-block', margin: '0px 5px' }}>
                     <button className="btn"
                         type="submit"
                         style={{ backgroundColor: '#b3246b', color: 'white', fontWeight: 'bold', width: '100px', height: '50px' }}
@@ -125,11 +179,7 @@ function SearchBar() {
             </ul>
         </form>
 
-)
-}  
-
+    )
+}
 
 export default SearchBar
-
-
-

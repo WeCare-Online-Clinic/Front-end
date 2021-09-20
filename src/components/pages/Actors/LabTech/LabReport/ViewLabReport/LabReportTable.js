@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import withReducer from '../../../../../../store/withReducer'
 import reducer from '../store/reducer'
 import SearchBar from './SearchBar'
+
 import {
   Card,
   CardActions,
@@ -62,7 +63,6 @@ const ReportDataTable = (props) => {
   const reducerData = useSelector(({ report }) => report.manageReport);
   console.log("report list", reducerData.reportList);
   const reportList = reducerData.reportList;
-
   const history = useHistory()
   const { className } = props
   const [rowsPerPage, setRowsPerPage] = useState(10) // set no.of rows per page
@@ -100,7 +100,7 @@ const ReportDataTable = (props) => {
           >
             <nav className="navbar navbar-expand " style={{ float: 'right' }}>
               <div className="collapse navbar-collapse"   >
-              <SearchBar />
+                <SearchBar />
               </div>
             </nav>
           </Grid>
@@ -172,7 +172,7 @@ const ReportDataTable = (props) => {
                               variant='contained'
                               fullWidth='true'
                               color={report.issuedDate == null ? "primary" : "#f44336"}
-                              onClick={()=>
+                              onClick={() =>
                                 history.push({
                                   pathname: 'addlabreport',
                                   state: report
@@ -218,6 +218,7 @@ const ReportDataTable = (props) => {
           />
         </CardActions>
       </Card>
+   
     </div>
   )
 }

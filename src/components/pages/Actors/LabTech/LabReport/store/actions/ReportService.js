@@ -16,11 +16,7 @@ class ReportService {
   getReport() {
     return axios.get(Constants.API_BASE_URL + '/getReport')
   }
-
-
-  getPatients() {
-    return axios.get(Constants.API_BASE_URL + '/getPatients/');
-  }
+ 
 
   getTests() {
     return axios.get(Constants.API_BASE_URL + '/getTests')
@@ -38,6 +34,18 @@ class ReportService {
   
   getReportProfileDetailsByTest(testId) {
     return axios.get(Constants.API_BASE_URL + '/getReportProfileDetailsByTest/' + testId);
+  }
+
+  // search
+  getPatientReportsByPatientName(patientName){
+    return axios.get(Constants.API_BASE_URL + '/getPatientReportsByPatientName/' + patientName);
+  }
+  getPatientReportsByPatientNIC(patientNIC){
+    return axios.get(Constants.API_BASE_URL + '/getPatientReportsByPatientNIC/' + patientNIC);
+  }
+  getPatientReportsByTestType(testType){
+    console.log("TestType",testType)
+    return axios.get(Constants.API_BASE_URL + '/getPatientReportsByTestType/' + testType);
   }
 
 
