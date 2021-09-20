@@ -102,6 +102,9 @@ const LabReports = React.lazy(() =>
 const PatientNotifications = React.lazy(() =>
   import('./components/pages/Actors/Patient/Notifications')
 )
+const PatientProfile = React.lazy(() =>
+  import('./components/pages/Actors/Patient/Profile')
+)
 /* --------------------- */
 
 /* --- Nurse Pages --- */
@@ -170,9 +173,7 @@ const HeadNurseDashboard = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/Dashboard/HeadNurseDashboadBase')
 )
 const HeadNurseViewPatient = React.lazy(() =>
-  import(
-    './components/pages/Actors/Head Nurse/ManagePatient/ViewPatients/ViewPatient'
-  )
+  import('./components/pages/Actors/Head Nurse/ViewPatient')
 )
 const HeadNurseViewQueue = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ViewQueue')
@@ -206,7 +207,6 @@ const HeadNurseHandleRequest = React.lazy(() =>
 const HeadNurseManageRequest = React.lazy(() =>
   import('./components/pages/Actors/Head Nurse/ManageRequest')
 )
-
 
 const loading = (
   <div className='pt-3 text-center'>
@@ -356,6 +356,11 @@ const App = () => {
                 path='/patient/notifications'
                 exact
                 component={PatientNotifications}
+              ></Route>
+              <Route
+                path='/patient/profile'
+                exact
+                component={PatientProfile}
               ></Route>
               {/* --------------------- */}
 

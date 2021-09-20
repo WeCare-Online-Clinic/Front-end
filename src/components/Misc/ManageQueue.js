@@ -166,7 +166,7 @@ function ManageQueue(props) {
             {props.clinicInfo.started && (
               <>
                 <div>
-                  <h5 style={{ color: '#3f51b5' }}>Patient Name: </h5>
+                  <h5 style={{ color: '#3f51b5' }}>Current Patient Name: </h5>
                   <h5 style={{ color: '#000' }}>
                     {patientInfo && patientInfo.patient.name}
                   </h5>
@@ -176,7 +176,9 @@ function ManageQueue(props) {
                   <h5 style={{ color: '#000' }}>{queueNo}</h5>
                 </div>
                 <div>
-                  <h5 style={{ color: '#3f51b5' }}>Patient Left:</h5>
+                  <h5 style={{ color: '#3f51b5' }}>
+                    Patient Remaining in Queue:
+                  </h5>
                   <h5 style={{ color: '#000' }}>{patientsLeft}</h5>
                 </div>
               </>

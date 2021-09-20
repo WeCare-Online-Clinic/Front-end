@@ -70,7 +70,9 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
-export default function PatientProfileCard() {
+export default function PatientProfileCard(props) {
+
+  const patient = props.patient
 
   const classes = useStyles();
   return (
@@ -85,8 +87,8 @@ export default function PatientProfileCard() {
           }
           title={
             <Typography className={classes.title} color="textSecondary" >
-              Mr. Tharush Silva
-            </Typography>
+              {patient.name}
+            </Typography> 
           }
         />
       </div>
@@ -94,63 +96,63 @@ export default function PatientProfileCard() {
         <Grid container alignItems="center"  className={classes.grid}>
           <List  >
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.primary} primary="Clinic ID" />
+              <ListItemText className={classes.primary} primary="Address " />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Gender" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Age" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="NIC" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Address" />
-            </ListItem>
-            <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Contact No" />
+              <ListItemText className={classes.primary} primary="Phone " />
             </ListItem>
             <ListItem className={classes.listitem}>
               <ListItemText className={classes.primary} primary="Email" />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.primary} primary="Clinic" />
+              <ListItemText className={classes.primary} primary="Gender" />
+            </ListItem>
+            <ListItem className={classes.listitem}>
+              <ListItemText className={classes.primary} primary="Birth Date" />
+            </ListItem>
+            <ListItem className={classes.listitem}>
+              <ListItemText className={classes.primary} primary="NIC Number" />
+            </ListItem>
+            <ListItem className={classes.listitem}>
+              <ListItemText className={classes.primary} primary="Registered Date" />
+            </ListItem>
+            <ListItem className={classes.listitem}>
+              <ListItemText className={classes.primary} primary="Registered Date" />
             </ListItem>
           </List>
 
           <List>
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.secondary} secondary=":769P" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.address} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":Male" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.contact} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":43" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.email} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":397465102v" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.gender == 'f' ? 'Female' : 'Male'} />
             </ListItem>
             <ListItem className={classes.listitem} >
-              <ListItemText className={classes.secondary} secondary=":No.2, Flower road, Kandy" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.birthdate.slice(0, patient.birthdate.indexOf("T"))} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":0712325367" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.nic} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":labtec@gmail.com" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.registeredDate.slice(0, patient.registeredDate.indexOf("T"))} />
             </ListItem>
             <ListItem className={classes.listitem}>
-              <ListItemText className={classes.secondary} secondary=":cardiology Clinic" />
+              <ListItemText className={classes.secondary} secondary={patient && patient.id} />
             </ListItem>
           </List>
         </Grid>
       </CardContent>
       
-      <CardActions className={classes.cardaction}>
+      {/* <CardActions className={classes.cardaction}>
         <Button variant="contained" color="primary" className={classes.label}>Update</Button>
-      </CardActions>
+      </CardActions> */}
 
     </Card>
   );

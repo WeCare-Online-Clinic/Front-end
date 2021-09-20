@@ -46,24 +46,6 @@ async function get_clinic_reports(id) {
   }
 }
 
-async function get_all_reports(id) {
-  let reports = []
-
-  try {
-    await axios
-      .get(Constants.API_BASE_URL + '/getLabReportDetails/' + id)
-      .then((res) => {
-        if (res.status == 200) {
-          console.log(res)
-          reports = res.data
-        }
-      })
-    return reports
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 function PatientReport(props) {
   let patient = props.location.state
   return (
@@ -91,15 +73,9 @@ function Content(props) {
   const [reports, setReports] = useState([])
 
   useEffect(() => {
-    if (getStorageItem('user', true).role == 'doctor') {
-      get_clinic_reports(props.patient.id).then((res) => {
-        setReports(res)
-      })
-    } else if (getStorageItem('user', true).role == 'patient') {
-      get_all_reports(props.patient.id).then((res) => {
-        setReports(res)
-      })
-    }
+    get_clinic_reports(props.patient.id).then((res) => {
+      setReports(res)
+    })
   }, [])
 
   return (
