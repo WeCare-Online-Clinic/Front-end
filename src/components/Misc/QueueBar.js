@@ -3,9 +3,13 @@ import axios from 'axios'
 import Constants from '../../utils/Constants'
 import { getStorageItem } from '../../utils/StorageUtils'
 import { useState, useEffect } from 'react'
-import { Card, Grid, makeStyles } from '@material-ui/core'
+import { Card, CardActions, Grid, makeStyles } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
+import { Alert } from '@material-ui/lab'
+import Modal from '@material-ui/core/Modal'
+import ViewPDF from '../Misc/ViewPDF'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 const useStyles = makeStyles({
   queueBar: {
@@ -22,6 +26,22 @@ const useStyles = makeStyles({
     backgroundColor: '#3f51b5',
   },
 })
+
+const clinicId = getStorageItem('doctorInfo', true).clinic.id
+
+async function get_report(id) {
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/get/recent/report/' + id + '/' + clinicId)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+        }
+      })
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 function calculate_age(dob) {
   var dob = new Date(dob)
@@ -48,9 +68,9 @@ function show_gender(gender) {
   }
 }
 
-const clinicId = getStorageItem('doctorInfo', true).clinic.id
-
 function QueueBar(props) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [pdf, setPdf] = useState(null)
   const [patientInfo, setPatientInfo] = useState(null)
   const [queueNo, setQueueNo] = useState()
   const [patientsLeft, setPatientLeft] = useState()
@@ -59,13 +79,25 @@ function QueueBar(props) {
     setQueueNo(props.queueNo)
     setPatientLeft(props.clinicInfo.noPatients - props.queueNo)
     setPatientInfo(props.patientInfo)
-
+    if (props.patientInfo) {
+      get_report(props.patientInfo.patient.id).then((res) => {
+        setPdf(res)
+      })
+    }
     return function cleanup() {
       setPatientInfo(null)
       setQueueNo(0)
       setPatientLeft(0)
     }
   }, [props])
+
+  const renderPdf = () => {
+    setModalOpen(true)
+  }
+
+  const handleClose = () => {
+    setModalOpen(false)
+  }
 
   console.log(patientInfo)
 
@@ -109,7 +141,12 @@ function QueueBar(props) {
               </Button>
             </div>
             <div>
-              <Button variant='contained' color='secondary' size='large'>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='large'
+                onClick={() => renderPdf()}
+              >
                 Recent Lab Report
               </Button>
             </div>
@@ -137,6 +174,32 @@ function QueueBar(props) {
           </Grid>
         </Grid>
       </Grid>
+      <Modal open={modalOpen} onClose={handleClose}>
+        <Grid container>
+          <Grid item sm={12}>
+            <Card className={classes.card}>
+              <CardActions>
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  size='large'
+                  onClick={() => setModalOpen(false)}
+                >
+                  Close
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item sm={12}>
+            {pdf && (
+              <PerfectScrollbar>
+                <ViewPDF reportDetails={pdf} />
+              </PerfectScrollbar>
+            )}
+            {!pdf && <Alert severity='info'>No Reports Available</Alert>}
+          </Grid>
+        </Grid>
+      </Modal>
     </div>
   )
 }

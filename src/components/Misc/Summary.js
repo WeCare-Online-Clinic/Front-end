@@ -119,11 +119,13 @@ function Summary(props) {
                   </ListItem>
                   <Divider />
                   <ListItem>
-                    {summary.clinicDate.startTime.substring(0, 5)}
+                    {summary.clinicDate.startTime &&
+                      summary.clinicDate.startTime.substring(0, 5)}
                   </ListItem>
                   <Divider />
                   <ListItem>
-                    {summary.clinicDate.endTime.substring(0, 5)}
+                    {summary.clinicDate.endTime &&
+                      summary.clinicDate.endTime.substring(0, 5)}
                   </ListItem>
                   <Divider />
                   <ListItem>{summary.clinicDate.noPatients}</ListItem>
