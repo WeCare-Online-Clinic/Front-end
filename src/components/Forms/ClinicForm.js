@@ -146,7 +146,7 @@ function ClinicForm(props) {
         nextClinic: '',
         note: '',
         diagnosis: props.patientInfo.diagnosis,
-        tests: '',
+        LabTests: '',
       })
     }
     if (endSession) {
@@ -262,7 +262,7 @@ function ClinicForm(props) {
       isValid = false
       specialCharacters = true
     }
-    if (data.tests.match('[^A-Za-z0-9.,\t\n ]')) {
+    if (data.labTests.match('[^A-Za-z0-9.,\t\n ]')) {
       isValid = false
       specialCharacters = true
     }
@@ -346,7 +346,7 @@ function ClinicForm(props) {
   }
 
   const addTest = (e) => {
-    let tests = data.tests
+    let tests = data.labTests
     console.log(tests)
     setData({ ...data, ['labTests']: e.currentTarget.innerText })
     setSuggestionOn(false)
@@ -450,7 +450,7 @@ function ClinicForm(props) {
                       name='labTests'
                       className='form-control'
                       type='text'
-                      value={data.tests}
+                      value={data.labTests}
                       onChange={(e) => handleDataChange(e)}
                     ></input>
                     {suggestedTest && suggestionOn && (

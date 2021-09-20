@@ -128,9 +128,12 @@ function Summary(props) {
                   <Divider />
                   <ListItem>{summary.clinicDate.noPatients}</ListItem>
                   <Divider />
-                  <ListItem>{visited}</ListItem>
+                  <ListItem>{summary.clinicDate.visitedPatients}</ListItem>
                   <Divider />
-                  <ListItem>{notVisited}</ListItem>
+                  <ListItem>
+                    {summary.clinicDate.noPatients -
+                      summary.clinicDate.visitedPatients}
+                  </ListItem>
                   <Divider />
                   <ListItem>{summary.clinicDate.nurse.name}</ListItem>
                   <Divider />

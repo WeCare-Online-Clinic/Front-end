@@ -15,7 +15,6 @@ import {
   Button,
 } from '@material-ui/core'
 
-
 const useStyles = makeStyles({
   card: {
     width: 'inherit',
@@ -47,15 +46,20 @@ const useStyles = makeStyles({
 
 const ClinicInfoCard = (props) => {
   const classes = useStyles()
-  const reducerData = useSelector(({ nextClinic }) => nextClinic.patientDashboard);
-  const nextClinicList = reducerData.nextClinicDetails;
+  const reducerData = useSelector(
+    ({ nextClinic }) => nextClinic.patientDashboard
+  )
+  const nextClinicList = reducerData.nextClinicDetails
 
-  const [page, setPage] = useState(1);
-  const startIndex = (page - 1) * 1;
+  const [page, setPage] = useState(1)
+  const startIndex = (page - 1) * 1
   const selectedClinicDetails = nextClinicList.slice(startIndex, startIndex + 1)
-  console.log("reducerData.nextClinicDetails : ",reducerData.nextClinicDetails)
-  console.log("reducerData.nextClinicDetails. length ..........",reducerData.nextClinicDetails.length)
-  const totalPages=reducerData.nextClinicDetails.length/1
+  console.log('reducerData.nextClinicDetails : ', reducerData.nextClinicDetails)
+  console.log(
+    'reducerData.nextClinicDetails. length ..........',
+    reducerData.nextClinicDetails.length
+  )
+  const totalPages = reducerData.nextClinicDetails.length / 1
 
   const handleClick = (num) => {
     setPage(num)
@@ -69,17 +73,28 @@ const ClinicInfoCard = (props) => {
         titleTypographyProps='variant: h4'
       />
       <CardContent>
-
-
         {selectedClinicDetails.map((nextClinic, i) => {
           return (
             <React.Fragment>
-
               <Grid item sm={12}>
-                <div className={classes.textField}>Clinic : {nextClinic.clinicDate.nurse.clinic.name && nextClinic.clinicDate.nurse.clinic.name}</div>
-                <div className={classes.textField}>Clinic Date : {nextClinic.clinicDate.date && nextClinic.clinicDate.date }</div>
-                <div className={classes.textField}>Time : {nextClinic.time && nextClinic.time }</div>
-                <div className={classes.textField}>Queue No : {nextClinic.queueNo && nextClinic.queueNo}</div>
+                <div className={classes.textField}>
+                  Clinic : {nextClinic.clinic && nextClinic.clinic.name}
+                </div>
+                <div className={classes.textField}>
+                  Clinic Date :{' '}
+                  {nextClinic.clinicAppointment.clinicDate.date &&
+                    nextClinic.clinicAppointment.clinicDate.date}
+                </div>
+                <div className={classes.textField}>
+                  Time :{' '}
+                  {nextClinic.clinicAppointment.time &&
+                    nextClinic.clinicAppointment.time}
+                </div>
+                <div className={classes.textField}>
+                  Queue No :{' '}
+                  {nextClinic.clinicAppointment.queueNo &&
+                    nextClinic.clinicAppointment.queueNo}
+                </div>
                 {/* <div className={classes.textField}> Doctor : Dr. Asela</div> */}
               </Grid>
               <CardActions className={classes.cardActions}>
@@ -92,12 +107,8 @@ const ClinicInfoCard = (props) => {
       <CardActions className={classes.cardActions}>
         <Pagination totalPages={totalPages} handleClick={handleClick} />
       </CardActions>
-
     </Card>
   )
 }
 
-
-
-
-export default withReducer('nextClinic', reducer)(ClinicInfoCard);
+export default withReducer('nextClinic', reducer)(ClinicInfoCard)
