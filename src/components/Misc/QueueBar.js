@@ -29,20 +29,6 @@ const useStyles = makeStyles({
 
 const clinicId = getStorageItem('doctorInfo', true).clinic.id
 
-async function get_report(id) {
-  try {
-    await axios
-      .get(Constants.API_BASE_URL + '/get/recent/report/' + id + '/' + clinicId)
-      .then((res) => {
-        if (res.status == 200) {
-          console.log(res)
-        }
-      })
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 function calculate_age(dob) {
   var dob = new Date(dob)
   //calculate month difference from current date in time
@@ -79,17 +65,17 @@ function QueueBar(props) {
     setQueueNo(props.queueNo)
     setPatientLeft(props.clinicInfo.noPatients - props.queueNo)
     setPatientInfo(props.patientInfo)
-    if (props.patientInfo) {
-      get_report(props.patientInfo.patient.id).then((res) => {
-        setPdf(res)
-      })
-    }
+    setPdf(pdf)
+
     return function cleanup() {
       setPatientInfo(null)
       setQueueNo(0)
       setPatientLeft(0)
+      setPdf(null)
     }
   }, [props])
+
+  console.log('pdf', pdf)
 
   const renderPdf = () => {
     setModalOpen(true)

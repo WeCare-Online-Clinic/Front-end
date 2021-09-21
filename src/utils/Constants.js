@@ -1,7 +1,7 @@
 const Constants = {
-  API_BASE_URL: 'https://wecarehospital.azurewebsites.net/wecare',
+  // API_BASE_URL: 'https://wecarehospital.azurewebsites.net/wecare',
 
-  //  API_BASE_URL: 'http://localhost:8080/wecare',
+  API_BASE_URL: 'http://localhost:8080/wecare',
 
   MAXIMUM_TAX_PERCENTAGE: 100,
 
@@ -81,13 +81,13 @@ lOvYsBlAAPPdnUuUsJrYuNFLW1n0TFNQhF0h916oUflK9BLDAKJ0k36Jem4uGvK4
     // { label: 'Dermatology', value: 'dermatology' },
     // { label: 'Neurology', value: 'neurology' },
   ],
-  TESTTYPES : [
+  TESTTYPES: [
     { label: 'Select the clinic', value: '' },
     { label: 'FBC', value: 'fbc' },
     { label: 'Bio Chemistry', value: 'bio' },
     { label: 'Diagnosicic test', value: 'diagnoscic' },
     { label: 'Iron-Deficiency-Anemia', value: 'iron' },
-      ],
+  ],
   NURSETYPE: [
     { label: 'Select the nurse type', value: '' },
     { label: 'Head Nurse', value: 1 },

@@ -130,7 +130,7 @@ function AddAppointment(props) {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,
           })
-        } else if (!res) {
+        } else if (res === false) {
           toast.info('Appointment Already Available For Selected Date', {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 2000,

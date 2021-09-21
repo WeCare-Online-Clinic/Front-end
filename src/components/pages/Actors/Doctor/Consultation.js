@@ -122,6 +122,20 @@ async function no_clinic() {
   })
 }
 
+async function get_report(id) {
+  try {
+    await axios
+      .get(Constants.API_BASE_URL + '/get/recent/report/' + id + '/' + clinicId)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res)
+        }
+      })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 function Consultation() {
   const history = useHistory()
   const [clinicDate, setClinicDate] = useState(null)
@@ -131,6 +145,7 @@ function Consultation() {
   const [getData, setGetData] = useState(false)
   const [patientInfo, setPatientInfo] = useState(null)
   const [noClinic, setNoClinic] = useState(false)
+  const [pdf, setPdf] = useState(null)
 
   useEffect(() => {
     clinic_date_available().then((res) => {
@@ -150,6 +165,9 @@ function Consultation() {
     if (currQueue >= 1) {
       patient_info(clinicDate.queue[currQueue - 1]).then((res) => {
         setPatientInfo(res)
+        get_report(res.patient.id).then((res1) => {
+          setPdf(res1)
+        })
       })
     }
   }, [currQueue])
@@ -174,6 +192,7 @@ function Consultation() {
               clinicInfo={clinicDate}
               queueNo={currQueue}
               patientInfo={patientInfo}
+              pdf={pdf}
             />
           )}
 
