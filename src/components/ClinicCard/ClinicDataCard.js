@@ -97,7 +97,7 @@ function ClinicDataCard(props) {
     })
   }, [])
 
-  console.log(clinicData)
+  console.log('clinicdata', clinicData)
 
   const tableHeaders = [
     // add table header names

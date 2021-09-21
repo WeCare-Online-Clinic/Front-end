@@ -70,7 +70,7 @@ const ConsultedPatientChart = () => {
     return (
       <Card>
         <CardHeader
-          title={'Visited Patients In Previous Clinics '}
+          title={'Visited Patients In Previous Clinics In Last Month'}
           style={{ backgroundColor: '#145da0', textAlign: 'center' }}
           classes={{ title: materializeUIClasses.headerTitle }}
         ></CardHeader>

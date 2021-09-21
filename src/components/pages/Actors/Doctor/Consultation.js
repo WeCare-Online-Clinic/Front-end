@@ -123,14 +123,18 @@ async function no_clinic() {
 }
 
 async function get_report(id) {
+  let reports = null
   try {
     await axios
-      .get(Constants.API_BASE_URL + '/get/recent/report/' + id + '/' + clinicId)
+      .get(Constants.API_BASE_URL + '/get/recent/report/' + id)
       .then((res) => {
         if (res.status == 200) {
-          console.log(res)
+          if (res.data != '') {
+            reports = res.data
+          }
         }
       })
+    return reports
   } catch (error) {
     console.log(error)
   }
@@ -165,12 +169,18 @@ function Consultation() {
     if (currQueue >= 1) {
       patient_info(clinicDate.queue[currQueue - 1]).then((res) => {
         setPatientInfo(res)
-        get_report(res.patient.id).then((res1) => {
-          setPdf(res1)
-        })
       })
     }
   }, [currQueue])
+
+  useEffect(() => {
+    if (patientInfo) {
+      get_report(patientInfo.patient.id).then((res) => {
+        console.log('reports', res)
+        setPdf(res)
+      })
+    }
+  }, [patientInfo])
 
   console.log(noClinic)
 
@@ -286,6 +296,7 @@ function Content(props) {
         clinicInfo={props.clinicInfo}
         queueNo={props.queueNo}
         patientInfo={props.patientInfo}
+        pdf={props.pdf}
       />
       <Grid container style={{ padding: '20px' }}>
         <Grid item sm={12}>

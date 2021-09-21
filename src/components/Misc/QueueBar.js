@@ -65,7 +65,7 @@ function QueueBar(props) {
     setQueueNo(props.queueNo)
     setPatientLeft(props.clinicInfo.noPatients - props.queueNo)
     setPatientInfo(props.patientInfo)
-    setPdf(pdf)
+    setPdf(props.pdf)
 
     return function cleanup() {
       setPatientInfo(null)
