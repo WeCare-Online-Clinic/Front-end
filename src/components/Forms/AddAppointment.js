@@ -180,7 +180,7 @@ function AddAppointment(props) {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       })
-    } else if (!nextDate > currDate) {
+    } else if (nextDate < currDate) {
       console.log('next clinic date error')
       isValid = false
       toast.error('Next Clinic Date Is Invalid', {
