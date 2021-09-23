@@ -1,4 +1,0 @@
-{
-  "appService.defaultWebAppToDeploy": "/subscriptions/3effa500-17b6-4d0b-a098-1048f0032d51/resourceGroups/wecare/providers/Microsoft.Web/sites/wecarehospitalapp",
-  "appService.deploySubpath": "build"
-}
